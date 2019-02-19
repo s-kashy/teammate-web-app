@@ -1,0 +1,126 @@
+body{
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #191919;
+    width: 100%;
+    height: 100%;
+  }
+  .logo{
+   background-color: none;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  position: absolute;
+  top: 10px;
+  left:10px;
+  }
+  .registrar-title{
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+    margin: 0 auto;
+  }
+  .box{
+    background-color: #34495e;
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%,-50%)
+  }
+  .box input[type="text"],.box input[type="password"]{
+    border: 0;
+    background-color: black;
+    margin: 20px auto;
+    display: block;
+    border: 2px solid #3498db;
+    text-align: center;
+    padding: 14px 10px;
+    border-radius: 24px;
+    width: 200px;
+    box-sizing: border-box;
+    outline: none;
+    color: white;
+    transition: 0.25s
+  }
+  .box input[type="text"]:focus,.box input[type="password"]:focus{
+    width: 288px;
+    border-color: white
+  }
+  .box input[type="submit"]{
+    border: 0;
+    background-color: none;
+    margin: 38px auto;
+    display: block;
+    border: 2px solid #3498db;
+    position: relative;
+    text-align: center;
+    padding: 14px 34px;
+    border-radius: 24px;
+    width: 100px;
+    outline: none;
+    color: #191919;
+    transition: 0.25s;
+    cursor: pointer;
+  }
+  .box input[type="submit"]:hover{
+    background-color: green;
+  }
+  .msg-email,.msg-password{
+    color:#ef5d09;
+  }
+  .msg-email{
+    left: 84px;
+    top:112px;
+    padding: -1px;
+    position: absolute;
+  }
+  .msg-password{
+    position: absolute;
+    left: 84px;
+    top:181px;
+    padding: -1px;
+  }
+ 
+ 
+ .registrar-invalid{
+       color:#ef5d09;
+       position: absolute;
+       top: 261px;
+       left: 80px;
+       text-transform: uppercase
+ }
+ 
+  @media screen and (max-width:800px){
+    .box input[type="text"]:focus,.box input[type="password"]:focus{
+        width: 210px;
+        border-color: white
+      }
+      .main-registrar{
+          margin: 0 auto;
+      }
+    .box{
+      background-color: #34495e;
+      width: 300px;
+      box-sizing: border-box;
+      position: absolute;
+      top: 50%;
+      margin: 0 auto;
+      left: 50%;
+      text-align: center;
+      transform: translate(-50%,-50%)
+    }
+  
+ 
+    .msg-email,.msg-password{
+      position: static;
+    }
+    .registrar-invalid{
+       top: 338px;
+        left: 32px;
+    }
+  }
