@@ -78,29 +78,36 @@
     background-color: green;
 }
 
-.msg-email, .msg-password {
+.msg-email, .msg-password,.email-exist-msg {
     color: #ef5d09;
 }
 
 .msg-email {
-    left: 84px;
-    top: 112px;
+    left: 128px;
+    top: 128px;
     padding: -1px;
     position: absolute;
 }
 
 .msg-password {
     position: absolute;
-    left: 84px;
-    top: 181px;
+    left: 116px;
+    top: 197px;
     padding: -1px;
 }
 
 .registrar-invalid {
     color: #ef5d09;
     position: absolute;
-    top: 261px;
+    top: 272px;
     left: 80px;
+    text-transform: uppercase
+}
+.email-exist-msg{
+    position: absolute;
+    left: 80px;
+    top: 3000px;
+    padding: -1px;
     text-transform: uppercase
 }
 
@@ -130,4 +137,7 @@
         top: 338px;
         left: 32px;
     }
+    /* .email-exist-msg{
+
+    } */
 }

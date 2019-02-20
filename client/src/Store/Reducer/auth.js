@@ -1,7 +1,7 @@
 import * as actionType from "../actions/actionType"
 import {updateObject} from "../utilReducer/utilReducer"
 const initialState={
-    isAuthenticate:null,
+    isAuthenticate:false,
     
 }
 const reducer = (state = initialState, action) => {

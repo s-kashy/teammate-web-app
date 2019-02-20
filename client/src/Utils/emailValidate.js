@@ -13,7 +13,8 @@ export const checkPassword = (password) => {
         if (password==="" || password===undefined){
             return false
         }
-    return password.split("").length >= 6
+        console.log("valid pass",password.split(""))
+    return password.split("").length > 6
 }
 export const checkMatchPassword = (password, confirmPassword) => {
     return password === confirmPassword

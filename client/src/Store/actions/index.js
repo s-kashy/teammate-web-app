@@ -1,6 +1,7 @@
 export {
-    authCheckState
-
+    authCheckState,
+    newUserJoin,
+    loginWithCredential
 } from "./auth"
 export {
     closeSpinner,

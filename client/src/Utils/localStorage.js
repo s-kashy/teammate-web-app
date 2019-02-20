@@ -1,16 +1,15 @@
-const xAuth="xAuth"
+
 
 export const getLocalStorageInfo=()=>{
-    let val=localStorage.getItem(xAuth)
-    return val
+   return localStorage.getItem('auth');
+
    
 
 }
 export const storeInLocalStorage=(data)=>{
-    console.log(data)
-    localStorage.setItem(xAuth,data)
+       localStorage.setItem("auth",data)
 }
 
 export const removeInfoLocalStorage=()=>{
-    localStorage.removeItem(xAuth)
+    localStorage.removeItem("auth")
 }

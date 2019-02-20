@@ -3,7 +3,7 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 import Layout from "./Container/Layout/Layout"
 import { getRequestData, postRequestData } from "./RequestData/RequestData"
 import Login from "./Container/Login/Login"
-import SignIn from "./Container/SignIn/SingIn"
+import SignIn from "./Container/SignIn/SignIn"
 import * as actionType from "./Store/actions/index"
 import Error from "./Component/Error/Error"
 import LandingPage from "./Container/LandingPage/LandingPage"
@@ -16,8 +16,7 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
-
-
+    this.props.authCheckState()
   }
 
 
@@ -42,7 +41,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.auth !== null && this.props.auth === true ? <Header /> : null}
-        {this.props.auth !== null ? <Layout>
+        {this.props.auth != null ? <Layout>
           {redirectAuth}
         </Layout> : <Spinner />}
 
@@ -52,12 +51,13 @@ class App extends Component {
 }
 const mapStateHandler = state => {
   return {
-    auth: state.auth.isAuthenticate 
+    auth: state.auth.isAuthenticate
   };
 };
 const mapStateDispatch = dispatch => {
   return {
-    // authToken: () => dispatch(actionType.authCheckState())
+    authCheckState: () => dispatch(actionType.authCheckState()),
+    newUserJoin: () => dispatch(actionType.newUserJoin())
   };
 };
 

@@ -1,25 +1,6 @@
 import axios from "axios"
 
 
-export const postRequestData = (data) => {
-
-    return axios({
-        method: data.method,
-        url: data.url,
-        data: data.data,
-        headers: data.header,
-        params:data.params
-    }).then(res => {
-        return res
-    }).catch(err => {
-        return err
-    })
-
-
-
-
-}
-
 export const getRequestData = (data) => {
 
     if (data.method === 'post') {
