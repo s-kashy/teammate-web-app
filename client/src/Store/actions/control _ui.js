@@ -7,7 +7,7 @@ export const closeSpinner=()=>{
         payload: false
       };
     };
-}
+
 
 
 export const openSpinner=()=>{

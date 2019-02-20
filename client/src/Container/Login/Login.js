@@ -1,22 +1,33 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import { checkEmail, checkPassword } from "../../Utils/emailValidate"
+import {SIGN_IN_NEW_USER} from "../../Url/Url"
+import {getRequestData} from "../../RequestData/RequestData"
 import './Login.css';
 
 class Login extends Component {
     componentDidMount() {
-
-        this.formAuth.reset()
+        let data = {
+            method: 'post',
+            data: { password: "sshlomo", email: "shlomo@gnail.com" },
+            url: SIGN_IN_NEW_USER,
+            headers: "test header"
+          }
+          getRequestData(data).then(res => {
+            console.log("res in login ", res.data)
+          }).catch(err => {
+            console.log(err)
+          })
     }
     state = {
         user: {
             email: {
-                value: "",
-                emailError: null
+                value: undefined,
+                emailError: ""
             },
             password: {
                 value: "",
-                passwordError: null
+                passwordError: undefined
             }
         },
 
@@ -62,10 +73,10 @@ class Login extends Component {
                 <h2 className="logo">Teammate</h2>
 
                 <form className='box' onSubmit={this.submitUserFormHandler} ref={el=>this.formAuth=el} >
-                    <h3 className="auth-title">Login<span className="auth-sing-in-icon"><i className="fas fa-sign-in-alt"></i></span><span className="auth-new-user">*New user</span></h3>
+                    <h3 className="auth-title">Login <Link style={{color:"#FFF"}} to="/api/auth/sign-in"><span className="auth-sing-in-icon"><i className="fas fa-sign-in-alt"></i></span><span className="auth-new-user">*New user</span></Link></h3>
                     <input type="text" name="email" placeholder="email" onChange={(event) => this.onChangeHandler(event)} />
                     {emailError && <p className="msg-email">*email not valid </p>}
-                    <input type="password"  name="password" autoComplete="password" placeholder="password" onChange={(event) => this.onChangeHandler(event)} />
+                    <input type="password" value={this.state.user.password.value}name="password"  onChange={(event) => this.onChangeHandler(event)} />
                     {passwordError && <p className='msg-password'>*password not valid </p>}
                     <input type="submit" name="" value="Login" disabled={false} />
                     <Link to="/" className='auth-sing-up'>*forgot your password </Link>

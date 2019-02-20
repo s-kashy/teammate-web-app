@@ -1,4 +1,4 @@
-body{
+.main-auth{
     margin: 0;
     padding: 0;
     margin: 0 auto;
@@ -9,12 +9,12 @@ body{
   }
   .logo{
    background-color: none;
-  color: white;
-  font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
-  position: absolute;
-  top: 10px;
-  left:10px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    text-transform: uppercase;
+    position: absolute;
+    top: 10px;
+ left:10px;
   }
   .auth-title{
     font-weight: 500;
@@ -99,7 +99,7 @@ body{
   }
  .auth-sing-in-icon{
     position: absolute;
-    left: 341px;
+    left: 350px;
     top: 20px;
  }
  .auth-invalid{

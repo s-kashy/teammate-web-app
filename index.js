@@ -24,7 +24,10 @@ app.use(cookieParser());
 mongoose.set('useCreateIndex', true);
 
 
-
+app.get('*', function (request, response){
+    // response.sendFile(path.resolve(__dirname, './client/public/', 'index.html'))
+  response.redirect("/")
+})
 
 const PORT = process.env.PORT || 5000;
 require("./routes/auth")(app)

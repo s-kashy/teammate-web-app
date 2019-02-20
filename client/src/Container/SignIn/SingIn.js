@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './SingIn.css';
+import "./SignIn.css";
 
 class SingIn extends Component {
     state = {
@@ -20,7 +20,10 @@ class SingIn extends Component {
         },
         generalError:false
     }
-    onChangeHandler = (e) => { }
+    onChangeHandler = (event) => {
+
+
+     }
     render() {
         return (
 
@@ -34,7 +37,7 @@ class SingIn extends Component {
                     <input type="password" name="password" placeholder="password" onChange={(e) => this.onChangeHandler(e)} />
                    {this.state.user.password.error && <p className='msg-password'>*password not valid </p>}
                     <input type="password" name="confirmPassword" placeholder="re type password" onChange={(e) => this.onChangeHandler(e)} />
-                  <p className="ms-"></p>
+                  <p className="msg-password"></p>
                     <input type="submit" name="" value="Submit" />
                
                     {this.state.generalError && <p className="registrar-invalid">password do not match!!!</p>}
