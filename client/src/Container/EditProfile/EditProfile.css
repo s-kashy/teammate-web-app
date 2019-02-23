@@ -1,3 +1,4 @@
+
  .form-age-group h4 {
      position: relative;
      top: -9px;
@@ -23,6 +24,7 @@
  hr {
      max-width: 250px;
      margin: -10px auto;
+     color: #3498db
  }
 
  input[type="text"] {
@@ -45,6 +47,7 @@
      left: -100px;
      font-size: 13px;
      top: 10px;
+     color: #3498db
  }
 
  input[type="text"]:focus {

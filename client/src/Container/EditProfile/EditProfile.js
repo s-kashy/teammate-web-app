@@ -109,7 +109,7 @@ class Profile extends Component {
                         </div>
                         <div className="label-checkbox-wrapper">
                         <div className="float-left-checkbox">
-                            <input type="checkbox" id="yoga" name="yoga" value="yoga" checked />
+                            <input type="checkbox" id="yoga" name="yoga" value="yoga"  />
                             <label htmlFor="yoga">yoga</label>
 
                             </div>

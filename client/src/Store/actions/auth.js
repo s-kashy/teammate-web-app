@@ -50,15 +50,20 @@ export const authCheckState = () => {
         params: ""
     }
     return dispatch => {
-        if (token !== null) {
-            getRequestData(data).then(res => {
-                dispatch(setAuth(true))
-            }).catch(err => {
+      return  new Promise((resolve,reject)=>{
+            if (token !== null) {
+                getRequestData(data).then(res => {
+                    dispatch(setAuth(true))
+                    resolve(res)
+                }).catch(err => {
+                    dispatch(setAuth(false))
+                })
+            } else {
                 dispatch(setAuth(false))
-            })
-        } else {
-            dispatch(setAuth(false))
-        }
+                  reject("bad")
+            }
+        })
+       
 
     }
 

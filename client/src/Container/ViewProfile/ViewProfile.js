@@ -1,33 +1,61 @@
 import React, { Component } from "react"
-
+import Tab from "../../Component/Tab/Tab"
 import "./ViewProfile.css"
 
 class ViewProfile extends Component {
+    state = {
+        isMobile: false
+    }
+    componentDidMount() {
+        if (this.profileForm.clientWidth <= 800) {
+            this.setState({ isMobile: true })
+        }
+
+    }
 
     render() {
-        return (<div className="box-profile-view">
-            <div className="card-view-profile">
-                <div className="image-profile-view">
-                    <img src={require('../../assest/Person-Male-Light-icon.png')} />
+        return (
+            <div>
+                {this.state.isMobile ? <p>this is mobile </p> : <div ref={x => this.profileForm = x} className="wrapper-view-profile">
+                <div className="tabs">
+                <Tab name="View-Profile" label="View-Profile"/>
+                <Tab name="View-Profile" label="Edit-Profile"/>
                 </div>
+                    <div className="blog-card">
+                        <div className="title-content">
+                            <h3><a href="3">shlomo kashy </a></h3>
+                        </div>
+                        <div className="card-info">  Lorem ipsum dolor
+                         sit amet, consectetur adipisicing elit, sed do
+                          eiusmod tempor incididunt ut
+                          sit amet, consectetur adipisicing elit, sed do
+                          eiusmod tempor incididunt ut
+                          sit amet, consectetur adipisicing elit, sed 
+                          sit amet, consectetur adipisicing elit, sed do
+                          eiusmod tempor incididunt ut
+                   labore et dolore magna aliqua. Ut enim ad minim...
+                   <div>
+                   <p>My interest are</p>
+                   <ul>
+            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li> 
+            </ul>
+                   </div>
+               </div>
+               <div className="utility-list">
+            
+           
+        </div>
+                        <div className="gradient-overlay"></div>
+                        <div className="color-overlay"></div>
+                    </div>
 
-                <h3>Shlomo kashy</h3>
-                <article>ext ever since the 1500s, when an unknown
-                 printer took a galley of type and scrambled it to make
-                 a type specimen book. It has survived not only five centuries,
-                  but also the leap into electronic typesetting, remaining essentially
-                  unchanged. It was popularised in the 1960s with the release of Letraset
-                  sheets containing Lorem Ipsum passages, and more recently with desktop
-                 publishing software like Aldus PageMaker
-             including versions of Lorem Ipsum</article>
-                <ul className="sport-interest">
-                    <li><span><i className="fas fa-diamond"></i></span> yoga</li>
-                    <li><span><i className="fas fa-diamond"></i></span> soccer</li>
-                    <li><span ><i className="fas fa-diamond"></i></span> running</li>
-                </ul>
-
-            </div>
-        </div>)
+                </div>}
+            </div>)
     }
 }
 export default ViewProfile

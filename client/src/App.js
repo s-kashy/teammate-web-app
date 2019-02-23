@@ -19,7 +19,12 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
-    this.props.authCheckState()
+    this.props.authCheckState().then(res=>{
+      console.log("res on mount app",res)
+    }).catch(err=>{
+      console.log("app err",err)
+    })
+ 
   }
 
 
@@ -35,10 +40,10 @@ class App extends Component {
     if (this.props.auth) {
       redirectAuth = (
         <Switch>
-          <Route path="/profile" component={EditProfile} />
+          <Route path="/profile" component={ViewProfile} />
           <Route  path="/" component={LandingPage} />
 
-          {/* <Redirect to="/" /> */}
+          <Redirect to="/" />
           <Route component={Error} />
         </Switch>)
     }
