@@ -38,7 +38,7 @@
 
 .box input[type="text"], .box input[type="password"] {
     border: 0;
-    background-color: black;
+    background-color:transparent;
     margin: 20px auto;
     display: block;
     border: 2px solid #3498db;
@@ -53,7 +53,7 @@
 }
 
 .box input[type="text"]:focus, .box input[type="password"]:focus {
-    width: 288px;
+    width: 240px;
     border-color: white
 }
 
@@ -128,7 +128,7 @@
         margin: 0 auto;
         left: 50%;
         text-align: center;
-        transform: translate(-50%, -50%)
+        transform: translate(-80%, -40%)
     }
     .msg-email, .msg-password {
         position: static;

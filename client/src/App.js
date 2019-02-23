@@ -8,10 +8,13 @@ import * as actionType from "./Store/actions/index"
 import Error from "./Component/Error/Error"
 import LandingPage from "./Container/LandingPage/LandingPage"
 import Header from "./Container/Header/Header"
+import ViewProfile  from "./Container/ViewProfile/ViewProfile"
+import EditProfile from "./Container/EditProfile/EditProfile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
-import { LOG_OUT, SIGN_IN_NEW_USER, LOG_IN_CHECK } from "./Url/Url"
+
 import { connect } from "react-redux";
 import './App.css';
+
 
 class App extends Component {
 
@@ -32,17 +35,22 @@ class App extends Component {
     if (this.props.auth) {
       redirectAuth = (
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Redirect to="/" />
+          <Route path="/profile" component={EditProfile} />
+          <Route  path="/" component={LandingPage} />
+
+          {/* <Redirect to="/" /> */}
           <Route component={Error} />
         </Switch>)
     }
 
     return (
       <div className="App">
-        {this.props.auth !== null && this.props.auth === true ? <Header /> : null}
+        
         {this.props.auth != null ? <Layout>
+      { this.props.auth !== null && this.props.auth === true ? <Header /> : null} 
+       
           {redirectAuth}
+          
         </Layout> : <Spinner />}
 
       </div>

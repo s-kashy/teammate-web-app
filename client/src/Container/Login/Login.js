@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom"
 import { checkEmail, checkPassword } from "../../Utils/emailValidate"
-import { SIGN_IN_NEW_USER } from "../../Url/Url"
 import { connect } from "react-redux";
-
 import * as actionType from "../../Store/actions/index"
 import './Login.css';
 
@@ -65,8 +63,6 @@ class Login extends Component {
         console.log("onChange user login=>", userInput)
         this.setState({ user: userInput }, () => {
 
-
-
         })
 
 
@@ -77,7 +73,7 @@ class Login extends Component {
             <div className="main-auth" >
                 <h2 className="logo">Teammate</h2>
 
-                <form className='box' onSubmit={this.submitUserFormHandler} ref={el => this.formAuth = el} >
+                <form className="box-login" onSubmit={this.submitUserFormHandler} ref={el => this.formAuth = el} style={{left:"75%"}} >
                     <h3 className="auth-title">Login <Link style={{ color: "#FFF" }} to="/api/auth/sign-in"><span className="auth-sing-in-icon"><i className="fas fa-sign-in-alt"></i></span><span className="auth-new-user">*New user</span></Link></h3>
                     <input type="text" name="email" placeholder="email" onChange={(event) => this.onChangeHandler(event)} autoComplete="new-email" value={email.value} />
                     {email.error && <p className="msg-email">*email not valid </p>}

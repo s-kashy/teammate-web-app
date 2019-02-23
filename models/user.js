@@ -95,8 +95,8 @@ user.methods.generateAuthToken = function () {
 user.methods.removeToken=function(token){
     var user=this
     return user.updateOne({
-        $pull:{
-            tokens:{token:token}
+        $unset:{
+            tokens:{token:undefined}
         }
     })
 }

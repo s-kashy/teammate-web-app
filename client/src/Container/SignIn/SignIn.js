@@ -85,7 +85,7 @@ class SignIn extends Component {
         return (
             <div className="main-auth" >
                 <h2 className="logo">Teammate</h2>
-                <form className='box' onSubmit={this.submitFormHandler}>
+                <form className='box' onSubmit={this.submitFormHandler} style={{left:"75%"}}>
                     <h3 className="registrar-title">Sign in</h3>
                     <input type="text" name="email" placeholder="email" onChange={(e) => this.onChangeHandler(e)} value={this.state.user.email.value } />
                     {this.state.user.email.error && <p className="msg-email">*email not valid </p>}

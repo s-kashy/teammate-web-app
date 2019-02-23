@@ -12,4 +12,5 @@ export const storeInLocalStorage=(data)=>{
 
 export const removeInfoLocalStorage=()=>{
     localStorage.removeItem("auth")
+    
 }

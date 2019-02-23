@@ -6,13 +6,12 @@ import { getLocalStorageInfo, storeInLocalStorage, removeInfoLocalStorage } from
 
 
 export const setAuth = (result) => {
-
     return {
         type: type.LOGIN_CHECK_TOKEN,
         payload: result
     }
 }
-export const loginWithCredential=(userInfo)=>{
+export const loginWithCredential = (userInfo) => {
 
     let dataSent = {
         url: LOG_IN_WITH_CREDENTIAL,
@@ -20,40 +19,39 @@ export const loginWithCredential=(userInfo)=>{
             auth: ""
         },
         method: "post",
-        data: {email:userInfo.email,password:userInfo.password},
+        data: { email: userInfo.email, password: userInfo.password },
         params: ""
     }
-    return dispatch=>{
-    return getRequestData(dataSent).then(res => {
-        console.log("res from server",res)
-        storeInLocalStorage(res.headers.auth)
-        dispatch(setAuth(true))
-        return Promise.resolve("200")
-    }).catch(err => {
-        console.log(err)
-        dispatch(setAuth(false))
-        return Promise.reject("400")
+    return dispatch => {
+        return getRequestData(dataSent).then(res => {
+            console.log("res from server", res)
+            storeInLocalStorage(res.headers.auth)
+            dispatch(setAuth(true))
+            return Promise.resolve("200")
+        }).catch(err => {
+            console.log(err)
+            dispatch(setAuth(false))
+            return Promise.reject("400")
 
-    })
-}
+        })
+    }
 
 }
 export const authCheckState = () => {
-    let token = getLocalStorageInfo()
-        console.log("token",token)
-    let data = {
+    var token = getLocalStorageInfo()
+
+    var data = {
         url: LOG_IN_CHECK,
+        method: "get",
         header: {
             auth: token
         },
-        method: "get",
         data: null,
         params: ""
     }
     return dispatch => {
         if (token !== null) {
             getRequestData(data).then(res => {
-                console.log("auth check",res)
                 dispatch(setAuth(true))
             }).catch(err => {
                 dispatch(setAuth(false))
@@ -91,8 +89,40 @@ export const newUserJoin = (newUser) => {
 
         })
     }
-}
 
+
+}
+export const logoutUser = () => {
+var token=getLocalStorageInfo()
+    return dispatch => {
+        let dataSent = {
+            url: LOG_OUT,
+            header: {
+                auth: token
+            },
+            method: "delete",
+            data: "",
+            params: ""
+        }
+        return getRequestData(dataSent).then(res => {
+         
+         
+            removeInfoLocalStorage()
+            dispatch(setAuth(false))
+            return Promise.resolve("200")
+        }).catch(err => {
+            console.log(err)
+            removeInfoLocalStorage()
+            dispatch(setAuth(false))
+            return Promise.reject("400")
+
+
+        })
+    }
+
+
+
+}
 
 
 

@@ -1,0 +1,47 @@
+.box-profile-view {
+    background-image: url("../../assest/viewProfile.jpeg");
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-position: 0% 62%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.card-view-profile {
+    padding: 0;
+    border-radius: 2px;
+   
+    padding: 10px 10px;
+    background: #ffffff;
+    overflow: auto;
+    margin: 10px auto;
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 75%;
+    max-width: 300px;
+    box-shadow: 1px 1px 12px black;
+    transform: translate(-50%, -50%);
+    height: 300px;
+    transition:height 0.45s ease-out;
+    overflow: hidden;
+}
+
+.card-view-profile:hover {
+    height: auto;
+    transition: height 0.45s ease-in;
+ 
+   
+}
+
+.image-profile-view img {
+    width: 100px;
+    border-radius: 50%;
+    margin: 5px auto;
+    border: 1px solid black;
+}
+
+.sport-interest {
+    list-style-type: none;
+}
