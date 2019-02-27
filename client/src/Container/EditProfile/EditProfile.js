@@ -68,7 +68,7 @@ class Profile extends Component {
                     </div>
 
                     <fieldset>
-                        <legend>Share more info</legend>
+                        <legend style={{color:"#3498db"}}>Share more info</legend>
                         <textarea wrap="physical"></textarea>
                     </fieldset>
 

@@ -16,13 +16,15 @@ mongoose.connect(
 mongoose.Promise = global.Promise
 
 require("./models/user")
+require("./models/profile")
 app.use(cors())
-app.use(bodyParser.json())
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 mongoose.set('useCreateIndex', true);
 require("./routes/auth")(app)
+require("./routes/profile")(app)
 
 app.get('*', function (request, response){
     // response.sendFile(path.resolve(__dirname, './client/public/', 'index.html'))

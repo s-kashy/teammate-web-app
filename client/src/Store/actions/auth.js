@@ -24,10 +24,10 @@ export const loginWithCredential = (userInfo) => {
     }
     return dispatch => {
         return getRequestData(dataSent).then(res => {
-            console.log("res from server", res)
+            //console.log("res from server", res)
             storeInLocalStorage(res.headers.auth)
             dispatch(setAuth(true))
-            return Promise.resolve("200")
+            return Promise.resolve(res.data.email)
         }).catch(err => {
             console.log(err)
             dispatch(setAuth(false))
@@ -54,7 +54,7 @@ export const authCheckState = () => {
             if (token !== null) {
                 getRequestData(data).then(res => {
                     dispatch(setAuth(true))
-                    resolve(res)
+                    resolve(res.data)
                 }).catch(err => {
                     dispatch(setAuth(false))
                 })

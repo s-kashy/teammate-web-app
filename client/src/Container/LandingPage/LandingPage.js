@@ -3,6 +3,8 @@ import "./LandingPage.css"
 
 
 class LadingPage extends Component{
+
+    
 render(){
     return(<div>
         landing page

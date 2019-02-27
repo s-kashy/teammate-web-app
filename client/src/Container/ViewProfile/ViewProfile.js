@@ -10,9 +10,18 @@ class ViewProfile extends Component {
         if (this.profileForm.clientWidth <= 800) {
             this.setState({ isMobile: true })
         }
+      //  this.profileForm.addEventListener("resize",this.screenIsResize)
+      
 
     }
-
+    screenIsResize=()=>{
+        if (this.profileForm.clientWidth <= 800) {
+            this.setState({ isMobile: true })
+        }
+        else{
+            this.setState({isMobile:false})
+        }
+    }
     render() {
         return (
             <div>
@@ -37,12 +46,12 @@ class ViewProfile extends Component {
                    <div>
                    <p>My interest are</p>
                    <ul>
-            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
-            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
-            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
-            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
-            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li>
-            <li> <span className="licon"> <i class="far fa-dot-circle"></i></span>Hookey</li> 
+            <li> <span className="licon"> <i className="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i className="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i className="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i className="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i className="far fa-dot-circle"></i></span>Hookey</li>
+            <li> <span className="licon"> <i className="far fa-dot-circle"></i></span>Hookey</li> 
             </ul>
                    </div>
                </div>

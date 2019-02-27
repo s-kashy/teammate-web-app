@@ -77,7 +77,9 @@
   transition: 0.25s;
   cursor: pointer;
 }
-
+.registrar-title::after{
+  text-decoration: none !important;
+}
 .box-login input[type="submit"]:hover {
   background-color: green;
 }
@@ -91,7 +93,7 @@
 }
 .msg-email {
   left: 84px;
-  top: 112px;
+  top: 139px !important;
   padding: -1px;
   position: absolute;
 }
@@ -118,15 +120,16 @@
 }
 
 .auth-sing-in-icon {
+
   position: absolute;
-  left: 350px;
+  left: 275px;
   top: 20px;
 }
 
 .auth-invalid {
   color: #ef5d09;
   position: absolute;
-  top: 279px;
+  top: 297px;
   left: 70px;
   text-transform: uppercase
 }
@@ -135,7 +138,7 @@
   font-size: 12px;
   text-transform: uppercase;
   position: absolute;
-  left: 274px;
+  left: 201px;
   cursor: pointer;
   top: 24px;
 }

@@ -6,14 +6,15 @@ import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux";
 import authR from "./Store/Reducer/auth"
 import controlUiR from "./Store/Reducer/control_ui"
-import userR from "./Store/Reducer/user"
+import profileR from "./Store/Reducer/profile"
 import thunk from "redux-thunk";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const rooReducer = combineReducers({
     auth: authR,
-    spinnerState: controlUiR
+    spinnerState: controlUiR,
+    user:profileR
 
 
 });

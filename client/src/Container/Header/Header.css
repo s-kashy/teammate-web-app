@@ -2,6 +2,7 @@
 .header{
 font-family: 'Roboto', sans-serif;
 height: 100px;
+overflow: hidden;
 position: relative;
 background: #34495e;
 padding: -1 20px;

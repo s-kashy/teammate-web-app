@@ -1,0 +1,155 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.main-form-profile {
+    margin: 10px auto;
+    overflow: hidden;
+    border-radius: 0px;
+    justify-content: center;
+    display: flex !important;
+    flex-direction: column;
+}
+
+.wrapper-view-profile {
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+form {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.input-first-last-group-profile, .radio-group-profile {
+    margin: 10px auto;
+    display: block;
+}
+
+.radio-group-profile {
+    width: 100%;
+    margin: 15px auto;
+}
+
+.single-radio-input-profile {
+    display: inline;
+    margin: 0 15px
+}
+
+.inputs-profile {
+    padding: 13px;
+    outline: 0;
+    margin: 0;
+    cursor: pointer;
+    width: 100%;
+    color: #8a97a0;
+    margin-bottom: 30px;
+}
+
+.label-basic-input-filed {
+    position: relative;
+    left: -96px;
+}
+
+.sport-type-checkbox-profile {
+    display: flex;
+    left: 97px;
+    position: relative;
+    flex-flow: row wrap;
+    width: 50%;
+    margin: 15px auto;
+}
+
+.individual-checkbox-profile {
+    flex: 1 0 50%;
+    min-width: 100px;
+    margin: 10px auto;
+    align-items: flex-start;
+}
+
+.fieldset-upload-group {
+    display: flex;
+    width: 70%;
+    margin: 10px auto;
+    justify-content: space-around;
+}
+
+textarea {
+    outline: none;
+    border: 0;
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 300px;
+    overflow: auto;
+    height: 202px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.upload-image {
+    width: 40%;
+}
+
+.input-upload-file-image {
+    background-color: blue;
+    padding: 20px;
+    margin: 10px auto;
+    outline: 0;
+    margin: 10px auto;
+    cursor: pointer;
+    width: 64%;
+    color: #8a97a0;
+}
+
+.button-submit {
+    width: 250px;
+    height: 45px;
+    border: none;
+    position: relative;
+    display: block;
+    margin: 10px auto;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 3px 2px 0 #2c80a2;
+    color: #fff;
+    font-size: 14px;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.4);
+    background-color: #3fb8e8;
+    font-weight: 700;
+    background-repeat: no-repeat;
+    background-position: 200px;
+}
+p{
+    font-weight: 700;
+    color:#3498db;
+    text-decoration: underline;
+}
+@media screen and (max-width:800px) {
+    .sport-type-checkbox-profile {
+        width: 100% !important;
+        left: 32px !important;
+    }
+    .fieldset-upload-group{
+        flex-direction: column !important;
+    }
+    .upload-image {
+        width: 100%;
+    }
+    textarea{
+        width: 100% !important;
+    }
+    .radio-group-profile{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .single-radio-input-profile{
+        position: relative;
+        margin: 0px 30px;
+        display: block;
+        padding: 12px 0 0 4px;
+        cursor: pointer;
+    }
+}

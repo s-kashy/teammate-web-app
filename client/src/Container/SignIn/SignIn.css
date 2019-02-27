@@ -23,6 +23,7 @@
     text-transform: uppercase;
     color: white;
     margin: 0 auto;
+    
 }
 
 .box {
@@ -92,14 +93,14 @@
 .msg-password {
     position: absolute;
     left: 116px;
-    top: 197px;
+    top: 200px;
     padding: -1px;
 }
 
 .registrar-invalid {
     color: #ef5d09;
     position: absolute;
-    top: 272px;
+    top: 277px;
     left: 80px;
     text-transform: uppercase
 }

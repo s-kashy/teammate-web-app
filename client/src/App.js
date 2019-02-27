@@ -8,8 +8,9 @@ import * as actionType from "./Store/actions/index"
 import Error from "./Component/Error/Error"
 import LandingPage from "./Container/LandingPage/LandingPage"
 import Header from "./Container/Header/Header"
-import ViewProfile  from "./Container/ViewProfile/ViewProfile"
-import EditProfile from "./Container/EditProfile/EditProfile"
+
+import ViewProfile from "./Container/ViewProfile/ViewProfile"
+import Profile from "./Container/Profile/Profile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
 
 import { connect } from "react-redux";
@@ -19,12 +20,13 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
-    this.props.authCheckState().then(res=>{
-      console.log("res on mount app",res)
-    }).catch(err=>{
-      console.log("app err",err)
+    this.props.authCheckState().then(res => {
+      this.props.initializeUser(res)
+        this.props.history.push("/")
+    }).catch(err => {
+      this.props.history.push("/api/auth/login")
     })
- 
+
   }
 
 
@@ -40,9 +42,8 @@ class App extends Component {
     if (this.props.auth) {
       redirectAuth = (
         <Switch>
-          <Route path="/profile" component={ViewProfile} />
-          <Route  path="/" component={LandingPage} />
-
+          <Route path="/profile" component={Profile} />
+          <Route path="/" component={LandingPage} />
           <Redirect to="/" />
           <Route component={Error} />
         </Switch>)
@@ -50,12 +51,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        
-        {this.props.auth != null ? <Layout>
-      { this.props.auth !== null && this.props.auth === true ? <Header /> : null} 
-       
+
+        {this.props.auth !== null ? <Layout>
+          {this.props.auth !== null && this.props.auth === true ? <Header /> : null}
           {redirectAuth}
-          
         </Layout> : <Spinner />}
 
       </div>
@@ -70,6 +69,7 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
   return {
     authCheckState: () => dispatch(actionType.authCheckState()),
+    initializeUser:(email)=>dispatch(actionType.initializeUser(email)),
     newUserJoin: () => dispatch(actionType.newUserJoin())
   };
 };

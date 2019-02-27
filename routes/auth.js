@@ -19,7 +19,7 @@ module.exports = (app) => {
     })
 
     app.get("/api/auth/check", (req, res) => {
-
+               
         let token = req.header("auth")
            
         User.findByToken(token).then(user => {

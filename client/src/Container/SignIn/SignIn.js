@@ -62,6 +62,7 @@ class SignIn extends Component {
                 }
                 this.props.newUserJoin(newUser).then(res=>{
                     if (res==="200"){
+                        this.props.updateUserEmail(this.state.email.value)
                         this.props.history.push('/');
                     }
                 }).catch(err=>{
@@ -112,6 +113,7 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
     return {
         //authCheckState: () => dispatch(actionType.authCheckState()),
+        updateUserEmail:(email)=>dispatch(actionType.updateUserEmail(email)),
         newUserJoin: (user) => dispatch(actionType.newUserJoin(user))
     };
 };

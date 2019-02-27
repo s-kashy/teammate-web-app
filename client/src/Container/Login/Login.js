@@ -43,7 +43,9 @@ class Login extends Component {
         this.setState({ user: userInfo }, () => {
             if (!this.state.user.email.error && !this.state.user.password.error) {
                 this.props.loginWithCredential({ email: userInfo.email.value, password: userInfo.password.value }).then(res => {
-                            if(res==="200"){
+                            if(res){
+                                console.log("res fro login",res)
+                                this.props.updateUserEmail(res)
                                 this.props.history.push("/")
                             }
                 }).catch(err => {
@@ -60,7 +62,7 @@ class Login extends Component {
     onChangeHandler = (event) => {
         let userInput = JSON.parse(JSON.stringify(this.state.user))
         userInput[event.target.name].value = event.target.value
-        console.log("onChange user login=>", userInput)
+       
         this.setState({ user: userInput }, () => {
 
         })
@@ -96,6 +98,7 @@ const mapStateHandler = state => {
 };
 const mapStateDispatch = dispatch => {
     return {
+        updateUserEmail:(email)=>dispatch(actionType.updateUserEmail(email)),
         loginWithCredential: (user) => dispatch(actionType.loginWithCredential(user))
     };
 };
