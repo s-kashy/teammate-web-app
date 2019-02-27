@@ -18,7 +18,7 @@ mongoose.Promise = global.Promise
 require("./models/user")
 require("./models/profile")
 app.use(cors())
-
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
