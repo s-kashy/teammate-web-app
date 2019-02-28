@@ -1,7 +1,7 @@
 import * as type from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { GET_USER_PROFILE, NEW_PROFILE } from "../../Url/Url"
-import { Z_DEFAULT_COMPRESSION } from "zlib";
+import { GET_USER_PROFILE, UPDATE_PROFILE } from "../../Url/Url"
+
 
 
 export const updateUserEmail = (email) => {
@@ -21,22 +21,20 @@ export const updateProfileUser = (profile) => {
 
 export const getUserProfile = (emailUser) => {
 
-var data={
-    email:emailUser
-}
+  
     var dataUser = {
         url: GET_USER_PROFILE,
         method: "get",
         header: {
             email: emailUser,
-            
+
         },
-        data:"",
+        data: "",
         params: ""
     }
     return dispatch => {
         getRequestData(dataUser).then(res => {
-         console.log("get user profile =>",res.data)
+            console.log("get user profile =>", res.data)
             dispatch(updateProfileUser(res.data))
 
         }).catch(err => {
@@ -48,18 +46,20 @@ var data={
 
 }
 export const postUserProfile = (rUrl, userProfile) => {
+
+    var headersOpt = {
+        "Content-type": "Application/json",
+    };
     var data = {
-        url: rUrl,
+        url: rUrl.toString(),
         method: "post",
-        header: {
-            auth: ""
-        },
+        header: headersOpt,
         data: userProfile,
         params: ""
     }
     return dispatch => {
         getRequestData(data).then(res => {
-         dispatch(updateProfileUser(userProfile))
+            dispatch(updateProfileUser(userProfile))
 
         }).catch(err => {
 
@@ -68,13 +68,32 @@ export const postUserProfile = (rUrl, userProfile) => {
     }
 
 }
-export const initializeUser=(email)=>{
-    console.log("initializeUser")
-return dispatch=>{
-    dispatch(updateUserEmail(email))
-    dispatch(getUserProfile(email))
+export const updateUserProfileOnServer=(id,profileEdit)=>{
+  
+    var data = {
+        url: UPDATE_PROFILE,
+        method: "post",
+        headers: {
+            id: id
+        },
+        data: profileEdit,
+        params:""
+    }
+    return dispatch=>{
+        getRequestData(data).then(res=>{
+            dispatch(getUserProfile(profileEdit))
+            console.log(res)
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
 }
-}
+export const initializeUser = (email) => {
 
+    return dispatch => {
+        dispatch(updateUserEmail(email))
+        dispatch(getUserProfile(email))
+    }
+}
 
 

@@ -1,3 +1,7 @@
+input[type="radio"]{
+    display: none;
+
+}
 input[type="radio"]+label {
     position: relative;
     margin: 0 10px;

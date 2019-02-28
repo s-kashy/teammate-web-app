@@ -3,7 +3,7 @@ import "./Profile.css"
 import { connect } from "react-redux";
 import * as actionType from "../../Store/actions/index"
 import Input from "../../Component/Input/Input"
-import { UPDATE_PROFILE, NEW_PROFILE } from "../../Url/Url"
+import { NEW_PROFILE } from "../../Url/Url"
 import Spinner from "../../Component/Ui/Spinner/Spinner"
 import CheckBox from "../../Component/CheckBox/CheckBox"
 import RadioButton from "../../Component/RadioButton/RadioButton"
@@ -11,22 +11,41 @@ import RadioButton from "../../Component/RadioButton/RadioButton"
 class Profile extends Component {
 
     componentDidMount() {
-        if (Object.keys(this.props.userProfile).length === 0 && this.props.userProfile.constructor === Object) {
-            this.setState({ isLoading: false, newUser: true })
+        if (this.props.userProfile == "" || this.props.userProfile === undefined ||
+            Object.keys(this.props.userProfile).length == 0) {
+            this.setState({ isLoading: false, newUser: true }, () => { })
         }
         else {
+            let userInfo = JSON.parse(JSON.stringify(this.state.user))
+            for (let i = 0; i < this.props.userProfile.sportInterest.length; i++) {
+                let temp = this.props.userProfile.sportInterest[i].nameOfSport
+                userInfo.sportInterest[temp].value = true
+            }
+            if (this.props.userProfile.age !== undefined && this.props.userProfile.age !== '') {
+                userInfo.ageGroup.forEach(item => {
+                    if (item.value === this.props.userProfile.age) {
+                        item.check = true
+                    }
+                    else {
+                        item.check = false
+                    }
+                })
+            }
+            this.setState({ user: userInfo }, () => {
+                this.setState({ isLoading: false })
 
+            })
         }
     }
     state = {
         user: {
             firstname: {
-                value: "",
+                value: this.props.userProfile.firstname ? this.props.userProfile.firstname : "",
                 error: false
             },
 
             lastname: {
-                value: "",
+                value: this.props.userProfile.lastname ? this.props.userProfile.lastname : "",
                 error: false
             },
             ageGroup: [
@@ -47,7 +66,7 @@ class Profile extends Component {
                 }
             ],
             image: "",
-            about: "",
+            about: this.props.userProfile.about ? this.props.userProfile.about : "",
             sportInterest: {
                 running: { value: false },
                 bicycle: { value: false },
@@ -68,12 +87,11 @@ class Profile extends Component {
         }
     }
     submitHandler = (event) => {
-
         event.preventDefault()
-        
+
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         userInfo.about = this.textarea.value
-      
+
         if (userInfo.firstname.value === "" || userInfo.firstname.value === undefined) {
             userInfo.firstname.error = true
         }
@@ -90,11 +108,10 @@ class Profile extends Component {
         })
     }
     postProfileOfUser = () => {
-         console.log("post data function")
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         let ageSelected = this.getAgePreferenceOfUser(userInfo.ageGroup)
+
         let arrayOfSportInterest = (this.filterSportInterestArray(userInfo.sportInterest))
-         console.log("filter array", arrayOfSportInterest)
         let dataUpdate = {
             firstname: userInfo.firstname.value,
             lastname: userInfo.lastname.value,
@@ -104,14 +121,17 @@ class Profile extends Component {
             sportInterest: arrayOfSportInterest
         }
 
-    
-        let url = UPDATE_PROFILE
-        if (this.state.newUser) {
-            url = NEW_PROFILE
-        }
-       
-        this.props.postUserProfile(url, dataUpdate)
 
+
+        if (this.state.newUser) {
+            this.props.postUserProfile(NEW_PROFILE, dataUpdate)
+        }
+        else {
+            console.log("edit sever")
+            this.props.updateUserProfileOnServer(this.props.userProfile._id, dataUpdate)
+        }
+
+        this.props.history.push("/")
 
 
 
@@ -126,7 +146,7 @@ class Profile extends Component {
         let sportTypeArray = []
         for (let key in sportInterest) {
 
-            sportTypeArray.push({ value: sportInterest[key].val, nameOfSport: key })
+            sportTypeArray.push({ value: sportInterest[key].value, nameOfSport: key })
         }
 
         return sportTypeArray
@@ -138,7 +158,6 @@ class Profile extends Component {
         let sportTypeArray = []
         for (let key in sportInterest) {
             if (sportInterest[key].value)
-
                 sportTypeArray.push({ value: sportInterest[key].value, nameOfSport: key })
         }
         return sportTypeArray
@@ -199,7 +218,7 @@ class Profile extends Component {
 
 
         return (
-            <div> {!this.state.isLoading ?
+            <div> {this.state.isLoading ? <Spinner /> :
                 <div className="wrapper-view-profile">
 
                     <form onSubmit={this.submitHandler}>
@@ -207,12 +226,14 @@ class Profile extends Component {
                             <p>Basic info</p>
                             <div className="input-first-last-group-profile">
                                 <Input type="text" id="firstname" classInput="inputs-profile"
-                                    classLabel="label-basic-input-filed" title="First-name:"
+                                    classLabel="label-basic-input-filed" value={firstname.value} title="First-name:"
                                     error={firstname.error}
+
                                     name="firstname" change={(e) => this.onChangeHandlerInput(e)} />
 
                                 <Input type="text" id="lastname" classInput="inputs-profile"
                                     error={lastname.error}
+                                    value={lastname.value}
                                     classLabel="label-basic-input-filed" title="Last-name:"
                                     name="lastname" change={(e) => this.onChangeHandlerInput(e)} />
                             </div>
@@ -229,7 +250,7 @@ class Profile extends Component {
                                 <div>
                                     <fieldset>
                                         <legend style={{ color: "#3498db" }}>Share More Info</legend>
-                                        <textarea wrap="physical" ref={x => this.textarea = x}></textarea>
+                                        <textarea wrap="physical" ref={x => this.textarea = x}>{this.state.user.about}</textarea>
                                     </fieldset>
                                 </div>
                                 <div className="upload-image">
@@ -244,7 +265,7 @@ class Profile extends Component {
 
                     </form>
 
-                </div> : <Spinner />}</div>)
+                </div>}</div>)
     }
 }
 const mapStateHandler = state => {
@@ -256,6 +277,7 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
     return {
         updateUserEmail: (email) => dispatch(actionType.updateUserEmail(email)),
+        updateUserProfileOnServer: (id, userProfile) => dispatch(actionType.updateUserProfileOnServer(id, userProfile)),
         newUserJoin: (user) => dispatch(actionType.newUserJoin(user)),
         postUserProfile: (url, userProfile) => dispatch(actionType.postUserProfile(url, userProfile))
 

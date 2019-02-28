@@ -15,5 +15,6 @@ export {
     postUserProfile,
     updateUserEmail,
     initializeUser,
-    getUserProfile
+    getUserProfile,
+    updateUserProfileOnServer
 } from "./profile"

@@ -6,7 +6,12 @@ var bodyParser = require('body-parser')
 const keys = require("./config/keys")
 var cors = require('cors')
 const app = express()
-
+app.use(cors())
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 mongoose.connect(
     keys.MONGO_DB,
     { useNewUrlParser: true }, (err, db) => {
@@ -17,11 +22,10 @@ mongoose.Promise = global.Promise
 
 require("./models/user")
 require("./models/profile")
-app.use(cors())
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cookieParser());
+
+
+
 mongoose.set('useCreateIndex', true);
 require("./routes/auth")(app)
 require("./routes/profile")(app)
@@ -36,4 +40,3 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log("listening on port 5000");
 });
-

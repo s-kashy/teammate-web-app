@@ -4,8 +4,8 @@ import axios from "axios"
 export const getRequestData = (data) => {
 
     if (data.method == 'post') {
-
-        return axios({
+        console.log(data)
+        return axios.request({
             method: 'post',
             data: data.data,
             url: data.url.toString(),
@@ -17,8 +17,8 @@ export const getRequestData = (data) => {
             return Promise.reject(err)
         })
     } else if (data.method == "get") {
-        console.log("get req", data)
-        return axios({
+     
+        return axios.request({
             method: 'get',
             data: data.data,
             url: data.url.toString(),
@@ -33,7 +33,7 @@ export const getRequestData = (data) => {
     }
     else {
 
-        return axios({
+        return axios.request({
             method: 'delete',
             data: data.data,
             url: data.url,
@@ -49,5 +49,4 @@ export const getRequestData = (data) => {
     }
 
 }
-
 

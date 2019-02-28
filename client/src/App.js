@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 import Layout from "./Container/Layout/Layout"
-import { getRequestData, postRequestData } from "./RequestData/RequestData"
+
 import Login from "./Container/Login/Login"
 import SignIn from "./Container/SignIn/SignIn"
 import * as actionType from "./Store/actions/index"
@@ -9,7 +9,6 @@ import Error from "./Component/Error/Error"
 import LandingPage from "./Container/LandingPage/LandingPage"
 import Header from "./Container/Header/Header"
 
-import ViewProfile from "./Container/ViewProfile/ViewProfile"
 import Profile from "./Container/Profile/Profile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
 
@@ -20,9 +19,10 @@ import './App.css';
 class App extends Component {
 
   componentDidMount() {
+
     this.props.authCheckState().then(res => {
       this.props.initializeUser(res)
-        this.props.history.push("/")
+      this.props.history.push("/")
     }).catch(err => {
       this.props.history.push("/api/auth/login")
     })
@@ -51,12 +51,10 @@ class App extends Component {
 
     return (
       <div className="App">
-
         {this.props.auth !== null ? <Layout>
           {this.props.auth !== null && this.props.auth === true ? <Header /> : null}
           {redirectAuth}
         </Layout> : <Spinner />}
-
       </div>
     );
   }
@@ -69,7 +67,7 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
   return {
     authCheckState: () => dispatch(actionType.authCheckState()),
-    initializeUser:(email)=>dispatch(actionType.initializeUser(email)),
+    initializeUser: (email) => dispatch(actionType.initializeUser(email)),
     newUserJoin: () => dispatch(actionType.newUserJoin())
   };
 };
