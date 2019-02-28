@@ -1,13 +1,38 @@
 
 const mongoose = require("mongoose")
 var Profile = mongoose.model("Profile")
+var keys = require("../config/keys")
 
-
+const multer = require("multer");
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
 module.exports = (app) => {
 
-    app.post("/api/profile/new-profile", (req, res) => {
+    cloudinary.config({
+        cloud_name: keys.CLOUDINARY_NAME,
+        api_key: keys.CLOUDINARY_API_KEY,
+        api_secret: keys.CLOUDINARY_SECRET
+    });
+    const storage = cloudinaryStorage({
+        cloudinary: cloudinary,
+        folder: "demo",
+        allowedFormats: ["jpg", "png"],
+        transformation: [{ width: 500, height: 500, crop: "limit" }]
+    });
+    const parser = multer({ storage: storage });
 
-        var profile = new Profile(req.body)
+
+
+
+
+    app.post("/api/profile/new-profile", parser.single('myImage'), (req, res) => {
+        const image = {};
+        image.url = req.file.url;
+        image.id = req.file.public_id;
+        const  newProfile= JSON.parse(req.body.value)
+        var profile = new Profile(newProfile)
+     
+        profile.imageUrl= req.file.url
         profile.save().then(docs => {
             res.status(200).send(docs)
         }).catch(err => {
@@ -16,7 +41,10 @@ module.exports = (app) => {
 
 
     })
-    app.post("/api/profile/update-profile", (req, res) => {
+    app.post("/api/profile/update-profile",parser.single('myImage'),(req, res) => {
+        const image = {};
+      
+        console.log(image)
         let id = req.header("id")
         Profile.findByIdAndUpdate(id,
             { $set: req.body }, { new: true }).then(docs => {

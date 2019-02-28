@@ -21,7 +21,7 @@ export const updateProfileUser = (profile) => {
 
 export const getUserProfile = (emailUser) => {
 
-  
+
     var dataUser = {
         url: GET_USER_PROFILE,
         method: "get",
@@ -46,9 +46,10 @@ export const getUserProfile = (emailUser) => {
 
 }
 export const postUserProfile = (rUrl, userProfile) => {
-
+console.log("new user")
     var headersOpt = {
-        "Content-type": "Application/json",
+        // "Content-type": "Application/json",
+        'content-type': 'multipart/form-data'
     };
     var data = {
         url: rUrl.toString(),
@@ -68,8 +69,8 @@ export const postUserProfile = (rUrl, userProfile) => {
     }
 
 }
-export const updateUserProfileOnServer=(id,profileEdit)=>{
-  
+export const updateUserProfileOnServer = (id, profileEdit) => {
+
     var data = {
         url: UPDATE_PROFILE,
         method: "post",
@@ -77,13 +78,13 @@ export const updateUserProfileOnServer=(id,profileEdit)=>{
             id: id
         },
         data: profileEdit,
-        params:""
+        params: ""
     }
-    return dispatch=>{
-        getRequestData(data).then(res=>{
+    return dispatch => {
+        getRequestData(data).then(res => {
             dispatch(getUserProfile(profileEdit))
             console.log(res)
-        }).catch(err=>{
+        }).catch(err => {
             console.log(err)
         })
     }

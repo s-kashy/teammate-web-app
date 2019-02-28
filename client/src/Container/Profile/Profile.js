@@ -13,7 +13,7 @@ class Profile extends Component {
     componentDidMount() {
         if (this.props.userProfile == "" || this.props.userProfile === undefined ||
             Object.keys(this.props.userProfile).length == 0) {
-            this.setState({ isLoading: false, newUser: true }, () => { })
+                this.setState({newUser:true})
         }
         else {
             let userInfo = JSON.parse(JSON.stringify(this.state.user))
@@ -65,7 +65,7 @@ class Profile extends Component {
                     name: "age"
                 }
             ],
-            image: "",
+            image: this.props.userProfile.image?this.props.userProfile.image:"",
             about: this.props.userProfile.about ? this.props.userProfile.about : "",
             sportInterest: {
                 running: { value: false },
@@ -81,10 +81,11 @@ class Profile extends Component {
                 poker: { value: false },
                 snooker: { value: false }
             },
-            newUser: false,
+           
             isLoading: true
 
-        }
+        },
+        newUser: false,
     }
     submitHandler = (event) => {
         event.preventDefault()
@@ -118,17 +119,21 @@ class Profile extends Component {
             age: ageSelected.value,
             email: this.props.email,
             about: userInfo.about,
-            sportInterest: arrayOfSportInterest
+            sportInterest: arrayOfSportInterest,
+            image: this.state.user.image
         }
 
 
-
+        var formData = new FormData()
         if (this.state.newUser) {
-            this.props.postUserProfile(NEW_PROFILE, dataUpdate)
+            formData.append('myImage', this.state.image);
+            formData.append("value", JSON.stringify(dataUpdate))
+            this.props.postUserProfile(NEW_PROFILE, formData)
         }
         else {
-            console.log("edit sever")
-            this.props.updateUserProfileOnServer(this.props.userProfile._id, dataUpdate)
+            formData.append('myImage', this.state.image);
+            formData.append("value",JSON.stringify(dataUpdate))
+            this.props.updateUserProfileOnServer(this.props.userProfile._id, formData)
         }
 
         this.props.history.push("/")
@@ -152,6 +157,13 @@ class Profile extends Component {
         return sportTypeArray
     }
     onChangeImageHandler = (event) => {
+        let image = event.target.files[0]
+        this.setState({ image: image })
+
+
+
+
+
 
     }
     filterSportInterestArray = (sportInterest) => {
