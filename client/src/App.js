@@ -43,9 +43,9 @@ class App extends Component {
       redirectAuth = (
         <Switch>
           <Route path="/profile" component={Profile} />
-          <Route path="/" component={LandingPage} />
-          <Redirect to="/" />
-          <Route component={Error} />
+          <Route exact path="/" component={LandingPage} />
+          <Redirect  to="/" />
+          {/* <Route component={Error} /> */}
         </Switch>)
     }
 

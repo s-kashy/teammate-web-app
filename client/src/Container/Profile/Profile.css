@@ -5,9 +5,10 @@
 }
 
 .main-form-profile {
-    margin: 10px auto;
+    margin: 0px auto;
     overflow: hidden;
     border-radius: 0px;
+    width: 100%;
     justify-content: center;
     display: flex !important;
     flex-direction: column;
@@ -22,6 +23,7 @@
 form {
     width: 80%;
     margin: 0 auto;
+    background: #FAFAFA;
 }
 
 .input-first-last-group-profile, .radio-group-profile {
@@ -39,72 +41,99 @@ form {
     margin: 0 15px
 }
 
+.input-first-last-group-profile {
+    width: 50%;
+    margin: auto;
+}
+
 .inputs-profile {
     padding: 13px;
     outline: 0;
     margin: 0;
+    border-radius: 5px;
+    border: 1px solid #B0CFE0;
     cursor: pointer;
     width: 100%;
-    color: #8a97a0;
+    color: black;
     margin-bottom: 30px;
 }
 
-.label-basic-input-filed {
-    position: relative;
-    left: -96px;
+.inputs-profile:focus {
+    box-shadow: 0 0 5px #B0CFE0;
+    border: 1px solid #B0CFE0;
+    cursor: pointer;
 }
 
 .sport-type-checkbox-profile {
     display: flex;
-    left: 97px;
+    align-items: flex-start;
     position: relative;
     flex-flow: row wrap;
-    width: 50%;
-    margin: 15px auto;
+    width: 60%;
+    margin: 20px auto;
 }
 
 .individual-checkbox-profile {
-    flex: 1 0 50%;
-    min-width: 100px;
+    flex: 15%;
+    ;
     margin: 10px auto;
-    align-items: flex-start;
 }
 
-.fieldset-upload-group {
-    display: flex;
-    width: 70%;
+.textarea-profile {
+    padding: 13px;
+    outline: 0;
+    width: 60%;
+    min-height: 200px;
     margin: 10px auto;
-    justify-content: space-around;
-}
-
-textarea {
-    outline: none;
-    border: 0;
-    box-sizing: border-box;
-    cursor: pointer;
-    width: 300px;
-    overflow: auto;
-    height: 202px;
+    border-radius: 5px;
+    border: 1px solid #B0CFE0;
     font-family: 'Roboto', sans-serif;
 }
 
-.upload-image {
-    width: 40%;
-}
-
-.input-upload-file-image {
-    background-color: blue;
-    padding: 20px;
-    margin: 10px auto;
-    outline: 0;
-    margin: 10px auto;
+.textarea-profile:focus {
+    box-shadow: 0 0 5px #B0CFE0;
+    border: 1px solid #B0CFE0;
     cursor: pointer;
-    width: 64%;
-    color: #8a97a0;
 }
 
+.upload-image {
+    width: 50%;
+    margin: 10px auto;
+    position: relative;
+}
+
+.label-upload-filed-profile {
+    display: block;
+    padding: 14px 45px;
+    background: #39D2B4;
+    color: #fff;
+    width: 40%;
+    font-size: 1em;
+    margin: 0 auto;
+    transition: all .4s;
+    cursor: pointer;
+}
+.input-upload-file-image-profile {
+    position: absolute;
+    top: 59px;
+    left: 160px;
+    width: 215px;
+    opacity: 0;
+    padding: 14px 0;
+    cursor: pointer;
+}
+.upload-image-icon-profile{
+    position: absolute;
+    top: 67px;
+    left: 335px;
+    color: white;
+    font-size: 24px;
+   
+}
+
+ 
 .button-submit {
-    width: 250px;
+    width: 430px;
     height: 45px;
     border: none;
     position: relative;
@@ -114,38 +143,48 @@ textarea {
     outline: none;
     box-shadow: 0 3px 2px 0 #2c80a2;
     color: #fff;
-    font-size: 14px;
+  
     text-shadow: 0 1px rgba(0, 0, 0, 0.4);
     background-color: #3fb8e8;
-    font-weight: 700;
+    font-weight: 500;
+    font-size: 20px;
     background-repeat: no-repeat;
     background-position: 200px;
 }
-p{
+
+p {
     font-weight: 700;
-    color:#3498db;
-    text-decoration: underline;
+    color: #3498db;
+    width: 100%;
+    margin: 10px auto
 }
+
 @media screen and (max-width:800px) {
     .sport-type-checkbox-profile {
         width: 100% !important;
-        left: 32px !important;
+        left: 31px !important
     }
-    .fieldset-upload-group{
+    .individual-checkbox-profile {
+        flex: 50%;
+        ;
+        /* min-width: 100px; */
+        margin: 10px auto;
+    }
+    .fieldset-upload-group {
         flex-direction: column !important;
     }
     .upload-image {
         width: 100%;
     }
-    textarea{
+    textarea {
         width: 100% !important;
     }
-    .radio-group-profile{
+    .radio-group-profile {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
-    .single-radio-input-profile{
+    .single-radio-input-profile {
         position: relative;
         margin: 0px 30px;
         display: block;

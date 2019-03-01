@@ -19,7 +19,7 @@ mongoose.connect(
     }
 );
 mongoose.Promise = global.Promise
-
+mongoose.set('useFindAndModify', false);
 require("./models/user")
 require("./models/profile")
 

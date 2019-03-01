@@ -11,7 +11,7 @@ const profile = new Schema({
         { value: Boolean, nameOfSport: String, _id: false },
 
     ],
-    ageGroup:  String ,
+    age:  String ,
     imageUrl:  String ,
     date: { type: Date, default: Date.now }
 

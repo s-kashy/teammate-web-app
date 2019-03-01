@@ -13,15 +13,21 @@ class Profile extends Component {
     componentDidMount() {
         if (this.props.userProfile == "" || this.props.userProfile === undefined ||
             Object.keys(this.props.userProfile).length == 0) {
-                this.setState({newUser:true})
+            this.setState({ newUser: true })
         }
         else {
+
             let userInfo = JSON.parse(JSON.stringify(this.state.user))
             for (let i = 0; i < this.props.userProfile.sportInterest.length; i++) {
                 let temp = this.props.userProfile.sportInterest[i].nameOfSport
                 userInfo.sportInterest[temp].value = true
             }
-            if (this.props.userProfile.age !== undefined && this.props.userProfile.age !== '') {
+            userInfo.firstname.value = this.props.userProfile.firstname
+            userInfo.lastname.value = this.props.userProfile.lastname
+            userInfo.about = this.props.userProfile.about
+            userInfo.imageUrl = this.props.userProfile.imageUrl
+
+            if (this.props.userProfile.age) {
                 userInfo.ageGroup.forEach(item => {
                     if (item.value === this.props.userProfile.age) {
                         item.check = true
@@ -37,15 +43,16 @@ class Profile extends Component {
             })
         }
     }
+  
     state = {
         user: {
             firstname: {
-                value: this.props.userProfile.firstname ? this.props.userProfile.firstname : "",
+                value: "",
                 error: false
             },
 
             lastname: {
-                value: this.props.userProfile.lastname ? this.props.userProfile.lastname : "",
+                value: "",
                 error: false
             },
             ageGroup: [
@@ -65,8 +72,8 @@ class Profile extends Component {
                     name: "age"
                 }
             ],
-            image: this.props.userProfile.image?this.props.userProfile.image:"",
-            about: this.props.userProfile.about ? this.props.userProfile.about : "",
+            imageUrl: "",
+            about: "",
             sportInterest: {
                 running: { value: false },
                 bicycle: { value: false },
@@ -81,11 +88,18 @@ class Profile extends Component {
                 poker: { value: false },
                 snooker: { value: false }
             },
-           
+
             isLoading: true
 
         },
         newUser: false,
+    }
+    scrollToMyRef = () => { window.scrollTo(0, this.inputUserBasicInfo.offsetTop) }
+    resetInputError = () => {
+        let userInfo = JSON.parse(JSON.stringify(this.state.user))
+        userInfo.firstname.error = false
+        userInfo.lastname.error = false
+        this.setState({ user: userInfo })
     }
     submitHandler = (event) => {
         event.preventDefault()
@@ -104,6 +118,13 @@ class Profile extends Component {
             if (!this.state.user.lastname.error && !this.state.user.firstname.error) {
                 this.postProfileOfUser()
 
+            } else {
+                setTimeout(
+                    this.resetInputError, 3000
+                )
+                this.scrollToMyRef()
+
+
             }
 
         })
@@ -120,24 +141,23 @@ class Profile extends Component {
             email: this.props.email,
             about: userInfo.about,
             sportInterest: arrayOfSportInterest,
-            image: this.state.user.image
+            imageUrl: this.state.user.imageUrl
         }
 
 
         var formData = new FormData()
         if (this.state.newUser) {
-            formData.append('myImage', this.state.image);
+            formData.append('myImage', this.state.imageUrl);
             formData.append("value", JSON.stringify(dataUpdate))
-            this.props.postUserProfile(NEW_PROFILE, formData)
+            this.props.postUserProfile(formData)
         }
         else {
-            formData.append('myImage', this.state.image);
-            formData.append("value",JSON.stringify(dataUpdate))
+            formData.append('myImage', this.state.imageUrl);
+            formData.append("value", JSON.stringify(dataUpdate))
             this.props.updateUserProfileOnServer(this.props.userProfile._id, formData)
         }
-
+        this.props.updateProfileUser(dataUpdate)
         this.props.history.push("/")
-
 
 
     }
@@ -158,14 +178,10 @@ class Profile extends Component {
     }
     onChangeImageHandler = (event) => {
         let image = event.target.files[0]
-        this.setState({ image: image })
+        this.setState({ imageUrl: image })
 
 
-
-
-
-
-    }
+   }
     filterSportInterestArray = (sportInterest) => {
         let sportTypeArray = []
         for (let key in sportInterest) {
@@ -203,7 +219,6 @@ class Profile extends Component {
         let sportTypeArray = []
         const { sportInterest, ageGroup, firstname, lastname } = this.state.user
 
-
         let arrayRadio = ageGroup.map((item, index) => {
             return (<RadioButton
                 classRadio="single-radio-input-profile"
@@ -235,18 +250,18 @@ class Profile extends Component {
 
                     <form onSubmit={this.submitHandler}>
                         <div className="main-form-profile">
-                            <p>Basic info</p>
-                            <div className="input-first-last-group-profile">
-                                <Input type="text" id="firstname" classInput="inputs-profile"
-                                    classLabel="label-basic-input-filed" value={firstname.value} title="First-name:"
+                            <p style={{ margin: "10px auto" }}>Basic info</p>
+                            <div className="input-first-last-group-profile" ref={x => this.inputUserBasicInfo = x}>
+                                <Input type="text" id="firstname" classInput="inputs-profile" placeholder="First Name"
+                                    classLabel="label-basic-input-filed" value={firstname.value}
                                     error={firstname.error}
-
                                     name="firstname" change={(e) => this.onChangeHandlerInput(e)} />
 
                                 <Input type="text" id="lastname" classInput="inputs-profile"
                                     error={lastname.error}
                                     value={lastname.value}
-                                    classLabel="label-basic-input-filed" title="Last-name:"
+                                    placeholder="Last Name"
+                                    classLabel="label-basic-input-filed"
                                     name="lastname" change={(e) => this.onChangeHandlerInput(e)} />
                             </div>
                             <p>Age group</p>
@@ -257,22 +272,21 @@ class Profile extends Component {
                             <div className="sport-type-checkbox-profile">
                                 {arrayCheckBox}
                             </div>
-                            <p>Extra Info</p>
-                            <div className="fieldset-upload-group">
-                                <div>
-                                    <fieldset>
-                                        <legend style={{ color: "#3498db" }}>Share More Info</legend>
-                                        <textarea wrap="physical" ref={x => this.textarea = x}>{this.state.user.about}</textarea>
-                                    </fieldset>
-                                </div>
-                                <div className="upload-image">
-                                    <Input type="file" id="image" classInput="input-upload-file-image"
-                                        classLabel="label-basic-input-filed"
-                                        change={(e) => this.onChangeImageHandler(e)} /><br></br>
-                                    <span>If you would like you can upload a picture of yourself</span>
-                                </div>
+                            <div>
+                               <textarea wrap="physical" className="textarea-profile"
+                                    ref={x => this.textarea = x} placeholder="Personal note" ></textarea>
                             </div>
-                            <Input type="submit" classInput="button-submit" value="submit" />
+                            <div className="upload-image">
+                            <p>Please upload a picture of your choice only JPG and PNG can be uploaded</p>
+                                <Input type="file" id="image" classInput="input-upload-file-image-profile"
+                                    classLabel="label-upload-filed-profile"
+                                    title="Select a image"
+                                    change={(e) => this.onChangeImageHandler(e)} /><br></br>
+                              <span className="upload-image-icon-profile"><i className="fas fa-upload"></i></span>
+                            </div>
+                            <div >
+                                <Input type="submit" classInput="button-submit" value="Submit" />
+                            </div>
                         </div>
 
                     </form>
@@ -288,10 +302,9 @@ const mapStateHandler = state => {
 };
 const mapStateDispatch = dispatch => {
     return {
-        updateUserEmail: (email) => dispatch(actionType.updateUserEmail(email)),
+        updateProfileUser: (profile) => dispatch(actionType.updateProfileUser(profile)),
         updateUserProfileOnServer: (id, userProfile) => dispatch(actionType.updateUserProfileOnServer(id, userProfile)),
-        newUserJoin: (user) => dispatch(actionType.newUserJoin(user)),
-        postUserProfile: (url, userProfile) => dispatch(actionType.postUserProfile(url, userProfile))
+        postUserProfile: (userProfile) => dispatch(actionType.postUserProfile(userProfile))
 
     };
 };

@@ -1,6 +1,6 @@
 import * as type from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { GET_USER_PROFILE, UPDATE_PROFILE } from "../../Url/Url"
+import { GET_USER_PROFILE, UPDATE_PROFILE ,NEW_PROFILE} from "../../Url/Url"
 
 
 
@@ -21,7 +21,6 @@ export const updateProfileUser = (profile) => {
 
 export const getUserProfile = (emailUser) => {
 
-
     var dataUser = {
         url: GET_USER_PROFILE,
         method: "get",
@@ -34,7 +33,7 @@ export const getUserProfile = (emailUser) => {
     }
     return dispatch => {
         getRequestData(dataUser).then(res => {
-            console.log("get user profile =>", res.data)
+
             dispatch(updateProfileUser(res.data))
 
         }).catch(err => {
@@ -45,14 +44,13 @@ export const getUserProfile = (emailUser) => {
     }
 
 }
-export const postUserProfile = (rUrl, userProfile) => {
-console.log("new user")
+export const postUserProfile = ( userProfile) => {
+
     var headersOpt = {
-        // "Content-type": "Application/json",
         'content-type': 'multipart/form-data'
     };
     var data = {
-        url: rUrl.toString(),
+        url: NEW_PROFILE,
         method: "post",
         header: headersOpt,
         data: userProfile,
@@ -60,7 +58,6 @@ console.log("new user")
     }
     return dispatch => {
         getRequestData(data).then(res => {
-            dispatch(updateProfileUser(userProfile))
 
         }).catch(err => {
 
@@ -70,7 +67,7 @@ console.log("new user")
 
 }
 export const updateUserProfileOnServer = (id, profileEdit) => {
-
+console.log(id)
     var data = {
         url: UPDATE_PROFILE,
         method: "post",
@@ -82,8 +79,8 @@ export const updateUserProfileOnServer = (id, profileEdit) => {
     }
     return dispatch => {
         getRequestData(data).then(res => {
-            dispatch(getUserProfile(profileEdit))
-            console.log(res)
+
+
         }).catch(err => {
             console.log(err)
         })
