@@ -8,7 +8,7 @@ import * as actionType from "./Store/actions/index"
 import Error from "./Component/Error/Error"
 import LandingPage from "./Container/LandingPage/LandingPage"
 import Header from "./Container/Header/Header"
-
+import TeamCreator from "./Container/TeamCreator/TeamCreator"
 import Profile from "./Container/Profile/Profile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
 
@@ -43,8 +43,9 @@ class App extends Component {
       redirectAuth = (
         <Switch>
           <Route path="/profile" component={Profile} />
+          <Route path="/create-team" component={TeamCreator} />
           <Route exact path="/" component={LandingPage} />
-          <Redirect  to="/" />
+               <Redirect  to="/" />
           {/* <Route component={Error} /> */}
         </Switch>)
     }

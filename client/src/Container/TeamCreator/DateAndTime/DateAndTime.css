@@ -1,0 +1,155 @@
+.main-date-time {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-image: url("../../../assest/pexels-photo-449609.jpeg");
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.main-controller-date-time-left {
+    display: flex;
+}
+
+.main-controller-date-time-left-right {
+    margin: 40px auto;
+    padding: 0;
+    /* background: #2c3e50; */
+    left: 100px;
+    position: relative;
+    /* height: 70%; */
+}
+
+.weekly-choice-date-time {
+    margin: 0px auto;
+    background-color: #2c3e50 ;
+    height: 60%; 
+}
+.monthly-choice-date-time{
+    background-color: #2c3e50 ; 
+}
+.time-picker-general-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+
+.radio-btn-date-time-wrapper {
+    box-sizing: border-box;
+    width: 137px;
+    top: 32px;
+    left: 34px;
+    position: relative;
+    padding: 0 16px;
+    margin: 10px auto;
+    background: #2c3e50;
+}
+
+.msg-date-time span {
+    width: 25%;
+    top: 15%;
+    padding: 20px;
+    border: 1px solid black;
+    left: 69%;
+    position: absolute;
+}
+
+.single-date-time-radio {
+    padding: 10px 10px;
+    width: 20px;
+}
+
+.radio-btn-date-time {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px;
+}
+
+select {
+    width: 50%;
+}
+
+.start-time-date-time {
+    background: #2c3e50;
+    padding: 20px;
+    margin: 10px 100px;
+}
+
+.end-time-date-time {
+    background: #2c3e50;
+    top: -33px;
+    left: -1px;
+    height: 51px;
+    bottom: 100% !important;
+    position: absolute;
+    margin: 10px 100px;
+}
+
+.icon-start-date-time, .icon-end-date-time {
+    color: #f39c12;
+    font-size: 30px;
+    font-weight: 1000;
+    position: relative;
+}
+
+.icon-end-date-time {
+    top: -41px;
+    left: 59px;
+}
+
+.icon-start-date-time {
+    top: -58px;
+    left: 59px;
+}
+
+.label-time-picker-start {
+    position: relative;
+    top: 10px;
+    font-weight: 1000;
+    right: -9px;
+}
+
+.checkbox-days-date-time {
+    margin: 60px auto;
+}
+
+.reset-date-input {
+    width: 100%;
+    padding: 10px 10px;
+    line-height: 30px;
+    color: black;
+    font-weight: 700;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    background-color: #0000FF;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.label-time-picker-end {
+    position: relative;
+    top: -55px;
+    font-weight: 1000;
+}
+
+.label-day-picker-checkbox {
+    font-weight: 1000;
+    font-size: 20px;
+}
+
+.date-selected {
+    background: blue;
+}

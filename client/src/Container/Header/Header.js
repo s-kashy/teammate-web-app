@@ -21,7 +21,7 @@ class Header extends Component {
 
 
         return (<div className="header">
-        <Link to="/"><h2 className="logo" onClick={this.onClickMenu}>TeamMate</h2></Link>
+        <Link to="/"><h2 className="header-logo" onClick={this.onClickMenu}>TeamMate</h2></Link>
             {/* <input type="checkbox" className="chk" id="chk-header" /> */}
             <label htmlFor="chk-header" className="show-menu-btn" onClick={this.onClickMenu}>
                 <i className="fas fa-times"></i>
@@ -30,7 +30,7 @@ class Header extends Component {
             <ul className="menu" style={{ right: menuState }}>
                 <NavLink className="link-class" exact to="/">About</NavLink>
                 <NavLink className="link-class" to="/profile" onClick={this.onClickMenu}>my-Profile</NavLink>
-                <NavLink className="link-class" to="/about" >teams</NavLink>
+                <NavLink className="link-class" to="/create-team" >Create A Team</NavLink>
                 <NavLink className="link-class" to="/item" onClick={this.onClickLogout}>logout</NavLink>
                 <label htmlFor="chk" className="hide-menu-btn"  onClick={this.onClickMenu}>
                     <i className="fas fa-times"></i>

@@ -9,11 +9,11 @@ class Login extends Component {
     componentDidMount() {
 
     }
-    resetError=()=>{
-        let userInput=this.state.user
-        userInput.email.error=false
-        userInput.password.error=false
-        this.setState({user:userInput,generalError:false})
+    resetError = () => {
+        let userInput = this.state.user
+        userInput.email.error = false
+        userInput.password.error = false
+        this.setState({ user: userInput, generalError: false })
 
     }
     state = {
@@ -33,25 +33,23 @@ class Login extends Component {
         event.preventDefault()
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         if (!checkEmail(userInfo.email.value)) {
-
             userInfo.email.error = true
         }
         else if (!checkPassword(userInfo.password.value)) {
-            userInfo.error = true
+            userInfo.password.error = true
 
         }
         this.setState({ user: userInfo }, () => {
             if (!this.state.user.email.error && !this.state.user.password.error) {
                 this.props.loginWithCredential({ email: userInfo.email.value, password: userInfo.password.value }).then(res => {
-                            if(res){
-                                console.log("res fro login",res)
-                                this.props.updateUserEmail(res)
-                                this.props.history.push("/")
-                            }
+                    if (res) {
+                        this.props.updateUserEmail(res)
+                        this.props.history.push("/")
+                    }
                 }).catch(err => {
                     console.log("login", err)
-                    this.setState({generalError:true})
-                    setTimeout(this.resetError,5000)
+                    this.setState({ generalError: true })
+                    setTimeout(this.resetError, 5000)
 
                 })
             }
@@ -62,7 +60,6 @@ class Login extends Component {
     onChangeHandler = (event) => {
         let userInput = JSON.parse(JSON.stringify(this.state.user))
         userInput[event.target.name].value = event.target.value
-       
         this.setState({ user: userInput }, () => {
 
         })
@@ -73,9 +70,9 @@ class Login extends Component {
         var { email, password } = this.state.user
         return (
             <div className="main-auth" >
-                <h2 className="logo">Teammate</h2>
+                <h2 className="logo-login">TeamMate</h2>
 
-                <form className="box-login" onSubmit={this.submitUserFormHandler} ref={el => this.formAuth = el} style={{left:"75%"}} >
+                <form className="box-login" onSubmit={this.submitUserFormHandler} ref={el => this.formAuth = el} style={{ left: "75%" }} >
                     <h3 className="auth-title">Login <Link style={{ color: "#FFF" }} to="/api/auth/sign-in"><span className="auth-sing-in-icon"><i className="fas fa-sign-in-alt"></i></span><span className="auth-new-user">*New user</span></Link></h3>
                     <input type="text" name="email" placeholder="email" onChange={(event) => this.onChangeHandler(event)} autoComplete="new-email" value={email.value} />
                     {email.error && <p className="msg-email">*email not valid </p>}
@@ -98,7 +95,7 @@ const mapStateHandler = state => {
 };
 const mapStateDispatch = dispatch => {
     return {
-        updateUserEmail:(email)=>dispatch(actionType.updateUserEmail(email)),
+        updateUserEmail: (email) => dispatch(actionType.updateUserEmail(email)),
         loginWithCredential: (user) => dispatch(actionType.loginWithCredential(user))
     };
 };

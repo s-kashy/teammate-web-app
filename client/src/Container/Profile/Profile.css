@@ -35,7 +35,9 @@ form {
     width: 100%;
     margin: 15px auto;
 }
-
+.input-first-last-group-profile ::placeholder{
+    color:black !important
+}
 .single-radio-input-profile {
     display: inline;
     margin: 0 15px
@@ -43,7 +45,7 @@ form {
 
 .input-first-last-group-profile {
     width: 50%;
-    margin: auto;
+    /* margin: auto; */
 }
 
 .inputs-profile {
@@ -69,13 +71,12 @@ form {
     align-items: flex-start;
     position: relative;
     flex-flow: row wrap;
-    width: 60%;
+    width: 61%;
     margin: 20px auto;
 }
 
 .individual-checkbox-profile {
     flex: 15%;
-    ;
     margin: 10px auto;
 }
 
@@ -115,7 +116,7 @@ form {
 }
 .input-upload-file-image-profile {
     position: absolute;
-    top: 59px;
+    top: 50px;
     left: 160px;
     width: 215px;
     opacity: 0;
@@ -124,10 +125,11 @@ form {
 }
 .upload-image-icon-profile{
     position: absolute;
-    top: 67px;
+    top: 48px;
     left: 335px;
     color: white;
     font-size: 24px;
+    cursor: pointer;
    
 }
 
@@ -166,8 +168,6 @@ p {
     }
     .individual-checkbox-profile {
         flex: 50%;
-        ;
-        /* min-width: 100px; */
         margin: 10px auto;
     }
     .fieldset-upload-group {
@@ -190,5 +190,11 @@ p {
         display: block;
         padding: 12px 0 0 4px;
         cursor: pointer;
+    }
+    .label-upload-filed-profile{
+        width: 80%;
+    }
+    .button-submit{
+        width: 300px;
     }
 }

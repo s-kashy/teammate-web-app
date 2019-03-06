@@ -1,0 +1,48 @@
+.next-btn-team-create {
+    float: right;
+    background:#0000FF;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 14px 52px;
+    border: none;
+    text-decoration: none;
+
+}
+
+/* .next-btn-intro:hover {
+    background-color: #80b5ea;
+} */
+
+/* .next-btn-intro:active {
+    position: relative;
+    top: 1px;
+} */
+
+.previous-btn-team-create {
+    background: red;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 14px 38px;
+    text-decoration: none;
+
+}
+
+/* .previous-btn-team-create:hover {
+    background-color: #80b5ea;
+} */
+
+/* .previous-btn-team-create:active {
+    position: relative;
+    top: 1px;
+} */

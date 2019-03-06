@@ -3,7 +3,6 @@ import "./Profile.css"
 import { connect } from "react-redux";
 import * as actionType from "../../Store/actions/index"
 import Input from "../../Component/Input/Input"
-import { NEW_PROFILE } from "../../Url/Url"
 import Spinner from "../../Component/Ui/Spinner/Spinner"
 import CheckBox from "../../Component/CheckBox/CheckBox"
 import RadioButton from "../../Component/RadioButton/RadioButton"
@@ -25,6 +24,7 @@ class Profile extends Component {
             userInfo.firstname.value = this.props.userProfile.firstname
             userInfo.lastname.value = this.props.userProfile.lastname
             userInfo.about = this.props.userProfile.about
+            this.textarea.value=this.props.userProfile.about
             userInfo.imageUrl = this.props.userProfile.imageUrl
 
             if (this.props.userProfile.age) {
@@ -103,7 +103,6 @@ class Profile extends Component {
     }
     submitHandler = (event) => {
         event.preventDefault()
-
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         userInfo.about = this.textarea.value
 
@@ -250,7 +249,7 @@ class Profile extends Component {
 
                     <form onSubmit={this.submitHandler}>
                         <div className="main-form-profile">
-                            <p style={{ margin: "10px auto" }}>Basic info</p>
+                            <p style={{ margin: "15px auto",fontSize:"30px" }}>Your Profile</p>
                             <div className="input-first-last-group-profile" ref={x => this.inputUserBasicInfo = x}>
                                 <Input type="text" id="firstname" classInput="inputs-profile" placeholder="First Name"
                                     classLabel="label-basic-input-filed" value={firstname.value}
@@ -274,10 +273,10 @@ class Profile extends Component {
                             </div>
                             <div>
                                <textarea wrap="physical" className="textarea-profile"
-                                    ref={x => this.textarea = x} placeholder="Personal note" ></textarea>
+                                    ref={x => this.textarea = x} placeholder="Personal note"></textarea>
                             </div>
                             <div className="upload-image">
-                            <p>Please upload a picture of your choice only JPG and PNG can be uploaded</p>
+                            <p>Only JPG and PNG image can be uploaded</p>
                                 <Input type="file" id="image" classInput="input-upload-file-image-profile"
                                     classLabel="label-upload-filed-profile"
                                     title="Select a image"

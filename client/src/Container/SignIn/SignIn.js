@@ -85,7 +85,7 @@ class SignIn extends Component {
     render() {
         return (
             <div className="main-auth" >
-                <h2 className="logo">Teammate</h2>
+                <h2 className="logo-sign-in">TeamMate</h2>
                 <form className='box' onSubmit={this.submitFormHandler} style={{left:"75%"}}>
                     <h3 className="registrar-title">Sign in</h3>
                     <input type="text" name="email" placeholder="email" onChange={(e) => this.onChangeHandler(e)} value={this.state.user.email.value } />

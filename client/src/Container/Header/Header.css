@@ -9,11 +9,14 @@ padding: -1 20px;
 color: #fff
 
 }
-.logo{
+.header-logo{
     margin-left: 30px;
     line-height: 100px;
     float: left;
-    text-transform: uppercase;
+    color: #fff;
+    font-size: 30px;
+    font-weight: 800;
+    
 }
 .menu{
     float: right;
@@ -60,10 +63,13 @@ color: #fff
     header{
         z-index: 1000;
     }
- .logo{
+ .header-logo{
      position: absolute;
-     top: -19px;
+     top: 0px;
      left: 10px;
+     color: #fff;
+     font-weight: 800;
+     font-size: 20px
  }
  .show-menu-btn{
     left: 318px;
@@ -82,6 +88,7 @@ color: #fff
         background: #333;
         margin: 0 auto;
         top:0;
+        z-index: 1000;
         text-align: center;
         padding: 80px 0;
         line-height: normal;

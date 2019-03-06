@@ -12,7 +12,7 @@ export const checkEmail = (email) => {
 export const checkPassword = (password) => {
         if (password==="" || password===undefined){
             return false
-        }
+    }
      
     return password.split("").length > 6
 }

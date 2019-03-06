@@ -38,5 +38,9 @@ input[type="checkbox"]:checked+label:before {
     color: #fff;
 }
   
-
+@media screen and (max-width:800px){
+    input[type="checkbox"]{
+        z-index: -999;
+    }
+}
   

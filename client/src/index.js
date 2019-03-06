@@ -5,6 +5,8 @@ import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux";
 import authR from "./Store/Reducer/auth"
+// import "../node_modules/react-datepicker/dist/react-datepicker.css";
+import '../node_modules/react-day-picker/lib/style.css';
 import controlUiR from "./Store/Reducer/control_ui"
 import profileR from "./Store/Reducer/profile"
 import thunk from "redux-thunk";

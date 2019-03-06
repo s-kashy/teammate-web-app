@@ -8,14 +8,15 @@
     height: 100%;
 }
 
-.logo {
+.logo-sign-in {
     background-color: none;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    position: absolute;
-    top: 10px;
-    left: 10px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 1000;
+  font-size: 50px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 .registrar-title {

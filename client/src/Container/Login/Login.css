@@ -13,11 +13,12 @@
 }
 
 
-.logo {
+.logo-login {
   background-color: none;
   color: white;
   font-family: 'Roboto', sans-serif;
-  text-transform: uppercase;
+  font-weight: 1000;
+  font-size: 50px;
   position: absolute;
   top: 10px;
   left: 10px;
@@ -44,7 +45,7 @@
 .box-login input[type="text"], .box-login input[type="password"] {
   border: 0;
   background-color:transparent;
-  margin: 20px auto;
+  margin: 33px auto;
   display: block;
   border: 2px solid #3498db;
   text-align: center;
@@ -52,7 +53,7 @@
   border-radius: 24px;
   width: 200px;
   outline: none;
-  color: white;
+  color: white !important;
   transition: 0.25s
 }
 
@@ -88,20 +89,20 @@
   color: #ef5d09;
 }
 ::placeholder {
-  color: white;
+  color: white !important;
   font-size: 1em;
 }
 .msg-email {
-  left: 84px;
-  top: 139px !important;
+  left: 0 !important;
+  top: 138px !important ;
   padding: -1px;
-  position: absolute;
+  position: absolute !important;
 }
 
 .msg-password {
   position: absolute;
-  left: 84px;
-  top: 181px;
+  left: 0 !important;
+  top: 220px !important;
   padding: -1px;
 }
 
@@ -129,8 +130,8 @@
 .auth-invalid {
   color: #ef5d09;
   position: absolute;
-  top: 297px;
-  left: 70px;
+  top: 310px;
+  left: 0px;
   text-transform: uppercase
 }
 
