@@ -1,0 +1,9 @@
+
+.search-map-layout{
+    display: flex;
+
+
+}
+.map-child-flex-layout,.search-child-flex-layout{
+    flex: 1 1
+}

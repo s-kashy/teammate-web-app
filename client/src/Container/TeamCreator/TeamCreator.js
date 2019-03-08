@@ -3,14 +3,17 @@ import IntroStep from "./IntroStep/IntroStep"
 import GeneralInfo from "./GeneralInfo/GeneralInfo"
 import ContralTeamCreate from "./ContralTeamCreate/ContralTeamCreate"
 import DateAndTime from "./DateAndTime/DateAndTime"
-import Map from "./Map/Map"
-
+import MapSearchLayout from "./Map/MapSearchLayout/MapSearchLayout"
 import "./TeamCreator.css"
 class TeamCreator extends Component {
-
-    state = {
+   constructor(props){
+       super(props)
+       this.state = {
         indexActive: 3
     }
+   }
+
+   
 
     onClickLeft = () => {
         const nextIndex = this.state.indexActive-1< 0 ? this.state.indexActive: this.state.indexActive - 1;
@@ -22,15 +25,21 @@ class TeamCreator extends Component {
       }
     render() {
         const { indexActive } = this.state
-        return (<div className="main-create-team">
-            {indexActive === 0 ? <IntroStep click={this.onClickRight} /> : null}
-            {indexActive===1?<GeneralInfo rightClick={this.onClickRight} leftClick={this.onClickLeft}/>:null}
-            {indexActive===2?<DateAndTime rightClick={this.onClickRight} leftClick={this.onClickLeft}/>:null}
-            {indexActive===3?<Map rightClick={this.onClickRight} leftClick={this.onClickLeft}/>:null}
-            <div>
+        if(indexActive===0){
+            return(<div><IntroStep rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+        }
+        if(indexActive===1){
+            return(<div><GeneralInfo  rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+        }
+        if(indexActive===2){
+            return(<div><DateAndTime rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+        }
+        if(indexActive===3){
+            return(<div><MapSearchLayout rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+        }
+     
                
-            </div>
-        </div>)
+        
     }
 
 }

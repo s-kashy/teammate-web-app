@@ -12,9 +12,10 @@ import TeamCreator from "./Container/TeamCreator/TeamCreator"
 import Profile from "./Container/Profile/Profile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
 
+
 import { connect } from "react-redux";
 import './App.css';
-
+require('dotenv').config()
 
 class App extends Component {
 

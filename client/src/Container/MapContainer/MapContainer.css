@@ -1,0 +1,9 @@
+.google_map_infobox
+{
+    background: #fff;
+    padding: 1em;
+    text-align: center;
+    font-size: 1.1rem;
+    box-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+    border: 1px solid #666;
+}

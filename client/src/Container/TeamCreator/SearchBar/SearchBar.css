@@ -1,0 +1,57 @@
+.main-auto-complete {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+/* .autocomplete-root {
+    position: relative;
+} */
+.btn-autocomplete {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    top: 0;
+    right: 0;
+    box-sizing: border-box;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-autocomplete::before{
+    content: "";
+    width: 4px;
+    height: 25px;
+    background: #fff;
+    position: absolute;
+    transform: rotate(-45deg);
+    bottom: -16px;
+    right: -6px;
+    transition: 0.3s
+
+}
+.inputSearch{
+    border: 1px solid black;
+}
+::placeholder{
+    font-weight: 1000 !important;
+    color: black;
+}
+.location-search-input {
+    width: 60px !important;
+    height: 60px !important;
+    background: none !important;
+    border-radius: 50% !important;
+    border: 4px solid #fff;
+    box-sizing: border-box !important;
+    outline: none !important;
+    transition: width 0.4s ease-in-out,
+            border-radius 0.8s ease-in-out,
+            padding 0.2s !important;
+
+}
+.input-click-search{
+    width: 360px;
+    border-radius: 0;
+}
