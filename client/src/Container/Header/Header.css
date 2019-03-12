@@ -55,13 +55,13 @@ color: #fff
 .chk{
     position: absolute;
     visibility: hidden !important;
-    z-index: -1111;
+    z-index: -1111 !important;
 }
 
 
 @media screen and (max-width:800px){
     header{
-        z-index: 1000;
+        z-index: 1000 !important;
     }
  .header-logo{
      position: absolute;
@@ -88,7 +88,7 @@ color: #fff
         background: #333;
         margin: 0 auto;
         top:0;
-        z-index: 1000;
+        z-index: 1000 !important;
         text-align: center;
         padding: 80px 0;
         line-height: normal;

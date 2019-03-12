@@ -9,27 +9,28 @@ class TeamCreator extends Component {
    constructor(props){
        super(props)
        this.state = {
-        indexActive: 3
+        indexActive: 0
     }
    }
 
    
 
     onClickLeft = () => {
+        console.log("click left ")
         const nextIndex = this.state.indexActive-1< 0 ? this.state.indexActive: this.state.indexActive - 1;
         this.setState({ indexActive: nextIndex });
       }
       onClickRight = () => {
-        const nextIndex = this.state.indexActive+1 > 7 ?  this.state.indexActive :this.state.indexActive + 1;
+        const nextIndex = this.state.indexActive+1 > 3 ?  this.state.indexActive :this.state.indexActive + 1;
         this.setState({ indexActive: nextIndex });
       }
     render() {
         const { indexActive } = this.state
         if(indexActive===0){
-            return(<div><IntroStep rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+            return(<div><IntroStep rightClick={this.onClickRight} /></div>)
         }
         if(indexActive===1){
-            return(<div><GeneralInfo  rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+            return(<div ><GeneralInfo  rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
         }
         if(indexActive===2){
             return(<div><DateAndTime rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)

@@ -1,5 +1,5 @@
 .next-btn-team-create {
-    float: right;
+ 
     background:#0000FF;
     border-radius: 11px;
     cursor: pointer;
@@ -30,11 +30,3 @@
 
 }
 
-/* .previous-btn-team-create:hover {
-    background-color: #80b5ea;
-} */
-
-/* .previous-btn-team-create:active {
-    position: relative;
-    top: 1px;
-} */

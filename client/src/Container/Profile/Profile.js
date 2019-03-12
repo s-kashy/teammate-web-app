@@ -10,8 +10,8 @@ import RadioButton from "../../Component/RadioButton/RadioButton"
 class Profile extends Component {
 
     componentDidMount() {
-        if (this.props.userProfile == "" || this.props.userProfile === undefined ||
-            Object.keys(this.props.userProfile).length == 0) {
+        if (this.props.userProfile === "" || this.props.userProfile === undefined ||
+            Object.keys(this.props.userProfile).length === 0) {
             this.setState({ newUser: true })
         }
         else {

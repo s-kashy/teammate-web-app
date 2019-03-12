@@ -2,6 +2,8 @@
     display: flex;
     margin: 0;
     padding: 0;
+    z-index: -1000;
+    flex-direction: column;
     margin: 0 auto;
     font-family: 'Roboto', sans-serif;
     background-image: url("../../../assest/general-info-step.jpeg");
@@ -17,7 +19,12 @@
 }
 
 .from-general-info, .msg-instruction-general-info {
-    height: 100%
+    height: 100%;
+}
+
+.msg-instruction-general-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .msg-instruction-general-info span {
@@ -27,12 +34,22 @@
     border: 1px solid black;
     left: 69%;
     position: absolute;
+    z-index: -999;
+}
+
+.position-contral-general-info {
+    position: relative;
+    left: 390px;
+    top: -200px;
+    /* z-index: -999 !important; */
 }
 
 .select-type-sport-general-info {
     width: 200px;
     height: 30px;
     border-radius: 10px;
+    z-index: -999;
+    position: absolute;
 }
 
 select {
@@ -42,6 +59,8 @@ select {
     appearance: none;
     outline: 0;
     box-shadow: none;
+    position: absolute;
+    z-index: -999;
     border: 0 !important;
     background: #2c3e50;
     background-image: none;
@@ -51,6 +70,7 @@ select {
     position: absolute;
     top: 47px;
     left: 370px;
+    /* z-index: -999 !important; */
 }
 
 .input-name-of-team-general-info {
@@ -60,6 +80,7 @@ select {
     height: 48px;
     top: 47px;
     left: 20px;
+    cursor: pointer;
     display: block;
     outline: none;
     padding: 0 10px;
@@ -74,6 +95,7 @@ select {
     height: 48px;
     top: 120px;
     left: 20px;
+    cursor: pointer;
     display: block;
     outline: none;
     padding: 0 10px;
@@ -91,6 +113,7 @@ select {
     opacity: 0;
     line-height: 10px;
     outline: none;
+    cursor: pointer;
     padding: 0 10px;
     box-sizing: border-box;
 }
@@ -104,6 +127,7 @@ select {
     height: 48px;
     padding: 15px 8px;
     color: #fff;
+    cursor: pointer;
     text-align: left;
     font-size: 14px;
     margin: 2px;
@@ -112,25 +136,70 @@ select {
 .icon-upload-image-general-info {
     position: absolute !important;
     top: 207px;
-    left: 243px;
+    left: 222px;
 }
-.textarea-general-info{
+
+.textarea-general-info {
     width: 400px;
     font-family: 'Roboto', sans-serif;
     height: 150px;
     overflow: auto;
     top: 300px;
-    left: 200px;
+    left: 15px;
     position: absolute;
     border: 1px solid black;
     color: black;
     background-color: transparent;
 }
-.textarea-general-info:focus{
+
+.textarea-general-info:focus {
     background-color: #fff;
 }
-.textarea-general-info::placeholder{
+
+.textarea-general-info::placeholder {
     font-size: 15px;
-    color: black !important;
     padding: 10px 20px;
+}
+
+@media screen and (max-width:800px) {
+    .main-general-info {
+        position: absolute;
+        display: flex;
+        flex-direction: column-reverse !important;
+    }
+    .msg-instruction-general-info span {
+        margin: 20px auto;
+        width: 90%;
+        height: auto;
+        position: static;
+        left: 0;
+        top: 0;
+        padding: 3px 6px;
+        border: 1px solid black;
+        display: block;
+    }
+    .position-contral-general-info {
+        position: relative;
+        left: 0 !important;
+         top: 720px;
+   
+    }
+    .from-general-info {
+        display: block;
+        margin: 0 auto;
+        top: 180px;
+        display: flex;
+        flex-direction: column;
+        left: 20px;
+        position: absolute;
+    }
+    .input-wrapper-general-info {
+        position: relative;
+        top: 20px;
+    }
+    .option-menu-general-info {
+        position: relative;
+        left: 20px;
+        top: 40px;
+    }
 }

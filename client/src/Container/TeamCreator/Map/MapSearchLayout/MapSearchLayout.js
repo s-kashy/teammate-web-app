@@ -4,8 +4,14 @@ import SearchBar from "../../SearchBar/SearchBar"
 
 import "./MapSearchLayout.css"
 class MapSearchLayout extends Component {
-
+    componentDidMount() {
+        this.setState({ isLoading: true })
+    }
+    componentWillUnmount() {
+        this.setState({ isLoading: false })
+    }
     state = {
+        isLoading: false,
         userInfo: {
             userLocation: {
                 lat: "",
@@ -17,7 +23,7 @@ class MapSearchLayout extends Component {
     }
 
     onPlaceLoaded = (place) => {
-  
+
         if (place === 400) {
             this.setState({ errorMsg: true })
         }
@@ -32,14 +38,13 @@ class MapSearchLayout extends Component {
                 lng: lng,
                 title: `TeamMate MeatUp ${formatted_address}`,
                 position: { lat: lat, lng: lng }
-            
+
             }]
 
             copyState.errorMsg = false
             copyState.marker = tempMarker
+            this.setState({ userInfo: copyState }, () => {
 
-            this.setState({ userInfo: copyState },()=>{
-              
             })
 
 
@@ -50,30 +55,30 @@ class MapSearchLayout extends Component {
 
     render() {
         const { userInfo } = this.state
-        const{userLocation}=userInfo
+        const { userLocation } = userInfo
         let styleMap = {
             height: '100%',
             width: '50%',
         }
         let styleSearch = {
             position: 'relative',
-            margin: '20px auto',
+            margin: '40px auto',
         }
 
         return (
             <div>
-                <div className="search-map-layout" >
+                {this.state.isLoading && (<div className="search-map-layout" >
                     <div className="map-child-flex-layout">
                         <MapContainer styleMap={styleMap}
-                        lat={userLocation.lat} lng={userLocation.lng}
-                         markers={userInfo.marker} />
+                            lat={userLocation.lat} lng={userLocation.lng}
+                            markers={userInfo.marker} />
                     </div>
                     <div className="search-child-flex-layout">
                         <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} />
-                        {userInfo.errorMsg && <div>Error</div>}
+                        {userInfo.errorMsg && <div>Error occurred In Finding the Address please try Again</div>}
                     </div>
 
-                </div>
+                </div>)}
 
             </div>
 

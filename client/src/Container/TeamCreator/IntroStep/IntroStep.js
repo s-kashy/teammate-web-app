@@ -14,7 +14,7 @@ const IntroStep = (props) => {
             publishing software like Aldus PageMaker including versions of Lorem Ipsu</p>
         </div>
         <div className="btn-wrapper-intro">
-            <button onClick={props.click} className="next-btn-intro">Start<span style={{ marginLeft: "3px" }}><i className="fas fa-arrow-right"></i></span></button>
+            <button onClick={props.rightClick} className="next-btn-intro">Start<span style={{ marginLeft: "3px" }}><i className="fas fa-arrow-right"></i></span></button>
         </div>
     </div>)
 }
