@@ -27,6 +27,19 @@
     flex-direction: column;
 }
 
+.error-input-name-general-info {
+    position: absolute;
+    float: left;
+    left: -53px;
+    top: 23px;
+    width: 24%;
+    margin: auto;
+    align-items: left;
+    display: block;
+  
+    color: red;
+}
+
 .msg-instruction-general-info span {
     width: 25%;
     top: 15%;
@@ -41,7 +54,6 @@
     position: relative;
     left: 390px;
     top: -200px;
-    /* z-index: -999 !important; */
 }
 
 .select-type-sport-general-info {
@@ -117,7 +129,12 @@ select {
     padding: 0 10px;
     box-sizing: border-box;
 }
-
+.error-input-number-general-info{
+    position: absolute;
+    top: 88px;
+    left: -573px;
+    color: red !important;
+}
 .label-image-of-team-general-info {
     position: absolute;
     top: 195px;
@@ -136,7 +153,7 @@ select {
 .icon-upload-image-general-info {
     position: absolute !important;
     top: 207px;
-    left: 222px;
+    left: 258px;
 }
 
 .textarea-general-info {
@@ -163,8 +180,8 @@ select {
 
 @media screen and (max-width:800px) {
     .main-general-info {
-        position: absolute;
         display: flex;
+        height: 130%;
         flex-direction: column-reverse !important;
     }
     .msg-instruction-general-info span {
@@ -181,8 +198,7 @@ select {
     .position-contral-general-info {
         position: relative;
         left: 0 !important;
-         top: 720px;
-   
+        top: 720px;
     }
     .from-general-info {
         display: block;
@@ -201,5 +217,17 @@ select {
         position: relative;
         left: 20px;
         top: 40px;
+    }
+    .error-msg-input {
+        position: relative;
+        left: -46px;
+        top: -57px;
+        font-weight: 500;
+        color: red !important;
+    }
+    .error-input-name-general-info {
+        position: relative;
+        top: 13px;
+        left: -48px;
     }
 }

@@ -4,11 +4,12 @@ import ReactTimeSelect from "react-time-select"
 import "./DateAndTime.css"
 import CheckBox from "../../../Component/CheckBox/CheckBox"
 import RadioButton from "../../../Component/RadioButton/RadioButton"
-import Aux from "../../../Hoc/Hoc"
+import ContralTeamCreate from "../ContralTeamCreate/ContralTeamCreate"
 
 class DateAndTime extends Component {
 
     state = {
+        isValid:false,
         startTime: "",
         endTime: "",
         selectedDays: [],
@@ -33,8 +34,12 @@ class DateAndTime extends Component {
 
 
     }
+    checkValidFrom=()=>{
+        
+    }
     onChangeTimeHandler = (event) => {
-        console.log(event)
+        console.log("time",event)
+        
     }
     onClickCheckBoxHandler = (value) => {
         let dayOfTheWeekPicker = JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
@@ -48,7 +53,7 @@ class DateAndTime extends Component {
 
     }
     resetCalendarHandler = () => {
-        console.log("clcik")
+      
         let selectedDay = JSON.parse(JSON.stringify(this.state.selectedDay))
         selectedDay = []
         this.setState({ selectedDay: [] })
@@ -75,7 +80,9 @@ class DateAndTime extends Component {
                 element.checked = false
             }
         });
-        this.setState({ timePicker: timePicker, pickType: value })
+        this.setState({ timePicker: timePicker, pickType: value },()=>{
+            this.checkValidFrom()
+        })
     }
 
     render() {
@@ -103,14 +110,14 @@ class DateAndTime extends Component {
             <div className="main-controller-date-time-left" >
                 <div className="time-picker-general-wrapper"  >
 
-                    <div style={{ marginBottom: "10px" }}>
+                    <div className="start-time-div">
                         <span className="label-time-picker-start">Start Time</span>
                         <ReactTimeSelect name="startTime" onChange={(e) => this.onChangeTimeHandler(e)} className="start-time-date-time" label="start" /><span className="icon-start-date-time">
                             <i className="fas fa-arrow-down"></i></span>
                     </div>
-                    <div style={{ position: "relative", width: "100%" }}>
+                    <div className="end-time-div">
                         <span className="label-time-picker-end">End Time</span>
-                        <ReactTimeSelect name="endTime" onChange={(e) => this.onChangeTimeHandler(e)} className="end-time-date-time" label="start" />
+                        <ReactTimeSelect name="endTime"  onChange={(e) => this.onChangeTimeHandler(e)} className="end-time-date-time" label="start" />
                         <span className="icon-end-date-time">
                             <i className="fas fa-arrow-down"></i></span>
                     </div>
@@ -124,22 +131,22 @@ class DateAndTime extends Component {
                     {pickType === "Monthly" && (<div className="monthly-choice-date-time"><DayPicker selectedDays={this.state.selectedDays}
                         onDayClick={this.handleDayClick}
                         fromMonth={new Date(new Date().getFullYear(), new Date().getMonth())} /></div>)}
-                          {/* <div><button className="reset-date-input">Reset Dates</button></div> */}
+                    {/* <div><button className="reset-date-input">Reset Dates</button></div> */}
                 </div>
-                      
+
             </div>
-            <div className="msg-date-time">
-                <span >
+            <div className="msg-date-time-contral-wrapper">
+                <div className="msg" >
                     <strong> type and scrambled it
                     to make a type specimen book. It has
                     survived not only fivly unchanged. It was
                      popularised in the 1960s with the release
                  of Letraset sheets </strong>
-                </span>
-
+                </div>
+                <ContralTeamCreate class="contral-team-date-time" leftClick={this.props.leftClick} rightClick={this.props.rightClick} disabled={!this.state.isValid}  />
 
             </div>
-
+           
         </div>)
     }
 

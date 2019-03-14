@@ -17,50 +17,87 @@
 }
 
 .main-controller-date-time-left {
+    margin-top: 100px;
+    display: -webkit-flex;
     display: flex;
+    width: 50%;
 }
 
 .main-controller-date-time-left-right {
     margin: 40px auto;
     padding: 0;
-    /* background: #2c3e50; */
     left: 100px;
+    width: 50%;
     position: relative;
-    /* height: 70%; */
 }
 
 .weekly-choice-date-time {
-    margin: 0px auto;
-    background-color: #2c3e50 ;
-    height: 60%; 
+    margin: -30px auto;
+    width: 54%;
+    height: auto;
+    background-color: #2c3e50;
+    height: 80%;
 }
-.monthly-choice-date-time{
-    background-color: #2c3e50 ; 
+
+.monthly-choice-date-time {
+    background-color: #2c3e50;
 }
+
+.start-time-div {
+    z-index: 1;
+    position: relative;
+    margin: 10px auto;
+    width: 150px;
+    top: 0;
+}
+
+.end-time-div {
+    z-index: 1;
+    position: relative;
+    margin: 10px auto;
+    width: 150px;
+    top: 50px;
+}
+
 .time-picker-general-wrapper {
     display: flex;
     flex-direction: column;
     margin: 10px auto;
+    z-index: 800;
+    position: relative;
+    left: -100px
 }
 
 .radio-btn-date-time-wrapper {
     box-sizing: border-box;
-    width: 137px;
+    width: 146px;
     top: 32px;
-    left: 34px;
+    left: 102px;
     position: relative;
-    padding: 0 16px;
+    padding: 0 10px;
     margin: 10px auto;
     background: #2c3e50;
 }
 
-.msg-date-time span {
+.msg-date-time-contral-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 50%;
+}
+
+.msg-date-time-contral-wrapper .msg {
     width: 25%;
     top: 15%;
     padding: 20px;
     border: 1px solid black;
     left: 69%;
     position: absolute;
+}
+
+.contral-team-date-time {
+    position: relative;
+    top: -200px;
+    left: 40px;
 }
 
 .single-date-time-radio {
@@ -70,6 +107,7 @@
 
 .radio-btn-date-time {
     display: flex;
+    font-weight: 700;
     flex-direction: column;
     border: 1px solid black;
     width: 100%;
@@ -79,50 +117,34 @@
 
 select {
     width: 50%;
+    bottom: 100%;
 }
 
-.start-time-date-time {
+.start-time-date-time, .end-time-date-time {
     background: #2c3e50;
     padding: 20px;
     margin: 10px 100px;
 }
 
-.end-time-date-time {
-    background: #2c3e50;
-    top: -33px;
-    left: -1px;
-    height: 51px;
-    bottom: 100% !important;
-    position: absolute;
-    margin: 10px 100px;
-}
-
 .icon-start-date-time, .icon-end-date-time {
+    top: -78px;
+    position: relative;
+    left: 135px;
     color: #f39c12;
     font-size: 30px;
     font-weight: 1000;
     position: relative;
 }
 
-.icon-end-date-time {
-    top: -41px;
-    left: 59px;
-}
-
-.icon-start-date-time {
-    top: -58px;
-    left: 59px;
-}
-
-.label-time-picker-start {
+.label-time-picker-start, .label-time-picker-end {
     position: relative;
-    top: 10px;
+    top: -94px;
+    left: 72px;
     font-weight: 1000;
-    right: -9px;
 }
 
 .checkbox-days-date-time {
-    margin: 60px auto;
+    margin: auto;
 }
 
 .reset-date-input {
@@ -139,17 +161,107 @@ select {
     text-align: center;
 }
 
-.label-time-picker-end {
-    position: relative;
-    top: -55px;
-    font-weight: 1000;
-}
-
 .label-day-picker-checkbox {
-    font-weight: 1000;
+    font-weight: 500;
     font-size: 20px;
 }
 
 .date-selected {
     background: blue;
+}
+
+@media screen and (max-width:800px) {
+    .main-date-time {
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        justify-content: space-around;
+        align-items: center;
+        object-fit: cover;
+        min-height: 700px
+    }
+    .msg-date-time-contral-wrapper {
+        flex-direction: column;
+        display: block;
+    }
+    .time-picker-general-wrapper {
+        display: -webkit-flex;
+        display: flex;
+        top: 0px;
+        -webkit-flex-direction: column;
+        flex-direction: column-reverse;
+        margin: 10px auto;
+        z-index: 800;
+        width: 100%;
+        position: relative;
+        left: 0;
+    }
+    .main-controller-date-time-left {
+        flex-direction: column;
+        top: 0px;
+        position: relative;
+        margin: 108px auto;
+    }
+    .main-controller-date-time-left-right {
+        top: -62px;
+        left: 0;
+        width: 100%;
+    }
+    .contral-team-date-time {
+        position: absolute;
+        top: 643px;
+        margin: auto;
+        width: 100%;
+        left: 0px
+    }
+    .msg-date-time-contral-wrapper .msg {
+        width: 100%;
+        top: 0;
+        margin: 10px auto;
+        text-align: center;
+        padding: 10px;
+        left: 0;
+    }
+    .end-time-div {
+        z-index: 1;
+        position: relative;
+        width: 150px;
+        top: 50px;
+        left: 104px;
+    }
+    .start-time-div {
+        z-index: 1;
+        position: relative;
+        margin: 10px auto;
+        width: 150px;
+        left: 104px;
+        top: -130px;
+    }
+    .radio-btn-date-time-wrapper {
+        box-sizing: border-box;
+        width: 146px;
+        top: 0;
+        left: 0px;
+        position: relative;
+        padding: 0 10px;
+        margin: 3px auto;
+        background: #2c3e50;
+    }
+    .monthly-choice-date-time {
+        background-color: #2c3e50;
+        width: 150%;
+        position: relative;
+        left: 50px;
+        top: -62px;
+        margin: auto;
+    }
+    .weekly-choice-date-time {
+        width: 200% !important;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .checkbox-days-date-time {
+        width: 50%;
+        float: left;
+    }
 }

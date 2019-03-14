@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import MapContainer from "../../../MapContainer/MapContainer"
 import SearchBar from "../../SearchBar/SearchBar"
-
+import ContralTeamCreate from '../../ContralTeamCreate/ContralTeamCreate'
 import "./MapSearchLayout.css"
 class MapSearchLayout extends Component {
     componentDidMount() {
@@ -58,7 +58,7 @@ class MapSearchLayout extends Component {
         const { userLocation } = userInfo
         let styleMap = {
             height: '100%',
-            width: '50%',
+           
         }
         let styleSearch = {
             position: 'relative',
@@ -77,7 +77,7 @@ class MapSearchLayout extends Component {
                         <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} />
                         {userInfo.errorMsg && <div>Error occurred In Finding the Address please try Again</div>}
                     </div>
-
+                    <ContralTeamCreate class="contral-team-map-layout" leftClick={this.props.leftClick}/>
                 </div>)}
 
             </div>

@@ -7,3 +7,16 @@
 .map-child-flex-layout,.search-child-flex-layout{
     flex: 1 1
 }
+.contral-team-map-layout{
+    position: absolute;
+    left: 60%;
+    top: 80%;
+}
+@media screen and (max-width:800px){
+    .search-map-layout{
+        flex-direction: column-reverse;
+    }
+    .map-child-flex-layout,.search-child-flex-layout{
+        width: 100%;
+    } 
+}

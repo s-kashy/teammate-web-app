@@ -14,15 +14,16 @@
 
 .next-btn-intro {
     float: right;
-    background: blue;
+    background:#0000FF;
     border-radius: 11px;
     cursor: pointer;
     color: #ffffff;
-    outline: none !important;
+    outline: none;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: bold;
-    padding: 14px 38px;
+    padding: 14px 52px;
+    border: none;
     text-decoration: none;
  
 }

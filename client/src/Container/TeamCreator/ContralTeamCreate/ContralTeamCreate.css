@@ -13,7 +13,12 @@
     text-decoration: none;
 
 }
-
+.next-btn-team-create:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
 
 .previous-btn-team-create {
     background: red;

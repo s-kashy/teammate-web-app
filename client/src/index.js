@@ -9,6 +9,7 @@ import authR from "./Store/Reducer/auth"
 import '../node_modules/react-day-picker/lib/style.css';
 import controlUiR from "./Store/Reducer/control_ui"
 import profileR from "./Store/Reducer/profile"
+import teamCreateInfoR from "./Store/Reducer/teamCreateInfo"
 import thunk from "redux-thunk";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -16,7 +17,8 @@ import * as serviceWorker from './serviceWorker';
 const rooReducer = combineReducers({
     auth: authR,
     spinnerState: controlUiR,
-    user:profileR
+    user:profileR,
+    teamCreate:teamCreateInfoR
 
 
 });

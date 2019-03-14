@@ -32,6 +32,7 @@ select {
   height: 100%;
   margin: 0;
   left: 0;
+  bottom: 0;
   padding: 0 0 0 .5em;
   color: #fff;
   cursor: pointer;
@@ -58,7 +59,12 @@ select::-ms-expand {
 
 .selectOp:hover::after {
   color: #f39c12;
-
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495e;
+  pointer-events: none;
 }
 
 .selectOp::after {
@@ -66,12 +72,16 @@ select::-ms-expand {
   -o-transition: .25s all ease;
   transition: .25s all ease !important;
 }
+
 @media screen and (max-width:800px) {
   selectOp:hover{
+    content: "";
     display: block;
+    width: 50%;
+    height: 50%;
   }
   select {
-    width: 80% !important;
+    width: 100% !important;
     height: 100%;
     margin: 0;
     left: 0;

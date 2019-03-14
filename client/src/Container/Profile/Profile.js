@@ -260,6 +260,7 @@ class Profile extends Component {
                                     error={lastname.error}
                                     value={lastname.value}
                                     placeholder="Last Name"
+                                    errorClass="error-input-profile"
                                     classLabel="label-basic-input-filed"
                                     name="lastname" change={(e) => this.onChangeHandlerInput(e)} />
                             </div>

@@ -74,7 +74,14 @@ form {
     width: 61%;
     margin: 20px auto;
 }
-
+.error-input-profile{
+        position: relative;
+        left: -55px;
+        top: -27px;
+        font-weight: 500;
+        color:red !important;
+    
+}
 .individual-checkbox-profile {
     flex: 15%;
     margin: 10px auto;

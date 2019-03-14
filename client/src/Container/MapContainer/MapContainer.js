@@ -5,6 +5,12 @@ import './MapContainer.css'
 /* global google */
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 class MapContainer extends Component {
+
+
+componentDidMount(){
+   
+}
+
     constructor(props) {
 
         super(props)
@@ -19,6 +25,7 @@ class MapContainer extends Component {
                 markers: this.props.markers
             }
         }
+        
     }
 
 
@@ -46,11 +53,11 @@ class MapContainer extends Component {
             )
         })
         return (
-            <div>
+            <div className="map-window">
                 {this.state.reRender && (<Map
                     google={this.props.google}
                     style={this.props.styleMap}
-                    zoom={10}
+                    zoom={11}
                     center={{
                         lat: this.props.lat,
                         lng: this.props.lng
