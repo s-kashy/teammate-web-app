@@ -1,19 +1,22 @@
 import * as actionType from "../actions/actionType"
 import { updateObject } from "../utilReducer/utilReducer"
 const initialState = {
-    userProfile: null,
-    email: null
+    generalInfo: "",
+    dateAndTime: "",
+    location: ""
 }
 
 
 const reducer = (state = initialState, action) => {
-    // console.log("in the reducer")
     switch (action.type) {
-        case actionType.EMAIL_USER:
-      
+        case actionType.SAVE_GENERAL_INFO:
+            return updateObject(state, { generalInfo: action.payload })
+        case actionType.SAVE_DATE_TIME:
+            return updateObject(state, { dateAndTime: action.SAVE_DATE_TIME })
+        case actionType.SAVE_LOCATION:
+            return updateObject(state, { location: action.payload })
 
-
-            default:
+        default:
             return state;
 
     }

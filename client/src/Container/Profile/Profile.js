@@ -24,9 +24,8 @@ class Profile extends Component {
             userInfo.firstname.value = this.props.userProfile.firstname
             userInfo.lastname.value = this.props.userProfile.lastname
             userInfo.about = this.props.userProfile.about
-            this.textarea.value=this.props.userProfile.about
+            this.textarea.value = this.props.userProfile.about
             userInfo.imageUrl = this.props.userProfile.imageUrl
-
             if (this.props.userProfile.age) {
                 userInfo.ageGroup.forEach(item => {
                     if (item.value === this.props.userProfile.age) {
@@ -43,7 +42,7 @@ class Profile extends Component {
             })
         }
     }
-  
+
     state = {
         user: {
             firstname: {
@@ -123,7 +122,6 @@ class Profile extends Component {
                 )
                 this.scrollToMyRef()
 
-
             }
 
         })
@@ -131,7 +129,6 @@ class Profile extends Component {
     postProfileOfUser = () => {
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         let ageSelected = this.getAgePreferenceOfUser(userInfo.ageGroup)
-
         let arrayOfSportInterest = (this.filterSportInterestArray(userInfo.sportInterest))
         let dataUpdate = {
             firstname: userInfo.firstname.value,
@@ -169,7 +166,6 @@ class Profile extends Component {
     convertSportInterestToArray = (sportInterest) => {
         let sportTypeArray = []
         for (let key in sportInterest) {
-
             sportTypeArray.push({ value: sportInterest[key].value, nameOfSport: key })
         }
 
@@ -180,7 +176,7 @@ class Profile extends Component {
         this.setState({ imageUrl: image })
 
 
-   }
+    }
     filterSportInterestArray = (sportInterest) => {
         let sportTypeArray = []
         for (let key in sportInterest) {
@@ -217,7 +213,6 @@ class Profile extends Component {
     render() {
         let sportTypeArray = []
         const { sportInterest, ageGroup, firstname, lastname } = this.state.user
-
         let arrayRadio = ageGroup.map((item, index) => {
             return (<RadioButton
                 classRadio="single-radio-input-profile"
@@ -231,7 +226,6 @@ class Profile extends Component {
         })
 
         sportTypeArray = this.convertSportInterestToArray(sportInterest)
-
         let arrayCheckBox = sportTypeArray.map((item, index) => {
             return (<CheckBox
                 key={index}
@@ -249,7 +243,7 @@ class Profile extends Component {
 
                     <form onSubmit={this.submitHandler}>
                         <div className="main-form-profile">
-                            <p style={{ margin: "15px auto",fontSize:"30px" }}>Your Profile</p>
+                            <p style={{ margin: "15px auto", fontSize: "30px" }}>Your Profile</p>
                             <div className="input-first-last-group-profile" ref={x => this.inputUserBasicInfo = x}>
                                 <Input type="text" id="firstname" classInput="inputs-profile" placeholder="First Name"
                                     classLabel="label-basic-input-filed" value={firstname.value}
@@ -273,16 +267,16 @@ class Profile extends Component {
                                 {arrayCheckBox}
                             </div>
                             <div>
-                               <textarea wrap="physical" className="textarea-profile"
+                                <textarea wrap="physical" className="textarea-profile"
                                     ref={x => this.textarea = x} placeholder="Personal note"></textarea>
                             </div>
                             <div className="upload-image">
-                            <p>Only JPG and PNG image can be uploaded</p>
+                                <p>Only JPG and PNG image can be uploaded</p>
                                 <Input type="file" id="image" classInput="input-upload-file-image-profile"
                                     classLabel="label-upload-filed-profile"
                                     title="Select a image"
                                     change={(e) => this.onChangeImageHandler(e)} /><br></br>
-                              <span className="upload-image-icon-profile"><i className="fas fa-upload"></i></span>
+                                <span className="upload-image-icon-profile"><i className="fas fa-upload"></i></span>
                             </div>
                             <div >
                                 <Input type="submit" classInput="button-submit" value="Submit" />

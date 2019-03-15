@@ -9,3 +9,8 @@ export const OPEN_SPINNER='open spinner'
 
 export const EMAIL_USER="email user"
 export const PROFILE_USER="profile user"
+
+
+export const SAVE_GENERAL_INFO="save general info"
+export const SAVE_DATE_TIME ="save date time"
+export const SAVE_LOCATION="save location"

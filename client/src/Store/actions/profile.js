@@ -33,19 +33,16 @@ export const getUserProfile = (emailUser) => {
     }
     return dispatch => {
         getRequestData(dataUser).then(res => {
-
-            dispatch(updateProfileUser(res.data))
+           dispatch(updateProfileUser(res.data))
 
         }).catch(err => {
-
-            console.log(err)
+           console.log(err)
         })
 
     }
 
 }
 export const postUserProfile = ( userProfile) => {
-
     var headersOpt = {
         'content-type': 'multipart/form-data'
     };
@@ -58,9 +55,7 @@ export const postUserProfile = ( userProfile) => {
     }
     return dispatch => {
         getRequestData(data).then(res => {
-
         }).catch(err => {
-
             console.log(err)
         })
     }
@@ -79,15 +74,12 @@ console.log(id)
     }
     return dispatch => {
         getRequestData(data).then(res => {
-
-
         }).catch(err => {
             console.log(err)
         })
     }
 }
 export const initializeUser = (email) => {
-
     return dispatch => {
         dispatch(updateUserEmail(email))
         dispatch(getUserProfile(email))

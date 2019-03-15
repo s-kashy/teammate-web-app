@@ -1,55 +1,63 @@
 import React, { Component } from "react"
 import "./GeneralInfo.css"
 import _ from "lodash"
+import { connect } from "react-redux";
+import * as actionType from "../../../Store/actions/index"
 import Input from "../../../Component/Input/Input"
+import Spinner from "../../../Component/Ui/Spinner/Spinner"
+import Aux from "../../../Hoc/Hoc"
 import ContralTeamCreate from "../ContralTeamCreate/ContralTeamCreate"
 import { arraySportType } from './arrayOfSportType'
 import OptionMenu from '../../../Component/OptionMenu/OptionMenu'
 class GeneralInfo extends Component {
 
+    constructor(props) {
 
-
-
-    state = {
-        userBasic: {
-            isBasicInfoValid: false,
-            nameOfTeam: {
-                value: "",
-                error: false,
-
+        super(props)
+        this.state = {
+            isLoading:true,
+            userBasic: {
+                isBasicInfoValid: false,
+                nameOfTeam: {
+                    value: "",
+                    error: false,
+                },
+                numberOfTeam: {
+                    value: "",
+                    error: false,
+                }
             },
-            numberOfTeam: {
+            aboutTheTeam: {
                 value: "",
                 error: false,
-
-            }
-
-        },
-        aboutTheTeam: {
-            value: "",
-            error: false,
-            touch: false
-
-        },
-        typeOfSport: arraySportType[0],
-        imageUrl: {
-            file: "",
-            fileName: "",
-            valid: false,
-            error: false
-        },
-        isValid: false
+                touch: false
+            },
+            typeOfSport: arraySportType[0],
+            imageUrl: {
+                file: "",
+                fileName: "",
+                valid: false,
+                error: false
+            },
+            isValid: false
+        }
     }
     componentDidMount() {
-
+        if (this.props.generalInfo!==""|| undefined){
+            let {userBasic,aboutTheTeam,typeOfSport}=this.props.generalInfo
+            this.setState({userBasic:userBasic,aboutTheTeam:aboutTheTeam,typeOfSport:typeOfSport,isLoading:false,isValid:true})
+        }else{
+            this.setState({isLoading:false})
+        }
+       
 
     }
 
     checkValidForm = () => {
-        console.log(this.state)
         const { userBasic, aboutTheTeam, typeOfSport, imageUrl } = this.state
         if (userBasic.isBasicInfoValid && !aboutTheTeam.error
             && imageUrl.valid && typeOfSport != arraySportType[0].toString()) {
+            this.props.saveGeneralInfo(this.state)
             this.setState({ isValid: true })
         } else {
             this.setState({ isValid: false })
@@ -81,7 +89,6 @@ class GeneralInfo extends Component {
     onChangeInputHandler = (event) => {
         let userInfo = JSON.parse(JSON.stringify(this.state.userBasic))
         userInfo[event.target.name].value = event.target.value
-
         var key = event.target.name
         this.setState({ userBasic: userInfo }, () => {
             this.checkBasicInfoValid(key)
@@ -93,7 +100,6 @@ class GeneralInfo extends Component {
             if (userBasic[key].value === "" || userBasic[key].value == undefined || parseInt(userBasic[key].value) <= 0) {
                 userBasic[key].error = true
                 userBasic.isBasicInfoValid = false
-
             } else {
                 userBasic[key].error = false
             }
@@ -118,10 +124,7 @@ class GeneralInfo extends Component {
         }
         if (!userBasic["nameOfTeam"].error && !userBasic["numberOfTeam"].error) {
             userBasic.isBasicInfoValid = true
-
-            console.log("valid state ", userBasic["nameOfTeam"])
             this.setState({ userBasic: userBasic }, () => {
-                console.log("user basic", userBasic)
                 this.checkValidForm()
             })
         }
@@ -133,7 +136,6 @@ class GeneralInfo extends Component {
         let userInfo = JSON.parse(JSON.stringify(this.state.typeOfSport))
         userInfo = event.target.value
         this.setState({ typeOfSport: userInfo }, () => {
-            console.log("type of sport", this.state.typeOfSport)
             this.checkValidForm()
         })
     }
@@ -150,7 +152,7 @@ class GeneralInfo extends Component {
     render() {
         let { nameOfTeam, numberOfTeam } = this.state.userBasic
         let { typeOfSport, aboutTheTeam, imageUrl } = this.state
-        return (<div className="main-general-info">
+        return (<Aux>{!this.state.isLoading?<div className="main-general-info">
 
             <div className="from-general-info">
                 <div className="option-menu-general-info">
@@ -182,15 +184,14 @@ class GeneralInfo extends Component {
                             change={(event) => this.imageUploadHandler(event)}
                             title={imageUrl.fileName == "" ? "Team logo" : imageUrl.fileName} /><span className="icon-upload-image-general-info"><i style={{ fontSize: "30px", fontWeight: "1000", color: "red" }} className="far fa-cloud-upload-alt"></i></span>
                     </div>
-
                     <div>
-                        <textarea className="textarea-general-info"
-                            onKeyUp={(event) => this.onChangeTextAreaHandler(event)}
+                    
+                        <textarea className="textarea-general-info" 
+                            onChange={(event) => this.onChangeTextAreaHandler(event)} value={this.state.aboutTheTeam.value}
                             placeholder={aboutTheTeam.error && aboutTheTeam.touch ? "Don't forget*" : "Little about the team"}></textarea>
+                        
                     </div>
                 </div>
-
-
             </div>
             <div className="msg-instruction-general-info">
                 <div style={{ margin: " -30px auto" }}>
@@ -201,23 +202,27 @@ class GeneralInfo extends Component {
                             software like Aldus PageMaker including versions of Lorem
                         </strong>
                     </span>
-
-
                 </div>
 
             </div>
             <ContralTeamCreate rightClick={this.props.rightClick}
                 leftClick={this.props.leftClick} disabled={!this.state.isValid}
                 class="position-contral-general-info" />
-        </div>)
-
-
+        </div>:<Spinner/>}</Aux>)
     }
-
-
-
 }
+const mapStateHandler = state => {
+    return {
+        generalInfo: state.teamCreateInfo.generalInfo,
+    };
+};
+const mapStateDispatch = dispatch => {
+    return {
+        saveGeneralInfo: (generalInfo) => dispatch(actionType.saveGeneralInfo(generalInfo)),
 
 
+    };
+};
 
-export default GeneralInfo
+
+export default connect(mapStateHandler, mapStateDispatch)(GeneralInfo)

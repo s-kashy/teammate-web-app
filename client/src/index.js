@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import authR from "./Store/Reducer/auth"
 // import "../node_modules/react-datepicker/dist/react-datepicker.css";
 import '../node_modules/react-day-picker/lib/style.css';
+import '../node_modules/rc-time-picker/assets/index.css';
 import controlUiR from "./Store/Reducer/control_ui"
 import profileR from "./Store/Reducer/profile"
 import teamCreateInfoR from "./Store/Reducer/teamCreateInfo"
@@ -18,7 +19,7 @@ const rooReducer = combineReducers({
     auth: authR,
     spinnerState: controlUiR,
     user:profileR,
-    teamCreate:teamCreateInfoR
+    teamCreateInfo:teamCreateInfoR
 
 
 });

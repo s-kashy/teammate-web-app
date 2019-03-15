@@ -18,3 +18,7 @@ export {
     getUserProfile,
     updateUserProfileOnServer
 } from "./profile"
+export {
+ saveGeneralInfo,
+
+}from"./teamCreateInfo"
