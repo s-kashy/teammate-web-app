@@ -10,7 +10,6 @@ export {
 } from "./control _ui"
 
 export {
-  
     updateProfileUser,
     postUserProfile,
     updateUserEmail,
@@ -19,6 +18,7 @@ export {
     updateUserProfileOnServer
 } from "./profile"
 export {
- saveGeneralInfo,
-
-}from"./teamCreateInfo"
+    saveGeneralInfo,
+    saveDataAndTime,
+    saveLocation
+} from "./teamCreateInfo"

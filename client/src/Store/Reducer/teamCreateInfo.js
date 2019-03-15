@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
         case actionType.SAVE_GENERAL_INFO:
             return updateObject(state, { generalInfo: action.payload })
         case actionType.SAVE_DATE_TIME:
-            return updateObject(state, { dateAndTime: action.SAVE_DATE_TIME })
+            return updateObject(state, { dateAndTime: action.payload })
         case actionType.SAVE_LOCATION:
             return updateObject(state, { location: action.payload })
 

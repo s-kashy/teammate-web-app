@@ -1,17 +1,23 @@
 import React, { Component } from "react"
 import DayPicker, { DateUtils } from 'react-day-picker';
-import ReactTimeSelect from "react-time-select"
+import moment from "moment"
+import Spinner from "../../../Component/Ui/Spinner/Spinner"
 import "./DateAndTime.css"
+import Aux from "../../../Hoc/Hoc"
+import { connect } from "react-redux";
+import * as actionType from "../../../Store/actions/index"
+import _ from "lodash"
+import TimePicker from 'rc-time-picker';
 import CheckBox from "../../../Component/CheckBox/CheckBox"
 import RadioButton from "../../../Component/RadioButton/RadioButton"
 import ContralTeamCreate from "../ContralTeamCreate/ContralTeamCreate"
 
 class DateAndTime extends Component {
-
     state = {
-        isValid:false,
-        startTime: "",
-        endTime: "",
+        isLoading: true,
+        isValid: false,
+        startTime: "08:00",
+        endTime: "08:00",
         selectedDays: [],
         pickType: "Daily",
         date: new Date(),
@@ -32,15 +38,107 @@ class DateAndTime extends Component {
         ]
 
 
+    }
+    createObject = (type) => {
+        const { startTime, endTime, selectedDays, dayOfTheWeekPicker, pickType } = this.state
+        switch (type) {
+            case "Daily":
+                return {
+                    pickType: pickType,
+                    startTime: startTime,
+                    endTime: endTime,
+                }
+
+            case "Weekly":
+                return {
+                    pickType: pickType,
+                    startTime: startTime,
+                    endTime: endTime,
+                    dayOfTheWeekPicker: dayOfTheWeekPicker.filter(item => {
+                        return item.check != false
+                    })
+                }
+
+            case "Monthly":
+                return {
+                    pickType: pickType,
+                    startTime: startTime,
+                    endTime: endTime,
+                    selectedDays: selectedDays
+
+                }
+        }
 
     }
-    checkValidFrom=()=>{
-        
+    componentDidMount(){
+        const {pickType,startTime,endTime}=this.props.dateAndTime
+        const {dayOfTheWeekPicker}={...this.state}
+        if (this.props.dateAndTime!==""){
+            if(pickType=="Daily"){
+                this.setState({startTime,endTime,pickType,isValid:true})
+            }
+            else if (pickType=="Weekly"){
+           
+            }
+            else{
+             const {selectedDays}=this.props.dateAndTime.selectedDays
+                this.setState({selectedDays,startTime,endTime})
+            }
+        }
     }
-    onChangeTimeHandler = (event) => {
-        console.log("time",event)
-        
+    checkValidFrom = () => {
+        const { pickType, startTime, endTime, dayOfTheWeekPicker, selectedDays } = this.state
+        if (pickType === "Daily") {
+            if (startTime !== endTime) {
+                this.setState({ isValid: true }, () => {
+                    this.props.saveDataAndTime(this.createObject(this.state.pickType))
+                })
+            } else {
+                this.setState({ isValid: false })
+            }
+        }
+        else if (pickType === "Weekly") {
+            if ((_.reject(_.map(dayOfTheWeekPicker, _.partialRight(_.pick, 'check')), { check: false }).length > 0) && startTime !== endTime) {
+                this.setState({ isValid: true }, () => {
+                    this.props.saveDataAndTime(this.createObject(this.state.pickType))
+                })
+            } else {
+                this.setState({ isValid: false })
+            }
+        }
+        else if (pickType === "Monthly") {
+            console.log("selected", selectedDays.length > 0)
+            if (selectedDays.length > 0 && startTime != endTime) {
+                this.setState({ isValid: true }, () => {
+                    this.props.saveDataAndTime(this.createObject(this.state.pickType))
+                })
+            } else {
+                this.setState({ isValid: false })
+            }
+        }
     }
+    onChangeTimeHandler = (value, name) => {
+        let time = value && value.format('HH:mm');
+        if (name === "start") {
+            if (time == null) {
+                time = "08:00"
+            }
+            this.setState({ startTime: time }, () => {
+                this.checkValidFrom()
+            })
+        }
+        else {
+            if (time == null) {
+                time = "20:00"
+            }
+            this.setState({ endTime: time }, () => {
+                this.checkValidFrom()
+            })
+        }
+
+
+    }
+
     onClickCheckBoxHandler = (value) => {
         let dayOfTheWeekPicker = JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
         for (let i = 0; i < dayOfTheWeekPicker.length; i++) {
@@ -49,11 +147,12 @@ class DateAndTime extends Component {
                 break;
             }
         }
-        this.setState({ dayOfTheWeekPicker: dayOfTheWeekPicker })
+        this.setState({ dayOfTheWeekPicker: dayOfTheWeekPicker }, () => {
+            this.checkValidFrom()
+        })
 
     }
     resetCalendarHandler = () => {
-      
         let selectedDay = JSON.parse(JSON.stringify(this.state.selectedDay))
         selectedDay = []
         this.setState({ selectedDay: [] })
@@ -68,19 +167,20 @@ class DateAndTime extends Component {
         } else {
             selectedDays.push(day);
         }
-        this.setState({ selectedDays })
+        this.setState({ selectedDays }, () => {
+            this.checkValidFrom()
+        })
     }
     onClickRadioHandler = (value) => {
         let timePicker = JSON.parse(JSON.stringify(this.state.timePicker))
         timePicker.forEach(element => {
             if (element.value === value) {
                 element.checked = true
-
             } else {
                 element.checked = false
             }
         });
-        this.setState({ timePicker: timePicker, pickType: value },()=>{
+        this.setState({ timePicker: timePicker, pickType: value, isValid: false }, () => {
             this.checkValidFrom()
         })
     }
@@ -105,51 +205,67 @@ class DateAndTime extends Component {
                 label="label-day-picker-checkbox"
                 key={index} />)
         })
-        return (<div className='main-date-time'>
+        return (<Aux>
+            {this.state.isLoading ? <div className='main-date-time'>
+                <div className="main-controller-date-time-left" >
+                    <div className="time-picker-general-wrapper"  >
 
-            <div className="main-controller-date-time-left" >
-                <div className="time-picker-general-wrapper"  >
+                        <div className="start-time-div">
+                            <span className="label-time-picker-start">Start Time</span>
+                            <TimePicker value={moment(this.state.startTime, 'HH:mm')} defaultValue={moment(this.state.startTime, 'HH:mm')} name="startTime" showSecond={false}
+                                onChange={(e) => this.onChangeTimeHandler(e, "start")} allowEmpty={true} className="start-time-date-time" label="start" />
+                        </div>
+                        <div className="end-time-div">
+                            <span className="label-time-picker-end">End Time</span>
+                            <TimePicker value={moment(this.state.endTime, 'HH:mm')} allowEmpty={true} hideDisabledOptions={true}
+                                defaultValue={moment(this.state.endTime, 'HH:mm')}
+                                name="endTime" placeholder='end time'
+                                showSecond={false}
+                                onChange={(e) => this.onChangeTimeHandler(e, "end")}
+                                className="end-time-date-time" />
 
-                    <div className="start-time-div">
-                        <span className="label-time-picker-start">Start Time</span>
-                        <ReactTimeSelect name="startTime" onChange={(e) => this.onChangeTimeHandler(e)} className="start-time-date-time" label="start" /><span className="icon-start-date-time">
-                            <i className="fas fa-arrow-down"></i></span>
+                        </div>
+                        <div className="radio-btn-date-time-wrapper">
+                            {arrayRadio}
+                        </div>
+
                     </div>
-                    <div className="end-time-div">
-                        <span className="label-time-picker-end">End Time</span>
-                        <ReactTimeSelect name="endTime"  onChange={(e) => this.onChangeTimeHandler(e)} className="end-time-date-time" label="start" />
-                        <span className="icon-end-date-time">
-                            <i className="fas fa-arrow-down"></i></span>
-                    </div>
-                    <div className="radio-btn-date-time-wrapper">
-                        {arrayRadio}
+                    <div className="main-controller-date-time-left-right">
+                        {pickType === "Weekly" && (<div className="weekly-choice-date-time">{arrayDayPicker}</div>)}
+                        {pickType === "Monthly" && (<div className="monthly-choice-date-time"><DayPicker selectedDays={this.state.selectedDays}
+                            onDayClick={this.handleDayClick}
+                            fromMonth={new Date(new Date().getFullYear(), new Date().getMonth())} /></div>)}
+                        {/* <div><button className="reset-date-input">Reset Dates</button></div> */}
                     </div>
 
                 </div>
-                <div className="main-controller-date-time-left-right">
-                    {pickType === "Weekly" && (<div className="weekly-choice-date-time">{arrayDayPicker}</div>)}
-                    {pickType === "Monthly" && (<div className="monthly-choice-date-time"><DayPicker selectedDays={this.state.selectedDays}
-                        onDayClick={this.handleDayClick}
-                        fromMonth={new Date(new Date().getFullYear(), new Date().getMonth())} /></div>)}
-                    {/* <div><button className="reset-date-input">Reset Dates</button></div> */}
-                </div>
-
-            </div>
-            <div className="msg-date-time-contral-wrapper">
-                <div className="msg" >
-                    <strong> type and scrambled it
-                    to make a type specimen book. It has
-                    survived not only fivly unchanged. It was
-                     popularised in the 1960s with the release
+                <div className="msg-date-time-contral-wrapper">
+                    <div className="msg" >
+                        <strong> type and scrambled it
+                        to make a type specimen book. It has
+                        survived not only fivly unchanged. It was
+                         popularised in the 1960s with the release
                  of Letraset sheets </strong>
-                </div>
-                <ContralTeamCreate class="contral-team-date-time" leftClick={this.props.leftClick} rightClick={this.props.rightClick} disabled={!this.state.isValid}  />
+                    </div>
+                    <ContralTeamCreate class="contral-team-date-time" leftClick={this.props.leftClick} rightClick={this.props.rightClick} disabled={!this.state.isValid} />
 
-            </div>
-           
-        </div>)
+                </div>
+
+            </div> : <Spinner />}</Aux>)
     }
 
-
 }
-export default DateAndTime
+
+const mapStateHandler = state => {
+    return {
+        dateAndTime: state.teamCreateInfo.dateAndTime,
+    };
+};
+const mapStateDispatch = dispatch => {
+    return {
+        saveDataAndTime: (dateAndTime) => dispatch(actionType.saveDataAndTime(dateAndTime)),
+
+
+    };
+};
+export default connect(mapStateHandler, mapStateDispatch)(DateAndTime)

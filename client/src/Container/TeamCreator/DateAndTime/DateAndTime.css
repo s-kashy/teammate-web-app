@@ -17,7 +17,6 @@
 }
 
 .main-controller-date-time-left {
-    margin-top: 100px;
     display: -webkit-flex;
     display: flex;
     width: 50%;
@@ -33,7 +32,7 @@
 
 .weekly-choice-date-time {
     margin: -30px auto;
-    width: 54%;
+    width: 58%;
     height: auto;
     background-color: #2c3e50;
     height: 80%;
@@ -46,17 +45,15 @@
 .start-time-div {
     z-index: 1;
     position: relative;
-    margin: 10px auto;
-    width: 150px;
-    top: 0;
+}
+
+.rc-time-picker-input::placeholder {
+    color: black;
 }
 
 .end-time-div {
     z-index: 1;
     position: relative;
-    margin: 10px auto;
-    width: 150px;
-    top: 50px;
 }
 
 .time-picker-general-wrapper {
@@ -65,17 +62,14 @@
     margin: 10px auto;
     z-index: 800;
     position: relative;
-    left: -100px
 }
 
 .radio-btn-date-time-wrapper {
     box-sizing: border-box;
-    width: 146px;
-    top: 32px;
-    left: 102px;
+    width: 198px;
     position: relative;
     padding: 0 10px;
-    margin: 10px auto;
+    margin: 20px auto;
     background: #2c3e50;
 }
 
@@ -115,31 +109,17 @@
     padding: 10px;
 }
 
-select {
-    width: 50%;
-    bottom: 100%;
-}
-
 .start-time-date-time, .end-time-date-time {
     background: #2c3e50;
     padding: 20px;
     margin: 10px 100px;
 }
 
-.icon-start-date-time, .icon-end-date-time {
-    top: -78px;
-    position: relative;
-    left: 135px;
-    color: #f39c12;
-    font-size: 30px;
-    font-weight: 1000;
-    position: relative;
-}
-
 .label-time-picker-start, .label-time-picker-end {
+    top: 10px;
+    left: -48px;
+    color: white;
     position: relative;
-    top: -94px;
-    left: 72px;
     font-weight: 1000;
 }
 
@@ -164,6 +144,7 @@ select {
 .label-day-picker-checkbox {
     font-weight: 500;
     font-size: 20px;
+    color: #fff
 }
 
 .date-selected {
@@ -195,6 +176,9 @@ select {
         width: 100%;
         position: relative;
         left: 0;
+    }
+    a .rc-time-picker-clear {
+        display: none !important;
     }
     .main-controller-date-time-left {
         flex-direction: column;

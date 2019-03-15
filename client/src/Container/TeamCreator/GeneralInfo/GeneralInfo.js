@@ -15,7 +15,7 @@ class GeneralInfo extends Component {
 
         super(props)
         this.state = {
-            isLoading:true,
+            isLoading: true,
             userBasic: {
                 isBasicInfoValid: false,
                 nameOfTeam: {
@@ -43,21 +43,37 @@ class GeneralInfo extends Component {
         }
     }
     componentDidMount() {
-        if (this.props.generalInfo!==""|| undefined){
-            let {userBasic,aboutTheTeam,typeOfSport}=this.props.generalInfo
-            this.setState({userBasic:userBasic,aboutTheTeam:aboutTheTeam,typeOfSport:typeOfSport,isLoading:false,isValid:true})
-        }else{
-            this.setState({isLoading:false})
+        if (this.props.generalInfo !== "" || undefined) {
+            this.setState({ isLoading: false })
+            let { userBasic, aboutTheTeam, imageUrl } = { ...this.state }
+            let { nameOfTeam, numberOfTeam, typeOfSportChosen, fileName, aboutTheTeamChosen } = this.props.generalInfo
+            userBasic.nameOfTeam.value = nameOfTeam
+            userBasic.numberOfTeam.value = numberOfTeam
+            userBasic.isBasicInfoValid=true
+            aboutTheTeam.value = aboutTheTeamChosen
+            imageUrl.fileName = fileName
+            this.setState({ userBasic: userBasic, aboutTheTeam: aboutTheTeam, typeOfSport: typeOfSportChosen, isLoading: false, isValid: true, imageUrl: imageUrl })
+        } else {
+            this.setState({ isLoading: false })
         }
-       
+
 
     }
 
     checkValidForm = () => {
+
         const { userBasic, aboutTheTeam, typeOfSport, imageUrl } = this.state
+        var generalInfo = {
+            nameOfTeam: userBasic.nameOfTeam.value,
+            numberOfTeam: userBasic.numberOfTeam.value,
+            fileName: imageUrl.fileName,
+            aboutTheTeamChosen: aboutTheTeam.value,
+            typeOfSportChosen: typeOfSport
+        }
         if (userBasic.isBasicInfoValid && !aboutTheTeam.error
             && imageUrl.valid && typeOfSport != arraySportType[0].toString()) {
-            this.props.saveGeneralInfo(this.state)
+
+            this.props.saveGeneralInfo(generalInfo)
             this.setState({ isValid: true })
         } else {
             this.setState({ isValid: false })
@@ -152,7 +168,7 @@ class GeneralInfo extends Component {
     render() {
         let { nameOfTeam, numberOfTeam } = this.state.userBasic
         let { typeOfSport, aboutTheTeam, imageUrl } = this.state
-        return (<Aux>{!this.state.isLoading?<div className="main-general-info">
+        return (<Aux>{!this.state.isLoading ? <div className="main-general-info">
 
             <div className="from-general-info">
                 <div className="option-menu-general-info">
@@ -185,11 +201,11 @@ class GeneralInfo extends Component {
                             title={imageUrl.fileName == "" ? "Team logo" : imageUrl.fileName} /><span className="icon-upload-image-general-info"><i style={{ fontSize: "30px", fontWeight: "1000", color: "red" }} className="far fa-cloud-upload-alt"></i></span>
                     </div>
                     <div>
-                    
-                        <textarea className="textarea-general-info" 
+
+                        <textarea className="textarea-general-info"
                             onChange={(event) => this.onChangeTextAreaHandler(event)} value={this.state.aboutTheTeam.value}
                             placeholder={aboutTheTeam.error && aboutTheTeam.touch ? "Don't forget*" : "Little about the team"}></textarea>
-                        
+
                     </div>
                 </div>
             </div>
@@ -208,7 +224,7 @@ class GeneralInfo extends Component {
             <ContralTeamCreate rightClick={this.props.rightClick}
                 leftClick={this.props.leftClick} disabled={!this.state.isValid}
                 class="position-contral-general-info" />
-        </div>:<Spinner/>}</Aux>)
+        </div> : <Spinner />}</Aux>)
     }
 }
 const mapStateHandler = state => {
@@ -219,8 +235,6 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
     return {
         saveGeneralInfo: (generalInfo) => dispatch(actionType.saveGeneralInfo(generalInfo)),
-
-
     };
 };
 
