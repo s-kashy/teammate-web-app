@@ -4,14 +4,14 @@ module.exports = (req, res, next) => {
 
     if (req.file.url !== null && req.file.url !== undefined) {
         if (req.file.url !== newProfile.imageUrl) {
-            console.log("change")
+     
             console.log(req.file.url != newProfile.imageUrl)
             newProfile.imageUrl = req.file.url
             req.body = newProfile
             next()
         }
     } else {
-        console.log("not change")
+     
         req.body = newProfile
         next()
     }

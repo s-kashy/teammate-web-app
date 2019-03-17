@@ -1,16 +1,31 @@
 import React, { Component } from "react"
 import MapContainer from "../../../MapContainer/MapContainer"
 import SearchBar from "../../SearchBar/SearchBar"
+import { connect } from "react-redux";
+import * as actionType from "../../../../Store/actions/index"
 import ContralTeamCreate from '../../ContralTeamCreate/ContralTeamCreate'
 import "./MapSearchLayout.css"
 class MapSearchLayout extends Component {
     componentDidMount() {
-        this.setState({ isLoading: true })
+        if (this.props.location !=="") {
+         let copyState=JSON.parse(JSON.stringify(this.state.userInfo))
+         copyState.userLocation=this.props.location.userLocation
+         copyState.marker=JSON.parse(JSON.stringify(this.props.location.marker))
+        this.setState({userInfo:copyState,isLoading:true},()=>{
+          
+        })     
+        }
+        else {
+            this.setState({ isLoading: true })
+        }
+     
+
     }
     componentWillUnmount() {
         this.setState({ isLoading: false })
     }
     state = {
+        isValid: false,
         isLoading: false,
         userInfo: {
             userLocation: {
@@ -21,7 +36,10 @@ class MapSearchLayout extends Component {
             errorMsg: false
         }
     }
+    onChangeHandler = () => {
+        this.setState({ isValid: false })
 
+    }
     onPlaceLoaded = (place) => {
 
         if (place === 400) {
@@ -43,8 +61,8 @@ class MapSearchLayout extends Component {
 
             copyState.errorMsg = false
             copyState.marker = tempMarker
-            this.setState({ userInfo: copyState }, () => {
-
+            this.setState({ userInfo: copyState, isValid: true }, () => {
+                this.props.saveLocation(this.state.userInfo)
             })
 
 
@@ -54,11 +72,11 @@ class MapSearchLayout extends Component {
     }
 
     render() {
-        const { userInfo } = this.state
+        const { userInfo, isValid } = this.state
         const { userLocation } = userInfo
         let styleMap = {
             height: '100%',
-           
+
         }
         let styleSearch = {
             position: 'relative',
@@ -74,10 +92,10 @@ class MapSearchLayout extends Component {
                             markers={userInfo.marker} />
                     </div>
                     <div className="search-child-flex-layout">
-                        <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} />
+                        <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} change={this.onChangeHandler} />
                         {userInfo.errorMsg && <div>Error occurred In Finding the Address please try Again</div>}
                     </div>
-                    <ContralTeamCreate class="contral-team-map-layout" leftClick={this.props.leftClick}/>
+                    <ContralTeamCreate class="contral-team-map-layout" disabled={!isValid} leftClick={this.props.leftClick} />
                 </div>)}
 
             </div>
@@ -85,5 +103,17 @@ class MapSearchLayout extends Component {
         )
     }
 }
+const mapStateHandler = state => {
+    return {
+        location: state.teamCreateInfo.location,
+    };
+};
+const mapStateDispatch = dispatch => {
+    return {
+        saveLocation: (location) => dispatch(actionType.saveLocation(location)),
 
-export default MapSearchLayout
+
+    };
+};
+
+export default connect(mapStateHandler,mapStateDispatch)(MapSearchLayout)

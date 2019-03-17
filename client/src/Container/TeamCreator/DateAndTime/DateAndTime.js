@@ -48,7 +48,6 @@ class DateAndTime extends Component {
                     startTime: startTime,
                     endTime: endTime,
                 }
-
             case "Weekly":
                 return {
                     pickType: pickType,
@@ -58,31 +57,45 @@ class DateAndTime extends Component {
                         return item.check != false
                     })
                 }
-
             case "Monthly":
                 return {
                     pickType: pickType,
                     startTime: startTime,
                     endTime: endTime,
                     selectedDays: selectedDays
-
                 }
         }
 
     }
-    componentDidMount(){
-        const {pickType,startTime,endTime}=this.props.dateAndTime
-        const {dayOfTheWeekPicker}={...this.state}
-        if (this.props.dateAndTime!==""){
-            if(pickType=="Daily"){
-                this.setState({startTime,endTime,pickType,isValid:true})
+    componentDidMount() {
+        const { pickType, startTime, endTime } = this.props.dateAndTime
+        if (this.props.dateAndTime !== "") {
+            if (pickType == "Daily") {
+                this.setState({ startTime, endTime, pickType, isValid: true }, () => { })
             }
-            else if (pickType=="Weekly"){
-           
+            else if (pickType == "Weekly") {
+                const { dayOfTheWeekPicker,pickType } = this.props.dateAndTime
+                let tempStateDayCopyWeek=JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
+                let timePickerCopy = JSON.parse(JSON.stringify(this.state.timePicker))
+                for (let i=0;i<dayOfTheWeekPicker.length;i++){
+                    for (let j=0;j<tempStateDayCopyWeek.length;j++){
+                        if (dayOfTheWeekPicker[i].value==tempStateDayCopyWeek[j].value){
+                            tempStateDayCopyWeek[j].check=true
+                        }
+                    }
+                }
+                console.log("copy",tempStateDayCopyWeek)
+                timePickerCopy[1].checked = true
+                this.setState({dayOfTheWeekPicker:tempStateDayCopyWeek,isValid:true,timePicker:timePickerCopy,pickType},()=>{
+
+                })
+
             }
-            else{
-             const {selectedDays}=this.props.dateAndTime.selectedDays
-                this.setState({selectedDays,startTime,endTime})
+            else if (pickType === "Monthly") {
+                const { selectedDays, startTime, endTime, pickType } = this.props.dateAndTime
+                let timePickerCopy = JSON.parse(JSON.stringify(this.state.timePicker))
+                timePickerCopy[2].checked = true
+                this.setState({ selectedDays, startTime, endTime, pickType, isValid: true, timePicker: timePickerCopy })
             }
         }
     }
@@ -107,7 +120,7 @@ class DateAndTime extends Component {
             }
         }
         else if (pickType === "Monthly") {
-            console.log("selected", selectedDays.length > 0)
+
             if (selectedDays.length > 0 && startTime != endTime) {
                 this.setState({ isValid: true }, () => {
                     this.props.saveDataAndTime(this.createObject(this.state.pickType))

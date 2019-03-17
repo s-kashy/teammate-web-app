@@ -62,7 +62,7 @@ export const postUserProfile = ( userProfile) => {
 
 }
 export const updateUserProfileOnServer = (id, profileEdit) => {
-console.log(id)
+console.log("update action reducer",profileEdit)
     var data = {
         url: UPDATE_PROFILE,
         method: "post",
@@ -74,6 +74,7 @@ console.log(id)
     }
     return dispatch => {
         getRequestData(data).then(res => {
+            console.log("reducer",res)
         }).catch(err => {
             console.log(err)
         })

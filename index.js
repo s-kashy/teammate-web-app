@@ -4,14 +4,17 @@ const path = require("path");
 const cookieParser= require("cookie-parser")
 var bodyParser = require('body-parser')
 const keys = require("./config/keys")
+var fileUpload= require('express-fileupload');
 var cors = require('cors')
 const app = express()
 app.use(cors())
+app.use(fileUpload())
 app.use(cookieParser());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
-app.use(bodyParser.json());
+
 mongoose.connect(
     keys.MONGO_DB,
     { useNewUrlParser: true }, (err, db) => {

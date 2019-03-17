@@ -16,6 +16,7 @@ class SearchBar extends React.Component {
 
   }
   onChangeHandler = (event) => {
+    this.props.change()
     let userInfo = JSON.parse(JSON.stringify(this.state.value))
     userInfo = event.target.value
     this.setState({ value: userInfo })
@@ -48,7 +49,7 @@ class SearchBar extends React.Component {
       <div style={this.props.searchStyle} className="wrapper-auto">
         <input ref={this.autocompleteInput} autocomplete="on"
           onChange={(e) => this.onChangeHandler(e)}
-          placeholder="Enter City"
+          placeholder="Tel-Aviv"
           className="searchTerm"
           value={this.state.value}
           type="text" />
@@ -61,4 +62,4 @@ class SearchBar extends React.Component {
     );
   }
 }
-export default  SearchBar
+export default SearchBar

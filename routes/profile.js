@@ -2,8 +2,10 @@
 const mongoose = require("mongoose")
 var Profile = mongoose.model("Profile")
 var keys = require("../config/keys")
-const imageMiddleware=require("../middleware/imageMiddleware")
+const imageMiddleware = require("../middleware/imageMiddleware")
 const multer = require("multer");
+
+var checkImageMiddleware = require("../middleware/checkImageMiddleware")
 const cloudinary = require("cloudinary");
 const cloudinaryStorage = require("multer-storage-cloudinary");
 module.exports = (app) => {
@@ -42,11 +44,10 @@ module.exports = (app) => {
 
 
     })
-    app.post("/api/profile/update-profile", parser.single('myImage'), imageMiddleware,(req, res) => {
+    app.post("/api/profile/update-profile", checkImageMiddleware, parser.single('myImage'), imageMiddleware, (req, res) => {
 
         let id = req.header("id")
-        //const newProfile = JSON.parse(req.body.value)
-      
+
         Profile.findOneAndUpdate(id,
             { $set: req.body }, { new: true }).then(docs => {
                 res.status(200).send(docs)
@@ -56,7 +57,6 @@ module.exports = (app) => {
 
     })
     app.get("/api/profile/get-profile", (req, res) => {
-
         let email = req.header("email")
 
         Profile.findOne({ email: email }, (err, user) => {
