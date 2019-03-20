@@ -49,7 +49,7 @@ class GeneralInfo extends Component {
             let { nameOfTeam, numberOfTeam, typeOfSportChosen, fileName, aboutTheTeamChosen } = this.props.generalInfo
             userBasic.nameOfTeam.value = nameOfTeam
             userBasic.numberOfTeam.value = numberOfTeam
-            userBasic.isBasicInfoValid=true
+            userBasic.isBasicInfoValid = true
             aboutTheTeam.value = aboutTheTeamChosen
             imageUrl.fileName = fileName
             this.setState({ userBasic: userBasic, aboutTheTeam: aboutTheTeam, typeOfSport: typeOfSportChosen, isLoading: false, isValid: true, imageUrl: imageUrl })
@@ -94,9 +94,13 @@ class GeneralInfo extends Component {
         })
     }
     checkIfImageValid = (fileToCheck) => {
-        const file = fileToCheck;
-        const fileType = file['type'];
-        const validImageTypes = ['image/gif', 'image/jpeg', 'image/png'];
+        let file = fileToCheck;
+        let fileType = file['name'];
+        let parts = fileType.split('.');
+        fileType = parts[parts.length - 1];
+        fileType = fileType.toLowerCase()
+        const validImageTypes = ['gif', 'jpeg', 'png'];
+        console.log(validImageTypes.includes(fileType))
         if (validImageTypes.includes(fileType)) {
             return true
         }

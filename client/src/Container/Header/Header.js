@@ -29,7 +29,7 @@ class Header extends Component {
            
             <ul className="menu" style={{ right: menuState }}>
                 <NavLink onClick={this.onClickMenu} className="link-class" exact to="/">About</NavLink>
-                <NavLink onClick={this.onClickMenu} className="link-class" to="/profile" onClick={this.onClickMenu}>my-Profile</NavLink>
+                <NavLink onClick={this.onClickMenu} className="link-class" to="/profile" onClick={this.onClickMenu}>Your Profile</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/create-team" >Create A Team</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/item" onClick={this.onClickLogout}>logout</NavLink>
                 <label htmlFor="chk" className="hide-menu-btn"  onClick={this.onClickMenu}>

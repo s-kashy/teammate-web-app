@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
     // console.log("in the reducer")
     switch (action.type) {
         case actionType.EMAIL_USER:
-        console.log("email reducer",action.payload)
+  
             return updateObject(state, { email: action.payload })
 
 

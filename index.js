@@ -4,11 +4,11 @@ const path = require("path");
 const cookieParser= require("cookie-parser")
 var bodyParser = require('body-parser')
 const keys = require("./config/keys")
-var fileUpload= require('express-fileupload');
+// var fileUpload= require('express-fileupload');
 var cors = require('cors')
 const app = express()
 app.use(cors())
-app.use(fileUpload())
+// app.use(fileUpload())
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -32,6 +32,7 @@ require("./models/profile")
 mongoose.set('useCreateIndex', true);
 require("./routes/auth")(app)
 require("./routes/profile")(app)
+require("./routes/emailService")(app)
 
 app.get('*', function (request, response){
     // response.sendFile(path.resolve(__dirname, './client/public/', 'index.html'))

@@ -1,18 +1,26 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
-const {SECRET} =require("../config/keys")
+const { SECRET } = require("../config/keys")
 const { isEmail } = require("validator")
 const jwt = require("jsonwebtoken")
 const _ = require("lodash")
 const bcrypt = require("bcryptjs")
 
 const user = new Schema({
+    emailMangerInfo: {
+        webToken: String,
+        isManger: { type: Boolean, default: false },
+        emailManger:String
+    },
+
     email: {
         type: String,
         required: true,
         trim: true,
+        webToken: String,
         minlength: 1,
         unique: true,
+        teamMangerEmail: String,
         validate: {
             validator: (value) => {
                 return isEmail(value)
@@ -39,22 +47,22 @@ const user = new Schema({
 user.methods.toJSON = function () {
     let user = this
     let userObject = user.toObject()
-    return _.pick(userObject, ["_id", "email"])
+    return _.pick(userObject, ["_id", "email","emailMangerInfo"])
 }
 user.statics.findByCredential = function (email, password) {
     let User = this
-    return User.findOne({email}).then(user => {
-  
+    return User.findOne({ email }).then(user => {
+
         if (!user) {
             return Promise.reject()
         }
         else {
-            return new Promise((resolve,reject)=>{
-                bcrypt.compare(password,user.password,(err,res)=>{       
-                    if(res){
+            return new Promise((resolve, reject) => {
+                bcrypt.compare(password, user.password, (err, res) => {
+                    if (res) {
                         resolve(user)
                     }
-                    else{
+                    else {
                         reject(err)
                     }
                 })
@@ -92,11 +100,11 @@ user.methods.generateAuthToken = function () {
         return token
     })
 }
-user.methods.removeToken=function(token){
-    var user=this
+user.methods.removeToken = function (token) {
+    var user = this
     return user.updateOne({
-        $unset:{
-            tokens:{token:undefined}
+        $unset: {
+            tokens: { token: undefined }
         }
     })
 }

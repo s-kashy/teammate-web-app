@@ -5,6 +5,7 @@ const { Schema } = mongoose
 const profile = new Schema({
   
     email: { type: String, trim: true },
+    fileName:{type:String},
     firstname: { type: String, required: true, trim: true },
     lastname: { type: String, required: true, trim: true },
     about: { type: String, trim: true },

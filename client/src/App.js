@@ -15,7 +15,7 @@ import Spinner from "./Component/Ui/Spinner/Spinner"
 
 import { connect } from "react-redux";
 import './App.css';
-require('dotenv').config()
+
 
 class App extends Component {
 

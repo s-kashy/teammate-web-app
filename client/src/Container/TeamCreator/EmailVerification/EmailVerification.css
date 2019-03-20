@@ -1,0 +1,79 @@
+.error-msg-email-verification {}
+
+.input-email-verification,.input-confirm-email-verification {
+    background-color: transparent;
+    width: 288px;
+    height: 48px;
+    position: relative;
+    left: 190px;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    padding: 0 10px;
+    box-sizing: border-box;
+    border: 1px solid rgb(12, 11, 11)
+}
+.icon-submit-email-verification,.icon-submit-confirm-email-verification{
+    font-size: 20px;
+    color: white;
+}
+.submit-btn-email-verification,.submit-confirm-btn-email-verification{
+    height: 48px;
+    width: 48px;
+    left: 186px;
+    top: -48px;
+    cursor: pointer;
+    position: relative;
+    background-color: #0000FF;
+    border: 1px solid black;
+  
+}
+.input-email-verification::placeholder {
+    color: black;
+}
+
+.wrapper-input-email-verification {
+    flex: 1 1;
+    margin: 80px auto;
+}
+
+.main-email-verification {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1553006690/action-beach-fun-416676.jpg");
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.msg-email-verification {
+    flex: 1 1;
+    margin: 80px auto;
+}
+
+.msg-email-verification span {
+    width: 300px
+}
+
+.label-input-email-verification{
+    position: relative;
+    left: -32px;
+}
+.label-confirm-email-verification {
+    position: relative;
+    left: -18px;
+}
+.contral-team-email-verification{
+    position: relative;
+    top: 336px;
+    right: 58px;
+}

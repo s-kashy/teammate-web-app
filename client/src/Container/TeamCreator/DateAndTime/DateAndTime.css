@@ -180,6 +180,9 @@
     a .rc-time-picker-clear {
         display: none !important;
     }
+    .rc-time-picker-input {
+        padding: 4px 40px !important;
+    }
     .main-controller-date-time-left {
         flex-direction: column;
         top: 0px;
@@ -187,7 +190,7 @@
         margin: 108px auto;
     }
     .main-controller-date-time-left-right {
-        top: -62px;
+        top: -67px;
         left: 0;
         width: 100%;
     }
@@ -197,6 +200,13 @@
         margin: auto;
         width: 100%;
         left: 0px
+    }
+    .label-time-picker-start, .label-time-picker-end {
+        top: 10px;
+        left: 69px;
+        color: white;
+        position: relative;
+        font-weight: 1000;
     }
     .msg-date-time-contral-wrapper .msg {
         width: 100%;
@@ -210,16 +220,16 @@
         z-index: 1;
         position: relative;
         width: 150px;
-        top: 50px;
-        left: 104px;
+        top: -34px;
+        left: 109px;
     }
     .start-time-div {
         z-index: 1;
         position: relative;
         margin: 10px auto;
         width: 150px;
-        left: 104px;
-        top: -130px;
+        left: 88px;
+        top: -268px;
     }
     .radio-btn-date-time-wrapper {
         box-sizing: border-box;
@@ -236,7 +246,7 @@
         width: 150%;
         position: relative;
         left: 50px;
-        top: -62px;
+        top: -141px;
         margin: auto;
     }
     .weekly-choice-date-time {

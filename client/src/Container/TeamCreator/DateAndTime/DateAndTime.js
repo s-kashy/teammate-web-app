@@ -3,7 +3,6 @@ import DayPicker, { DateUtils } from 'react-day-picker';
 import moment from "moment"
 import Spinner from "../../../Component/Ui/Spinner/Spinner"
 import "./DateAndTime.css"
-import Aux from "../../../Hoc/Hoc"
 import { connect } from "react-redux";
 import * as actionType from "../../../Store/actions/index"
 import _ from "lodash"
@@ -74,19 +73,19 @@ class DateAndTime extends Component {
                 this.setState({ startTime, endTime, pickType, isValid: true }, () => { })
             }
             else if (pickType == "Weekly") {
-                const { dayOfTheWeekPicker,pickType } = this.props.dateAndTime
-                let tempStateDayCopyWeek=JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
+                const { dayOfTheWeekPicker, pickType } = this.props.dateAndTime
+                let tempStateDayCopyWeek = JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
                 let timePickerCopy = JSON.parse(JSON.stringify(this.state.timePicker))
-                for (let i=0;i<dayOfTheWeekPicker.length;i++){
-                    for (let j=0;j<tempStateDayCopyWeek.length;j++){
-                        if (dayOfTheWeekPicker[i].value==tempStateDayCopyWeek[j].value){
-                            tempStateDayCopyWeek[j].check=true
+                for (let i = 0; i < dayOfTheWeekPicker.length; i++) {
+                    for (let j = 0; j < tempStateDayCopyWeek.length; j++) {
+                        if (dayOfTheWeekPicker[i].value == tempStateDayCopyWeek[j].value) {
+                            tempStateDayCopyWeek[j].check = true
                         }
                     }
                 }
-                console.log("copy",tempStateDayCopyWeek)
+
                 timePickerCopy[1].checked = true
-                this.setState({dayOfTheWeekPicker:tempStateDayCopyWeek,isValid:true,timePicker:timePickerCopy,pickType},()=>{
+                this.setState({ dayOfTheWeekPicker: tempStateDayCopyWeek, isValid: true, timePicker: timePickerCopy, pickType }, () => {
 
                 })
 
@@ -120,7 +119,6 @@ class DateAndTime extends Component {
             }
         }
         else if (pickType === "Monthly") {
-
             if (selectedDays.length > 0 && startTime != endTime) {
                 this.setState({ isValid: true }, () => {
                     this.props.saveDataAndTime(this.createObject(this.state.pickType))
@@ -152,12 +150,14 @@ class DateAndTime extends Component {
 
     }
 
-    onClickCheckBoxHandler = (value) => {
+    onClickCheckBoxHandler = (event) => {
+        let checkBoxName = event.target.name
         let dayOfTheWeekPicker = JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
         for (let i = 0; i < dayOfTheWeekPicker.length; i++) {
-            if (dayOfTheWeekPicker[i].value === value) {
+            if (dayOfTheWeekPicker[i].value === checkBoxName) {
+                console.log(dayOfTheWeekPicker[i].value)
                 dayOfTheWeekPicker[i].check = !dayOfTheWeekPicker[i].check
-                break;
+
             }
         }
         this.setState({ dayOfTheWeekPicker: dayOfTheWeekPicker }, () => {
@@ -168,7 +168,7 @@ class DateAndTime extends Component {
     resetCalendarHandler = () => {
         let selectedDay = JSON.parse(JSON.stringify(this.state.selectedDay))
         selectedDay = []
-        this.setState({ selectedDay: [] })
+        this.setState({ selectedDay: selectedDay })
     }
     handleDayClick = (day, { selected }) => {
         const { selectedDays } = this.state;
@@ -199,7 +199,6 @@ class DateAndTime extends Component {
     }
 
     render() {
-
         const { timePicker, dayOfTheWeekPicker, pickType } = this.state
         let arrayRadio = timePicker.map(item => {
             return (<RadioButton label={item.value}
@@ -209,16 +208,16 @@ class DateAndTime extends Component {
                 id={item.value} name="time" checked={item.checked} />)
         })
         let arrayDayPicker = dayOfTheWeekPicker.map((item, index) => {
-
-            return (<CheckBox name={item.value}
+            return (<CheckBox
                 value={item.check}
                 classCheckbox="checkbox-days-date-time"
-                click={(e) => this.onClickCheckBoxHandler(item.value)}
+                click={(e) => this.onClickCheckBoxHandler(e)}
                 id={item.value}
+                name={item.value}
                 label="label-day-picker-checkbox"
                 key={index} />)
         })
-        return (<Aux>
+        return (<div>
             {this.state.isLoading ? <div className='main-date-time'>
                 <div className="main-controller-date-time-left" >
                     <div className="time-picker-general-wrapper"  >
@@ -264,7 +263,7 @@ class DateAndTime extends Component {
 
                 </div>
 
-            </div> : <Spinner />}</Aux>)
+            </div> : <Spinner />}</div>)
     }
 
 }

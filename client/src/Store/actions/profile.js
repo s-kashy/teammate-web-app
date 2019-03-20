@@ -1,7 +1,6 @@
 import * as type from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { GET_USER_PROFILE, UPDATE_PROFILE ,NEW_PROFILE} from "../../Url/Url"
-
+import { GET_USER_PROFILE, UPDATE_PROFILE, NEW_PROFILE, UPDATE_PROFILE_NO_IMAGE, NEW_PROFILE_NO_IMAGE } from "../../Url/Url"
 
 
 export const updateUserEmail = (email) => {
@@ -20,7 +19,6 @@ export const updateProfileUser = (profile) => {
 }
 
 export const getUserProfile = (emailUser) => {
-
     var dataUser = {
         url: GET_USER_PROFILE,
         method: "get",
@@ -33,16 +31,52 @@ export const getUserProfile = (emailUser) => {
     }
     return dispatch => {
         getRequestData(dataUser).then(res => {
-           dispatch(updateProfileUser(res.data))
+            dispatch(updateProfileUser(res.data))
 
         }).catch(err => {
-           console.log(err)
+            console.log(err)
         })
 
     }
 
 }
-export const postUserProfile = ( userProfile) => {
+export const updateUserNoImage = (id, userProfile) => {
+  
+    var data = {
+        url: UPDATE_PROFILE_NO_IMAGE,
+        method: "post",
+        header: {
+            id: id
+        },
+        data: userProfile,
+        params: ""
+    }
+    return dispatch => {
+        getRequestData(data).then(res => {
+            dispatch(updateProfileUser(res.data))
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+}
+export const newUserNoImageUpload = (newUserProfile) => {
+    var data = {
+        url: NEW_PROFILE_NO_IMAGE,
+        method: "post",
+        header: "",
+        data: newUserProfile,
+        params: ""
+    }
+    return dispatch => {
+        getRequestData(data).then(res => {
+            dispatch(updateProfileUser(res.data))
+        }).catch(err => {
+
+        })
+    }
+}
+export const postUserProfile = (userProfile) => {
     var headersOpt = {
         'content-type': 'multipart/form-data'
     };
@@ -62,7 +96,7 @@ export const postUserProfile = ( userProfile) => {
 
 }
 export const updateUserProfileOnServer = (id, profileEdit) => {
-console.log("update action reducer",profileEdit)
+
     var data = {
         url: UPDATE_PROFILE,
         method: "post",
@@ -74,7 +108,7 @@ console.log("update action reducer",profileEdit)
     }
     return dispatch => {
         getRequestData(data).then(res => {
-            console.log("reducer",res)
+
         }).catch(err => {
             console.log(err)
         })

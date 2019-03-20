@@ -1,15 +1,15 @@
 import React, { Component } from "react"
 import IntroStep from "./IntroStep/IntroStep"
 import GeneralInfo from "./GeneralInfo/GeneralInfo"
-import ContralTeamCreate from "./ContralTeamCreate/ContralTeamCreate"
 import DateAndTime from "./DateAndTime/DateAndTime"
 import MapSearchLayout from "./Map/MapSearchLayout/MapSearchLayout"
+import EmailVerification  from "./EmailVerification/EmailVerification"
 import "./TeamCreator.css"
 class TeamCreator extends Component {
    constructor(props){
        super(props)
        this.state = {
-        indexActive: 3
+        indexActive: 4
     }
    }
 
@@ -21,7 +21,7 @@ class TeamCreator extends Component {
         this.setState({ indexActive: nextIndex });
       }
       onClickRight = () => {
-        const nextIndex = this.state.indexActive+1 > 3 ?  this.state.indexActive :this.state.indexActive + 1;
+        const nextIndex = this.state.indexActive+1 > 4 ?  this.state.indexActive :this.state.indexActive + 1;
         this.setState({ indexActive: nextIndex });
       }
     render() {
@@ -38,7 +38,9 @@ class TeamCreator extends Component {
         if(indexActive===3){
             return(<div><MapSearchLayout rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
         }
-     
+     if(indexActive==4){
+        return (<div><EmailVerification rightClick={this.onClickRight} leftClick={this.onClickLeft}/></div>)
+     }
                
         
     }

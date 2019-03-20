@@ -15,10 +15,14 @@ export {
     updateUserEmail,
     initializeUser,
     getUserProfile,
+    updateUserNoImage,
+    newUserNoImageUpload,
     updateUserProfileOnServer
 } from "./profile"
 export {
     saveGeneralInfo,
     saveDataAndTime,
-    saveLocation
+    saveLocation,
+    sendEmailToken,
+    checkValidToken
 } from "./teamCreateInfo"

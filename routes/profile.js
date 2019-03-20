@@ -44,7 +44,24 @@ module.exports = (app) => {
 
 
     })
-    app.post("/api/profile/update-profile", checkImageMiddleware, parser.single('myImage'), imageMiddleware, (req, res) => {
+    app.post("/api/profile/update-profile-no-image", (req, res) => {
+        let id = req.header("id")
+        Profile.findOneAndUpdate(id, { $set: req.body }, { new: true }).then(docs => {
+            res.status(200).send(docs)
+        }).catch(err => {
+            res.status(400).send(err)
+        })
+    })
+    app.post("/api/profile/new-profile-no-image", (req, res) => {
+        let profile = new Profile();
+        profile.save(req.body).then(docs => {
+            res.status(200).send(docs)
+        }).catch(err => {
+            res.status(400).send(err)
+        })
+
+    })
+    app.post("/api/profile/update-profile", parser.single('myImage'), imageMiddleware, (req, res) => {
 
         let id = req.header("id")
 

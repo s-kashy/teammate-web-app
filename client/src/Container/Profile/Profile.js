@@ -8,10 +8,9 @@ import CheckBox from "../../Component/CheckBox/CheckBox"
 import RadioButton from "../../Component/RadioButton/RadioButton"
 
 class Profile extends Component {
-
     componentDidMount() {
         if (this.props.userProfile === "" || this.props.userProfile === undefined ||
-            Object.keys(this.props.userProfile).length === 0) {
+            this.props.userProfile == null) {
             this.setState({ newUser: true })
         }
         else {
@@ -25,7 +24,8 @@ class Profile extends Component {
             userInfo.lastname.value = this.props.userProfile.lastname
             userInfo.about = this.props.userProfile.about
             this.textarea.value = this.props.userProfile.about
-            userInfo.imageUrl = this.props.userProfile.imageUrl
+            userInfo.imageUrl.value = this.props.userProfile.imageUrl
+            userInfo.imageUrl.fileName = this.props.userProfile.imageUrl.fileName
             if (this.props.userProfile.age) {
                 userInfo.ageGroup.forEach(item => {
                     if (item.value === this.props.userProfile.age) {
@@ -71,7 +71,12 @@ class Profile extends Component {
                     name: "age"
                 }
             ],
-            imageUrl: "",
+            imageUrl: {
+                value: "",
+                fileName: "",
+                didUpload: false,
+                error: false,
+            },
             about: "",
             sportInterest: {
                 running: { value: false },
@@ -137,20 +142,30 @@ class Profile extends Component {
             email: this.props.email,
             about: userInfo.about,
             sportInterest: arrayOfSportInterest,
-            imageUrl: this.state.user.imageUrl
+            imageUrl: this.state.user.imageUrl.value,
+            fileName: this.state.user.imageUrl.fileName
         }
 
-
+        let { imageUrl } = this.state.user
         var formData = new FormData()
         if (this.state.newUser) {
-            formData.append('myImage', this.state.imageUrl);
-            formData.append("value", JSON.stringify(dataUpdate))
-            this.props.postUserProfile(formData)
+            if (imageUrl.didUpload) {
+                formData.append('myImage', this.state.imageUrl.value);
+                formData.append("value", JSON.stringify(dataUpdate))
+                this.props.postUserProfile(formData)
+            }
+            else {
+            this.props.newUserNoImageUpload(dataUpdate)
+            }
         }
         else {
-            formData.append('myImage', this.state.imageUrl);
-            formData.append("value", JSON.stringify(dataUpdate))
-            this.props.updateUserProfileOnServer(this.props.userProfile._id, formData)
+            if (imageUrl.didUpload) {
+                formData.append('myImage', this.state.imageUrl.value);
+                formData.append("value", JSON.stringify(dataUpdate))
+                this.props.updateUserProfileOnServer(this.props.userProfile._id, formData)
+            } else {
+                this.props.updateUserNoImage(this.props.userProfile._id,dataUpdate)
+            }
         }
         this.props.updateProfileUser(dataUpdate)
         this.props.history.push("/")
@@ -172,10 +187,36 @@ class Profile extends Component {
         return sportTypeArray
     }
     onChangeImageHandler = (event) => {
-        let image = event.target.files[0]
-        this.setState({ imageUrl: image })
+        var copyUserObj = JSON.parse(JSON.stringify(this.state.user))
+        if (this.checkIfImageValid(event.target.files[0])) {
+            copyUserObj.imageUrl.value = event.target.files[0]
+            copyUserObj.imageUrl.fileName = event.target.files[0].name
+            copyUserObj.imageUrl.didUpload = true
+            this.setState({ user: copyUserObj }, () => {
+
+            })
+        } else {
+            copyUserObj.imageUrl.error = true
+            this.setState({ user: copyUserObj })
+        }
 
 
+
+    }
+    checkIfImageValid = (fileToCheck) => {
+        let file = fileToCheck;
+        let fileType = file['name'];
+        let parts = fileType.split('.');
+        fileType = parts[parts.length - 1];
+        fileType = fileType.toLowerCase()
+
+
+        const validImageTypes = ['gif', 'jpeg', 'png'];
+        if (validImageTypes.includes(fileType)) {
+
+            return true
+        }
+        return false
     }
     filterSportInterestArray = (sportInterest) => {
         let sportTypeArray = []
@@ -212,7 +253,7 @@ class Profile extends Component {
 
     render() {
         let sportTypeArray = []
-        const { sportInterest, ageGroup, firstname, lastname } = this.state.user
+        const { sportInterest, ageGroup, firstname, lastname, imageUrl } = this.state.user
         let arrayRadio = ageGroup.map((item, index) => {
             return (<RadioButton
                 classRadio="single-radio-input-profile"
@@ -271,11 +312,14 @@ class Profile extends Component {
                                     ref={x => this.textarea = x} placeholder="Personal note"></textarea>
                             </div>
                             <div className="upload-image">
-                                <p>Only JPG and PNG image can be uploaded</p>
+                                <p>Only JPG and PNG image can be upload</p>
                                 <Input type="file" id="image" classInput="input-upload-file-image-profile"
                                     classLabel="label-upload-filed-profile"
-                                    title="Select a image"
-                                    change={(e) => this.onChangeImageHandler(e)} /><br></br>
+                                    error={imageUrl.error}
+                                    msgError="This is not A valid File"
+                                    errorClass="error-image-upload-profile"
+                                    title={imageUrl.fileName === "" || imageUrl.fileName === undefined ? "Your Picture" : imageUrl.fileName}
+                                    change={(e) => this.onChangeImageHandler(e)} />
                                 <span className="upload-image-icon-profile"><i className="fas fa-upload"></i></span>
                             </div>
                             <div >
@@ -296,6 +340,8 @@ const mapStateHandler = state => {
 };
 const mapStateDispatch = dispatch => {
     return {
+        updateUserNoImage: (id, profile) => dispatch(actionType.updateUserNoImage(id, profile)),
+        newUserNoImageUpload: (profile) => dispatch(actionType.newUserNoImageUpload(profile)),
         updateProfileUser: (profile) => dispatch(actionType.updateProfileUser(profile)),
         updateUserProfileOnServer: (id, userProfile) => dispatch(actionType.updateUserProfileOnServer(id, userProfile)),
         postUserProfile: (userProfile) => dispatch(actionType.postUserProfile(userProfile))
