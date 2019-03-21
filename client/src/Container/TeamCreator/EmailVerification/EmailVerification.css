@@ -1,4 +1,21 @@
-.error-msg-email-verification {}
+
+.main-email-verification {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1553006690/action-beach-fun-416676.jpg");
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 .input-email-verification,.input-confirm-email-verification {
     background-color: transparent;
@@ -35,25 +52,9 @@
 .wrapper-input-email-verification {
     flex: 1 1;
     margin: 80px auto;
+    position: relative;
 }
 
-.main-email-verification {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
-    background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1553006690/action-beach-fun-416676.jpg");
-    width: 100%;
-    position: absolute;
-    height: 100%;
-    background-position: 0% 50%;
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
 
 .msg-email-verification {
     flex: 1 1;
@@ -63,7 +64,21 @@
 .msg-email-verification span {
     width: 300px
 }
-
+.error-msg-email-verification {
+    position: absolute;
+    font-weight: 700;
+    top: 58px;
+    left: 0px;
+    color: red;
+ 
+}
+.error-confirm-email-verification{
+    position: absolute;
+    font-weight: 700 !important;
+    top:176px;
+    left: 0px;
+    color: red;
+}
 .label-input-email-verification{
     position: relative;
     left: -32px;
@@ -76,4 +91,62 @@
     position: relative;
     top: 336px;
     right: 58px;
+}
+@media screen and (max-width:800px) {
+    .main-email-verification{
+        display: flex;
+        flex-direction: column-reverse;
+        display: -webkit-flex;
+        display: flex;
+        position: relative;
+        background-position: 39% 0%;
+        justify-content: space-around;
+        align-items: center;
+        object-fit: cover;
+        min-height: 700px
+    } 
+    .wrapper-input-email-verification {
+        -webkit-flex: 1 1;
+        top: -133px;
+        flex: 1 1;
+        position: relative;
+    }
+    .contral-team-email-verification{
+        position: absolute;
+        top: 548px;
+        width: 100%;
+        left: 0px;
+        margin: auto;
+    }
+    .input-email-verification, .input-confirm-email-verification {
+        background-color: transparent;
+        width: 225px;
+        height: 48px;
+        position: relative;
+        left: -24px;
+        cursor: pointer;
+        display: block;
+        outline: none;
+        padding: 0 10px;
+        box-sizing: border-box;
+        border: 1px solid rgb(12, 11, 11);
+    }
+    .submit-btn-email-verification, .submit-confirm-btn-email-verification {
+        height: 48px;
+        width: 48px;
+        left: 113px;
+        top: -48px;
+        cursor: pointer;
+        position: relative;
+        background-color: #0000FF;
+        border: 1px solid black;
+    }
+    .label-input-email-verification{
+        position: relative;
+        left: -84px;
+    }
+    .label-confirm-email-verification {
+        position: relative;
+        left: -73px;
+    }
 }

@@ -23,8 +23,14 @@ export const saveLocation = (location) => {
         payload: location
     }
 }
+export const saveEmailManger = (emailManager) => {
+    return {
+        type: actionType.SAVE_EMAIL_MANAGER,
+        payload: emailManager
+    }
+}
 export const sendEmailToken = (data) => {
-      var data = {
+    var data = {
         url: SEND_EMAIL_TOKEN,
         method: "post",
         header: "",
@@ -33,29 +39,26 @@ export const sendEmailToken = (data) => {
     }
     return dispatch => {
         return getRequestData(data).then(res => {
-            console.log(res)
             return Promise.resolve(res)
         }).catch(err => {
-            console.log("err",err)
+
             return Promise.reject(err)
         })
     }
 }
 export const checkValidToken = (data) => {
     var data = {
-      url: CONFIRM_TOKEN_MATCH,
-      method: "get",
-      header: "",
-      data: data,
-      params: ""
-  }
-  return dispatch => {
-      return getRequestData(data).then(res => {
-          console.log("action res",res)
-          return Promise.resolve(res)
-      }).catch(err => {
-          console.log("err",err)
-          return Promise.reject(err)
-      })
-  }
+        url: CONFIRM_TOKEN_MATCH,
+        method: "post",
+        headers: "",
+        data: data,
+        params: ""
+    }
+    return dispatch => {
+        return getRequestData(data).then(res => {
+            return Promise.resolve(res)
+        }).catch(err => {
+            return Promise.reject(err)
+        })
+    }
 }

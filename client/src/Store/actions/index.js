@@ -7,7 +7,7 @@ export {
 export {
     closeSpinner,
     openSpinner
-} from "./control _ui"
+} from "./controlModel"
 
 export {
     updateProfileUser,
@@ -24,5 +24,6 @@ export {
     saveDataAndTime,
     saveLocation,
     sendEmailToken,
-    checkValidToken
+    checkValidToken,
+    saveEmailManger
 } from "./teamCreateInfo"

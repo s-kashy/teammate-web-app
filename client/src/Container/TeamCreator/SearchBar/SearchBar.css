@@ -1,8 +1,8 @@
-.wrapper-auto{
+.wrapper-auto {
     width: 40%;
- 
 }
-.searchTerm{
+
+.searchTerm {
     float: left;
     width: 110%;
     border: 3px solid #00B4CC;
@@ -12,13 +12,16 @@
     outline: none;
     /* color: #9DBFAF; */
 }
-.searchTerm::placeholder{
+
+.searchTerm::placeholder {
     color: black !important;
 }
+
 /* .searchTerm:focus{
     color: #00B4CC;
   } */
-.searchButton{
+
+.searchButton {
     position: absolute;
     right: -50px;
     width: 40px;
@@ -30,4 +33,13 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 20px;
+}
+
+@media screen and (max-width:800px) {
+    .wrapper-auto {
+        padding: 0;
+        position: relative;
+        margin: auto;
+        bottom: 20px;
+    }
 }

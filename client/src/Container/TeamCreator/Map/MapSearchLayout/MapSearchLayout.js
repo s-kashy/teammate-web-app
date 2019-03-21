@@ -8,10 +8,10 @@ import "./MapSearchLayout.css"
 class MapSearchLayout extends Component {
     componentDidMount() {
         if (this.props.location !=="") {
-         let copyState=JSON.parse(JSON.stringify(this.state.userInfo))
-         copyState.userLocation=this.props.location.userLocation
-         copyState.marker=JSON.parse(JSON.stringify(this.props.location.marker))
-        this.setState({userInfo:copyState,isLoading:true},()=>{
+         let userInfo=JSON.parse(JSON.stringify(this.state.userInfo))
+         userInfo.userLocation=this.props.location.userLocation
+         userInfo.marker=JSON.parse(JSON.stringify(this.props.location.marker))
+        this.setState({userInfo:userInfo,isLoading:true},()=>{
           
         })     
         }
@@ -32,6 +32,7 @@ class MapSearchLayout extends Component {
                 lat: "",
                 lng: ""
             },
+            formattedAddress:"",
             marker: [],
             errorMsg: false
         }
@@ -41,16 +42,15 @@ class MapSearchLayout extends Component {
 
     }
     onPlaceLoaded = (place) => {
-
         if (place === 400) {
             this.setState({ errorMsg: true })
         }
         else {
             const { lat, lng } = place.results[0].geometry.location;
             const { formatted_address } = place.results[0]
-            let copyState = JSON.parse(JSON.stringify(this.state.userInfo))
-            copyState.userLocation.lat = lat
-            copyState.userLocation.lng = lng
+            let userInfo = JSON.parse(JSON.stringify(this.state.userInfo))
+            userInfo.userLocation.lat = lat
+            userInfo.userLocation.lng = lng
             let tempMarker = [{
                 lat: lat,
                 lng: lng,
@@ -59,9 +59,10 @@ class MapSearchLayout extends Component {
 
             }]
 
-            copyState.errorMsg = false
-            copyState.marker = tempMarker
-            this.setState({ userInfo: copyState, isValid: true }, () => {
+            userInfo.errorMsg = false
+            userInfo.marker = tempMarker
+            userInfo.formattedAddress=formatted_address
+            this.setState({ userInfo: userInfo, isValid: true }, () => {
                 this.props.saveLocation(this.state.userInfo)
             })
 
@@ -73,7 +74,7 @@ class MapSearchLayout extends Component {
 
     render() {
         const { userInfo, isValid } = this.state
-        const { userLocation } = userInfo
+         const { userLocation } = userInfo
         let styleMap = {
             height: '100%',
 
@@ -95,7 +96,7 @@ class MapSearchLayout extends Component {
                         <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} change={this.onChangeHandler} />
                         {userInfo.errorMsg && <div>Error occurred In Finding the Address please try Again</div>}
                     </div>
-                    <ContralTeamCreate class="contral-team-map-layout" disabled={!isValid} leftClick={this.props.leftClick} />
+                    <ContralTeamCreate class="contral-team-map-layout" disabled={!isValid} leftClick={this.props.leftClick} rightClick={this.props.rightClick} />
                 </div>)}
 
             </div>

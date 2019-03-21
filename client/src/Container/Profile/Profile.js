@@ -211,7 +211,7 @@ class Profile extends Component {
         fileType = fileType.toLowerCase()
 
 
-        const validImageTypes = ['gif', 'jpeg', 'png'];
+        const validImageTypes = ['gif', 'jpeg', 'png',"jpg"];
         if (validImageTypes.includes(fileType)) {
 
             return true

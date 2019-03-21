@@ -3,7 +3,8 @@ import { updateObject } from "../utilReducer/utilReducer"
 const initialState = {
     generalInfo: "",
     dateAndTime: "",
-    location: ""
+    location: "",
+    emailManger: ""
 }
 
 
@@ -15,7 +16,8 @@ const reducer = (state = initialState, action) => {
             return updateObject(state, { dateAndTime: action.payload })
         case actionType.SAVE_LOCATION:
             return updateObject(state, { location: action.payload })
-
+        case actionType.SAVE_EMAIL_MANAGER:
+            return updateObject(state, { emailManger: action.payload })
         default:
             return state;
 

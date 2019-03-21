@@ -74,9 +74,13 @@ class GeneralInfo extends Component {
             && imageUrl.valid && typeOfSport != arraySportType[0].toString()) {
 
             this.props.saveGeneralInfo(generalInfo)
-            this.setState({ isValid: true })
+            this.setState({ isValid: true },()=>{
+                console.log("valid",this.state)
+            })
         } else {
-            this.setState({ isValid: false })
+            this.setState({ isValid: false },()=>{
+                console.log("not valid",this.state)
+            })
         }
     }
     onChangeTextAreaHandler = (event) => {
@@ -90,6 +94,7 @@ class GeneralInfo extends Component {
             aboutTheTeam.touch = true
         }
         this.setState({ aboutTheTeam: aboutTheTeam }, () => {
+            console.log("about ",this.state.aboutTheTeam)
             this.checkValidForm()
         })
     }
@@ -99,9 +104,11 @@ class GeneralInfo extends Component {
         let parts = fileType.split('.');
         fileType = parts[parts.length - 1];
         fileType = fileType.toLowerCase()
-        const validImageTypes = ['gif', 'jpeg', 'png'];
-        console.log(validImageTypes.includes(fileType))
+
+        const validImageTypes = ['gif', 'jpeg', 'png',"jpg"];
+        console.log("res file",validImageTypes.includes(fileType))
         if (validImageTypes.includes(fileType)) {
+        
             return true
         }
         return false
@@ -165,7 +172,9 @@ class GeneralInfo extends Component {
         userInfo.file = event.target.files[0]
         userInfo.fileName = event.target.files[0].name
         userInfo.valid = this.checkIfImageValid(event.target.files[0])
+   
         this.setState({ imageUrl: userInfo }, () => {
+           
             this.checkValidForm()
         })
     }

@@ -14,3 +14,5 @@ export const PROFILE_USER="profile user"
 export const SAVE_GENERAL_INFO="save general info"
 export const SAVE_DATE_TIME ="save date time"
 export const SAVE_LOCATION="save location"
+
+export const SAVE_EMAIL_MANAGER="save email manger"

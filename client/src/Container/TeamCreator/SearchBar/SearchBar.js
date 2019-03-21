@@ -35,8 +35,7 @@ class SearchBar extends React.Component {
       this.props.onPlaceLoaded(res)
       this.setState({ value: "" })
     }).catch(err => {
-      console.log("hande search")
-      this.props.onPlaceLoaded(400)
+         this.props.onPlaceLoaded(400)
       this.setState({ value: "" })
 
     })

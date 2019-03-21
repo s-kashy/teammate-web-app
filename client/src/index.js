@@ -9,7 +9,7 @@ import throttle from "lodash/throttle"
 import "../node_modules/react-datepicker/dist/react-datepicker.css";
 import '../node_modules/react-day-picker/lib/style.css';
 import '../node_modules/rc-time-picker/assets/index.css';
-import controlUiR from "./Store/Reducer/control_ui"
+import controlUiR from "./Store/Reducer/controlModel"
 import profileR from "./Store/Reducer/profile"
 import teamCreateInfoR from "./Store/Reducer/teamCreateInfo"
 import thunk from "redux-thunk";
@@ -20,7 +20,7 @@ import * as serviceWorker from './serviceWorker';
 const persistedState = loadState()
 const rooReducer = combineReducers({
     auth: authR,
-    spinnerState: controlUiR,
+    controlModel: controlUiR,
     user: profileR,
     teamCreateInfo: teamCreateInfoR,
     persistedState
