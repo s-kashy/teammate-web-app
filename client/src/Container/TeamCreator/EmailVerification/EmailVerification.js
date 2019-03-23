@@ -16,17 +16,23 @@ class EmailVerification extends Component {
             value: "",
             error: false
         },
-        showInputToken:false,
+        showInputToken: false,
         isValid: false
     }
     onClickConfirmHandler = () => {
 
         let data = {
             email: this.props.emailRegister,
-            token: JSON.parse(JSON.stringify(this.state.webToken.value))
+            token: JSON.parse(JSON.stringify(this.state.webToken.value)),
+            emailManger:JSON.parse(JSON.stringify(this.state.email.value))
         }
         this.props.checkValidToken(data).then(res => {
-            console.log("res", res)
+            if (res.status === 200) {
+                this.setState({ isValid: true }, () => {
+                    this.props.saveEmailManger(this.state.email.value)
+                })
+
+            }
         }).catch(err => {
             console.log(err)
         })
@@ -39,23 +45,21 @@ class EmailVerification extends Component {
             email: this.props.emailRegister,
             emailManger: emailManger.value
         }
-        console.log("emailManger", emailManger)
+
         if (isEmail(emailManger.value)) {
             this.setState({ showInputToken: true }, () => {
                 this.props.sendEmailToken(data).then(res => {
-                    if (res.status === 200) {
-                        this.setState({ isValid: true })
-                    }
+                    
                 }).catch(err => {
-                    let webToken = JSON.parse(JSON.stringify(this.state.webToken))
-                    webToken.error = true
-                    this.setState({ webToken: webToken })
+                    let email = JSON.parse(JSON.stringify(this.state.email))
+                    email.error = true
+                    this.setState({ email: email })
 
                 })
             })
-        }else{
-            emailManger.error=true
-            this.setState({email:emailManger})
+        } else {
+            emailManger.error = true
+            this.setState({ email: emailManger })
         }
     }
     onChangeTokenHandler = (event) => {
@@ -64,7 +68,7 @@ class EmailVerification extends Component {
         copyToken.value = copyToken.value.trim()
         copyToken.error = false
         this.setState({ webToken: copyToken }, () => {
-          
+
         })
     }
     onChangeHandler = (event) => {
@@ -72,7 +76,7 @@ class EmailVerification extends Component {
         emailInfo.value = event.target.value
         emailInfo.error = false
         this.setState({ email: emailInfo }, () => {
-        
+
         })
 
     }
@@ -100,7 +104,7 @@ class EmailVerification extends Component {
                    and more recently with desktop
           publis</span></div>
             <div>
-                <ContralTeamCreate class="contral-team-email-verification" disabled={!this.state.isValid} />
+                <ContralTeamCreate class="contral-team-email-verification" leftClick={this.props.leftClick} rightClick={this.props.rightClick} disabled={!this.state.isValid} />
             </div>
         </div>)
     }
@@ -113,8 +117,8 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
     return {
         sendEmailToken: (email) => dispatch(actionType.sendEmailToken(email)),
-        checkValidToken: (data) => dispatch(actionType.checkValidToken(data))
-
+        checkValidToken: (data) => dispatch(actionType.checkValidToken(data)),
+        saveEmailManger: (email) => dispatch(actionType.saveEmailManger(email))
     };
 };
 export default connect(mapStateHandler, mapStateDispatch)(EmailVerification)

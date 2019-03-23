@@ -3,7 +3,7 @@ var User = mongoose.model("User")
 var authenticate = require("../middleware/authenticate")
 
 module.exports = (app) => {
-   
+
     app.post("/api/auth/sign-in", (req, res) => {
 
         var user = new User(req.body)
@@ -19,17 +19,17 @@ module.exports = (app) => {
     })
 
     app.get("/api/auth/check", (req, res) => {
-               
+
         let token = req.header("auth")
-           
+
         User.findByToken(token).then(user => {
-         
+
             if (!user) {
-               
-                  return Promise.reject()
-             
+
+                return Promise.reject()
+
             } else {
-               
+
                 res.status(200).send(user.email)
             }
         }).catch(e => {
@@ -48,17 +48,23 @@ module.exports = (app) => {
         })
     })
 
-        app.delete("/api/auth/logout", authenticate, (req, res) => {
-         
-          
-            req.user.removeToken(req.token).then(() => {
-                res.status(200).send()
-            }, () => {
-                res.status(400).send()
-            }).catch(err => {
-                res.status(400).send()
-            })
-        })
-    
+    app.delete("/api/auth/logout", authenticate, (req, res) => {
 
+        req.user.removeToken(req.token).then(() => {
+            res.status(200).send()
+        }, () => {
+            res.status(400).send()
+        }).catch(err => {
+            res.status(400).send()
+        })
+    })
+
+    app.get("/api/auth/manger-info", (req, res) => {
+        User.findOne(req.body.email).then(docs => {
+          
+            res.status(200).send(docs.emailManger)
+        }).catch(err => {
+            res.status(400).send()
+        })
+    })
 }

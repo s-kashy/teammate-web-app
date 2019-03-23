@@ -9,6 +9,11 @@ export const getRequestData = (data) => {
             method: 'post',
             data: data.data,
             url: data.url.toString(),
+            config: {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            },
             headers: data.headers,
             params: data.params
         }).then(res => {
@@ -17,7 +22,7 @@ export const getRequestData = (data) => {
             return Promise.reject(err)
         })
     } else if (data.method == "get") {
-     
+
         return axios.request({
             method: 'get',
             data: data.data,

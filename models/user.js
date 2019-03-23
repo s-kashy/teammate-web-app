@@ -10,9 +10,9 @@ const user = new Schema({
     emailMangerInfo: {
         webToken: String,
         isManger: { type: Boolean, default: false },
-        emailManger:String
+      
     },
-
+    emailManger:String,
     email: {
         type: String,
         required: true,

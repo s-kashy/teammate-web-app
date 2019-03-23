@@ -4,34 +4,30 @@ var Profile = mongoose.model("Profile")
 var keys = require("../config/keys")
 const imageMiddleware = require("../middleware/imageMiddleware")
 const multer = require("multer");
-
-var checkImageMiddleware = require("../middleware/checkImageMiddleware")
-const cloudinary = require("cloudinary");
+const cloudinary = require("cloudinary")
 const cloudinaryStorage = require("multer-storage-cloudinary");
 module.exports = (app) => {
-
     cloudinary.config({
         cloud_name: keys.CLOUDINARY_NAME,
         api_key: keys.CLOUDINARY_API_KEY,
         api_secret: keys.CLOUDINARY_SECRET
-    });
-    const storage = cloudinaryStorage({
+        });
+        const storage = cloudinaryStorage({
         cloudinary: cloudinary,
         folder: "demo",
-        allowedFormats: ["jpg", "png"],
+        allowedFormats: ["jpg", "png","JPEG" ],
         transformation: [{ width: 500, height: 500, crop: "limit" }]
-    });
-    const parser = multer({ storage: storage });
+        });
+        var parser = multer({ storage: storage });
 
 
 
-
-
-    app.post("/api/profile/new-profile", parser.single('myImage'), (req, res) => {
-        const image = {};
+    app.post("/api/profile/new-profile", parser.single('myImage'),(req, res) => {
+         const image = {};
         image.url = req.file.url;
         image.id = req.file.public_id;
         const newProfile = JSON.parse(req.body.value)
+   
         var profile = new Profile(newProfile)
         if (req.file.url) {
             profile.imageUrl = req.file.url
@@ -39,12 +35,14 @@ module.exports = (app) => {
         profile.save().then(docs => {
             res.status(200).send(docs)
         }).catch(err => {
+            console.log("err",err)
             res.status(400).send(err)
         })
 
 
     })
     app.post("/api/profile/update-profile-no-image", (req, res) => {
+
         let id = req.header("id")
         Profile.findOneAndUpdate(id, { $set: req.body }, { new: true }).then(docs => {
             res.status(200).send(docs)
@@ -53,18 +51,17 @@ module.exports = (app) => {
         })
     })
     app.post("/api/profile/new-profile-no-image", (req, res) => {
-        let profile = new Profile();
-        profile.save(req.body).then(docs => {
+
+        let profile = new Profile(req.body);
+        profile.save().then(docs => {
             res.status(200).send(docs)
         }).catch(err => {
             res.status(400).send(err)
         })
 
     })
-    app.post("/api/profile/update-profile", parser.single('myImage'), imageMiddleware, (req, res) => {
-
+    app.post("/api/profile/update-profile", parser.single("myImage"),imageMiddleware, (req, res) => {
         let id = req.header("id")
-
         Profile.findOneAndUpdate(id,
             { $set: req.body }, { new: true }).then(docs => {
                 res.status(200).send(docs)

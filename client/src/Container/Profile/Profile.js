@@ -3,6 +3,7 @@ import "./Profile.css"
 import { connect } from "react-redux";
 import * as actionType from "../../Store/actions/index"
 import Input from "../../Component/Input/Input"
+import axios from "axios"
 import Spinner from "../../Component/Ui/Spinner/Spinner"
 import CheckBox from "../../Component/CheckBox/CheckBox"
 import RadioButton from "../../Component/RadioButton/RadioButton"
@@ -92,10 +93,11 @@ class Profile extends Component {
                 poker: { value: false },
                 snooker: { value: false }
             },
-
+          
             isLoading: true
 
         },
+        image: "",
         newUser: false,
     }
     scrollToMyRef = () => { window.scrollTo(0, this.inputUserBasicInfo.offsetTop) }
@@ -149,22 +151,24 @@ class Profile extends Component {
         let { imageUrl } = this.state.user
         var formData = new FormData()
         if (this.state.newUser) {
+          
             if (imageUrl.didUpload) {
-                formData.append('myImage', this.state.imageUrl.value);
+                formData.append('myImage', this.state.image);
                 formData.append("value", JSON.stringify(dataUpdate))
                 this.props.postUserProfile(formData)
             }
             else {
-            this.props.newUserNoImageUpload(dataUpdate)
+                this.props.newUserNoImageUpload(dataUpdate)
             }
         }
         else {
             if (imageUrl.didUpload) {
-                formData.append('myImage', this.state.imageUrl.value);
+               
+                formData.append('myImage', this.state.image);
                 formData.append("value", JSON.stringify(dataUpdate))
                 this.props.updateUserProfileOnServer(this.props.userProfile._id, formData)
             } else {
-                this.props.updateUserNoImage(this.props.userProfile._id,dataUpdate)
+                this.props.updateUserNoImage(this.props.userProfile._id, dataUpdate)
             }
         }
         this.props.updateProfileUser(dataUpdate)
@@ -188,12 +192,13 @@ class Profile extends Component {
     }
     onChangeImageHandler = (event) => {
         var copyUserObj = JSON.parse(JSON.stringify(this.state.user))
+
         if (this.checkIfImageValid(event.target.files[0])) {
             copyUserObj.imageUrl.value = event.target.files[0]
             copyUserObj.imageUrl.fileName = event.target.files[0].name
             copyUserObj.imageUrl.didUpload = true
-            this.setState({ user: copyUserObj }, () => {
-
+            this.setState({ user: copyUserObj,image: event.target.files[0] }, () => {
+                console.log(this.state.user)
             })
         } else {
             copyUserObj.imageUrl.error = true
@@ -211,7 +216,7 @@ class Profile extends Component {
         fileType = fileType.toLowerCase()
 
 
-        const validImageTypes = ['gif', 'jpeg', 'png',"jpg"];
+        const validImageTypes = ['gif', 'jpeg', 'png', "jpg"];
         if (validImageTypes.includes(fileType)) {
 
             return true

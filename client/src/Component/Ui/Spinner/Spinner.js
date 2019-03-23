@@ -3,7 +3,10 @@ import "./Spinner.css"
 
 const Spinner=()=>{
     return(
-        <div className="loader">Loading...</div>
+        <div>
+        <p>TeamMate Is Loading....</p>
+        <div className="loader"></div>
+        </div>
     )
 }
 export default Spinner

@@ -41,7 +41,7 @@ export const getUserProfile = (emailUser) => {
 
 }
 export const updateUserNoImage = (id, userProfile) => {
-  
+
     var data = {
         url: UPDATE_PROFILE_NO_IMAGE,
         method: "post",
@@ -78,12 +78,13 @@ export const newUserNoImageUpload = (newUserProfile) => {
 }
 export const postUserProfile = (userProfile) => {
     var headersOpt = {
-        'content-type': 'multipart/form-data'
+        'content-type': 'multiPart/form-data'
     };
     var data = {
         url: NEW_PROFILE,
         method: "post",
         header: headersOpt,
+
         data: userProfile,
         params: ""
     }
@@ -101,14 +102,15 @@ export const updateUserProfileOnServer = (id, profileEdit) => {
         url: UPDATE_PROFILE,
         method: "post",
         headers: {
-            id: id
+            'content-type': 'multipart/form-data',
+            id:id
         },
         data: profileEdit,
         params: ""
     }
     return dispatch => {
         getRequestData(data).then(res => {
-
+            console.log("res", res)
         }).catch(err => {
             console.log(err)
         })

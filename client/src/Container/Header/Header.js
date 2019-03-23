@@ -10,11 +10,12 @@ class Header extends Component {
     }
     onClickLogout=()=>{
        this.props.logoutUser().then(res=>{
-            console.log("rea header",res)
+          
         }).catch(err=>{})
     }
     onClickMenu = () => {
         this.setState({ open: !this.state.open })
+
     }
     render() {
         let menuState = this.state.open ? "-100%" : "0"
@@ -28,7 +29,7 @@ class Header extends Component {
             </label>
            
             <ul className="menu" style={{ right: menuState }}>
-                <NavLink onClick={this.onClickMenu} className="link-class" exact to="/">About</NavLink>
+                <NavLink onClick={this.onClickMenu} className="link-class" exact to="/about">About</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/profile" onClick={this.onClickMenu}>Your Profile</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/create-team" >Create A Team</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/item" onClick={this.onClickLogout}>logout</NavLink>

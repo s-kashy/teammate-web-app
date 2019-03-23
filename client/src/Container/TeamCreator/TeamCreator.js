@@ -5,15 +5,27 @@ import DateAndTime from "./DateAndTime/DateAndTime"
 import MapSearchLayout from "./Map/MapSearchLayout/MapSearchLayout"
 import EmailVerification from "./EmailVerification/EmailVerification"
 import TeamManagerCard from "./TeamManagerCard/TeamManagerCard"
+import { connect } from "react-redux"
+import * as actionType from "../../Store/actions/index"
 import "./TeamCreator.css"
 class TeamCreator extends Component {
+
+    componentDidMount() {
+        this.props.checkIfUserIsManager(this.props.userEmail).then(res => {
+        
+            this.props.saveEmailManger(res.data)
+        }).catch(err => {
+
+        })
+    }
+
     constructor(props) {
         super(props)
         this.state = {
-            indexActive: 5
+            indexActive: 0
+
         }
     }
-
 
 
     onClickLeft = () => {
@@ -47,7 +59,21 @@ class TeamCreator extends Component {
         }
 
 
+
     }
 
 }
-export default TeamCreator
+const mapStateHandler = state => {
+    return {
+        userEmail: state.user.email
+
+    };
+};
+const mapStateDispatch = dispatch => {
+    return {
+        checkIfUserIsManager: (userEmail) => dispatch(actionType.checkIfUserIsManager(userEmail)),
+        saveEmailManger:(emailManager)=>dispatch(actionType.saveEmailManger(emailManager))
+
+    };
+};
+export default connect(mapStateHandler, mapStateDispatch)(TeamCreator)

@@ -4,7 +4,8 @@ const initialState = {
     generalInfo: "",
     dateAndTime: "",
     location: "",
-    emailManger: ""
+    emailManger: "",
+
 }
 
 

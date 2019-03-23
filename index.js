@@ -22,6 +22,7 @@ mongoose.Promise = global.Promise
 mongoose.set('useFindAndModify', false);
 require("./models/user")
 require("./models/profile")
+require("./models/team")
 
 
 
@@ -30,6 +31,7 @@ mongoose.set('useCreateIndex', true);
 require("./routes/auth")(app)
 require("./routes/profile")(app)
 require("./routes/emailService")(app)
+require("./routes/team")(app)
 
 app.get('*', function (request, response){
     // response.sendFile(path.resolve(__dirname, './client/public/', 'index.html'))

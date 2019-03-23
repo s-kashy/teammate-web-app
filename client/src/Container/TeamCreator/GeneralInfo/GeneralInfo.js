@@ -67,6 +67,7 @@ class GeneralInfo extends Component {
             nameOfTeam: userBasic.nameOfTeam.value,
             numberOfTeam: userBasic.numberOfTeam.value,
             fileName: imageUrl.fileName,
+            file:imageUrl.file,
             aboutTheTeamChosen: aboutTheTeam.value,
             typeOfSportChosen: typeOfSport
         }
@@ -75,11 +76,11 @@ class GeneralInfo extends Component {
 
             this.props.saveGeneralInfo(generalInfo)
             this.setState({ isValid: true },()=>{
-                console.log("valid",this.state)
+          
             })
         } else {
             this.setState({ isValid: false },()=>{
-                console.log("not valid",this.state)
+              
             })
         }
     }

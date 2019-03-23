@@ -24,6 +24,8 @@ export {
     saveDataAndTime,
     saveLocation,
     sendEmailToken,
+    checkIfUserIsManager,
     checkValidToken,
-    saveEmailManger
+    saveEmailManger,
+    submitManagerCard
 } from "./teamCreateInfo"

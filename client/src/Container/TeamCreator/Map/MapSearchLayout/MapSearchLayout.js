@@ -10,6 +10,7 @@ class MapSearchLayout extends Component {
         if (this.props.location !=="") {
          let userInfo=JSON.parse(JSON.stringify(this.state.userInfo))
          userInfo.userLocation=this.props.location.userLocation
+         userInfo.formattedAddress=this.props.location.formattedAddress
          userInfo.marker=JSON.parse(JSON.stringify(this.props.location.marker))
         this.setState({userInfo:userInfo,isLoading:true},()=>{
           
