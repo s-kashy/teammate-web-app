@@ -12,7 +12,7 @@ class TeamCreator extends Component {
 
     componentDidMount() {
         this.props.checkIfUserIsManager(this.props.userEmail).then(res => {
-        
+     
             this.props.saveEmailManger(res.data)
         }).catch(err => {
 
@@ -29,12 +29,17 @@ class TeamCreator extends Component {
 
 
     onClickLeft = () => {
-        const nextIndex = this.state.indexActive - 1 < 0 ? this.state.indexActive : this.state.indexActive - 1;
+        let nextIndex = this.state.indexActive - 1 < 0 ? this.state.indexActive : this.state.indexActive - 1;
+        if (this.props.emailManger && nextIndex === 4) {
+            nextIndex -= 1
+        }
         this.setState({ indexActive: nextIndex });
     }
     onClickRight = () => {
-
-        const nextIndex = this.state.indexActive + 1 > 6 ? this.state.indexActive : this.state.indexActive + 1;
+            let nextIndex = this.state.indexActive + 1 > 6 ? this.state.indexActive : this.state.indexActive + 1;
+        if (this.props.emailManger && nextIndex === 4) {
+            nextIndex += 1
+        }
         this.setState({ indexActive: nextIndex });
     }
     render() {
@@ -65,14 +70,15 @@ class TeamCreator extends Component {
 }
 const mapStateHandler = state => {
     return {
-        userEmail: state.user.email
+        userEmail: state.user.email,
+        emailManger: state.teamCreateInfo.emailManger
 
     };
 };
 const mapStateDispatch = dispatch => {
     return {
         checkIfUserIsManager: (userEmail) => dispatch(actionType.checkIfUserIsManager(userEmail)),
-        saveEmailManger:(emailManager)=>dispatch(actionType.saveEmailManger(emailManager))
+        saveEmailManger: (emailManager) => dispatch(actionType.saveEmailManger(emailManager))
 
     };
 };

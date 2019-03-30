@@ -27,5 +27,6 @@ export {
     checkIfUserIsManager,
     checkValidToken,
     saveEmailManger,
-    submitManagerCard
+    submitManagerCard,
+    getTeamsByCategoryType
 } from "./teamCreateInfo"

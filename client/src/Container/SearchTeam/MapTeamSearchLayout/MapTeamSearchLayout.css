@@ -1,0 +1,31 @@
+body {
+    overflow-x: hidden;
+}
+
+.search-button-search {
+    /* position: absolute; */
+    position: relative;
+    right: 7px;
+    width: 40px;
+   
+    /* display: inline-block; */
+    height: 40px;
+    border: 1px solid #00B4CC;
+    background: #00B4CC;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    /* font-size: 20px; */
+}
+
+.search-term-map {
+    width: 80%;
+    border: 3px solid #00B4CC;
+    padding: 10px;
+    height: 40px;
+    border-radius: 5px;
+    outline: none;
+}
+
+/* color: #9DBFAF; */

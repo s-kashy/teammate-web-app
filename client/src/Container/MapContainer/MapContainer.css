@@ -9,6 +9,7 @@
 }
 .map-window{
     width: 50%;
+    overflow: hidden !important;
 }
 
 @media screen and (max-width:800px){

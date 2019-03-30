@@ -37,4 +37,19 @@ module.exports = (app) => {
             res.send(err)
         })
     })
+
+    app.get("/api/team/find-by-categories", (req, res) => {
+
+        console.log("get",req.body)
+        res.send()
+        // Team.find({}).then(teams => {
+        //     let result = teams.filter(team => {
+        //         return arraySearchBy.includes(team.generalInfo.typeOfSportChosen)
+        //     })
+        //     console.log("res server",result)
+        //     res.header("len", result.length.toString()).send(result)
+        // }).catch(err => {
+        //     res.send(err)
+        // })
+    })
 }

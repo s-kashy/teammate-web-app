@@ -3,7 +3,6 @@ import "./Profile.css"
 import { connect } from "react-redux";
 import * as actionType from "../../Store/actions/index"
 import Input from "../../Component/Input/Input"
-import axios from "axios"
 import Spinner from "../../Component/Ui/Spinner/Spinner"
 import CheckBox from "../../Component/CheckBox/CheckBox"
 import RadioButton from "../../Component/RadioButton/RadioButton"
@@ -26,7 +25,7 @@ class Profile extends Component {
             userInfo.about = this.props.userProfile.about
             this.textarea.value = this.props.userProfile.about
             userInfo.imageUrl.value = this.props.userProfile.imageUrl
-            userInfo.imageUrl.fileName = this.props.userProfile.imageUrl.fileName
+            userInfo.imageUrl.fileName = this.props.userProfile.fileName
             if (this.props.userProfile.age) {
                 userInfo.ageGroup.forEach(item => {
                     if (item.value === this.props.userProfile.age) {

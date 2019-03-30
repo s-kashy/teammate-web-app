@@ -3,94 +3,152 @@
     margin: 0
 }
 
+li {
+    list-style: none;
+}
+
 .main-team-manager-card {
     position: relative;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     overflow: hidden;
     display: flex;
+    box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
     font-family: 'Roboto', sans-serif;
+    height: 1000px;
+    background: transparent;
+    position: relative;
+    left: 0;
+    right: 0;
+    margin: 10px auto;
+    top: 0;
+    bottom: 0;
+    width: 800px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
+}
+
+.top-image-team-manager-card {
+    height: 300px;
+    position: relative;
+    background-color: beige;
+}
+
+.title-card-manager {
+    margin: 10px auto;
+}
+
+h1 {
+    padding: 3px 0;
 }
 
 img {
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.image-team-manager-card {
-    margin: 10px auto;
-    width: 300px;
+    width: 100%;
     height: auto;
+    border-radius: 10px 0 0 10px;
+    -webkit-border-radius: 10px 0 0 10px;
+    -moz-border-radius: 10px 0 0 10px;
+    object-fit: fill
 }
 
-.basic-info-team-manager-card {
-    margin: 10px auto;
-    max-width: 50%;
-}
-
-.about-the-team-card-manager {
-    width: 30%;
-    line-height: 20pt;
-}
-.type-location-wrapper-team-card-info{
+.bottom-contact-team-manager-card {
+    background: #34495e;
+    color: white;
+    position: relative;
+    top: 0;
+    flex-direction: column;
     display: flex;
+    overflow: visible;
+    margin: 10px auto;
+    height: 600px;
     width: 80%;
+}
+
+.about-card-manager {
+    padding: 3px;
+    line-height: 20pt
+}
+
+.location-card-manager {
+    margin: 10px auto;
+}
+
+.time-date-wrapper-manager-card {
+    display: flex;
+    margin: 10px auto;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.dates-card-manager {
+    display: flex;
+    margin: 23px auto;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 200px;
+    overflow: auto;
+}
+
+.start-end-time-manager-card {
     margin: 10px auto;
 }
-.type-of-sport-team-card-info{
+
+.list-of-dates-manager-card {
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
     position: relative;
-    left:200px;
-    top: 0
-}
-.location-team-card-info{
-    position: relative;
-    left:-172px;
-    top: 0;
-}
-.type-of-sport-team-card-info,.location-team-card-info {
-    width: 1 1 ;
-    padding: 0;
-    margin: 0;
-    font-weight: 700;
-    width: 100%;
-    color: black !important;
-    float: left;
-    text-transform: uppercase;
-}
-li {
-    list-style-type: none;
-    line-height: 22pt;
+    top: 27px;
+    height: 200px;
 }
 
-.fas {
-    color: #3498db;
-}
-
-.date-type-card-manager-info {
+.btn-submit-manager-card {
+    background: #0000FF;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 14px 52px;
+    border: none;
     text-decoration: none;
-    border-bottom: 1px solid black;
 }
-.btn-submit-manager-card{
-background:#0000FF;
-border-radius: 11px;
-cursor: pointer;
-color: #ffffff;
-outline: none;
-font-family: 'Roboto', sans-serif;
-font-size: 15px;
-font-weight: bold;
-padding: 14px 52px;
-border: none;
-text-decoration: none;
+
+.btn-previous-card-manager {
+    background: red;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 14px 38px;
+    text-decoration: none;
 }
+
+
+
+.item-date-manager-card {
+    flex: 0 0 29%;
+    margin: 0 19px;
+    padding: 10px 0;
+    width: calc(33%-20px)
+}
+
 @media screen and (max-width:800px) {
     .about-the-team-card-manager {
         width: 100%;
     }
-    .type-of-sport-team-card-info,.location-team-card-info{
+    .type-of-sport-team-card-info, .location-team-card-info {
         left: 0;
     }
 }

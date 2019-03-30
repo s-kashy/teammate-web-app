@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router-dom"
 import { Provider } from "react-redux";
 import authR from "./Store/Reducer/auth"
 import throttle from "lodash/throttle"
+
 import "../node_modules/react-datepicker/dist/react-datepicker.css";
 import '../node_modules/react-day-picker/lib/style.css';
 import '../node_modules/rc-time-picker/assets/index.css';

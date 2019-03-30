@@ -162,6 +162,8 @@ select {
     height: 150px;
     overflow: auto;
     top: 300px;
+    overflow: auto;
+    line-height: 18pt;
     left: 15px;
     position: absolute;
     border: 1px solid black;

@@ -19,17 +19,18 @@ const team = new Schema({
 
     },
     location: {
-        userInfo: {
-            userLocation: {
-                lat: Number,
-                lng: Number
-            },
-            formattedAddress: String,
-            marker: [{
-                lat: Number,
-                lng: Number
-            }],
-        }
+        userLocation: {
+            lat: Number,
+            lng: Number
+        },
+        formattedAddress: String,
+        marker: [{
+            lat: Number,
+            lng: Number,
+            title: String,
+        
+        }],
+
     },
     emailManger: String
 

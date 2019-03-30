@@ -7,19 +7,19 @@ import ContralTeamCreate from '../../ContralTeamCreate/ContralTeamCreate'
 import "./MapSearchLayout.css"
 class MapSearchLayout extends Component {
     componentDidMount() {
-        if (this.props.location !=="") {
-         let userInfo=JSON.parse(JSON.stringify(this.state.userInfo))
-         userInfo.userLocation=this.props.location.userLocation
-         userInfo.formattedAddress=this.props.location.formattedAddress
-         userInfo.marker=JSON.parse(JSON.stringify(this.props.location.marker))
-        this.setState({userInfo:userInfo,isLoading:true},()=>{
-          
-        })     
+        if (this.props.location !== "") {
+            let userInfo = JSON.parse(JSON.stringify(this.state.userInfo))
+            userInfo.userLocation = this.props.location.userLocation
+            userInfo.formattedAddress = this.props.location.formattedAddress
+            userInfo.marker = JSON.parse(JSON.stringify(this.props.location.marker))
+            this.setState({ userInfo: userInfo, isLoading: true, isValid: true }, () => {
+
+            })
         }
         else {
             this.setState({ isLoading: true })
         }
-     
+
 
     }
     componentWillUnmount() {
@@ -33,7 +33,7 @@ class MapSearchLayout extends Component {
                 lat: "",
                 lng: ""
             },
-            formattedAddress:"",
+            formattedAddress: "",
             marker: [],
             errorMsg: false
         }
@@ -56,13 +56,13 @@ class MapSearchLayout extends Component {
                 lat: lat,
                 lng: lng,
                 title: `TeamMate MeatUp ${formatted_address}`,
-                position: { lat: lat, lng: lng }
+
 
             }]
 
             userInfo.errorMsg = false
             userInfo.marker = tempMarker
-            userInfo.formattedAddress=formatted_address
+            userInfo.formattedAddress = formatted_address
             this.setState({ userInfo: userInfo, isValid: true }, () => {
                 this.props.saveLocation(this.state.userInfo)
             })
@@ -75,7 +75,8 @@ class MapSearchLayout extends Component {
 
     render() {
         const { userInfo, isValid } = this.state
-         const { userLocation } = userInfo
+
+        const { userLocation } = userInfo
         let styleMap = {
             height: '100%',
 
@@ -94,7 +95,7 @@ class MapSearchLayout extends Component {
                             markers={userInfo.marker} />
                     </div>
                     <div className="search-child-flex-layout">
-                        <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} change={this.onChangeHandler} />
+                        <SearchBar searchStyle={styleSearch} onPlaceLoaded={this.onPlaceLoaded} address={userInfo.formattedAddress} change={this.onChangeHandler} />
                         {userInfo.errorMsg && <div>Error occurred In Finding the Address please try Again</div>}
                     </div>
                     <ContralTeamCreate class="contral-team-map-layout" disabled={!isValid} leftClick={this.props.leftClick} rightClick={this.props.rightClick} />
@@ -118,4 +119,4 @@ const mapStateDispatch = dispatch => {
     };
 };
 
-export default connect(mapStateHandler,mapStateDispatch)(MapSearchLayout)
+export default connect(mapStateHandler, mapStateDispatch)(MapSearchLayout)

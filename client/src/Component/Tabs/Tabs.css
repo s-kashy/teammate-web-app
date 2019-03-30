@@ -1,0 +1,35 @@
+li {
+    list-style: none;
+}
+
+.container {
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapper-li-tabs {
+    margin: 10px auto;
+    position: relative;
+    left: -500px;
+}
+
+.link-tab {
+    color: black;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 10px;
+    transition: 0.4s
+}
+
+.container nav .link-tab {
+    display: inline-block;
+    padding: 10px;
+    font-weight: 700;
+}
+
+
+
+.link-tab:hover {
+    text-decoration: underline;
+    color: #34495e;
+    cursor: pointer;
+}

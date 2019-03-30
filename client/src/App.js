@@ -8,6 +8,7 @@ import * as actionType from "./Store/actions/index"
 import Error from "./Component/Error/Error"
 import LandingPage from "./Container/LandingPage/LandingPage"
 import Header from "./Container/Header/Header"
+import SearchTeam from "./Container/SearchTeam/SearchTeam"
 import TeamCreator from "./Container/TeamCreator/TeamCreator"
 import Profile from "./Container/Profile/Profile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
@@ -45,6 +46,7 @@ class App extends Component {
         <Switch>
           <Route path="/profile" component={Profile} />
           <Route path="/create-team" component={TeamCreator} />
+          <Route path="/search-team" component={SearchTeam} />
           <Route path="/about" component={About} />
           <Route exact path="/" component={LandingPage} />
           <Redirect to="/" />

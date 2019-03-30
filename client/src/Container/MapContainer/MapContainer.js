@@ -41,17 +41,19 @@ componentDidMount(){
 
     render() {
         const { lat, lng } = this.state.userInfo
-     
-        let arrayOfMarker = this.props.markers.map((item, index) => {
+        let arrayOfMarker
+        if (this.props.markers){
+            arrayOfMarker = this.props.markers.map((item, index) => {
             return (
                 <Marker position={{ lat: item.lat, lng: item.lng }} key={index}
                     index={index}
                     onClick={this.onClickMarkerHandler}
-                    label={"You"}
+                 
                     name={item.title} title={item.title} />
 
             )
         })
+    }
         return (
             <div className="map-window">
                 {this.state.reRender && (<Map

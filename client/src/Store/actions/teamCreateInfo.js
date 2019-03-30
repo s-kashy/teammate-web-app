@@ -1,6 +1,6 @@
 import * as actionType from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM,MANAGER_INFO_EXIST } from "../../Url/Url"
+import { SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM,MANAGER_INFO_EXIST,FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
 
 
 export const saveGeneralInfo = (general) => {
@@ -98,4 +98,24 @@ export const submitManagerCard = (data) => {
         })
     }
 
+ }
+
+ export const getTeamsByCategoryType=(data)=>{
+     console.log("array ",data)
+    var data = {
+        url: FIND_TEAM_BY_CATEGORIES,
+        method: "get",
+        header: {
+            "Content-Type":"application/json"
+        },
+        data: data,
+        params: ""
+    }
+    return dispatch => {
+        return getRequestData(data).then(res => {
+            return Promise.resolve(res)
+        }).catch(err => {
+            return Promise.reject(err)
+        })
+    }
  }

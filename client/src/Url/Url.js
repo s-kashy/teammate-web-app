@@ -13,3 +13,5 @@ export const SEND_EMAIL_TOKEN="/api/email/send-token"
 export const CONFIRM_TOKEN_MATCH="/api/email/confirm-token"
 
 export const NEW_TEAM="/api/team/new-team"
+
+export const FIND_TEAM_BY_CATEGORIES="/api/team/find-by-categories"

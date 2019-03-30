@@ -47,8 +47,8 @@ module.exports = (app) => {
         User.findOne({ email: req.body.email }).then(user => {
             if (user.emailMangerInfo.webToken === req.body.token) {
                 user.emailMangerInfo.isManger = true
-                              user.emailManger = req.body.emailManger
-            
+                user.emailManger = req.body.emailManger
+
                 user.save((err) => {
                     if (err) {
                         res.status(400).send(err)

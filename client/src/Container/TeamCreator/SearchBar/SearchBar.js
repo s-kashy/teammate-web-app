@@ -44,15 +44,16 @@ class SearchBar extends React.Component {
 
 
   render() {
+
     return (
       <div style={this.props.searchStyle} className="wrapper-auto">
         <input ref={this.autocompleteInput} autocomplete="on"
           onChange={(e) => this.onChangeHandler(e)}
-          placeholder="Tel-Aviv"
-          className="searchTerm"
+          placeholder={this.props.address ? this.props.address:"Enter a address"}
+          className={this.props.searchTeam?this.props.searchTerm:"searchTerm"}
           value={this.state.value}
           type="text" />
-        <button className="searchButton" >
+        <button className={this.props.searchButton?this.props.searchButton:"searchButton"} >
           <i className="fa fa-search"></i>
         </button>
 

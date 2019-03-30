@@ -1,3 +1,23 @@
+.intro-wrapper{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    z-index: -1000;
+    flex-direction: column;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1553450606/demo/bicycle-bike-cycling-4472.jpg");
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    background-position: 0% 90%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .intro-create-team {
     position: absolute;
     top: 50%;
@@ -9,6 +29,8 @@
 
 .msg-intro-create {
     font-family: 'Roboto', sans-serif;
+    line-height: 22pt;
+  
  
 }
 
