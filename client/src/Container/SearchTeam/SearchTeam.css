@@ -57,7 +57,9 @@ span {
 }
 
 .map-search-team-wrapper {
+
     width: 50%;
+    height:auto;
     padding: 0;
     overflow: hidden
 }

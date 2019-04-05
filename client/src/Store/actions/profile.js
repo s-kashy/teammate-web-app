@@ -22,7 +22,7 @@ export const getUserProfile = (emailUser) => {
     var dataUser = {
         url: GET_USER_PROFILE,
         method: "get",
-        header: {
+        headers: {
             email: emailUser,
 
         },

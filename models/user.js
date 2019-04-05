@@ -7,12 +7,14 @@ const _ = require("lodash")
 const bcrypt = require("bcryptjs")
 
 const user = new Schema({
-    emailMangerInfo: {
+  
+    emailManagerInfo: {
         webToken: String,
         isManger: { type: Boolean, default: false },
       
     },
     emailManger:String,
+    
     email: {
         type: String,
         required: true,
@@ -47,8 +49,9 @@ const user = new Schema({
 user.methods.toJSON = function () {
     let user = this
     let userObject = user.toObject()
-    return _.pick(userObject, ["_id", "email","emailMangerInfo"])
+    return _.pick(userObject, ["_id", "email","emailMangerInfo","member"])
 }
+
 user.statics.findByCredential = function (email, password) {
     let User = this
     return User.findOne({ email }).then(user => {

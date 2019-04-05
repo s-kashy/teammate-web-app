@@ -1,19 +1,20 @@
 import * as typeAction from "./actionType"
 
-
-export const closeSpinner=()=>{
-    return {
-        type: typeAction.CLOSE_SPINNER,
-        payload: false
-      };
-    };
-
-
-
-export const openSpinner=()=>{
-    return {
-        type: typeAction.OPEN_SPINNER,
-        payload: true
-      };
-    };
-
+  ;
+export const closeErrorMsg = () => {
+  return {
+    type: typeAction.CLOSE_ERROR_MSG
+  }
+}
+export const openErrorMsg = () => {
+  return {
+    type: typeAction.OPEN_ERROR_MSG
+  }
+}
+export const processRequestMsg = (req) => {
+  console.log("processRequestMsg",req)
+  return {
+    type: typeAction.PROCESS_REQUEST_MSG,
+    payload: req
+  }
+}

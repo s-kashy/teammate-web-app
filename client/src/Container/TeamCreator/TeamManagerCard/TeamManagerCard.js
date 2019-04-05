@@ -4,7 +4,9 @@ import { connect } from "react-redux"
 import moment from "moment"
 import Spinner from "../../../Component/Ui/Spinner/Spinner"
 import * as actionType from "../../../Store/actions/index"
-
+import { withRouter } from "react-router-dom";
+var Previous = "Previous"
+var Submit = "Submit"
 class TeamManagerCard extends Component {
     state = {
         image: "",
@@ -15,8 +17,12 @@ class TeamManagerCard extends Component {
     componentDidMount() {
 
         if (this.props.generalInfo.file) {
-
-            this.setState({ image: URL.createObjectURL(this.props.generalInfo.file), isLoading: true })
+            if (typeof (this.props.generalInfo.file) === 'string') {
+                this.setState({ image: this.props.generalInfo.file, isLoading: true })
+            }
+            else {
+                this.setState({ image: URL.createObjectURL(this.props.generalInfo.file), isLoading: true })
+            }
         } else {
             this.setState({ isLoading: true })
         }
@@ -33,39 +39,49 @@ class TeamManagerCard extends Component {
             var formDate = new FormData()
             formDate.append("myImage", this.props.generalInfo.file)
             formDate.append("value", JSON.stringify(data))
-
+            this.props.processRequestMsg(true)
             this.props.submitManagerCard(formDate).then(res => {
                 if (res.status == 200) {
-                    this.props.history.push("/")
+                    setTimeout(() => {
+                        this.props.history.push("/")
+                        this.props.processRequestMsg(false)
+                    }, 1000);
+
                 }
             }).catch(err => {
-
+                console.log("manager err", err)
             })
         }
 
     }
     render() {
+
         const { nameOfTeam, aboutTheTeamChosen, typeOfSportChosen } = this.props.generalInfo
-        const { startTime, endTime, pickType, dayOfTheWeekPicker,selectedDays } = this.props.dateAndTime
+        const { startTime, endTime, pickType, dayOfTheWeekPicker, selectedDays } = this.props.dateAndTime
+        console.log("dayOfTheWeekPicker", dayOfTheWeekPicker.length)
+        console.log("selectedDays",selectedDays.length>0)
         const { formattedAddress } = this.props.location
-        let arrayOfTheDates = []
-        if (dayOfTheWeekPicker) {
-            arrayOfTheDates = dayOfTheWeekPicker.map(item => {
-                return (<li className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span> {item.value}</li>)
+        var arrayOfTheDates = []
+        var month=[]
+        if (dayOfTheWeekPicker != undefined) {
+            arrayOfTheDates = dayOfTheWeekPicker.map((item, index) => {
+            return (<li key={index} className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span>{item.value}</li>)
             })
         }
-        if(selectedDays){
-            arrayOfTheDates=selectedDays.map(item=>{
-                return (<li className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span> {moment(item).format('DD/MM/YYYY')}</li>)
-            }) 
+
+        if (selectedDays.length > 0) {
+            console.log("monthly",selectedDays)
+            arrayOfTheDates = selectedDays.map((item, index) => {
+                return (<li key={index} className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span> {moment(item).format('DD/MM/YYYY')}</li>)
+            })
         }
         return (<div>{this.state.isLoading ? <div className="main-team-manager-card">
             <div className="top-image-team-manager-card">
-                <img src={this.state.image} alt="profile-image-manager" />
+                <img src={this.state.image} className="img-card-view" alt="profile-image-manager" />
             </div>
             <div className="bottom-contact-team-manager-card">
                 <div className="title-card-manager">
-                    <h1 style={{ marginBottom: "10px" }}>{nameOfTeam}</h1>
+                    <h1 style={{ marginBottom: "10px", textTransform: "uppercase" }}>{nameOfTeam}</h1>
                     <span style={{ color: "#3498db" }}><strong>Type of Sport:</strong></span><span>{typeOfSportChosen}</span>
                 </div>
                 <div className="about-card-manager">
@@ -75,7 +91,7 @@ class TeamManagerCard extends Component {
                     </article>
                 </div>
                 <div className="location-card-manager">
-                    <span ><i class="fas fa-thumbtack"></i></span> <span><span style={{ color: '#3498db' }}> Meetup is At</span> {formattedAddress}</span>
+                    <span ><i className="fas fa-thumbtack"></i></span> <span><span style={{ color: '#3498db' }}> Meetup is At</span> {formattedAddress}</span>
                 </div>
                 <div className="time-date-wrapper-manager-card">
                     <div className="type-of-meetup">
@@ -91,9 +107,8 @@ class TeamManagerCard extends Component {
                         </ul>
                     </div>
                     <div className="btn-contral-manager-card">
-                    <button className="btn-previous-card-manager" onClick={this.props.leftClick}>Previous</button>
-                        <button className="btn-submit-manager-card" onClick={this.onClickHandler}>Submit</button>
-
+                        <button className="btn-previous-card-manager" onClick={this.props.leftClick}>{this.props.cancel != undefined ? this.props.cancel : Previous.toString()}</button>
+                        <button className="btn-submit-manager-card" onClick={typeof (this.props.joinTeamHandler) === 'function' ? this.props.joinTeamHandler : this.onClickHandler}>{this.props.join != undefined ? this.props.join : Submit.toString()}</button>
                     </div>
                 </div>
 
@@ -117,8 +132,8 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
     return {
         submitManagerCard: (mangerCard) => dispatch(actionType.submitManagerCard(mangerCard)),
-
+        processRequestMsg: (req) => dispatch(actionType.processRequestMsg(req))
 
     };
 };
-export default connect(mapStateHandler, mapStateDispatch)(TeamManagerCard)
+export default withRouter(connect(mapStateHandler, mapStateDispatch)(TeamManagerCard))

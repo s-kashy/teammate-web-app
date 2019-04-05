@@ -24,7 +24,7 @@ class EmailVerification extends Component {
         let data = {
             email: this.props.emailRegister,
             token: JSON.parse(JSON.stringify(this.state.webToken.value)),
-            emailManger:JSON.parse(JSON.stringify(this.state.email.value))
+            emailManger: JSON.parse(JSON.stringify(this.state.email.value))
         }
         this.props.checkValidToken(data).then(res => {
             if (res.status === 200) {
@@ -49,7 +49,7 @@ class EmailVerification extends Component {
         if (isEmail(emailManger.value)) {
             this.setState({ showInputToken: true }, () => {
                 this.props.sendEmailToken(data).then(res => {
-                    
+
                 }).catch(err => {
                     let email = JSON.parse(JSON.stringify(this.state.email))
                     email.error = true
@@ -84,17 +84,18 @@ class EmailVerification extends Component {
         let { email, webToken } = this.state
         return (<div className="main-email-verification">
             <div className="wrapper-input-email-verification" >
-                <Input classLabel="label-input-email-verification" type="text" value={email.value} classInput="input-email-verification"
-                    error={email.error} errorClass='error-msg-email-verification' change={(e) => this.onChangeHandler(e)} msgError="*Not valid Email" disabled={this.state.showInputToken}
-                    title="Enter a email" name="emailManger" /><button disabled={this.state.showInputToken} className="submit-btn-email-verification" onClick={this.onClickHandler}>
-                    <span className="icon-submit-email-verification">
-                        <i className="fas fa-check"></i></span></button>
-
-                {this.state.showInputToken && (<span><Input classLabel="label-confirm-email-verification" type="text" msgError="*Not valid Token" value={this.state.webToken.value} classInput="input-confirm-email-verification"
+                <div style={{ position: "relative" }}>
+                    <Input classLabel="label-input-email-verification" type="text" value={email.value} classInput="input-email-verification"
+                        error={email.error} errorClass='error-msg-email-verification' change={(e) => this.onChangeHandler(e)} msgError="*Not valid Email" disabled={this.state.showInputToken}
+                        title="Enter a email" name="emailManger" /><button disabled={this.state.showInputToken} className="submit-btn-email-verification" onClick={this.onClickHandler}>
+                        <span className="icon-submit-email-verification">
+                            <i className="fas fa-check"></i></span></button>
+                </div>
+                {this.state.showInputToken && (<div style={{position:"relative",marginTop:'20px'}}><Input classLabel="label-confirm-email-verification" type="text" msgError="*Not valid Token" value={this.state.webToken.value} classInput="input-confirm-email-verification"
                     error={webToken.error} errorClass='error-confirm-email-verification' change={(e) => this.onChangeTokenHandler(e)}
                     title="Enter The Token" name="webToke" /><button style={{ backgroundColor: "green" }} className="submit-confirm-btn-email-verification" onClick={this.onClickConfirmHandler}>
                         <span className="icon-submit-confirm-email-verification">
-                            <i className="fas fa-check"></i></span></button></span>)}
+                            <i className="fas fa-check"></i></span></button></div>)}
             </div>
             <div className="msg-email-verification"><span> ever since the 1500s, when an unknown printer took a galley
                   of type and scrambled it to make a type

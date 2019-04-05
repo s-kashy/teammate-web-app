@@ -11,9 +11,7 @@ module.exports = (req, res, next) => {
         newProfile.imageUrl = req.file.url
         req.body = newProfile
         next()
-
     } else {
-
         req.body = newProfile
         next()
     }

@@ -1,18 +1,20 @@
 import React, { Component } from "react"
-import { NavLink, withRouter } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 import "./Tabs.css"
 
 class Tabs extends Component {
 
     render() {
-
         return (
-            <div className="container">
-                <nav className="wrapper-li-tabs">
-                    <NavLink className="link-tab" to="/"><span><i className="fas fa-home"></i></span>Home</NavLink>
-                    <NavLink className="link-tab" to="/search-team"><span><i className="fas fa-search"></i></span>Search</NavLink>
-                </nav>
-
+            <div className="tabs tabs-style-linebox">
+            <nav>
+                <ul>
+                    <li><Link to="/"><span className="home-tab">Home</span></Link></li>
+                    <li><Link to= "/search-team"><span className="search-teams-tab">Search for Team</span></Link></li>
+                    <li><Link to= "/chat-board"><span className="your-teams-tab">Your Teams</span></Link></li>
+               
+                </ul>
+            </nav>
             </div>
 
         )

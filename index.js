@@ -22,9 +22,8 @@ mongoose.Promise = global.Promise
 mongoose.set('useFindAndModify', false);
 require("./models/user")
 require("./models/profile")
+require("./models/chatTeam")
 require("./models/team")
-
-
 
 
 mongoose.set('useCreateIndex', true);

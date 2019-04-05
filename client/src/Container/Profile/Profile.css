@@ -94,6 +94,7 @@ form {
     padding: 13px;
     outline: 0;
     width: 60%;
+    line-height: 20pt;
     min-height: 200px;
     margin: 10px auto;
     border-radius: 5px;
@@ -187,12 +188,13 @@ p {
     .fieldset-upload-group {
         flex-direction: column !important;
     }
-    .upload-image {
+    .upload-image,.input-first-last-group-profile,.textarea-profile {
         width: 100%;
     }
-    textarea {
+   
+    /* textarea {
         width: 100% !important;
-    }
+    } */
     .radio-group-profile {
         display: flex;
         flex-direction: column;

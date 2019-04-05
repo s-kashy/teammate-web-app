@@ -2,14 +2,20 @@ import React, { Component } from "react"
 import "./MapTeamSearchLayout.css"
 import MapContainer from '../../MapContainer/MapContainer'
 import SearchBar from "../../TeamCreator/SearchBar/SearchBar"
-import { relativeTimeRounding } from "moment";
+
 
 class MapTeamSearchLayout extends Component {
+    componentWillUnmount() {
+        this.setState({ isLoading: false })
+    }
+    state = {
+        isLoading: true
+    }
     render() {
         let styleMap = {
-            overflowX: 'hidden',
-            width: '50%',
-            height: "70%"
+            overflow:'hidden',
+            width: '100%',
+            height: "100%"
 
         }
         let styeSearch = {
@@ -18,11 +24,11 @@ class MapTeamSearchLayout extends Component {
             top: '40px',
             left: '147px',
         }
-        return (<div>
+        return (<div>{this.state.isLoading ? <div>
             <MapContainer styleMap={styleMap} />
             <SearchBar searchStyle={styeSearch} />
-
-        </div>)
+        </div>
+            : null}</div>)
     }
 }
 

@@ -13,6 +13,8 @@ import TeamCreator from "./Container/TeamCreator/TeamCreator"
 import Profile from "./Container/Profile/Profile"
 import Spinner from "./Component/Ui/Spinner/Spinner"
 import About from "./Container/About/About"
+import ChatBoardTeam from "./Container/ChatBoardTeam/ChatBoardTeam"
+import YourTeams from "./Container/YourTeams/YourTeams"
 
 import { connect } from "react-redux";
 import './App.css';
@@ -47,7 +49,9 @@ class App extends Component {
           <Route path="/profile" component={Profile} />
           <Route path="/create-team" component={TeamCreator} />
           <Route path="/search-team" component={SearchTeam} />
+          <Route path="/your-teams" component={YourTeams} />
           <Route path="/about" component={About} />
+          <Route path="/chat-board" component={ChatBoardTeam} />
           <Route exact path="/" component={LandingPage} />
           <Redirect to="/" />
           {/* <Route component={Error} /> */}

@@ -22,11 +22,12 @@ export const getRequestData = (data) => {
             return Promise.reject(err)
         })
     } else if (data.method == "get") {
+    
         return axios.request({
             method: 'get',
             data: data.data,
             url: data.url.toString(),
-            headers: data.header,
+            headers: data.headers,
             params: data.params
         }).then(res => {
             return Promise.resolve(res)

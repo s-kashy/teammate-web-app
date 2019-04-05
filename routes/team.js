@@ -1,7 +1,9 @@
 
 const mongoose = require("mongoose")
 var Team = mongoose.model("Team")
+var ChatTeam = mongoose.model("ChatTeam")
 var keys = require("../config/keys")
+var checkUserInTeam = require("../middleware/checkUserInTeam")
 
 const multer = require("multer");
 
@@ -25,31 +27,44 @@ module.exports = (app) => {
 
     app.post("/api/team/new-team", parser.single("myImage"), (req, res) => {
         let data = JSON.parse(req.body.value)
-        console.log(data)
-        let team = new Team(data)
+        var team = new Team(data)
         if (req.file) {
             team.generalInfo.file = req.file.url
         }
+        var chatTeam = new ChatTeam()
+        chatTeam.teamId = team._id
 
-        team.save().then(user => {
-            res.send(user)
+        team.save(function (err, docs) {
+            if (err) {
+                res.send(err)
+            } else {
+                chatTeam.save().then(() => {
+                    res.send(docs)
+                })
+
+            }
+        })
+    })
+
+    app.post("/api/team/find-by-categories", (req, res) => {
+        let arraySearchBy = req.body
+        Team.find({}).then(teams => {
+            let result = teams.filter(team => {
+                return arraySearchBy.includes(team.generalInfo.typeOfSportChosen)
+            })
+            res.header("len", result.length).send(result)
         }).catch(err => {
             res.send(err)
         })
     })
 
-    app.get("/api/team/find-by-categories", (req, res) => {
-
-        console.log("get",req.body)
-        res.send()
-        // Team.find({}).then(teams => {
-        //     let result = teams.filter(team => {
-        //         return arraySearchBy.includes(team.generalInfo.typeOfSportChosen)
-        //     })
-        //     console.log("res server",result)
-        //     res.header("len", result.length.toString()).send(result)
-        // }).catch(err => {
-        //     res.send(err)
-        // })
+    app.post("/api/team/join-team", checkUserInTeam, (req, res) => {
+        let id = req.headers.id
+        Team.findOneAndUpdate({ _id: id }, { $push: { membersId: req.body.userEmail } }, { new: true }).then(docs => {
+            res.send(docs)
+        }).catch(err => {
+            res.send(err)
+        })
     })
 }
+

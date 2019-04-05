@@ -88,7 +88,7 @@ class MapSearchLayout extends Component {
 
         return (
             <div>
-                {this.state.isLoading && (<div className="search-map-layout" >
+                {this.state.isLoading ? <div className="search-map-layout" >
                     <div className="map-child-flex-layout">
                         <MapContainer styleMap={styleMap}
                             lat={userLocation.lat} lng={userLocation.lng}
@@ -99,7 +99,7 @@ class MapSearchLayout extends Component {
                         {userInfo.errorMsg && <div>Error occurred In Finding the Address please try Again</div>}
                     </div>
                     <ContralTeamCreate class="contral-team-map-layout" disabled={!isValid} leftClick={this.props.leftClick} rightClick={this.props.rightClick} />
-                </div>)}
+                </div>:null}
 
             </div>
 

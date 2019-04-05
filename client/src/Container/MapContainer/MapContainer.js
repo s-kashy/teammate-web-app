@@ -1,14 +1,13 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { KEY } from "./apiKey"
 
 import './MapContainer.css'
 /* global google */
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-class MapContainer extends Component {
-
+class MapContainer extends PureComponent {
 
 componentDidMount(){
-   
+
 }
 
     constructor(props) {
@@ -28,8 +27,6 @@ componentDidMount(){
         
     }
 
-
-
     onClickMarkerHandler = (props, marker, e) => {
         this.setState({
             selectedPlace: props,
@@ -38,7 +35,6 @@ componentDidMount(){
         });
 
     }
-
     render() {
         const { lat, lng } = this.state.userInfo
         let arrayOfMarker
@@ -57,6 +53,7 @@ componentDidMount(){
         return (
             <div className="map-window">
                 {this.state.reRender && (<Map
+                ref={x=>this.map=x}
                     google={this.props.google}
                     style={this.props.styleMap}
                     zoom={11}

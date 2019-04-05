@@ -43,7 +43,7 @@ export const authCheckState = () => {
     var data = {
         url: LOG_IN_CHECK,
         method: "get",
-        header: {
+        headers: {
             auth: token
         },
         data: null,

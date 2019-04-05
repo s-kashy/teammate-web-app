@@ -5,8 +5,9 @@ export {
     logoutUser
 } from "./auth"
 export {
-    closeSpinner,
-    openSpinner
+    closeErrorMsg,
+    openErrorMsg,
+    processRequestMsg
 } from "./controlModel"
 
 export {
@@ -28,5 +29,7 @@ export {
     checkValidToken,
     saveEmailManger,
     submitManagerCard,
-    getTeamsByCategoryType
+    getTeamsByCategoryType,
+    viewTeamToJoin,
+    joinTeam
 } from "./teamCreateInfo"

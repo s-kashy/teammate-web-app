@@ -1,0 +1,19 @@
+.ErrorMsg {
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.btn-error {
+    border: none;
+    color: black;
+    outline: none;
+    cursor: pointer;
+    font: inherit;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    color: #5c9210;
+}

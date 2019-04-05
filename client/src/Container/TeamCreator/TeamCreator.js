@@ -12,7 +12,6 @@ class TeamCreator extends Component {
 
     componentDidMount() {
         this.props.checkIfUserIsManager(this.props.userEmail).then(res => {
-     
             this.props.saveEmailManger(res.data)
         }).catch(err => {
 
@@ -23,7 +22,6 @@ class TeamCreator extends Component {
         super(props)
         this.state = {
             indexActive: 0
-
         }
     }
 
@@ -36,7 +34,7 @@ class TeamCreator extends Component {
         this.setState({ indexActive: nextIndex });
     }
     onClickRight = () => {
-            let nextIndex = this.state.indexActive + 1 > 6 ? this.state.indexActive : this.state.indexActive + 1;
+        let nextIndex = this.state.indexActive + 1 > 6 ? this.state.indexActive : this.state.indexActive + 1;
         if (this.props.emailManger && nextIndex === 4) {
             nextIndex += 1
         }

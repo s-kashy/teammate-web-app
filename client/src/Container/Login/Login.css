@@ -30,7 +30,11 @@
   color: white;
   margin: 0 auto;
 }
+.auth-new-user::after{
+  content: "";
+  font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f2f6";
 
+}
 .box-login{
   background-color: #34495e;
   width: 300px;

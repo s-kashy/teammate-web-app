@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 const { Schema } = mongoose
-
 const team = new Schema({
     generalInfo: {
         nameOfTeam: String,
@@ -16,23 +15,27 @@ const team = new Schema({
         endTime: String,
         dayOfTheWeekPicker: [{ value: String, check: Boolean }],
         selectedDays: [{ type: String }]
-
     },
     location: {
         userLocation: {
             lat: Number,
-            lng: Number
+            lng: Number,
         },
         formattedAddress: String,
         marker: [{
             lat: Number,
             lng: Number,
             title: String,
-        
+
         }],
 
     },
-    emailManger: String
+    emailManger: String,
+    membersId: [String],
+
+
 
 })
+
+
 mongoose.model("Team", team)

@@ -71,9 +71,8 @@ class Login extends Component {
         return (
             <div className="main-auth" >
                 <h2 className="logo-login">TeamMate</h2>
-
                 <form className="box-login" onSubmit={this.submitUserFormHandler} ref={el => this.formAuth = el} style={{ left: "75%" }} >
-                    <h3 className="auth-title">Login <Link style={{ color: "#FFF" }} to="/api/auth/sign-in"><span className="auth-sing-in-icon"><i className="fas fa-sign-in-alt"></i></span><span className="auth-new-user">*New user</span></Link></h3>
+                    <h3 className="auth-title">Login <Link style={{ color: "#FFF" }} to="/api/auth/sign-in"><span className="auth-new-user">*New user</span></Link></h3>
                     <input type="text" name="email" placeholder="email" onChange={(event) => this.onChangeHandler(event)} autoComplete="new-email" value={email.value} />
                     {email.error && <p className="msg-email">*email not valid </p>}
                     <input type="password" value={password.value} name="password" onChange={(event) => this.onChangeHandler(event)} autoComplete="new-password" placeholder="password" />

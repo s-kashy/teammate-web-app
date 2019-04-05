@@ -2,7 +2,7 @@ import React from "react"
 import "./Input.css"
 
 const Input = (props) => {
-    return (<div >
+    return (<div>
         <label className={props.classLabel}>{props.title}</label>
         <input type={props.type} name={props.name} autocomplete={props.autocomplete} placeholder={props.placeholder}
          className={props.classInput} min={props.min} disabled={props.disabled}

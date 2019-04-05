@@ -32,10 +32,13 @@
 
 .weekly-choice-date-time {
     margin: -30px auto;
-    width: 58%;
-    height: auto;
+    width: 60%;
+    align-items: flex-start;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
     background-color: #2c3e50;
-    height: 80%;
+    height: 69%;
 }
 
 .monthly-choice-date-time {
@@ -97,6 +100,7 @@
 .single-date-time-radio {
     padding: 10px 10px;
     width: 20px;
+    color: #fff
 }
 
 .radio-btn-date-time {
@@ -123,10 +127,9 @@
     font-weight: 1000;
 }
 
-.checkbox-days-date-time {
-    margin: auto;
+.DayPicker-wrapper{
+  color: #fff  
 }
-
 .reset-date-input {
     width: 100%;
     padding: 10px 10px;
@@ -177,11 +180,12 @@
         position: relative;
         left: 0;
     }
+   
     a .rc-time-picker-clear {
         display: none !important;
     }
     .rc-time-picker-input {
-        padding: 4px 40px !important;
+        width: 80px;
     }
     .main-controller-date-time-left {
         flex-direction: column;
@@ -190,9 +194,11 @@
         margin: 108px auto;
     }
     .main-controller-date-time-left-right {
-        top: -67px;
-        left: 0;
+        top: -199px;
+        position: relative;
+        left: 13px;
         width: 100%;
+        z-index: 999;
     }
     .contral-team-date-time {
         position: absolute;
@@ -220,8 +226,8 @@
         z-index: 1;
         position: relative;
         width: 150px;
-        top: -34px;
-        left: 109px;
+        top: -28px;
+        left: 108px;
     }
     .start-time-div {
         z-index: 1;
@@ -229,7 +235,7 @@
         margin: 10px auto;
         width: 150px;
         left: 88px;
-        top: -268px;
+        top: -291px;
     }
     .radio-btn-date-time-wrapper {
         box-sizing: border-box;
@@ -243,19 +249,19 @@
     }
     .monthly-choice-date-time {
         background-color: #2c3e50;
-        width: 150%;
-        position: relative;
-        left: 50px;
-        top: -141px;
+        width: 180%;
         margin: auto;
+        top: -35px;
+        position: relative;
     }
     .weekly-choice-date-time {
-        width: 200% !important;
+        width: 180% !important;
         display: flex;
         flex-wrap: wrap;
+        z-index: 999;
+        flex-direction: row;
     }
     .checkbox-days-date-time {
         width: 50%;
-        float: left;
     }
 }

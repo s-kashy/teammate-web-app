@@ -1,6 +1,6 @@
 import * as actionType from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM,MANAGER_INFO_EXIST,FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
+import { JOIN_TEAM, SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM, MANAGER_INFO_EXIST, FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
 
 
 export const saveGeneralInfo = (general) => {
@@ -33,7 +33,7 @@ export const sendEmailToken = (data) => {
     var data = {
         url: SEND_EMAIL_TOKEN,
         method: "post",
-        header: "",
+        headers: "",
         data: data,
         params: ""
     }
@@ -56,7 +56,7 @@ export const checkValidToken = (data) => {
     }
     return dispatch => {
         return getRequestData(data).then(res => {
-            console.log("res valid token",res)
+            console.log("res valid token", res)
             return Promise.resolve(res)
         }).catch(err => {
             return Promise.reject(err)
@@ -64,7 +64,6 @@ export const checkValidToken = (data) => {
     }
 }
 export const submitManagerCard = (data) => {
-  
     var data = {
         url: NEW_TEAM,
         method: "post",
@@ -76,14 +75,15 @@ export const submitManagerCard = (data) => {
     }
     return dispatch => {
         return getRequestData(data).then(res => {
+            console.log("result ", res)
             return Promise.resolve(res)
         }).catch(err => {
             return Promise.reject(err)
         })
     }
 }
- export const  checkIfUserIsManager=(email)=>{
-       var data = {
+export const checkIfUserIsManager = (email) => {
+    var data = {
         url: MANAGER_INFO_EXIST,
         method: "get",
         headers: "",
@@ -98,15 +98,15 @@ export const submitManagerCard = (data) => {
         })
     }
 
- }
+}
 
- export const getTeamsByCategoryType=(data)=>{
-     console.log("array ",data)
+export const getTeamsByCategoryType = (data) => {
     var data = {
         url: FIND_TEAM_BY_CATEGORIES,
-        method: "get",
-        header: {
-            "Content-Type":"application/json"
+        method: "post",
+        headers: {
+            "content-type": 'application/json'
+
         },
         data: data,
         params: ""
@@ -118,4 +118,31 @@ export const submitManagerCard = (data) => {
             return Promise.reject(err)
         })
     }
- }
+}
+export const viewTeamToJoin = (teamInfo) => {
+    return dispatch => {
+        dispatch(saveGeneralInfo(teamInfo.generalInfo))
+        dispatch(saveDataAndTime(teamInfo.dateAndTime))
+        dispatch(saveLocation(teamInfo.location))
+        dispatch(saveEmailManger(teamInfo.emailManger))
+    }
+}
+
+export const joinTeam = (data) => {
+    var data = {
+        url: JOIN_TEAM,
+        method: "post",
+        headers: {
+            id: data.id
+        },
+        data: data,
+        params: ""
+    }
+    return dispatch => {
+        return getRequestData(data).then(res => {
+            return Promise.resolve(res)
+        }).catch(err => {
+            return Promise.reject(err)
+        })
+    }
+}

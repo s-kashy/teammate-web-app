@@ -1,0 +1,48 @@
+.wrapper-chat-bored {
+    width: 500px;
+    height: 600px;
+    margin: 10px auto;
+    border: solid 1px #EEE;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.input-chat-board {
+    margin-bottom: auto;
+    display: inline-block;
+    width: 80%;
+    margin: auto;
+    min-height: 50px;
+    max-height: 50px;
+    overflow: auto;
+    cursor: pointer;
+}
+
+.wrapper-input-chat-input {
+    margin-bottom: auto;
+    position: relative;
+}
+
+.chat-team-bored {
+    flex: 1;
+}
+
+.send-msg-chat-board {
+    position: absolute;
+    top: 0px;
+    left: 400px;
+    border: none;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background-color: green;
+}
+
+.send-msg-chat-board::after {
+    content: "";
+    font-family: "Font Awesome 5 Free";
+    font-weight: bold;
+    content: "\f1d8";
+    cursor: pointer;
+}

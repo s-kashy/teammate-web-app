@@ -72,7 +72,6 @@ module.exports = (app) => {
     })
     app.get("/api/profile/get-profile", (req, res) => {
         let email = req.header("email")
-
         Profile.findOne({ email: email }, (err, user) => {
             if (err) {
                 res.status(400).send()
