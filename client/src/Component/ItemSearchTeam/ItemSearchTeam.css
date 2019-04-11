@@ -7,21 +7,20 @@
   margin: 10px auto;
   cursor: pointer;
   flex-direction: column;
-  width: 400px;
-  height: 300px;
+  width: 600px;
   display: flex;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
   padding: 10px 10px;
   box-sizing: border-box;
   color: #3498db;
-  animation-name: slider;
-  animation-duration: 1s;
+  transition: 0.6s;
   position: relative;
 }
 
 .team-full-item-search {
   width: 396px;
   height: 47px;
+  left: 101px;
   border-bottom: 5px solid black;
   -webkit-transform: translateY(-20px) translateX(5px) rotate(27deg);
   transform: translateY(76px) translateX(0px) rotate(0deg);
@@ -55,7 +54,9 @@
 
 .type-of-date-item-search {
   margin: 0;
-  padding: 0
+  padding: 0;
+  color: black;
+  text-transform: uppercase
 }
 
 .icon-contral-search-item {
@@ -71,20 +72,18 @@
   margin-top: 2px;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
-  padding: 7px;
+  padding: 10px 10px;
   margin: 4px auto;
   font-weight: bold;
-  padding: 14px 20x;
-  width: 80px;
+  width: 100%;
   border: none;
   text-decoration: none;
 }
 
-@keyframes slider {
-  from {
-    margin-left: -200px
-  }
-  to {
-    margin-left: 0px
+@media screen and (max-width:800px) {
+  .item-search-team-wrapper {
+    width: 100%;
+    height: 100%;
+    margin: 50px auto;
   }
 }

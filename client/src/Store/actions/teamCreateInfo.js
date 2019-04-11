@@ -1,6 +1,6 @@
 import * as actionType from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { JOIN_TEAM, SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM, MANAGER_INFO_EXIST, FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
+import {GET_USER_TEAMS, JOIN_TEAM, SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM, MANAGER_INFO_EXIST, FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
 
 
 export const saveGeneralInfo = (general) => {
@@ -113,6 +113,7 @@ export const getTeamsByCategoryType = (data) => {
     }
     return dispatch => {
         return getRequestData(data).then(res => {
+            dispatch(loadYourTeams(res.data))
             return Promise.resolve(res)
         }).catch(err => {
             return Promise.reject(err)
@@ -144,5 +145,33 @@ export const joinTeam = (data) => {
         }).catch(err => {
             return Promise.reject(err)
         })
+    }
+}
+export const getUsersTeams=(dataEmail)=>{
+    var data = {
+        url: GET_USER_TEAMS,
+        method: "get",
+        headers: {
+            id: dataEmail.id
+        },
+        data: "",
+        params: ""
+    }
+    return dispatch=>{
+       return getRequestData(data).then(res=>{
+            dispatch(loadYourTeams(res.data))
+            return Promise.resolve(res.data)
+        })
+    }
+}
+export const loadYourTeams = (data) => {
+    return {
+        type: actionType.YOUR_TEAMS,
+        payload: data
+    }
+}
+export const clearAllTeams=()=>{
+    return {
+        type:actionType.CLEAR_ALL_TEAMS
     }
 }

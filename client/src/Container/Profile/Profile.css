@@ -132,8 +132,18 @@ form {
     left: 160px;
     width: 215px;
     opacity: 0;
-    padding: 14px 0;
+    padding: 14px 5px;
     cursor: pointer;
+
+}
+
+.label-upload-filed-profile::after {
+    content: "\f574" !important;
+    font-size: 30px;
+    position: relative;
+    left: 7px;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
 
 .error-image-upload-profile {
@@ -188,10 +198,9 @@ p {
     .fieldset-upload-group {
         flex-direction: column !important;
     }
-    .upload-image,.input-first-last-group-profile,.textarea-profile {
+    .upload-image, .input-first-last-group-profile, .textarea-profile {
         width: 100%;
     }
-   
     /* textarea {
         width: 100% !important;
     } */

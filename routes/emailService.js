@@ -26,7 +26,7 @@ module.exports = (app) => {
             from: 'shlomo.kashy@gmail.com', // sender address
             to: req.body.emailManger.toString(), // list of receivers
             subject: 'TeamMate confirme Email', // Subject line
-            text: `Hello please copy and paste this  ${randomString} to your input`
+            text: `Hello temporary access code is  ${randomString} `
         };
         transporter.sendMail(mailOptions, function (err, info) {
             if (err) {

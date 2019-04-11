@@ -38,24 +38,8 @@ class SearchTeam extends Component {
         idOfTeam: ""
 
     }
-    removeJoinHandler = () => {
-        this.setState({ showTeamCard: !this.state.showTeamCard })
-    }
-    JoinTeamHandler = () => {
-        let data = {
-            id: this.state.idOfTeam,
-            userEmail: this.props.emailRegister
-        }
-        this.props.joinTeam(data).then(res => {
-            if (res.status === 201) {
-                this.props.openErrorMsg()
-            } else {
-                this.props.history.push("/")
-            }
-        }).catch(err => {
-            this.props.openErrorMsg()
-        })
-    }
+   
+   
     onClickSearchHandler = () => {
         let data = []
         let sportInterest = JSON.parse(JSON.stringify(this.state.user.sportInterest))
@@ -66,13 +50,12 @@ class SearchTeam extends Component {
         }
         if (data.length > 0) {
             this.props.getTeamsByCategoryType(data).then(res => {
-                console.log(res)
-                this.setState({ resultSearch: res.data, noTeamMsg: false }, () => {
-                    console.log("team", res.data)
-                    if (this.state.resultSearch === undefined || this.state.resultSearch.length === 0) {
-                        this.setState({ noTeamMsg: true })
-                    }
-                })
+                if (this.props.yourTeams === undefined || this.props.yourTeams.length === 0) {
+                    this.setState({ noTeamMsg: true })
+                } else {
+                    this.props.history.push("/your-teams")
+                }
+
             }).catch(err => {
                 this.props.openErrorMsg()
             })
@@ -80,7 +63,7 @@ class SearchTeam extends Component {
 
     }
     viewTeamHandler = (item) => {
-        console.log(item._id)
+
         this.props.viewTeamToJoin(item)
         this.setState({ showTeamCard: !this.state.showTeamCard, idOfTeam: item._id })
     }
@@ -92,14 +75,7 @@ class SearchTeam extends Component {
         })
     }
 
-    clickLeftHandler = () => {
-        let nextIndex = this.state.indexActive - 1 < 0 ? this.state.resultSearch.length - 1 : this.state.indexActive - 1;
-        this.setState({ indexActive: nextIndex });
-    }
-    clickRightHandler = () => {
-        let nextIndex = this.state.indexActive + 1 === this.state.resultSearch.length ? 0 : this.state.indexActive + 1;
-        this.setState({ indexActive: nextIndex });
-    }
+
     convertObjectToArray = () => {
         let arrayObject = [];
         const { sportInterest } = this.state.user
@@ -109,21 +85,8 @@ class SearchTeam extends Component {
         return arrayObject
     }
     render() {
-        const { resultSearch, noTeamMsg } = this.state
-        let searchResults = []
-        if (resultSearch.length > 0) {
-            searchResults = resultSearch.map(item => {
+        const { noTeamMsg } = this.state
 
-                return (<ItemSearchTeam image={item.generalInfo.file}
-                    clickLeft={this.clickLeftHandler}
-                    clickRight={this.clickRightHandler}
-                    view={() => this.viewTeamHandler(item)}
-                    fade={item.membersId.length != 0 && item.membersId.length >= item.generalInfo.numberOfTeam ? true : false}
-                    sportType={item.generalInfo.typeOfSportChosen}
-                    nameOfTeam={item.generalInfo.nameOfTeam}
-                    dateType={item.dateAndTime.pickType} />)
-            })
-        }
         let arrayOfObjectSport = this.convertObjectToArray()
         let arrayOfCheckBox = arrayOfObjectSport.map((item, index) => {
             return (<CheckBox value={item.value}
@@ -131,38 +94,35 @@ class SearchTeam extends Component {
                 name={item.key} key={index} classCheckbox="check-box-search-team" />)
         })
 
-        return (<div>{!this.state.showTeamCard ?
-            <Aux>
-                <Tabs />
-                <div className="wrapper-search-team" >
-                    <div className="search-by-categorie">
-                        <div className="msg-search-categorie">
-                            <p>Search By Categorie</p></div>
-                        <div className="wrapper-check-box">
-                            {arrayOfCheckBox}
-                        </div>
-                        <div className="submit-search-wrapper"><button onClick={this.onClickSearchHandler} className="btn-search-team">Search</button></div>
-                        <div className="wrapper-items-search-team">
-                            {searchResults[this.state.indexActive]}
-                            {noTeamMsg && (<p>No Teams Found</p>)}
-                        </div>
-
+        return (<div>
+            <Tabs />
+            <div className="wrapper-search-team" >
+                <div className="search-by-categorie">
+                    <div className="msg-search-categorie">
+                        <p>Search By Categorie</p></div>
+                    <div className="wrapper-check-box">
+                        {arrayOfCheckBox}
                     </div>
-                    <div className="map-search-team-wrapper">
-                        <MapTeamSearchLayout />
+                    <div className="submit-search-wrapper"><button onClick={this.onClickSearchHandler} className="btn-search-team">Search</button></div>
+                    <div className="wrapper-items-search-team">
+                        {noTeamMsg && (<p>No Teams Found</p>)}
                     </div>
                 </div>
-            </Aux> : <TeamManagerCard cancel="Go Back" join="Join" joinTeamHandler={this.JoinTeamHandler} leftClick={this.removeJoinHandler} />}</div>)
+                <div className="map-search-team-wrapper">
+                    <MapTeamSearchLayout />
+                </div>
+            </div>
+        </div>)
     }
 }
 const mapStateHandler = state => {
     return {
-        emailRegister: state.user.email
+        emailRegister: state.user.email,
+        yourTeams: state.teamCreateInfo.yourTeams
     };
 };
 const mapStateDispatch = dispatch => {
     return {
-
         viewTeamToJoin: (teamInfo) => dispatch(actionType.viewTeamToJoin(teamInfo)),
         getTeamsByCategoryType: (data) => dispatch(actionType.getTeamsByCategoryType(data)),
         joinTeam: (data) => dispatch(actionType.joinTeam(data)),

@@ -28,7 +28,6 @@ class TeamManagerCard extends Component {
         }
     }
     onClickHandler = () => {
-
         var data = {
             location: this.props.location,
             generalInfo: this.props.generalInfo,
@@ -58,18 +57,17 @@ class TeamManagerCard extends Component {
 
         const { nameOfTeam, aboutTheTeamChosen, typeOfSportChosen } = this.props.generalInfo
         const { startTime, endTime, pickType, dayOfTheWeekPicker, selectedDays } = this.props.dateAndTime
-        console.log("dayOfTheWeekPicker", dayOfTheWeekPicker.length)
-        console.log("selectedDays",selectedDays.length>0)
+   
         const { formattedAddress } = this.props.location
         var arrayOfTheDates = []
         var month=[]
-        if (dayOfTheWeekPicker != undefined) {
+        if (dayOfTheWeekPicker != undefined && dayOfTheWeekPicker.length>0) {
             arrayOfTheDates = dayOfTheWeekPicker.map((item, index) => {
             return (<li key={index} className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span>{item.value}</li>)
             })
         }
 
-        if (selectedDays.length > 0) {
+        if (selectedDays!==undefined && selectedDays.length > 0) {
             console.log("monthly",selectedDays)
             arrayOfTheDates = selectedDays.map((item, index) => {
                 return (<li key={index} className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span> {moment(item).format('DD/MM/YYYY')}</li>)

@@ -66,5 +66,14 @@ module.exports = (app) => {
             res.send(err)
         })
     })
+    app.get("/api/team/get-all-users-teams", (req, res) => {
+        let id = req.headers.id
+        Team.find({ membersId: id }).then(docs => {
+            res.send(docs)
+        }).catch(err => {
+            res.send(err)
+        })
+
+    })
 }
 

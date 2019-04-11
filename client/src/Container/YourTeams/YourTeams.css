@@ -1,0 +1,64 @@
+.slider {
+    position: relative !important;
+    /* width: 600px; */
+    height: 300px;
+    overflow: hidden;
+    margin: auto
+}
+
+.slides {}
+
+.btnLeft, .btnRight {
+    position: absolute;
+    width: 60px;
+    height: 287px;
+    top: 24px;
+    font-size: 40px;
+    line-height: 300px !important;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s
+}
+
+.btnLeft:hover, .btnRight:hover {
+    background: #000000b3;
+    cursor: pointer;
+}
+
+.btnLeft {
+    left: 440px
+}
+
+.btnRight {
+    right: 440px
+}
+
+@media screen and (max-width:800px) {
+    .slider {
+        width: 100%;
+        left:25px;
+        top:50px;
+        position: absolute;
+        height: 100%;
+    }
+    .wrapper-your-teams {
+        z-index: 900;
+        position: absolute;
+    }
+    .btnLeft {
+        left: 0;
+        background-color: #ffffff;
+        cursor: pointer !important;
+    }
+    .btnRight {
+        right: 0;
+        background-color: #ffffff;
+        cursor: pointer !important;
+    }
+    .btnLeft:hover, .btnRight:hover {
+        background: #000000b3 !important;
+    }
+    .demo{
+        cursor: pointer;
+    }
+}

@@ -79,18 +79,18 @@ class Profile extends Component {
             },
             about: "",
             sportInterest: {
-                running: { value: false },
-                bicycle: { value: false },
-                basketball: { value: false },
-                soccer: { value: false },
-                tennis: { value: false },
-                volleyball: { value: false },
-                aerobics: { value: false },
-                yoga: { value: false },
-                bowling: { value: false },
-                golf: { value: false },
-                poker: { value: false },
-                snooker: { value: false }
+                Running: { value: false },
+                Bicycle: { value: false },
+                Basketball: { value: false },
+                Soccer: { value: false },
+                Tennis: { value: false },
+                Volleyball: { value: false },
+                Aerobics: { value: false },
+                Yoga: { value: false },
+                Bowling: { value: false },
+                Golf: { value: false },
+                Poker: { value: false },
+                Snooker: { value: false }
             },
           
             isLoading: true
@@ -316,7 +316,7 @@ class Profile extends Component {
                                     ref={x => this.textarea = x} placeholder="Personal note"></textarea>
                             </div>
                             <div className="upload-image">
-                                <p>Only JPG and PNG image can be upload</p>
+                                <p>JPG and PNG image can be upload</p>
                                 <Input type="file" id="image" classInput="input-upload-file-image-profile"
                                     classLabel="label-upload-filed-profile"
                                     error={imageUrl.error}
@@ -324,7 +324,7 @@ class Profile extends Component {
                                     errorClass="error-image-upload-profile"
                                     title={imageUrl.fileName === "" || imageUrl.fileName === undefined ? "Your Picture" : imageUrl.fileName}
                                     change={(e) => this.onChangeImageHandler(e)} />
-                                <span className="upload-image-icon-profile"><i className="fas fa-upload"></i></span>
+ 
                             </div>
                             <div >
                                 <Input type="submit" classInput="button-submit" value="Submit" />

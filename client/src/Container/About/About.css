@@ -6,16 +6,27 @@
     justify-content: center;
     height: 100%;
     z-index: -1000;
+    top: 0;
+    background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1554476417/athlete-depth-of-field-exercise-1257245.jpg");
+    width: 100%;
+    position: absolute;
+    background-position: 0% 50%;
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 .info-about {
     width: 50%;
+    color: #ffffff;
     margin-left: auto;
     margin-right: auto;
     line-height: 24pt;
     padding: 10px 10px;
     text-align: center;
-    box-shadow: 5px 10px #888888;
+    box-shadow: 2px 2px 2px  #fff;
 }
 
 .btn-about {
@@ -43,7 +54,6 @@
 @media screen and (max-width:800px) {
     .info-about {
         width: 100%;
-      
         padding: 0px 10px;
     }
     .btn-position-about {

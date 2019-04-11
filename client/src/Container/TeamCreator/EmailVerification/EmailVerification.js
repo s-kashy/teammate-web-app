@@ -41,6 +41,7 @@ class EmailVerification extends Component {
     onClickHandler = () => {
         let emailManger = JSON.parse(JSON.stringify(this.state.email))
         emailManger.value = emailManger.value.trim()
+        console.log("email reg",this.props.emailRegister)
         let data = {
             email: this.props.emailRegister,
             emailManger: emailManger.value

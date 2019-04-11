@@ -16,3 +16,4 @@ export const NEW_TEAM="/api/team/new-team"
 
 export const FIND_TEAM_BY_CATEGORIES="/api/team/find-by-categories"
 export const JOIN_TEAM="/api/team/join-team"
+export const GET_USER_TEAMS="/api/team/get-all-users-teams"

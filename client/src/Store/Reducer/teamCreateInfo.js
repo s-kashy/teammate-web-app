@@ -5,6 +5,7 @@ const initialState = {
     dateAndTime: "",
     location: "",
     emailManger: "",
+    yourTeams: []
 
 }
 
@@ -19,6 +20,10 @@ const reducer = (state = initialState, action) => {
             return updateObject(state, { location: action.payload })
         case actionType.SAVE_EMAIL_MANAGER:
             return updateObject(state, { emailManger: action.payload })
+        case actionType.YOUR_TEAMS:
+            return updateObject(state, { yourTeams: action.payload })
+            case actionType.CLEAR_ALL_TEAMS:
+            return updateObject(state=initialState)
         default:
             return state;
 

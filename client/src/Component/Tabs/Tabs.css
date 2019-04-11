@@ -1,8 +1,11 @@
-
 .tabs-style-linebox nav ul li {
 	margin: 0 0.5em;
 	-webkit-flex: none;
 	flex: none;
+}
+
+.mobile-tabs {
+	display: none
 }
 
 .tabs-style-linebox nav a {
@@ -13,8 +16,7 @@
 	transition: color 0.3s;
 }
 
-.tabs-style-linebox nav a:hover,
-.tabs-style-linebox nav a:focus {
+.tabs-style-linebox nav a:hover, .tabs-style-linebox nav a:focus {
 	color: #2CC185;
 }
 
@@ -33,20 +35,18 @@
 	content: '';
 	-webkit-transition: background-color 0.3s, -webkit-transform 0.3s;
 	transition: background-color 0.3s, transform 0.3s;
-	-webkit-transition-timing-function: ease, cubic-bezier(0.7,0,0.3,1);
-	transition-timing-function: ease, cubic-bezier(0.7,0,0.3,1);
-	-webkit-transform: translate3d(0,100%,0) translate3d(0,-3px,0);
-	transform: translate3d(0,100%,0) translate3d(0,-3px,0);
+	-webkit-transition-timing-function: ease, cubic-bezier(0.7, 0, 0.3, 1);
+	transition-timing-function: ease, cubic-bezier(0.7, 0, 0.3, 1);
+	-webkit-transform: translate3d(0, 100%, 0) translate3d(0, -3px, 0);
+	transform: translate3d(0, 100%, 0) translate3d(0, -3px, 0);
 }
 
 .tabs-style-linebox nav li.tab-current a::after {
-	-webkit-transform: translate3d(0,0,0);
-	transform: translate3d(0,0,0);
+	-webkit-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
 }
 
-.tabs-style-linebox nav a:hover::after,
-.tabs-style-linebox nav a:focus::after,
-.tabs-style-linebox nav li.tab-current a::after {
+.tabs-style-linebox nav a:hover::after, .tabs-style-linebox nav a:focus::after, .tabs-style-linebox nav li.tab-current a::after {
 	background: #2CC185;
 }
 
@@ -60,6 +60,7 @@
 }
 
 /* Nav */
+
 .tabs nav {
 	text-align: center;
 }
@@ -120,19 +121,155 @@
 .tabs nav a:focus {
 	outline: none;
 }
-.home-tab::before{
-    content: "";
-    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f015";
+
+.home-tab::after {
+	content: "Home"
 }
-.join-team-tab::before{
-    content: "";
-    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f500";
+
+.home-tab::before {
+	content: "";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f015";
 }
-.search-teams-tab::before{
-    content: "";
-    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f002";  
+
+.join-team-tab::after {
+	content: "Search for Team"
 }
-.your-teams-tab::before{
-    content: "";
-    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f500";   
+
+.mobile-tabs {
+	display: none;
+}
+
+.join-team-tab::before {
+	content: "";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f500";
+}
+
+.search-teams-tab::after {
+	content: "Search A Team"
+}
+
+.search-teams-tab::before {
+	content: "";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f002";
+}
+
+.your-teams-tab::after {
+	content: "Your Team"
+}
+
+.your-teams-tab::before {
+	
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+	content: "\f500";
+}
+
+@media screen and (max-width:800px) {
+	.tabs {
+		display: none !important;
+		position: absolute;
+		z-index: 500
+	}
+	li {
+		margin: 50px auto;
+	}
+	.btnc {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+	}
+	.mobile-tabs {
+		display: block !important;
+		float: left;
+		margin-left: -100px;
+		width: 100px;
+		z-index: 999;
+		display: block;
+		height: 100%;
+		background: #2c3e50;
+		overflow: hidden;
+		transition: 0.8s all;
+	}
+	.mobile-tabs-open {
+		display: block !important;
+		float: left;
+		margin-left: 0px;
+		width: 100px;
+		z-index: 999;
+		position: absolute !important;
+		height: 100%;
+		background: #2c3e50;
+		overflow: hidden;
+		transition: 0.8s all;
+	}
+	.search-teams-tab, .your-teams-tab, .home-tab {
+		color: #fff;
+		flex: 1;
+	}
+	.search-teams-tab::after, .your-teams-tab::after, .home-tab::after {
+		content: ""
+	}
+	.mobile-tabs nav ul {
+		margin: 0;
+		padding: 0;
+	}
+	.mobile-tabs nav ul {
+		list-style: none;
+	}
+	.mobile-tabs nav ul li span {
+		text-decoration: none !important;
+		color: #fff;
+		height: 100%;
+		width: 100%;
+		font-size: 20px;
+		line-height: 40px;
+		text-align: center;
+		display: block;
+		transition: 0.6s all;
+	}
+	.mobile-tabs nav ul li span :hover {
+		background: #34495e;
+	}
+	.btn-tab-mobile {
+		float: left;
+		padding: 0 10px;
+		font-size: 30px;
+		position: absolute !important;
+		cursor: pointer;
+		top: 0;
+		z-index: 1000;
+		margin: 2px;
+		left: 24px;
+		text-decoration: none;
+		background-color: #34495e;
+		color: #fff;
+	}
+	.btn-tab-mobile::before {
+		content: "\f00d";
+		color: #fff;
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+	}
+	.btnc::before {
+		content: "\f0c9";
+		font-family: "Font Awesome 5 Free";
+		font-weight: 900;
+		padding: 0 10px;
+		float: left;
+		background-color: #34495e;
+		color: #fff;
+		cursor: pointer;
+		font-size: 40px;
+	}
+	.main-wrapper-tabs{
+		position: absolute;
+		height: 100%;
+	}
 }
