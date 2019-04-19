@@ -14,13 +14,16 @@ const ItemSearchTeam = (props) => {
                 <img className="img-item-search" src={props.image} alt="item-team" />
             </div>
             <div className="item-info-wrapper">
+            <div onClick={props.view} className="fab">&#43;</div>
                 <div>
-                    <p className="type-of-date-item-search">{props.sportType}</p>
-                    <button onClick={props.view} className="btn-view-search-team" disabled={props.fade}>{props.title}</button>
+                    <h3 className="type-of-date-item-search">Type of Sport {props.sportType}</h3>
+                    <p>{props.nameOfTeam}</p>
+                    <p className="about-item-search">{props.about}</p>
                 </div>
 
 
             </div>
+            
         </div>
     )
 }

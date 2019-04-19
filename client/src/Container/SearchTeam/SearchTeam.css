@@ -77,3 +77,15 @@ span {
     border: none;
     text-decoration: none;
 }
+@media screen and (max-width:800px) {
+    .wrapper-search-team{
+        display: flex;
+        flex-direction: column;
+              z-index: -999
+    }
+    .search-by-categorie{
+        margin: 20px auto;
+        left: 0;
+        right: 0;
+    }
+}

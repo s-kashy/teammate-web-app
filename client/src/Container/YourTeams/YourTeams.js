@@ -13,15 +13,15 @@ class YourTeams extends Component {
         isLoading: false,
         indexActive: 0,
         yourTeams: [],
-        bySearch: false,
+        bySearch: true,
         viewTeam: false,
         idOfTeam: ""
 
     }
 
     componentDidMount() {
-        if (this.props.yourTeams.length > 0) {
-            let array = this.chunkArray(this.props.yourTeams)
+        if (this.props.teamCreateInfo != undefined || this.props.teamsBySearch.length !== 0) {
+            let array = this.chunkArray(this.props.teamsBySearch)
             this.setState({
                 yourTeams: array,
                 isLoading: true, bySearch: true
@@ -29,11 +29,9 @@ class YourTeams extends Component {
 
             })
         } else {
-
             this.initUserTeams()
         }
     }
-
 
     initUserTeams = () => {
         this.setState({ isLoading: false }, () => {
@@ -42,6 +40,7 @@ class YourTeams extends Component {
             }
             this.props.getUsersTeams(data).then(res => {
                 let array = this.chunkArray(res)
+                console.log("user teams", array)
                 this.setState({ yourTeams: array, isLoading: true }, () => {
                 })
             }).catch(err => {
@@ -51,13 +50,7 @@ class YourTeams extends Component {
 
     }
 
-    componentWillReceiveProps() {
-        if (this.props.yourTeams === undefined || this.props.yourTeams.length === 0) {
-            this.setState({ bySearch: false, isLoading: false }, () => {
-                this.initUserTeams()
-            })
-        }
-    }
+
     chunkArray = (array) => {
         let teamsArrayChunk = []
         let index = 0
@@ -78,7 +71,8 @@ class YourTeams extends Component {
         }
     }
     loadTeamMessageBoard = (item) => {
-        console.log(item)
+        this.props.loadChatBoard(item)
+        this.props.history.push("/chat-team")
     }
     removeJoinHandler = () => {
         this.setState({ viewTeam: !this.state.viewTeam })
@@ -90,7 +84,6 @@ class YourTeams extends Component {
         }
         this.props.processRequestMsg()
         this.props.joinTeam(data).then(res => {
-
             if (res.status === 201) {
                 this.props.isMemberMsg()
             } else {
@@ -103,28 +96,26 @@ class YourTeams extends Component {
     }
 
     clickLeftHandler = () => {
-        console.log("click left")
         let nextIndex = this.state.indexActive - 1 < 0 ? this.state.yourTeams.length - 1 : this.state.indexActive - 1;
         this.setState({ indexActive: nextIndex });
     }
     clickRightHandler = () => {
-        console.log("click right")
         let nextIndex = this.state.indexActive + 1 === this.state.yourTeams.length ? 0 : this.state.indexActive + 1;
         this.setState({ indexActive: nextIndex });
     }
     render() {
-
         let { yourTeams, bySearch } = this.state
-        let searchResults = []
+        var searchResults = []
         if (yourTeams.length > 0) {
             searchResults = yourTeams[this.state.indexActive].map((item, index) => {
                 return (<ItemSearchTeam image={item.generalInfo.file}
-                    view={this.state.bySearch ? () => this.viewTeamHandler(item) : () => this.loadTeamMessageBoard(item)}
+                    view={this.props.teamsBySearch.length > 0 ? () => this.viewTeamHandler(item) : () => this.loadTeamMessageBoard(item)}
                     fade={item.membersId.length != 0 && item.membersId.length >= item.generalInfo.numberOfTeam && bySearch ? true : false}
                     sportType={item.generalInfo.typeOfSportChosen}
                     nameOfTeam={item.generalInfo.nameOfTeam}
                     key={index}
-                    title={!this.state.bySearch ? "Your Team" : "View"}
+                    about={item.generalInfo.aboutTheTeamChosen}
+                    title={this.props.teamsBySearch.length > 0? "View" : "Your Team"}
                     dateType={item.dateAndTime.pickType} />)
             })
         } else {
@@ -134,10 +125,10 @@ class YourTeams extends Component {
             <div >
                 <Tabs />
                 <div className="slider">
-                    <h3>{this.state.bySearch ? "Your Search Result" : "Your Teams"}</h3>
+                    <h3>{this.props.teamsBySearch.length > 0 ? "Your Search Result" : "Your Teams"}</h3>
                     <div className="slides"> {searchResults}</div>
-                    {yourTeams.length > 1 && (<div onClick={this.clickLeftHandler} className="btnLeft fas fa-angle-double-left "></div>)}
-                    {yourTeams.length > 1 && (<div onClick={this.clickRightHandler} className="btnRight fas fa-angle-double-right"></div>)}
+                    <div onClick={this.clickLeftHandler} className="btnLeft fas fa-angle-double-left "></div>
+                    <div onClick={this.clickRightHandler} className="btnRight fas fa-angle-double-right"></div>
                 </div>
             </div>)
         if (this.state.viewTeam) {
@@ -157,7 +148,8 @@ const mapStateHandler = state => {
         userEmail: state.user.email,
         emailManger: state.teamCreateInfo.emailManger,
         emailRegister: state.user.email,
-        yourTeams: state.teamCreateInfo.yourTeams
+        yourTeams: state.teamCreateInfo.yourTeams,
+        teamsBySearch: state.teamCreateInfo.teamsBySearch
 
     };
 };
@@ -167,6 +159,7 @@ const mapStateDispatch = dispatch => {
         joinTeam: (data) => dispatch(actionType.joinTeam(data)),
         viewTeamToJoin: (team) => dispatch(actionType.viewTeamToJoin(team)),
         resetModel: () => dispatch(actionType.resetModel()),
+        loadChatBoard:(team)=>dispatch(actionType.loadChatBoard(team)),
         isMemberMsg: () => dispatch(actionType.isMemberMsg()),
         openErrorMsg: () => dispatch(actionType.openErrorMsg()),
         openErrorMsg: () => dispatch(actionType.openErrorMsg()),

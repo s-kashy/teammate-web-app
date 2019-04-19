@@ -39,10 +39,8 @@ module.exports = (app) => {
             res.status(400).send(err)
         })
 
-
     })
     app.post("/api/profile/update-profile-no-image", (req, res) => {
-
         let id = req.header("id")
         Profile.findOneAndUpdate(id, { $set: req.body }, { new: true }).then(docs => {
             res.status(200).send(docs)
@@ -72,10 +70,12 @@ module.exports = (app) => {
     })
     app.get("/api/profile/get-profile", (req, res) => {
         let email = req.header("email")
+     
         Profile.findOne({ email: email }, (err, user) => {
             if (err) {
                 res.status(400).send()
             }
+        
             res.status(200).send(user)
         })
 

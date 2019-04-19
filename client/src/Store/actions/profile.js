@@ -31,8 +31,8 @@ export const getUserProfile = (emailUser) => {
     }
     return dispatch => {
         getRequestData(dataUser).then(res => {
+        
             dispatch(updateProfileUser(res.data))
-
         }).catch(err => {
             console.log(err)
         })
@@ -41,7 +41,6 @@ export const getUserProfile = (emailUser) => {
 
 }
 export const updateUserNoImage = (id, userProfile) => {
-
     var data = {
         url: UPDATE_PROFILE_NO_IMAGE,
         method: "post",
@@ -84,7 +83,6 @@ export const postUserProfile = (userProfile) => {
         url: NEW_PROFILE,
         method: "post",
         header: headersOpt,
-
         data: userProfile,
         params: ""
     }
@@ -97,7 +95,6 @@ export const postUserProfile = (userProfile) => {
 
 }
 export const updateUserProfileOnServer = (id, profileEdit) => {
-
     var data = {
         url: UPDATE_PROFILE,
         method: "post",

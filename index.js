@@ -1,16 +1,17 @@
 const express = require("express")
 const mongoose = require("mongoose");
+const http=require("http")
 const path = require("path");
 var bodyParser = require('body-parser')
+const socketio=require("socket.io")
 const keys = require("./config/keys")
-
 var cors = require('cors')
 const app = express()
+const server =http.createServer(app)
+const io=socketio(server)
 app.use(cors())
 app.use(bodyParser.json());         
 app.use(bodyParser.urlencoded({ extended: true }));
-
-
 
 mongoose.connect(
     keys.MONGO_DB,
@@ -31,6 +32,7 @@ require("./routes/auth")(app)
 require("./routes/profile")(app)
 require("./routes/emailService")(app)
 require("./routes/team")(app)
+require("./socketManager/socketManager")(io)
 
 app.get('*', function (request, response){
     // response.sendFile(path.resolve(__dirname, './client/public/', 'index.html'))
@@ -39,6 +41,6 @@ app.get('*', function (request, response){
 
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log("listening on port 5000");
 });

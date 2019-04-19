@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink ,Link} from "react-router-dom"
+import { NavLink, Link } from "react-router-dom"
 import { connect } from "react-redux";
 import * as actionType from "../../Store/actions/index"
 import "./Header.css"
@@ -8,10 +8,10 @@ class Header extends Component {
     state = {
         open: true
     }
-    onClickLogout=()=>{
-       this.props.logoutUser().then(res=>{
-          
-        }).catch(err=>{})
+    onClickLogout = () => {
+        this.props.logoutUser().then(res => {
+
+        }).catch(err => { })
     }
     onClickMenu = () => {
         this.setState({ open: !this.state.open })
@@ -19,25 +19,22 @@ class Header extends Component {
     }
     render() {
         let menuState = this.state.open ? "-100%" : "0"
-
-
         return (<div className="header">
-        <Link to="/"><h2 className="header-logo" onClick={this.onClickMenu}>TeamMate</h2></Link>
+            <Link to="/"><h2 className="header-logo" onClick={this.onClickMenu}>TeamMate</h2></Link>
             {/* <input type="checkbox" className="chk" id="chk-header" /> */}
             <label htmlFor="chk-header" className="show-menu-btn" onClick={this.onClickMenu}>
                 <i className="fas fa-times"></i>
             </label>
-           
             <ul className="menu" style={{ right: menuState }}>
                 <NavLink onClick={this.onClickMenu} className="link-class" exact to="/about">About</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/profile" onClick={this.onClickMenu}>Your Profile</NavLink>
                 <NavLink onClick={this.onClickMenu} className="link-class" to="/create-team" >Create A Team</NavLink>
-                <NavLink onClick={this.onClickMenu} className="link-class" to="/item" onClick={this.onClickLogout}>logout</NavLink>
-                <label htmlFor="chk" className="hide-menu-btn"  onClick={this.onClickMenu}>
+                <NavLink onClick={this.onClickMenu} className="link-class" to="#" onClick={this.onClickLogout}>logout</NavLink>
+                <label htmlFor="chk" className="hide-menu-btn" onClick={this.onClickMenu}>
                     <i className="fas fa-times"></i>
                 </label>
             </ul>
-            </div>)
+        </div>)
 
 
     }
@@ -52,4 +49,4 @@ const mapStateDispatch = dispatch => {
         logoutUser: () => dispatch(actionType.logoutUser())
     };
 };
-export default connect(mapStateHandler,mapStateDispatch)(Header)
+export default connect(mapStateHandler, mapStateDispatch)(Header)

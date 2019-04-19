@@ -17,3 +17,7 @@ export const NEW_TEAM="/api/team/new-team"
 export const FIND_TEAM_BY_CATEGORIES="/api/team/find-by-categories"
 export const JOIN_TEAM="/api/team/join-team"
 export const GET_USER_TEAMS="/api/team/get-all-users-teams"
+
+
+export const GET_ALL_MESSAGES_OF_GROUP="/api/chat-message/get-messages" 
+export const POST_MESSAGE_OF_USER="/api/chat-message/post-message"

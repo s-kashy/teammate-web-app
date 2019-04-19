@@ -23,17 +23,17 @@ module.exports = (app) => {
         transformation: [{ width: 500, height: 500, crop: "limit" }]
     });
     const parser = multer({ storage: storage });
-
-
     app.post("/api/team/new-team", parser.single("myImage"), (req, res) => {
         let data = JSON.parse(req.body.value)
-        var team = new Team(data)
+        let emailRegister=req.header("id")
+              var team = new Team(data)
         if (req.file) {
             team.generalInfo.file = req.file.url
         }
+        team.membersId.push(emailRegister)
         var chatTeam = new ChatTeam()
         chatTeam.teamId = team._id
-
+        
         team.save(function (err, docs) {
             if (err) {
                 res.send(err)
@@ -52,7 +52,7 @@ module.exports = (app) => {
             let result = teams.filter(team => {
                 return arraySearchBy.includes(team.generalInfo.typeOfSportChosen)
             })
-            res.header("len", result.length).send(result)
+            res.send(result)
         }).catch(err => {
             res.send(err)
         })

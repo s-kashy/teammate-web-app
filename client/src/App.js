@@ -21,18 +21,16 @@ import './App.css';
 
 
 class App extends Component {
-
   componentDidMount() {
-
     this.props.authCheckState().then(res => {
       this.props.initializeUser(res)
       this.props.history.push("/")
     }).catch(err => {
-      this.props.history.push("/api/auth/login")
+     this.props.history.push("/api/auth/login")
+     //this.props.history.push("/")
     })
 
   }
-
 
   render() {
     let redirectAuth = (
@@ -51,7 +49,7 @@ class App extends Component {
           <Route path="/search-team" component={SearchTeam} />
           <Route path="/your-teams" component={YourTeams} />
           <Route path="/about" component={About} />
-          <Route path="/chat-board" component={ChatBoardTeam} />
+          <Route path="/chat-team" component={ChatBoardTeam} />
           <Route exact path="/" component={LandingPage} />
           <Redirect to="/" />
           {/* <Route component={Error} /> */}

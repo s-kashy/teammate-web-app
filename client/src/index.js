@@ -14,6 +14,7 @@ import '../node_modules/rc-time-picker/assets/index.css';
 import controlUiR from "./Store/Reducer/controlModel"
 import profileR from "./Store/Reducer/profile"
 import teamCreateInfoR from "./Store/Reducer/teamCreateInfo"
+import messageTeamBoardR from "./Store/Reducer/messageTeamBoard"
 import thunk from "redux-thunk";
 import { loadState, saveState } from "./Utils/localStorageState"
 import App from './App';
@@ -25,6 +26,7 @@ const rooReducer = combineReducers({
     controlModel: controlUiR,
     user: profileR,
     teamCreateInfo: teamCreateInfoR,
+    messageTeamBoard:messageTeamBoardR,
     persistedState
 
 

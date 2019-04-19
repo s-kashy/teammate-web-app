@@ -12,10 +12,10 @@ class LadingPage extends Component {
 
     }
     successFunction = (position) => {
-        console.log(position)
+       
     }
     errorFunction = (err) => {
-        console.log(err)
+       
     }
     render() {
         return (<div>

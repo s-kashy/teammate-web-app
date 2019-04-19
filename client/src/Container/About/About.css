@@ -26,7 +26,7 @@
     line-height: 24pt;
     padding: 10px 10px;
     text-align: center;
-    box-shadow: 2px 2px 2px  #fff;
+    box-shadow: 2px 2px 2px #fff;
 }
 
 .btn-about {
@@ -45,16 +45,19 @@
 }
 
 .btn-position-about {
-    position: absolute;
-    top: 507px;
-    left: 582px;
+    margin: 20px auto;
     z-index: -1000;
 }
 
 @media screen and (max-width:800px) {
+    .main-wrapper-about{
+        top:-50px;
+    }
     .info-about {
         width: 100%;
-        padding: 0px 10px;
+        overflow: auto;
+        height: 338px;
+        margin: 56px auto;
     }
     .btn-position-about {
         position: static;

@@ -197,7 +197,7 @@ class Profile extends Component {
             copyUserObj.imageUrl.fileName = event.target.files[0].name
             copyUserObj.imageUrl.didUpload = true
             this.setState({ user: copyUserObj,image: event.target.files[0] }, () => {
-                console.log(this.state.user)
+               
             })
         } else {
             copyUserObj.imageUrl.error = true

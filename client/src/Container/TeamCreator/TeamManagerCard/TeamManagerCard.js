@@ -39,11 +39,13 @@ class TeamManagerCard extends Component {
             formDate.append("myImage", this.props.generalInfo.file)
             formDate.append("value", JSON.stringify(data))
             this.props.processRequestMsg(true)
-            this.props.submitManagerCard(formDate).then(res => {
+           
+            this.props.submitManagerCard(formDate, this.props.email).then(res => {
                 if (res.status == 200) {
                     setTimeout(() => {
                         this.props.history.push("/")
                         this.props.processRequestMsg(false)
+                        this.props.clearAllTeams()
                     }, 1000);
 
                 }
@@ -57,20 +59,20 @@ class TeamManagerCard extends Component {
 
         const { nameOfTeam, aboutTheTeamChosen, typeOfSportChosen } = this.props.generalInfo
         const { startTime, endTime, pickType, dayOfTheWeekPicker, selectedDays } = this.props.dateAndTime
-   
+
         const { formattedAddress } = this.props.location
         var arrayOfTheDates = []
-        var month=[]
-        if (dayOfTheWeekPicker != undefined && dayOfTheWeekPicker.length>0) {
+        var month = []
+        if (dayOfTheWeekPicker !== undefined && dayOfTheWeekPicker.length > 0) {
             arrayOfTheDates = dayOfTheWeekPicker.map((item, index) => {
-            return (<li key={index} className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span>{item.value}</li>)
+                return (<li key={index} className="item-date-manager-card">{item.value}</li>)
             })
         }
 
-        if (selectedDays!==undefined && selectedDays.length > 0) {
-            console.log("monthly",selectedDays)
+        if (selectedDays !== undefined && selectedDays.length > 0) {
+            console.log("monthly", selectedDays)
             arrayOfTheDates = selectedDays.map((item, index) => {
-                return (<li key={index} className="item-date-manager-card"><span><i className="far fa-dot-circle"></i></span> {moment(item).format('DD/MM/YYYY')}</li>)
+                return (<li key={index} className="item-date-manager-card">{moment(item).format('DD/MM/YYYY')}</li>)
             })
         }
         return (<div>{this.state.isLoading ? <div className="main-team-manager-card">
@@ -84,7 +86,7 @@ class TeamManagerCard extends Component {
                 </div>
                 <div className="about-card-manager">
                     <p style={{ margin: "0" }}>About The Team</p>
-                    <article>
+                    <article className="about-team-card-manager">
                         {aboutTheTeamChosen}
                     </article>
                 </div>
@@ -121,6 +123,7 @@ class TeamManagerCard extends Component {
 
 const mapStateHandler = state => {
     return {
+        email: state.user.email,
         location: state.teamCreateInfo.location,
         generalInfo: state.teamCreateInfo.generalInfo,
         dateAndTime: state.teamCreateInfo.dateAndTime,
@@ -129,8 +132,9 @@ const mapStateHandler = state => {
 };
 const mapStateDispatch = dispatch => {
     return {
-        submitManagerCard: (mangerCard) => dispatch(actionType.submitManagerCard(mangerCard)),
-        processRequestMsg: (req) => dispatch(actionType.processRequestMsg(req))
+        clearAllTeams: () => dispatch(actionType.clearAllTeams()),
+        submitManagerCard: (mangerCard, email) => dispatch(actionType.submitManagerCard(mangerCard, email)),
+        processRequestMsg: (req) => dispatch(actionType.processRequestMsg(req)),
 
     };
 };

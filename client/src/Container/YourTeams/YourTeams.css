@@ -1,8 +1,7 @@
 .slider {
     position: relative !important;
     /* width: 600px; */
-    height: 300px;
-    overflow: hidden;
+    height: 360px;
     margin: auto
 }
 
@@ -21,16 +20,16 @@
 }
 
 .btnLeft:hover, .btnRight:hover {
-    background: #000000b3;
+    transform: scale(1.25);
     cursor: pointer;
 }
 
 .btnLeft {
-    left: 440px
+    left: 31%;
 }
 
 .btnRight {
-    right: 440px
+    right: 31%;
 }
 
 @media screen and (max-width:800px) {

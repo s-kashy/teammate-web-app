@@ -12,7 +12,6 @@ export const setAuth = (result) => {
     }
 }
 export const loginWithCredential = (userInfo) => {
-
     let dataSent = {
         url: LOG_IN_WITH_CREDENTIAL,
         header: {

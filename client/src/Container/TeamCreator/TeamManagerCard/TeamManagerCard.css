@@ -16,7 +16,6 @@ li {
     display: flex;
     box-shadow: 0px 20px 30px 3px rgba(0, 0, 0, 0.55);
     font-family: 'Roboto', sans-serif;
-    height: 1000px;
     background: transparent;
     position: relative;
     left: 0;
@@ -38,12 +37,14 @@ li {
     width: 80%;
     background-color: beige;
 }
-.img-card-view{
+
+.img-card-view {
     border-bottom-left-radius: 0px !important;
     border-top-left-radius: 0 !important;
     border-top-right-radius: 0 !important;
     border-bottom-right-radius: 0 !important;
 }
+
 .title-card-manager {
     margin: 10px auto;
 }
@@ -97,7 +98,6 @@ img {
     justify-content: center;
     align-items: center;
     width: 90%;
-    height: 200px;
     overflow: auto;
 }
 
@@ -111,12 +111,12 @@ span {
 }
 
 .list-of-dates-manager-card {
+    display: -webkit-flex;
     display: flex;
+    align-items: center;
+    justify-content: center;
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
-    position: relative;
-    top: 27px;
-    height: 200px;
 }
 
 .btn-submit-manager-card {
@@ -147,13 +147,23 @@ span {
     text-decoration: none;
 }
 
+.item-date-manager-card::before {
+    content: "\f192";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    padding: 0 3px;
+}
+
 .item-date-manager-card {
     flex: 0 0 29%;
     margin: 0 19px;
     padding: 10px 0;
     width: calc(33%-20px)
 }
-
+.about-team-card-manager{
+    max-height: 150px !important;
+    overflow: auto;
+}
 @media screen and (max-width:800px) {
     .about-the-team-card-manager {
         width: 100% !important;

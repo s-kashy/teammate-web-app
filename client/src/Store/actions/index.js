@@ -36,5 +36,10 @@ export {
     joinTeam,
     loadYourTeams,
     getUsersTeams,
-    clearAllTeams
-} from "./teamCreateInfo"
+    clearAllTeams,
+    loadChatBoard,
+    clearSelectedTeam,
+ } from "./teamCreateInfo"
+export {
+    getAllTeamMessages
+} from "./messageTeamBoard"

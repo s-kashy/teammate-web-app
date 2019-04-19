@@ -50,10 +50,10 @@ class SearchTeam extends Component {
         }
         if (data.length > 0) {
             this.props.getTeamsByCategoryType(data).then(res => {
-                if (this.props.yourTeams === undefined || this.props.yourTeams.length === 0) {
+                if (this.props.teamsBySearch === undefined || this.props.teamsBySearch.length === 0) {
                     this.setState({ noTeamMsg: true })
                 } else {
-                    this.props.history.push("/your-teams")
+                 this.props.history.push("/your-teams")
                 }
 
             }).catch(err => {
@@ -62,11 +62,7 @@ class SearchTeam extends Component {
         }
 
     }
-    viewTeamHandler = (item) => {
 
-        this.props.viewTeamToJoin(item)
-        this.setState({ showTeamCard: !this.state.showTeamCard, idOfTeam: item._id })
-    }
     onChangeCheckBoxHandler = (event) => {
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         userInfo.sportInterest[event.target.name].value = !userInfo.sportInterest[event.target.name].value
@@ -86,7 +82,6 @@ class SearchTeam extends Component {
     }
     render() {
         const { noTeamMsg } = this.state
-
         let arrayOfObjectSport = this.convertObjectToArray()
         let arrayOfCheckBox = arrayOfObjectSport.map((item, index) => {
             return (<CheckBox value={item.value}
@@ -118,7 +113,8 @@ class SearchTeam extends Component {
 const mapStateHandler = state => {
     return {
         emailRegister: state.user.email,
-        yourTeams: state.teamCreateInfo.yourTeams
+        yourTeams: state.teamCreateInfo.yourTeams,
+        teamsBySearch:state.teamCreateInfo.teamsBySearch
     };
 };
 const mapStateDispatch = dispatch => {

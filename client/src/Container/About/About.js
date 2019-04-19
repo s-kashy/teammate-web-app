@@ -7,6 +7,7 @@ class About extends Component {
     }
     render() {
         return (<div className="main-wrapper-about">
+       
             <div className="info-about">
             <h2>TeamMate</h2>
                 <article>Teammate is a fun way to find and create pick up games through various sports.

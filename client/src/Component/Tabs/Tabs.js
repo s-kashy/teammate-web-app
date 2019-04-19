@@ -13,8 +13,13 @@ class Tabs extends Component {
     }
     onClickYourTeamHandler = () => {
         this.props.clearAllTeams()
+        
         this.props.history.push("/your-teams")
     }
+    onclickSearchTeamHandler=()=>{
+        this.props.clearAllTeams()
+    }
+
     render() {
         return (
             <div className="main-wrapper-tabs">
@@ -22,7 +27,7 @@ class Tabs extends Component {
                     <nav>
                         <ul>
                             <li><Link to="/"><span className="home-tab"></span></Link></li>
-                            <li><Link to="/search-team"><span className="search-teams-tab"></span></Link></li>
+                            <li onClick={this.onclickSearchTeamHandler}><Link to="/search-team"><span className="search-teams-tab"></span></Link></li>
                             <li onClick={this.onClickYourTeamHandler}><Link to="#" ><span className="your-teams-tab"></span></Link></li>
                         </ul>
                     </nav>
@@ -31,11 +36,10 @@ class Tabs extends Component {
                     <nav>
                         <ul>
                             <li><Link to="/"><span className="home-tab"></span></Link></li>
-                            <li><Link to="/search-team"><span className="search-teams-tab"></span></Link></li>
+                            <li onClick={this.onclickSearchTeamHandler}><Link to="/search-team"><span className="search-teams-tab"></span></Link></li>
                             <li onClick={this.onClickYourTeamHandler}><Link to="#"><span className="your-teams-tab"></span></Link></li>
                         </ul>
                     </nav>
-
                 </div>
                 <div style={{ position: "relative" }}>
                     <button className={this.state.toggleClass ? "btn-tab-mobile" : "btnc"} onClick={this.onClickTabMobileHandler}></button>
