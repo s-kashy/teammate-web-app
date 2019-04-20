@@ -20,7 +20,7 @@ class YourTeams extends Component {
     }
 
     componentDidMount() {
-        if (this.props.teamCreateInfo != undefined || this.props.teamsBySearch.length !== 0) {
+        if (this.props.teamCreateInfo !== undefined || this.props.teamsBySearch.length !== 0) {
             let array = this.chunkArray(this.props.teamsBySearch)
             this.setState({
                 yourTeams: array,
@@ -40,7 +40,6 @@ class YourTeams extends Component {
             }
             this.props.getUsersTeams(data).then(res => {
                 let array = this.chunkArray(res)
-                console.log("user teams", array)
                 this.setState({ yourTeams: array, isLoading: true }, () => {
                 })
             }).catch(err => {
@@ -105,17 +104,18 @@ class YourTeams extends Component {
     }
     render() {
         let { yourTeams, bySearch } = this.state
+     
         var searchResults = []
         if (yourTeams.length > 0) {
             searchResults = yourTeams[this.state.indexActive].map((item, index) => {
                 return (<ItemSearchTeam image={item.generalInfo.file}
                     view={this.props.teamsBySearch.length > 0 ? () => this.viewTeamHandler(item) : () => this.loadTeamMessageBoard(item)}
-                    fade={item.membersId.length != 0 && item.membersId.length >= item.generalInfo.numberOfTeam && bySearch ? true : false}
+                    fade={item.membersId.length !== 0 && item.membersId.length >= item.generalInfo.numberOfTeam && bySearch ? true : false}
                     sportType={item.generalInfo.typeOfSportChosen}
                     nameOfTeam={item.generalInfo.nameOfTeam}
                     key={index}
                     about={item.generalInfo.aboutTheTeamChosen}
-                    title={this.props.teamsBySearch.length > 0? "View" : "Your Team"}
+                    title={this.props.teamsBySearch.length > 0 ? "View" : "Your Team"}
                     dateType={item.dateAndTime.pickType} />)
             })
         } else {
@@ -125,10 +125,10 @@ class YourTeams extends Component {
             <div >
                 <Tabs />
                 <div className="slider">
-                    <h3>{this.props.teamsBySearch.length > 0 ? "Your Search Result" : "Your Teams"}</h3>
+                    <h3 className="title-your-team">{this.props.teamsBySearch.length > 0 ? "Your Search Result" : "Your Teams"}</h3>
                     <div className="slides"> {searchResults}</div>
-                    <div onClick={this.clickLeftHandler} className="btnLeft fas fa-angle-double-left "></div>
-                    <div onClick={this.clickRightHandler} className="btnRight fas fa-angle-double-right"></div>
+                    {this.state.yourTeams.length > 1 && (<div onClick={this.clickLeftHandler} className="btnLeft fas fa-angle-double-left "></div>)}
+                    {this.state.yourTeams.length > 1 && (<div onClick={this.clickRightHandler} className="btnRight fas fa-angle-double-right"></div>)}
                 </div>
             </div>)
         if (this.state.viewTeam) {
@@ -159,11 +159,10 @@ const mapStateDispatch = dispatch => {
         joinTeam: (data) => dispatch(actionType.joinTeam(data)),
         viewTeamToJoin: (team) => dispatch(actionType.viewTeamToJoin(team)),
         resetModel: () => dispatch(actionType.resetModel()),
-        loadChatBoard:(team)=>dispatch(actionType.loadChatBoard(team)),
+        loadChatBoard: (team) => dispatch(actionType.loadChatBoard(team)),
         isMemberMsg: () => dispatch(actionType.isMemberMsg()),
         openErrorMsg: () => dispatch(actionType.openErrorMsg()),
-        openErrorMsg: () => dispatch(actionType.openErrorMsg()),
-        getUsersTeams: (data) => dispatch(actionType.getUsersTeams(data))
+             getUsersTeams: (data) => dispatch(actionType.getUsersTeams(data))
 
     };
 };

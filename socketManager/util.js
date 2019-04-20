@@ -3,7 +3,7 @@ var moment =require("moment")
 const generateMessage = (username, text) => {
     return {
         name:username,
-        msg:text,
+        message:text,
         date:moment(Date.now()).format("HH:mm DD-MM-YYYY")
     }
 }

@@ -53,7 +53,7 @@ class DateAndTime extends Component {
                     startTime: startTime,
                     endTime: endTime,
                     dayOfTheWeekPicker: dayOfTheWeekPicker.filter(item => {
-                        return item.check != false
+                        return item.check !== false
                     })
                 }
             case "Monthly":
@@ -69,10 +69,10 @@ class DateAndTime extends Component {
     componentDidMount() {
         const { pickType, startTime, endTime } = this.props.dateAndTime
         if (this.props.dateAndTime !== "") {
-            if (pickType == "Daily") {
+            if (pickType === "Daily") {
                 this.setState({ startTime, endTime, pickType, isValid: true }, () => { })
             }
-            else if (pickType == "Weekly") {
+            else if (pickType === "Weekly") {
                 const { dayOfTheWeekPicker, pickType } = this.props.dateAndTime
                 let tempStateDayCopyWeek = JSON.parse(JSON.stringify(this.state.dayOfTheWeekPicker))
                 let timePickerCopy = JSON.parse(JSON.stringify(this.state.timePicker))
@@ -119,7 +119,7 @@ class DateAndTime extends Component {
             }
         }
         else if (pickType === "Monthly") {
-            if (selectedDays.length > 0 && startTime != endTime) {
+            if (selectedDays.length > 0 && startTime !== endTime) {
                 this.setState({ isValid: true }, () => {
                     this.props.saveDataAndTime(this.createObject(this.state.pickType))
                 })
@@ -146,7 +146,6 @@ class DateAndTime extends Component {
                 this.checkValidFrom()
             })
         }
-
 
     }
 

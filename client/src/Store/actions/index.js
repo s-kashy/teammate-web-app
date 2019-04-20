@@ -41,5 +41,6 @@ export {
     clearSelectedTeam,
  } from "./teamCreateInfo"
 export {
-    getAllTeamMessages
+    getAllTeamMessages,
+    clearAllMessages
 } from "./messageTeamBoard"

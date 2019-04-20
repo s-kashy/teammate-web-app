@@ -3,7 +3,7 @@ import axios from "axios"
 
 export const getRequestData = (data) => {
 
-    if (data.method == 'post') {
+    if (data.method === 'post') {
        
         return axios.request({
             method: 'post',

@@ -32,6 +32,7 @@ require("./routes/auth")(app)
 require("./routes/profile")(app)
 require("./routes/emailService")(app)
 require("./routes/team")(app)
+require("./routes/chatGroup")(app)
 require("./socketManager/socketManager")(io)
 
 app.get('*', function (request, response){

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import "./GeneralInfo.css"
-import _ from "lodash"
+// import _ from "lodash"
 import { connect } from "react-redux";
 import * as actionType from "../../../Store/actions/index"
 import Input from "../../../Component/Input/Input"
@@ -72,7 +72,7 @@ class GeneralInfo extends Component {
             typeOfSportChosen: typeOfSport
         }
         if (userBasic.isBasicInfoValid && !aboutTheTeam.error
-            && imageUrl.valid && typeOfSport != arraySportType[0].toString()) {
+            && imageUrl.valid && typeOfSport !== arraySportType[0].toString()) {
 
             this.props.saveGeneralInfo(generalInfo)
             this.setState({ isValid: true }, () => {
@@ -125,7 +125,7 @@ class GeneralInfo extends Component {
     checkBasicInfoValid = (key) => {
         var userBasic = JSON.parse(JSON.stringify(this.state.userBasic))
         if (key === "numberOfTeam") {
-            if (userBasic[key].value === "" || userBasic[key].value == undefined || parseInt(userBasic[key].value) <= 0) {
+            if (userBasic[key].value === "" || userBasic[key].value === undefined || parseInt(userBasic[key].value) <= 0) {
                 userBasic[key].error = true
                 userBasic.isBasicInfoValid = false
             } else {
@@ -138,7 +138,7 @@ class GeneralInfo extends Component {
             })
         }
         else if (key === "nameOfTeam") {
-            if (userBasic[key].value === "" || userBasic[key].value == undefined) {
+            if (userBasic[key].value === "" || userBasic[key].value === undefined) {
                 userBasic[key].error = true
                 userBasic.isBasicInfoValid = false
                 this.checkValidForm()
@@ -212,10 +212,9 @@ class GeneralInfo extends Component {
                             error={imageUrl.error}
                             classLabel="label-image-of-team-general-info"
                             change={(event) => this.imageUploadHandler(event)}
-                            title={imageUrl.fileName == "" ? "Team logo" : imageUrl.fileName} /><span className="icon-upload-image-general-info"><i style={{ fontSize: "30px", fontWeight: "1000", color: "red" }} className="far fa-cloud-upload-alt"></i></span>
+                            title={imageUrl.fileName === "" ? "Team logo" : imageUrl.fileName} /><span className="icon-upload-image-general-info"><i style={{ fontSize: "30px", fontWeight: "1000", color: "red" }} className="far fa-cloud-upload-alt"></i></span>
                     </div>
                     <div>
-
                         <textarea className="textarea-general-info"
                             onChange={(event) => this.onChangeTextAreaHandler(event)} value={this.state.aboutTheTeam.value}
                             placeholder={aboutTheTeam.error && aboutTheTeam.touch ? "Don't forget*" : "Little about the team"}></textarea>

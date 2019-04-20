@@ -1,4 +1,3 @@
-
 .main-email-verification {
     display: flex;
     margin: 0;
@@ -17,7 +16,7 @@
     background-size: cover;
 }
 
-.input-email-verification,.input-confirm-email-verification {
+.input-email-verification, .input-confirm-email-verification {
     background-color: transparent;
     width: 288px;
     height: 48px;
@@ -28,23 +27,51 @@
     outline: none;
     padding: 0 10px;
     box-sizing: border-box;
-    border: 1px solid rgb(12, 11, 11)
+    border: 1px solid black
 }
-.icon-submit-email-verification,.icon-submit-confirm-email-verification{
-    font-size: 20px;
+
+.icon-submit-confirm-email-verification, .icon-submit-email-verification {
     color: white;
+    font-size: 20px;
+    transition-duration: .6s;
 }
-.submit-btn-email-verification,.submit-confirm-btn-email-verification{
+
+.icon-submit-email-verification:active, .icon-submit-confirm-email-verification:active {
+    transform: scale(.9);
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+}
+.wrapper-input{
+    position: relative;
+}
+.icon-submit-confirm-email-verification::after {
+    content: "\f00c";
+    color: white;
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+.submit-confirm-btn-email-verification{
     height: 48px;
     width: 48px;
     left: 450px;
-    top: 18px;
+    top:18px;
     cursor: pointer;
     position: absolute;
     background-color: #0000FF;
     border: 1px solid black;
-  
+} 
+.submit-btn-email-verification{
+    height: 48px;
+    width: 48px;
+    left: 450px;
+    top:0px;
+    cursor: pointer;
+    position: absolute;
+    background-color: #0000FF;
+    border: 1px solid black;
 }
+
 .input-email-verification::placeholder {
     color: black;
 }
@@ -55,7 +82,6 @@
     position: relative;
 }
 
-
 .msg-email-verification {
     flex: 1 1;
     margin: 80px auto;
@@ -64,36 +90,49 @@
 .msg-email-verification span {
     width: 300px
 }
+
 .error-msg-email-verification {
     position: absolute;
     font-weight: 700;
     top: 58px;
     left: 0px;
     color: red;
- 
 }
-.error-confirm-email-verification{
+
+.error-confirm-email-verification {
     position: absolute;
     font-weight: 700 !important;
-    top:176px;
+    top: 176px;
     left: 0px;
     color: red;
 }
-.label-input-email-verification{
-    position: relative;
-    left: -32px;
+
+.icon-submit-email-verification::after {
+    content: "\f00c";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
 }
+
+.label-input-email-verification {
+    position: absolute;
+    left: 193px;
+    top:-18px;
+
+}
+
 .label-confirm-email-verification {
     position: relative;
     left: -18px;
 }
-.contral-team-email-verification{
+
+.contral-team-email-verification {
     position: relative;
     top: 336px;
     right: 58px;
 }
+
 @media screen and (max-width:800px) {
-    .main-email-verification{
+    .main-email-verification {
         display: flex;
         flex-direction: column-reverse;
         display: -webkit-flex;
@@ -104,14 +143,14 @@
         align-items: center;
         object-fit: cover;
         min-height: 700px
-    } 
+    }
     .wrapper-input-email-verification {
         -webkit-flex: 1 1;
         top: -133px;
         flex: 1 1;
         position: relative;
     }
-    .contral-team-email-verification{
+    .contral-team-email-verification {
         position: absolute;
         top: 548px;
         width: 100%;
@@ -141,7 +180,7 @@
         background-color: #0000FF;
         border: 1px solid black;
     }
-    .label-input-email-verification{
+    .label-input-email-verification {
         position: relative;
         left: -84px;
     }

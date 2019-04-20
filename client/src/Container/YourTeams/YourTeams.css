@@ -32,17 +32,25 @@
     right: 31%;
 }
 
+.title-your-team {
+    background-color: #74777b;
+    color: white;
+    width: 500px;
+    font-size: 24px;
+    font-weight: 900;
+    margin: auto;
+}
+
 @media screen and (max-width:800px) {
     .slider {
         width: 100%;
-        left:25px;
+        /* left:25px;
         top:50px;
-        position: absolute;
+        position: absolute; */
         height: 100%;
     }
-    .wrapper-your-teams {
-        z-index: 900;
-        position: absolute;
+    .title-your-team {
+        width: 100%;
     }
     .btnLeft {
         left: 0;
@@ -55,9 +63,8 @@
         cursor: pointer !important;
     }
     .btnLeft:hover, .btnRight:hover {
-        background: #000000b3 !important;
-    }
-    .demo{
+        transform: scale(1.25);
         cursor: pointer;
+        ;
     }
 }

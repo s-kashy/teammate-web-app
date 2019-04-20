@@ -24,4 +24,5 @@ export const CLEAR_ALL_TEAMS="clear all teams"
 export const LOAD_CHAT_GROUP="load chat group"
 
 export const SAVE_ALL_TEAM_MESSAGE="save all team message"
+export const CLEAR_MESSAGES="clear messages of team"
 export const CLEAR_SELECTED_TEAM="clear selected team"

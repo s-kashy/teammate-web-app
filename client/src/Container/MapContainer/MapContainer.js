@@ -11,7 +11,6 @@ componentDidMount(){
 }
 
     constructor(props) {
-
         super(props)
         this.state = {
             activeMarker: null,
@@ -37,6 +36,7 @@ componentDidMount(){
     }
     render() {
         const { lat, lng } = this.state.userInfo
+    
         let arrayOfMarker
         if (this.props.markers){
             arrayOfMarker = this.props.markers.map((item, index) => {
@@ -51,7 +51,7 @@ componentDidMount(){
         })
     }
         return (
-            <div className="map-window">
+            <div className={this.props.mapWindow}>
                 {this.state.reRender && (<Map
                 ref={x=>this.map=x}
                     google={this.props.google}

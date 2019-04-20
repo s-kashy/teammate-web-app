@@ -29,12 +29,12 @@ export const saveEmailManger = (emailManager) => {
         payload: emailManager
     }
 }
-export const sendEmailToken = (data) => {
+export const sendEmailToken = (dataSent) => {
     var data = {
         url: SEND_EMAIL_TOKEN,
         method: "post",
         headers: "",
-        data: data,
+        data: dataSent,
         params: ""
     }
     return dispatch => {
@@ -46,12 +46,12 @@ export const sendEmailToken = (data) => {
         })
     }
 }
-export const checkValidToken = (data) => {
+export const checkValidToken = (dataSent) => {
     var data = {
         url: CONFIRM_TOKEN_MATCH,
         method: "post",
         headers: "",
-        data: data,
+        data: dataSent,
         params: ""
     }
     return dispatch => {
@@ -64,7 +64,7 @@ export const checkValidToken = (data) => {
     }
 }
 
-export const submitManagerCard = (data, email) => {
+export const submitManagerCard = (dataSent, email) => {
     var data = {
         url: NEW_TEAM,
         method: "post",
@@ -72,7 +72,7 @@ export const submitManagerCard = (data, email) => {
             'content-type': 'multipart/form-data',
             id: email
         },
-        data: data,
+        data: dataSent,
         params: ""
     }
     return dispatch => {
@@ -107,7 +107,7 @@ export const loadBySearchResult = (data) => {
         payload: data
     }
 }
-export const getTeamsByCategoryType = (data) => {
+export const getTeamsByCategoryType = (dataSent) => {
     var data = {
         url: FIND_TEAM_BY_CATEGORIES,
         method: "post",
@@ -115,7 +115,7 @@ export const getTeamsByCategoryType = (data) => {
             "content-type": 'application/json'
 
         },
-        data: data,
+        data: dataSent,
         params: ""
     }
     return dispatch => {
@@ -136,14 +136,14 @@ export const viewTeamToJoin = (teamInfo) => {
     }
 }
 
-export const joinTeam = (data) => {
+export const joinTeam = (dataSent) => {
     var data = {
         url: JOIN_TEAM,
         method: "post",
         headers: {
-            id: data.id
+            id: dataSent.id
         },
-        data: data,
+        data: dataSent,
         params: ""
     }
     return dispatch => {

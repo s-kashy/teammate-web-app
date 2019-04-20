@@ -3,12 +3,9 @@ body {
 }
 
 .search-button-search {
-    /* position: absolute; */
     position: relative;
     right: 7px;
     width: 40px;
-   
-    /* display: inline-block; */
     height: 40px;
     border: 1px solid #00B4CC;
     background: #00B4CC;
@@ -28,4 +25,41 @@ body {
     outline: none;
 }
 
-/* color: #9DBFAF; */
+.map-window-search {
+    /* position: absolute;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    top: -39px;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    display: inherit;
+    z-index: -999 !important; */
+}
+
+@media screen and (max-width:800px) {
+    .map-search-team-wrapper {
+        display: flex;
+        flex-direction: column-reverse
+    }
+    .search-bar-team-search {
+        width: 100%;
+        position: absolute;
+        left: -141px;
+    }
+    .map-team-search {
+        width: 100%;
+    }
+    .map-window-search {
+        position: absolute;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        overflow: hidden;
+        width: 100%;
+        height: 106%;
+        display: inherit;
+        z-index: -999 !important;
+    }
+}

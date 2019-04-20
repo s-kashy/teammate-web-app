@@ -90,7 +90,7 @@ class MapSearchLayout extends Component {
             <div>
                 {this.state.isLoading ? <div className="search-map-layout" >
                     <div className="map-child-flex-layout">
-                        <MapContainer styleMap={styleMap}
+                        <MapContainer styleMap={styleMap} mapWindow="map-window"
                             lat={userLocation.lat} lng={userLocation.lng}
                             markers={userInfo.marker} />
                     </div>

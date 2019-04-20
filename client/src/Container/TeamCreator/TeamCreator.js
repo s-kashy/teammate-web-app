@@ -17,11 +17,10 @@ class TeamCreator extends Component {
 
         })
     }
-
     constructor(props) {
         super(props)
         this.state = {
-            indexActive: 0
+            indexActive: 4
         }
     }
 

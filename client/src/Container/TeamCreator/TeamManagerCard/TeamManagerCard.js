@@ -62,7 +62,7 @@ class TeamManagerCard extends Component {
 
         const { formattedAddress } = this.props.location
         var arrayOfTheDates = []
-        var month = []
+      
         if (dayOfTheWeekPicker !== undefined && dayOfTheWeekPicker.length > 0) {
             arrayOfTheDates = dayOfTheWeekPicker.map((item, index) => {
                 return (<li key={index} className="item-date-manager-card">{item.value}</li>)
@@ -77,7 +77,7 @@ class TeamManagerCard extends Component {
         }
         return (<div>{this.state.isLoading ? <div className="main-team-manager-card">
             <div className="top-image-team-manager-card">
-                <img src={this.state.image} className="img-card-view" alt="profile-image-manager" />
+                <img src={this.state.image} className="img-card-view" alt="team logo"  />
             </div>
             <div className="bottom-contact-team-manager-card">
                 <div className="title-card-manager">
@@ -107,7 +107,7 @@ class TeamManagerCard extends Component {
                         </ul>
                     </div>
                     <div className="btn-contral-manager-card">
-                        <button className="btn-previous-card-manager" onClick={this.props.leftClick}>{this.props.cancel != undefined ? this.props.cancel : Previous.toString()}</button>
+                        <button className="btn-previous-card-manager" onClick={this.props.leftClick}>{this.props.cancel !== undefined ? this.props.cancel : Previous.toString()}</button>
                         <button className="btn-submit-manager-card" onClick={typeof (this.props.joinTeamHandler) === 'function' ? this.props.joinTeamHandler : this.onClickHandler}>{this.props.join != undefined ? this.props.join : Submit.toString()}</button>
                     </div>
                 </div>
