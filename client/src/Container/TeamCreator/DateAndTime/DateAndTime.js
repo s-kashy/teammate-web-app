@@ -148,6 +148,7 @@ class DateAndTime extends Component {
         }
 
     }
+    
 
     onClickCheckBoxHandler = (event) => {
         let checkBoxName = event.target.name

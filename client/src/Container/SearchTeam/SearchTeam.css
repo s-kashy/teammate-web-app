@@ -88,6 +88,13 @@ span {
     text-decoration: none;
 }
 
+.btn-search-team::after {
+    content: "\f002";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    padding: 2px;
+}
+
 @media screen and (max-width:800px) {
     .wrapper-search-team {
         display: flex;
@@ -104,7 +111,6 @@ span {
         position: relative;
         left: -129px;
     }
-    
     .msg-search-categorie {
         margin: auto;
         color: #3498db;

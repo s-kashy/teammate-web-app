@@ -7,10 +7,10 @@ class About extends Component {
     }
     render() {
         return (<div className="main-wrapper-about">
-       
+
             <div className="info-about">
-            <h2>TeamMate</h2>
-                <article>Teammate is a fun way to find and create pick up games through various sports.
+                <h2 className="title-about">TeamMate</h2>
+                <article className="article-about">Teammate is a fun way to find and create pick up games through various sports.
 Do you need a 4th for your tennis doubles game?
 A companion to share your weekly 3 km jog?
 A player suddenly doesn't feel well just before your basketball evening and you need to find someone fast?

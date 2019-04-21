@@ -55,6 +55,7 @@ body {
         position: absolute;
         left: 0px;
         right: 0px;
+        top: -31px;
         bottom: 0px;
         overflow: hidden;
         width: 100%;
