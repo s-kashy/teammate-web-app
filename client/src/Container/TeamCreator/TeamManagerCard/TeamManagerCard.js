@@ -81,11 +81,11 @@ class TeamManagerCard extends Component {
             </div>
             <div className="bottom-contact-team-manager-card">
                 <div className="title-card-manager">
-                    <h1 style={{ marginBottom: "10px", textTransform: "uppercase" }}>{nameOfTeam}</h1>
+                    <h1 style={{ marginBottom: "10px", textTransform: "uppercase",fontSize:"20px" }}>{nameOfTeam}</h1>
                     <span style={{ color: "#3498db" }}><strong>Type of Sport:</strong></span><span>{typeOfSportChosen}</span>
                 </div>
                 <div className="about-card-manager">
-                    <p style={{ margin: "0" }}>About The Team</p>
+                    <p style={{ margin: "0",color: "#3498db" }}>About The Team</p>
                     <article className="about-team-card-manager">
                         {aboutTheTeamChosen}
                     </article>

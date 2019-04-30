@@ -1,0 +1,19 @@
+.wrapper-info-window {
+    background-color: #fafafa;
+    padding: 5px;
+    color: #34495e;
+    cursor: pointer;
+}
+.type-meetup-time-info-window{
+   padding: 3px;
+}
+.btn-info-window {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    background-color: #34495e;
+    color: #ffff
+}
+.btn-info-window:hover{
+   background-color: #31353a; 
+} 

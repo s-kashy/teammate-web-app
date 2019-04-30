@@ -1,0 +1,31 @@
+.rc-slider-track {
+    background-color: #34495e !important;
+}
+
+.rc-slider-rail {
+    background-color: #34495e !important;
+}
+
+@media screen and (max-width:850px) {
+    .rc-slider {
+        position: relative;
+        height: 14px;
+        margin: 10px auto;
+        padding: 5px 0;
+        top: -48px;
+        left: 27px;
+        padding: 010px;
+        width: 118%;
+        border-radius: 6px;
+        touch-action: none;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
+    .rc-slider-track {
+        background-color: #34495e !important;
+    }
+    
+    .rc-slider-rail {
+        background-color: #34495e !important;
+    }
+}

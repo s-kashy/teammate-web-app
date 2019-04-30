@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 var Team = mongoose.model("Team")
 var ChatTeam = mongoose.model("ChatTeam")
 var keys = require("../config/keys")
+var { headingDistanceTo } = require("geolocation-utils")
 var checkUserInTeam = require("../middleware/checkUserInTeam")
 
 const multer = require("multer");
@@ -25,15 +26,15 @@ module.exports = (app) => {
     const parser = multer({ storage: storage });
     app.post("/api/team/new-team", parser.single("myImage"), (req, res) => {
         let data = JSON.parse(req.body.value)
-        let emailRegister=req.header("id")
-              var team = new Team(data)
+        let emailRegister = req.header("id")
+        var team = new Team(data)
         if (req.file) {
             team.generalInfo.file = req.file.url
         }
         team.membersId.push(emailRegister)
         var chatTeam = new ChatTeam()
         chatTeam.teamId = team._id
-        
+
         team.save(function (err, docs) {
             if (err) {
                 res.send(err)
@@ -74,6 +75,18 @@ module.exports = (app) => {
             res.send(err)
         })
 
+    })
+
+    app.post("/api/team/get-by-distance", (req, res) => {
+        Team.find({}).then((docs) => {
+            let result = docs.filter(item => {
+                return (headingDistanceTo({ lat: parseFloat(req.query.lat), lng: parseFloat(req.query.lng) }, item.location.userLocation).distance) / 1000 <= req.query.dist
+            })
+
+            res.send(result)
+        }).catch(err => {
+            res.send(err)
+        })
     })
 }
 

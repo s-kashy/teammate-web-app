@@ -1,12 +1,15 @@
 .wrapper-search-team {
     display: flex;
-    margin: 10px auto;
-    width: inherit
+    margin: 50px auto;
+    background: #fafafa
 }
 
 .search-by-categorie {
     display: flex;
+    position: relative;
+    left: 19px;
     flex-direction: column;
+    
 }
 
 .msg-search-categorie {
@@ -14,7 +17,7 @@
     color: #3498db;
     position: relative;
     left: -50px;
-    text-decoration: underline;
+
 }
 
 .wrapper-check-box {
@@ -52,13 +55,12 @@ span {
 }
 
 .text-no-team-search-Team {
-    background-color: #74777b;
-    color: white;
-    font-weight: 900;
+    color: #34495e;
+    font-weight: 600;
     text-transform: uppercase;
     height: 39px;
     margin: auto;
-    font-size: 30px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -71,19 +73,20 @@ span {
     width: 50%;
     height: auto;
     padding: 0;
-    overflow: hidden
+    overflow: hidden;
+    margin-left: 100px;
 }
 
 .btn-search-team {
-    background: #0000FF;
+    background: #34495e;
     border-radius: 11px;
     cursor: pointer;
     color: #ffffff;
+    max-width: 131px;
     outline: none;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
-    font-weight: bold;
-    padding: 14px 52px;
+    padding: 14px 35px;
     border: none;
     text-decoration: none;
 }
@@ -93,6 +96,33 @@ span {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     padding: 2px;
+    margin-left: 6px;
+}
+
+@media screen and (max-width:1300px) {
+    .map-search-team-wrapper {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width:1250px) {
+    .map-search-team-wrapper {
+        margin-left: -13px;
+    }
+    .wrapper-check-box{
+        width: 440px;
+    }
+    .check-box-search-team {
+        width: 33%;
+        padding-left: 0px;
+    }
+}
+
+@media screen and (min-width:1300px) {
+    .map-search-team-wrapper {
+        margin-left: 20px;
+    }
+   
 }
 
 @media screen and (max-width:800px) {
@@ -100,7 +130,8 @@ span {
         display: flex;
         flex-direction: column;
         z-index: -999;
-        margin: 0 auto
+        margin: 0 auto;
+       
     }
     .search-by-categorie {
         margin: 20px auto;
@@ -109,13 +140,22 @@ span {
     }
     .submit-search-wrapper {
         position: relative;
-        left: -129px;
+      margin: auto;
     }
     .msg-search-categorie {
         margin: auto;
-        color: #3498db;
+        color: #d3dde4;
         position: relative;
-        left: -132px;
-        text-decoration: underline;
+       
+    }
+    .check-box-search-team {
+        width: 45%;
+        /* padding: 4px; */
+        padding-left: 35px;
+    }
+    .map-search-team-wrapper{
+        width: 100%;
+        display: flex;
+        flex-direction: column
     }
 }

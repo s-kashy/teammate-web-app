@@ -3,6 +3,7 @@ import "./ChatBoardTeam.css"
 import Spinner from "../../Component/Ui/Spinner/Spinner"
 import { connect } from "react-redux"
 import moment from "moment"
+import Aux from "../../Hoc/Hoc"
 import ChatMessage from "../../Component/ChatMessage/ChatMessage"
 import { JOIN, All_USERS_RESULT, MESSAGE, URL_SOCKET, SEND_MESSAGE, CONNECT_CLIENT, GET_ALL_USERS_IN_CHAT } from "./socketClientType"
 import * as actionType from "../../Store/actions/index"
@@ -81,7 +82,7 @@ class ChatBoardTeam extends Component {
         }).catch(err=>{
             this.props.history.push("/")
         })
-        console.log("ref", this.messageElement.current)
+       
     }
     onChangeHandler = (event) => {
         let copyMessage = { ...this.state.message }
@@ -111,8 +112,12 @@ class ChatBoardTeam extends Component {
             })
 
         }
-        return (<div>{this.state.isLoading ?
+        return (<div>{this.state.isLoading ?<Aux>
+
+          <p className="team-name-chat-board">{this.props.teamSelected.generalInfo.nameOfTeam}</p>
             <div className="wrapper-chat-bored" ref={this.messageElement}>
+      
+           
                 <div className="chat-team-bored">
                     {arrayMessage}
                 </div>
@@ -123,7 +128,7 @@ class ChatBoardTeam extends Component {
                     <button onClick={this.onClickSendMsgHandler} className="send-msg-chat-board"></button>
                 </div>
 
-            </div> : <Spinner />}</div>)
+            </div> </Aux>: <Spinner /> }</div>)
     }
 }
 const mapStateProps = state => {

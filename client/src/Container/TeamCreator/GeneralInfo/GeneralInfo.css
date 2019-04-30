@@ -30,25 +30,29 @@
 .error-input-name-general-info {
     position: absolute;
     float: left;
-    left: -53px;
-    top: 23px;
+    left: -73px;
+    top: 28px;
+    font-weight: 700;
+    font-size: 13px;
     width: 24%;
     margin: auto;
+    -webkit-align-items: left;
     align-items: left;
     display: block;
-  
     color: red;
 }
 
 .msg-instruction-general-info span {
     width: 25%;
     top: 15%;
+    color: #fff;
     padding: 20px;
     border: 1px solid black;
     left: 69%;
     font-size: 15px;
     position: absolute;
     z-index: -999;
+    line-height: 16pt;
 }
 
 .position-contral-general-info {
@@ -92,6 +96,7 @@ select {
     width: 288px;
     height: 48px;
     top: 47px;
+    color: #fff;
     left: 20px;
     cursor: pointer;
     display: block;
@@ -107,6 +112,7 @@ select {
     width: 288px;
     height: 48px;
     top: 120px;
+    color: #fff;
     left: 20px;
     cursor: pointer;
     display: block;
@@ -122,6 +128,7 @@ select {
     width: 288px;
     height: 48px;
     top: 195px;
+    color: #fff;
     left: 20px;
     opacity: 0;
     line-height: 10px;
@@ -130,12 +137,16 @@ select {
     padding: 0 10px;
     box-sizing: border-box;
 }
-.error-input-number-general-info{
+
+.error-input-number-general-info {
     position: absolute;
-    top: 88px;
-    left: -573px;
+    top: 101px;
+    font-weight: 700;
+    font-size: 13px;
+    left: 17px;
     color: red !important;
 }
+
 .label-image-of-team-general-info {
     position: absolute;
     top: 195px;
@@ -151,6 +162,12 @@ select {
     margin: 2px;
 }
 
+.upload-div-general-info {
+    position: relative;
+    top: -172px;
+    left: -24px;
+}
+
 .icon-upload-image-general-info {
     position: absolute !important;
     top: 199px;
@@ -158,22 +175,30 @@ select {
 }
 
 .textarea-general-info {
-    width: 400px;
+    width: 293px;
     font-family: 'Roboto', sans-serif;
     height: 150px;
     overflow: auto;
-    top: 300px;
+    top: 197px;
+    padding: 4px;
+    color: #fff;
     overflow: auto;
     line-height: 18pt;
-    left: 15px;
+    left: 18px;
     position: absolute;
     border: 1px solid black;
-    color: black;
     background-color: transparent;
 }
 
 .textarea-general-info:focus {
-    background-color: #fff;
+    border: none
+}
+.textarea-general-info:hover {
+    border: 1px solid black !important;
+}
+.fa-cloud-upload-alt:before {
+    content: "\f382";
+    color: #fff;
 }
 
 .textarea-general-info::placeholder {
@@ -184,7 +209,8 @@ select {
 @media screen and (max-width:800px) {
     .main-general-info {
         display: flex;
-        height: 130%;
+        height: 130% !important;
+        max-height: 110%;
         flex-direction: column-reverse !important;
     }
     .msg-instruction-general-info span {
@@ -194,6 +220,7 @@ select {
         position: static;
         left: 0;
         top: 0;
+        background: #34495e !important;
         padding: 3px 6px;
         border: 1px solid black;
         display: block;
@@ -214,7 +241,7 @@ select {
     }
     .input-wrapper-general-info {
         position: relative;
-        top: 20px;
+        top: 91px;
     }
     .option-menu-general-info {
         position: relative;
@@ -238,13 +265,12 @@ select {
         height: 150px;
         width: 100%;
         overflow: auto;
-        top: 300px;
+        top: 192px;
         margin: auto;
-        left: 24px;
+        left: 20px;
         position: absolute;
         border: 1px solid black;
         color: black;
         background-color: transparent;
     }
-  
 }

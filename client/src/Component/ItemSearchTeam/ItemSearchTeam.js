@@ -1,6 +1,10 @@
 import React from "react"
 import "./ItemSearchTeam.css"
+import { findTheNextEvent } from "./compareDates"
 const ItemSearchTeam = (props) => {
+    console.log(props.dateType, props.dateEvent)
+    let nextEvent = findTheNextEvent(props.dateType, props.dateEvent)
+
     let disabledMode = null
     if (props.fade) {
         disabledMode = {
@@ -14,16 +18,19 @@ const ItemSearchTeam = (props) => {
                 <img className="img-item-search" src={props.image} alt="item-team" />
             </div>
             <div className="item-info-wrapper">
-            <div onClick={props.view} className="fab">&#43;</div>
+                <div onClick={props.view} className="fab">&#43;</div>
                 <div>
-                    <h3 className="type-of-date-item-search">Type of Sport {props.sportType}</h3>
+                    <h3 className="type-of-date-item-search">{props.sportType}</h3>
                     <p>{props.nameOfTeam}</p>
-                    <p className="about-item-search">{props.about}</p>
+                    <div >
+                        <span className="amount-in-team">members in the team {props.signUpMembers}/{props.maxMembers} </span>
+                        <span className="next-event-in-team">{`upcoming event ${nextEvent}`}</span>
+                    </div>
                 </div>
 
 
             </div>
-            
+
         </div>
     )
 }

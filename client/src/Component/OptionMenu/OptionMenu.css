@@ -58,7 +58,7 @@ select::-ms-expand {
 /* Transition */
 
 .selectOp:hover::after {
-  color: #f39c12;
+  color: #fafafa;
   top: 0;
   right: 0;
   bottom: 0;

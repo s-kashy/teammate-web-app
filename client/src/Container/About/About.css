@@ -1,12 +1,10 @@
 .main-wrapper-about {
     font-family: 'Roboto', sans-serif;
     display: flex;
-    margin: 66px auto;
     flex-direction: column;
     justify-content: center;
     height: 100%;
     z-index: -1000;
-    top: 0;
     background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1554476417/athlete-depth-of-field-exercise-1257245.jpg");
     width: 100%;
     position: absolute;
@@ -17,14 +15,18 @@
     -o-background-size: cover;
     background-size: cover;
 }
-.title-about{
+
+.title-about {
     font-weight: 800;
-    font-size: 36px;
+    font-size: 30px;
+    color: #34495e;
     padding: 10px;
 }
+
 .info-about {
     width: 57%;
     color: #ffffff;
+    background: #fff;
     margin-left: auto;
     margin-right: auto;
     line-height: 24pt;
@@ -34,7 +36,7 @@
 }
 
 .btn-about {
-    background: #0000FF;
+    background: #34495e;
     border-radius: 11px;
     cursor: pointer;
     color: #ffffff;
@@ -48,14 +50,6 @@
     text-decoration: none;
 }
 
-.btn-about::before {
-    content: "\f30a";
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    color: white;
-    
-}
-
 .btn-position-about {
     margin: 20px auto;
     z-index: -1000;
@@ -64,8 +58,8 @@
 .article-about {
     background-color: white;
     color: gray;
-    padding: 2px;
-    font-weight: 900;
+    padding: 13px;
+    font-weight: 600;
 }
 
 @media screen and (max-width:800px) {

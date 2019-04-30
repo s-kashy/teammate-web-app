@@ -1,112 +1,104 @@
-
-.header{
-font-family: 'Roboto', sans-serif;
-height: 100px;
-overflow: hidden;
-position: relative;
-background: #34495e;
-padding: -1 20px;
-color: #fff
-
+.header {
+    font-family: 'Roboto', sans-serif;
+    height: 73px;
+    overflow: hidden;
+    position: relative;
+    background: #34495e;
+    padding: -1 20px;
+    color: #fff
 }
-.header-logo{
-    margin-left: 30px;
-    line-height: 100px;
+
+.header-logo {
+    margin-left: 62px;
+    line-height: 73px;
     float: left;
     color: #fff;
     font-size: 30px;
     font-weight: 800;
-    
 }
-.menu{
-    float: right;
-    line-height: 100px;
-    margin-right: 50px;
 
+.menu {
+    float: right;
+    line-height: 73px;
+    margin-right: 50px;
 }
-.menu .link-class{
+
+.menu .link-class {
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
     padding: 0 10px;
     transition: 0.4s
 }
-.show-menu-btn,.hide-menu-btn{
+
+.show-menu-btn, .hide-menu-btn {
     transition: 0.4s;
-    font-size:30px;
+    font-size: 30px;
     cursor: pointer;
     display: none !important;
 }
-.show-menu-btn{
+
+.show-menu-btn {
     float: right;
 }
 
-
-    
-.show-menu-btn i{
+.show-menu-btn i {
     line-height: 100px;
 }
 
-
-.menu .link-class:hover,
-.show-menu-btn:hover,.hide-menu-btn:hover{
+.menu .link-class:hover, .show-menu-btn:hover, .hide-menu-btn:hover {
     color: #3498db;
 }
-.chk{
+
+.chk {
     position: absolute;
     visibility: hidden !important;
     z-index: -1111 !important;
 }
 
-
-@media screen and (max-width:800px){
-    header{
+@media screen and (max-width:800px) {
+    header {
         z-index: 1000 !important;
     }
- .header-logo{
-     position: absolute;
-     top: 0px;
-     left: 10px;
-     color: #fff;
-     font-weight: 800;
-     font-size: 20px
- }
- .show-menu-btn{
-    left: 318px;
-    position: absolute;
-     
-   
- }
-    .show-menu-btn,.hide-menu-btn{
+    .header-logo {
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        color: #fff;
+        font-weight: 800;
+        font-size: 20px
+    }
+    .show-menu-btn {
+        left: 318px;
+        position: absolute;
+    }
+    .show-menu-btn, .hide-menu-btn {
         display: block !important;
         position: absolute;
     }
-    .menu{
+    .menu {
         width: 60%;
         position: fixed;
         height: 100vh;
         background: #333;
         margin: 0 auto;
-        top:0;
+        top: 0;
         z-index: 1000 !important;
         text-align: center;
         padding: 80px 0;
         line-height: normal;
         transition: 0.7s;
     }
-    .menu .link-class{
+    .menu .link-class {
         display: block;
         padding: 20px;
-
     }
-    .hide-menu-btn{
+    .hide-menu-btn {
         position: absolute;
-       
         top: 40px;
         right: 60px;
     }
-    .text-block{
+    .text-block {
         display: none;
     }
-   
 }

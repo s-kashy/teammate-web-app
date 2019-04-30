@@ -20,11 +20,10 @@ class TeamCreator extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            indexActive: 0
+            indexActive: 3
+            
         }
     }
-
-
     onClickLeft = () => {
         let nextIndex = this.state.indexActive - 1 < 0 ? this.state.indexActive : this.state.indexActive - 1;
         if (this.props.emailManger && nextIndex === 4) {

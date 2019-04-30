@@ -20,26 +20,26 @@ import { loadState, saveState } from "./Utils/localStorageState"
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// const persistedState = loadState()
+ const persistedState = loadState()
 const rooReducer = combineReducers({
     auth: authR,
     controlModel: controlUiR,
     user: profileR,
     teamCreateInfo: teamCreateInfoR,
     messageTeamBoard:messageTeamBoardR,
-  // persistedState
+   persistedState
 
 
 });
 const composeEnhancers = process.env.NODE_ENV === "development" ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 const store = createStore(rooReducer, composeEnhancers(applyMiddleware(thunk)));
 
-// store.subscribe(throttle(() => {
-//     saveState({
-//         user: store.getState().user
+store.subscribe(throttle(() => {
+    saveState({
+        user: store.getState().user
 
-//     })
-// }, 1000))
+    })
+}, 1000))
 const app = (<Provider store={store}>
     <BrowserRouter>
         <App />

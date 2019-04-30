@@ -31,7 +31,8 @@ li {
 }
 
 .top-image-team-manager-card {
-    /* height: 300px; */
+    height: 300px;
+    max-height: 300px;
     position: relative;
     margin: -4px auto;
     width: 80%;
@@ -71,12 +72,12 @@ img {
     display: flex;
     overflow: visible;
     margin: 0px auto;
-    height: 600px;
+    /* height: 600px; */
     width: 80%;
 }
 
 .about-card-manager {
-    padding: 3px;
+    padding: 3px 13px;
     line-height: 20pt
 }
 
@@ -102,7 +103,7 @@ img {
 }
 
 span {
-    font-size: 20px;
+    font-size: 15px;
     padding: 4px;
 }
 
@@ -120,7 +121,7 @@ span {
 }
 
 .btn-submit-manager-card {
-    background: #0000FF;
+    background: #4070a0;
     border-radius: 11px;
     cursor: pointer;
     color: #ffffff;
@@ -128,13 +129,14 @@ span {
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
     font-weight: bold;
-    padding: 14px 52px;
+    min-width: 131px;
+    padding: 14px 38px;
     border: none;
     text-decoration: none;
 }
 
 .btn-previous-card-manager {
-    background: red;
+    background: #313233;
     border-radius: 11px;
     cursor: pointer;
     color: #ffffff;

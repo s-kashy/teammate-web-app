@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import "./LandingPage.css"
-import Tabs from "../../Component/Tabs/Tabs"
+import { connect } from "react-redux"
+import * as actionType from "../../Store/actions/index"
+
 
 class LadingPage extends Component {
     componentDidMount() {
@@ -12,17 +14,30 @@ class LadingPage extends Component {
 
     }
     successFunction = (position) => {
-       
+        this.props.setLocation({ lat: position.coords.latitude, lng: position.coords.longitude })
     }
     errorFunction = (err) => {
-       
+        this.props.openErrorMsg()
     }
     render() {
         return (<div>
-            <Tabs />
+            landing page
         </div>)
     }
 
 }
-export default LadingPage
+
+
+const mapStateHandler = state => {
+    return {
+
+    }
+}
+const mapStateDispatch = dispatch => {
+    return {
+        setLocation: (loc) => dispatch(actionType.setLocationUser(loc)),
+        openErrorMsg: () => dispatch(actionType.openErrorMsg())
+    }
+}
+export default connect(mapStateHandler, mapStateDispatch)(LadingPage)
 

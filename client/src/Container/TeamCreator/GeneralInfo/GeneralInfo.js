@@ -187,6 +187,15 @@ class GeneralInfo extends Component {
             <div className="from-general-info">
                 <div className="option-menu-general-info">
                     <OptionMenu array={arraySportType} selected={typeOfSport} click={this.clickOptionChangeHandler} />
+                 <div className="upload-div-general-info">
+                        <Input type="file"
+                            classInput="input-image-of-team-general-info"
+                            name="imageUrl"
+                            error={imageUrl.error}
+                            classLabel="label-image-of-team-general-info"
+                            change={(event) => this.imageUploadHandler(event)}
+                            title={imageUrl.fileName === "" ? "Team logo" : imageUrl.fileName} /><span className="icon-upload-image-general-info"><i style={{ fontSize: "30px", fontWeight: "1000", color: "red" }} className="far fa-cloud-upload-alt"></i></span>
+                    </div>
                 </div>
                 <div className="input-wrapper-general-info" >
                     <Input type="text" placeholder="Name of Team"
@@ -205,15 +214,7 @@ class GeneralInfo extends Component {
                         errorClass="error-input-number-general-info"
                         value={numberOfTeam.value}
                         error={numberOfTeam.error} />
-                    <div className="upload-div-general-info">
-                        <Input type="file"
-                            classInput="input-image-of-team-general-info"
-                            name="imageUrl"
-                            error={imageUrl.error}
-                            classLabel="label-image-of-team-general-info"
-                            change={(event) => this.imageUploadHandler(event)}
-                            title={imageUrl.fileName === "" ? "Team logo" : imageUrl.fileName} /><span className="icon-upload-image-general-info"><i style={{ fontSize: "30px", fontWeight: "1000", color: "red" }} className="far fa-cloud-upload-alt"></i></span>
-                    </div>
+                  
                     <div>
                         <textarea className="textarea-general-info"
                             onChange={(event) => this.onChangeTextAreaHandler(event)} value={this.state.aboutTheTeam.value}
@@ -224,12 +225,12 @@ class GeneralInfo extends Component {
             </div>
             <div className="msg-instruction-general-info">
                 <div style={{ margin: " -30px auto" }}>
-                    <span><strong>
+                    <span style={{background:"#34495e"}}>
                         essentially unchanged. It was popularised in the
                              1960s with the release of Letraset sheets containing Lorem
                              Ipsum passages, and more recently with desktop publishing
                             software like Aldus PageMaker including versions of Lorem
-                        </strong>
+                        
                     </span>
                 </div>
 

@@ -5,7 +5,7 @@
 }
 
 .main-form-profile {
-    margin: 0px auto;
+    margin: 10px auto;
     overflow: hidden;
     border-radius: 0px;
     width: 100%;
@@ -15,7 +15,7 @@
 }
 
 .wrapper-view-profile {
-    background-color: #fff;
+    background-color: #fafafa;
     width: 100%;
     height: 100%;
 }
@@ -24,6 +24,21 @@ form {
     width: 80%;
     margin: 0 auto;
     background: #FAFAFA;
+}
+
+.title-profile {
+    margin: 10px auto;
+    color: #34495e;
+    font-size: 20px;
+    margin: 0 auto;
+    font-weight: 800
+}
+
+.sub-title-profile {
+    color: #34495e;
+    font-size: 15px;
+    margin: 11px auto;
+    padding: 3px 0
 }
 
 .input-first-last-group-profile, .radio-group-profile {
@@ -74,15 +89,16 @@ form {
     position: relative;
     flex-flow: row wrap;
     width: 61%;
-    margin: 20px auto;
+    margin: 0px auto;
 }
 
 .error-input-profile {
     position: relative;
-    left: -55px;
-    top: -27px;
+    left: -254px;
+    font-size: 12px;
+    top: -32px;
     font-weight: 500;
-    color: red !important;
+    color: red;
 }
 
 .individual-checkbox-profile {
@@ -117,10 +133,11 @@ form {
 .label-upload-filed-profile {
     display: block;
     padding: 14px 45px;
-    background: #39D2B4;
+    background: #34495e;
     color: #fff;
-    width: 40%;
-    font-size: 1em;
+    width: 30%;
+    /* font-size: 1em; */
+    height: 50px;
     margin: 0 auto;
     transition: all .4s;
     cursor: pointer;
@@ -129,17 +146,22 @@ form {
 .input-upload-file-image-profile {
     position: absolute;
     top: 40px;
-    left: 160px;
-    width: 215px;
+    height: 83px;
+    left: 188px;
+    width: 210px;
     opacity: 0;
     padding: 14px 5px;
     cursor: pointer;
+}
 
+.label-upload-filed-profile:hover {
+    color: black;
+    background: #3c5875
 }
 
 .label-upload-filed-profile::after {
     content: "\f574" !important;
-    font-size: 30px;
+    font-size: 20px;
     position: relative;
     left: 7px;
     font-family: "Font Awesome 5 Free";
@@ -148,7 +170,19 @@ form {
 
 .error-image-upload-profile {
     color: red;
-    text-transform: uppercase
+    position: relative;
+    left: -37px;
+    top: -3px;
+    font-size: 12px;
+}
+
+.error-msg-first-name-profile {
+    left: -254px;
+    font-size: 12px;
+    top: -32px;
+    position: relative;
+    font-weight: 500;
+    color: red;
 }
 
 .upload-image-icon-profile {
@@ -169,21 +203,51 @@ form {
     margin: 10px auto;
     cursor: pointer;
     outline: none;
+    opacity: 0.7;
     box-shadow: 0 3px 2px 0 #2c80a2;
     color: #fff;
     text-shadow: 0 1px rgba(0, 0, 0, 0.4);
-    background-color: #3fb8e8;
+    background-color: #34495e;
     font-weight: 500;
     font-size: 20px;
     background-repeat: no-repeat;
     background-position: 200px;
 }
 
-p {
-    font-weight: 700;
-    color: #3498db;
-    width: 100%;
-    margin: 10px auto
+.button-submit:hover {
+    opacity: 1;
+}
+
+@media screen and (max-width:1380px) {
+    .error-input-profile {
+        position: relative;
+        left: -208px;
+        font-size: 12px;
+        top: -32px;
+        font-weight: 500;
+        color: red;
+    }
+    .error-msg-first-name-profile {
+        left: -208px;
+        font-size: 12px;
+        top: -32px;
+        position: relative;
+        font-weight: 500;
+        color: red;
+    }
+}
+
+@media screen and (max-width:1260px) {
+    .individual-checkbox-profile {
+        flex: 21% 1;
+        margin: 10px auto;
+    }
+    .error-msg-first-name-profile {
+        left:-182px
+    }
+    .error-input-profile {
+        left: -182px;
+    }
 }
 
 @media screen and (max-width:800px) {

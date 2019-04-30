@@ -1,4 +1,4 @@
-.intro-wrapper{
+.intro-wrapper {
     display: flex;
     margin: 0;
     padding: 0;
@@ -22,38 +22,40 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    color: #34495e;
     text-align: center;
     transform: translate(-50%, -50%);
-  
 }
 
 .msg-intro-create {
+    margin: 10px auto;
     font-family: 'Roboto', sans-serif;
     line-height: 22pt;
-  
- 
 }
 
 .next-btn-intro {
     float: right;
-    background:#0000FF;
+    background: #34495e;
     border-radius: 11px;
     cursor: pointer;
     color: #ffffff;
     outline: none;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
-    font-weight: bold;
-    padding: 14px 52px;
+    padding: 14px 38px;
     border: none;
     text-decoration: none;
- 
 }
+
+
 
 .next-btn-intro:hover {
     background-color: #80b5ea;
 }
-
+.icon-start-intro{
+    margin-left: 3px;
+    font-size: 15px
+}
 .next-btn-intro:active {
     position: relative;
     top: 1px;

@@ -1,6 +1,7 @@
 .main-auth {
   margin: 0;
   padding: 0;
+  color: #e8ebef;
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
   background-image: url("../../assest/pexels-photo-235922.jpeg");
@@ -15,19 +16,19 @@
 
 .logo-login {
   background-color: none;
-  color: white;
+  color: #34495e;
   font-family: 'Roboto', sans-serif;
   font-weight: 1000;
   font-size: 50px;
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 43px;
+  left: 70px;
 }
 
 .auth-title {
   font-weight: 500;
   text-transform: uppercase;
-  color: white;
+  color: #e8ebef;
   margin: 0 auto;
 }
 .auth-new-user::after{
@@ -35,6 +36,7 @@
   font-family: "Font Awesome 5 Free"; 
   font-weight: 900;
    content: "\f2f6";
+   margin-left: 8px;
 
 }
 .box-login{
@@ -59,12 +61,14 @@
   border-radius: 24px;
   width: 200px;
   outline: none;
+  position: relative;
+  top: 10px;
   color: white !important;
   transition: 0.25s
 }
 
 .box-login input[type="text"]:focus, .box-login input[type="password"]:focus {
-  width: 240px;
+  width: 222px;
   border-color: white
 }
 
@@ -79,6 +83,7 @@
   padding: 14px 34px;
   border-radius: 24px;
   width: 100px;
+  top: 20px;
   outline: none;
   color: #191919;
   transition: 0.25s;
@@ -88,7 +93,8 @@
   text-decoration: none !important;
 }
 .box-login input[type="submit"]:hover {
-  background-color: green;
+  background-color: #34495e;
+  color: white
 }
 
 .msg-email, .msg-password {
@@ -96,25 +102,27 @@
 }
 ::placeholder {
   color: white !important;
-  font-size: 1em;
+  font-size: 1.1em;
 }
 .msg-email {
   left: 0 !important;
-  top: 138px !important ;
+  top: 142px !important ;
   padding: -1px;
+  font-size: 13px;
   position: absolute !important;
 }
 
 .msg-password {
   position: absolute;
   left: 0 !important;
-  top: 220px !important;
+  font-size: 13px;
+  top: 222px !important;
   padding: -1px;
 }
 
 .auth-sing-up {
   margin-top: 10px;
-  color: #efe409;
+  color: #e8ebef;
   position: absolute;
   text-transform: lowercase;
   text-decoration: none;
@@ -127,7 +135,6 @@
 }
 
 .auth-sing-in-icon {
-
   position: absolute;
   left: 275px;
   top: 20px;

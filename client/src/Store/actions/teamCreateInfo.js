@@ -1,6 +1,6 @@
 import * as actionType from "./actionType"
 import { getRequestData } from "../../RequestData/RequestData"
-import { GET_USER_TEAMS, JOIN_TEAM, SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM, MANAGER_INFO_EXIST, FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
+import { GET_USER_TEAMS, GET_TEAMS_BY_DISTANCE, JOIN_TEAM, SEND_EMAIL_TOKEN, CONFIRM_TOKEN_MATCH, NEW_TEAM, MANAGER_INFO_EXIST, FIND_TEAM_BY_CATEGORIES } from "../../Url/Url"
 
 
 export const saveGeneralInfo = (general) => {
@@ -113,7 +113,6 @@ export const getTeamsByCategoryType = (dataSent) => {
         method: "post",
         headers: {
             "content-type": 'application/json'
-
         },
         data: dataSent,
         params: ""
@@ -136,6 +135,12 @@ export const viewTeamToJoin = (teamInfo) => {
     }
 }
 
+export const setLocationUser = (loc) => {
+    return {
+        type: actionType.SET_USER_LOCATION,
+        payload: loc
+    }
+}
 export const joinTeam = (dataSent) => {
     var data = {
         url: JOIN_TEAM,
@@ -192,5 +197,23 @@ export const clearSelectedTeam = () => {
     return {
         type: actionType.CLEAR_SELECTED_TEAM,
         payload: []
+    }
+}
+
+export const getTeamsByParams = (paramsUser) => {
+    var data = {
+        url: GET_TEAMS_BY_DISTANCE,
+        method: "post",
+        headers: "",
+        data: "",
+        params: paramsUser
+    }
+    return dispatch => {
+        return getRequestData(data).then(res => {
+            dispatch(loadBySearchResult(res.data))
+            Promise.resolve(res.data)
+        }).catch(err => {
+            Promise.reject(err)
+        })
     }
 }

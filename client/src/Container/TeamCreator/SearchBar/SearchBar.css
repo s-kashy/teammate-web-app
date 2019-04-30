@@ -39,7 +39,14 @@
     cursor: pointer;
     font-size: 20px;
 }
-
+@media screen and (min-width:1400){
+    .wrapper-auto{
+    position: relative;
+    margin: 10px auto;
+    top: 40px;
+    left: 33px;
+    }
+}
 @media screen and (max-width:800px) {
     .wrapper-auto {
         padding: 0;

@@ -52,7 +52,7 @@ class Profile extends Component {
 
             lastname: {
                 value: "",
-                error: false
+                error:false
             },
             ageGroup: [
                 {
@@ -92,7 +92,7 @@ class Profile extends Component {
                 Poker: { value: false },
                 Snooker: { value: false }
             },
-          
+
             isLoading: true
 
         },
@@ -121,11 +121,8 @@ class Profile extends Component {
         this.setState({ user: userInfo }, () => {
             if (!this.state.user.lastname.error && !this.state.user.firstname.error) {
                 this.postProfileOfUser()
-
             } else {
-                setTimeout(
-                    this.resetInputError, 3000
-                )
+             
                 this.scrollToMyRef()
 
             }
@@ -150,7 +147,7 @@ class Profile extends Component {
         let { imageUrl } = this.state.user
         var formData = new FormData()
         if (this.state.newUser) {
-          
+
             if (imageUrl.didUpload) {
                 formData.append('myImage', this.state.image);
                 formData.append("value", JSON.stringify(dataUpdate))
@@ -162,7 +159,7 @@ class Profile extends Component {
         }
         else {
             if (imageUrl.didUpload) {
-               
+
                 formData.append('myImage', this.state.image);
                 formData.append("value", JSON.stringify(dataUpdate))
                 this.props.updateUserProfileOnServer(this.props.userProfile._id, formData)
@@ -196,8 +193,8 @@ class Profile extends Component {
             copyUserObj.imageUrl.value = event.target.files[0]
             copyUserObj.imageUrl.fileName = event.target.files[0].name
             copyUserObj.imageUrl.didUpload = true
-            this.setState({ user: copyUserObj,image: event.target.files[0] }, () => {
-               
+            this.setState({ user: copyUserObj, image: event.target.files[0] }, () => {
+
             })
         } else {
             copyUserObj.imageUrl.error = true
@@ -232,6 +229,7 @@ class Profile extends Component {
     }
 
     onChangeHandlerInput = (event) => {
+        this.resetInputError()
         let userInfo = JSON.parse(JSON.stringify(this.state.user))
         userInfo[event.target.name].value = event.target.value
         this.setState({ user: userInfo })
@@ -288,11 +286,12 @@ class Profile extends Component {
 
                     <form onSubmit={this.submitHandler}>
                         <div className="main-form-profile">
-                            <p style={{ margin: "15px auto", fontSize: "30px" }}>Your Profile</p>
+                            <p className="title-profile">Your Profile</p>
                             <div className="input-first-last-group-profile" ref={x => this.inputUserBasicInfo = x}>
                                 <Input type="text" id="firstname" classInput="inputs-profile" placeholder="First Name"
                                     classLabel="label-basic-input-filed" value={firstname.value}
                                     error={firstname.error}
+                                    errorClass="error-msg-first-name-profile"
                                     name="firstname" change={(e) => this.onChangeHandlerInput(e)} />
 
                                 <Input type="text" id="lastname" classInput="inputs-profile"
@@ -303,12 +302,15 @@ class Profile extends Component {
                                     classLabel="label-basic-input-filed"
                                     name="lastname" change={(e) => this.onChangeHandlerInput(e)} />
                             </div>
-                            <p>Age group</p>
+                           
                             <div className="radio-group-profile">
+                            <p className="sub-title-profile">Age group</p>
                                 {arrayRadio}
                             </div>
-                            <p>Type of Sport you like</p>
+                            
+                            <p className="sub-title-profile">Type of Sport you like</p>
                             <div className="sport-type-checkbox-profile">
+                        
                                 {arrayCheckBox}
                             </div>
                             <div>
@@ -316,15 +318,15 @@ class Profile extends Component {
                                     ref={x => this.textarea = x} placeholder="Personal note"></textarea>
                             </div>
                             <div className="upload-image">
-                                <p>JPG and PNG image can be upload</p>
+                                <p className="sub-title-profile">JPG and PNG image can be upload</p>
                                 <Input type="file" id="image" classInput="input-upload-file-image-profile"
                                     classLabel="label-upload-filed-profile"
                                     error={imageUrl.error}
-                                    msgError="This is not A valid File"
+                                    msgError="*This is not A valid File"
                                     errorClass="error-image-upload-profile"
                                     title={imageUrl.fileName === "" || imageUrl.fileName === undefined ? "Your Picture" : imageUrl.fileName}
                                     change={(e) => this.onChangeImageHandler(e)} />
- 
+
                             </div>
                             <div >
                                 <Input type="submit" classInput="button-submit" value="Submit" />

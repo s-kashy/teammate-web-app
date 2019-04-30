@@ -1,12 +1,16 @@
 import React, { Component } from "react"
 import "./SearchTeam.css"
-import Tabs from "../../Component/Tabs/Tabs";
 import { connect } from "react-redux"
 import CheckBox from "../../Component/CheckBox/CheckBox"
 import * as actionType from "../../Store/actions/index"
+import SliderRc from "../SliderRc/SliderRc"
 import MapTeamSearchLayout from "./MapTeamSearchLayout/MapTeamSearchLayout"
 
 class SearchTeam extends Component {
+
+    componentDidMount() {
+        this.findTeamsByParams()
+    }
     state = {
         user: {
             sportInterest: {
@@ -29,10 +33,17 @@ class SearchTeam extends Component {
         indexActive: 0,
         showTeamCard: false,
         noTeamMsg: false,
-        idOfTeam: ""
-
+        idOfTeam: "",
+        valueRc: 10
     }
-
+    createParamsUrl = () => {
+        const { lat, lng } = this.props.userLocation
+        const params = new URLSearchParams();
+        params.append("lat", lat)
+        params.append("lng", lng)
+        params.append("dist", 100)
+        return params
+    }
     onClickSearchHandler = () => {
         let data = []
         let sportInterest = JSON.parse(JSON.stringify(this.state.user.sportInterest))
@@ -52,6 +63,19 @@ class SearchTeam extends Component {
                 this.props.openErrorMsg()
             })
         }
+
+    }
+    findTeamsByParams = () => {
+        this.props.getTeamsByParams(this.createParamsUrl()).then(res => {
+            console.log(res)
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+    onChangeRcSliderHandler = (value) => {
+        this.setState({ valueRc: value }, () => {
+            this.findTeamsByParams()
+        })
 
     }
     onChangeCheckBoxHandler = (event) => {
@@ -79,11 +103,10 @@ class SearchTeam extends Component {
         })
 
         return (<div>
-            <Tabs />
             <div className="wrapper-search-team" >
                 <div className="search-by-categorie">
                     <div className="msg-search-categorie">
-                        <p style={{ color: "#74777b" }}>Search By Categorie</p></div>
+                        <p style={{ color: "#34495e" }}>Search By Category</p></div>
                     <div className="wrapper-check-box">
                         {arrayOfCheckBox}
                     </div>
@@ -93,7 +116,12 @@ class SearchTeam extends Component {
                     </div>
                 </div>
                 <div className="map-search-team-wrapper">
-                    <MapTeamSearchLayout />
+                    <div className="rc-child-search-team">
+                        <SliderRc value={this.state.valueRc} change={this.onChangeRcSliderHandler} />
+                    </div>
+                    <div className="map-search-bar-wrapper">
+                        <MapTeamSearchLayout findTeamsByParams={this.findTeamsByParams} />
+                    </div>
                 </div>
             </div>
         </div>)
@@ -103,7 +131,8 @@ const mapStateHandler = state => {
     return {
         emailRegister: state.user.email,
         yourTeams: state.teamCreateInfo.yourTeams,
-        teamsBySearch: state.teamCreateInfo.teamsBySearch
+        teamsBySearch: state.teamCreateInfo.teamsBySearch,
+        userLocation: state.teamCreateInfo.userLocation
     };
 };
 const mapStateDispatch = dispatch => {
@@ -111,7 +140,8 @@ const mapStateDispatch = dispatch => {
         viewTeamToJoin: (teamInfo) => dispatch(actionType.viewTeamToJoin(teamInfo)),
         getTeamsByCategoryType: (data) => dispatch(actionType.getTeamsByCategoryType(data)),
         joinTeam: (data) => dispatch(actionType.joinTeam(data)),
-        openErrorMsg: () => dispatch(actionType.openErrorMsg())
+        openErrorMsg: () => dispatch(actionType.openErrorMsg()),
+        getTeamsByParams: (params) => dispatch(actionType.getTeamsByParams(params))
     };
 }
 export default connect(mapStateHandler, mapStateDispatch)(SearchTeam)

@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import "./YourTeams.css"
 import ItemSearchTeam from "../../Component/ItemSearchTeam/ItemSearchTeam"
-import Tabs from "../../Component/Tabs/Tabs"
 import { connect } from "react-redux"
 import TeamManagerCard from "../TeamCreator/TeamManagerCard/TeamManagerCard"
 import * as actionType from "../../Store/actions/index"
@@ -104,16 +103,20 @@ class YourTeams extends Component {
     }
     render() {
         let { yourTeams, bySearch } = this.state
-     
+
         var searchResults = []
         if (yourTeams.length > 0) {
             searchResults = yourTeams[this.state.indexActive].map((item, index) => {
+               
                 return (<ItemSearchTeam image={item.generalInfo.file}
                     view={this.props.teamsBySearch.length > 0 ? () => this.viewTeamHandler(item) : () => this.loadTeamMessageBoard(item)}
                     fade={item.membersId.length !== 0 && item.membersId.length >= item.generalInfo.numberOfTeam && bySearch ? true : false}
                     sportType={item.generalInfo.typeOfSportChosen}
                     nameOfTeam={item.generalInfo.nameOfTeam}
                     key={index}
+                    dateEvent={item.dateAndTime.selectedDays.length >0 ?item.dateAndTime.selectedDays:item.dateAndTime.dayOfTheWeekPicker}
+                    signUpMembers={item.membersId.length }
+                    maxMembers={item.generalInfo.numberOfTeam }
                     about={item.generalInfo.aboutTheTeamChosen}
                     title={this.props.teamsBySearch.length > 0 ? "View" : "Your Team"}
                     dateType={item.dateAndTime.pickType} />)
@@ -122,13 +125,12 @@ class YourTeams extends Component {
             searchResults = (<p>You are Not a member of any team</p>)
         }
         let displayMainJsx = (
-            <div >
-                <Tabs />
+            <div style={{margin:"10px auto"}} >
                 <div className="slider">
                     <h3 className="title-your-team">{this.props.teamsBySearch.length > 0 ? "Your Search Result" : "Your Teams"}</h3>
                     <div className="slides"> {searchResults}</div>
-                    {this.state.yourTeams.length > 1 && (<div onClick={this.clickLeftHandler} className="btnLeft fas fa-angle-double-left "></div>)}
-                    {this.state.yourTeams.length > 1 && (<div onClick={this.clickRightHandler} className="btnRight fas fa-angle-double-right"></div>)}
+                    {this.state.yourTeams.length > 1 && (<div onClick={this.clickLeftHandler} className="btnLeft"></div>)}
+                    {this.state.yourTeams.length > 1 && (<div onClick={this.clickRightHandler} className="btnRight"></div>)}
                 </div>
             </div>)
         if (this.state.viewTeam) {
@@ -162,7 +164,7 @@ const mapStateDispatch = dispatch => {
         loadChatBoard: (team) => dispatch(actionType.loadChatBoard(team)),
         isMemberMsg: () => dispatch(actionType.isMemberMsg()),
         openErrorMsg: () => dispatch(actionType.openErrorMsg()),
-             getUsersTeams: (data) => dispatch(actionType.getUsersTeams(data))
+        getUsersTeams: (data) => dispatch(actionType.getUsersTeams(data))
 
     };
 };

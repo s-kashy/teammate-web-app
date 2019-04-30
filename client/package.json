@@ -10,6 +10,7 @@
     "lodash": "^4.17.11",
     "materialize-css": "^1.0.0",
     "moment": "^2.24.0",
+    "rc-slider": "^8.6.9",
     "rc-time-picker": "^3.6.2",
     "react": "^16.8.2",
     "react-calendar": "^2.18.1",

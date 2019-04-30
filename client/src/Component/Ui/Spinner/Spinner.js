@@ -3,8 +3,8 @@ import "./Spinner.css"
 
 const Spinner=()=>{
     return(
-        <div>
-        <p>TeamMate Is Loading....</p>
+        <div className="main-wrapper-spinner">
+        <p className="msg-spinner">TeamMate Is Loading....</p>
         <div className="loader"></div>
         </div>
     )
