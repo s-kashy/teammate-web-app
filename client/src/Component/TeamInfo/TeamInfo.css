@@ -1,7 +1,6 @@
 .wrapper-team-info {
     height: 650px;
     position: relative;
- 
     background: linear-gradient(0deg, #1E2C3D 00%, #3E364E 100%);
     width: 25%;
     padding: 10px;
@@ -58,6 +57,10 @@ li {
     padding: 5px;
 }
 
+.go-back-icon-mobile-info-team {
+    display: none;
+}
+
 li::before {
     content: "\f192";
     color: #fff;
@@ -67,6 +70,13 @@ li::before {
 
 @media screen and (max-width:800px) {
     .wrapper-team-info {
-        display: none !important;
+        width: 100%
     }
+    .go-back-icon-mobile-info-team {
+        display: block;
+        color: #fff;
+        font-size: 20px;
+        float: left;
+    }
+  
 }

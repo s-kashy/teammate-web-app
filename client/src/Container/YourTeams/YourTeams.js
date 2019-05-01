@@ -125,7 +125,7 @@ class YourTeams extends Component {
             searchResults = (<p>You are Not a member of any team</p>)
         }
         let displayMainJsx = (
-            <div style={{margin:"10px auto"}} >
+            <div  >
                 <div className="slider">
                     <h3 className="title-your-team">{this.props.teamsBySearch.length > 0 ? "Your Search Result" : "Your Teams"}</h3>
                     <div className="slides"> {searchResults}</div>

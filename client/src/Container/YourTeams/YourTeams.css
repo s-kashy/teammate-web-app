@@ -10,8 +10,6 @@
     background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1555961287/bicycle-tour-bicycles-bicyclists-17729.jpg")
 }
 
-
-
 .slider {
     margin: 10px auto;
     position: relative !important;
@@ -94,23 +92,31 @@
     }
     .title-your-team {
         width: 100%;
+
+        background-color: #34495e;
+        color: #fff
+
     }
     .btnLeft {
         left: 0;
-        background-color: #ffffff;
+        position: 3px;
+        position: absolute;
+        top: -26px;
         cursor: pointer !important;
     }
     .btnRight {
         right: 0;
-        background-color: #ffffff;
+        position: absolute;
+        right: 4px;
+        top: -26px;
         cursor: pointer !important;
     }
-    .btnLeft:hover, .btnRight:hover {
+
+    .wrapper-your-teams {
+        position: fixed;
+    }
+    .btnLeft:active, .btnRight:active {
         transform: scale(1.25);
         cursor: pointer;
-        
-    }
-    .wrapper-your-teams{
-        position: fixed;
     }
 }

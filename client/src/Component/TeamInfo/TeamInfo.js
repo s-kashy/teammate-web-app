@@ -1,6 +1,7 @@
 import React from "react"
 import "./TeamInfo.css"
 import moment from "moment"
+var goBack="u+02190"
 const TeamInfo = (props) => {
     let timesArray = (<li>Every Day</li>)
     if (props.teamSelected.dateAndTime.dayOfTheWeekPicker.length) {
@@ -14,16 +15,16 @@ const TeamInfo = (props) => {
         })
     }
     return (<div className="wrapper-team-info">
+    <span onClick={props.click} className="go-back-icon-mobile-info-team"><i className="fas fa-arrow-left"></i></span>
         <p className="team-name-chat-board">{props.teamSelected.generalInfo.nameOfTeam}</p>
         <p className="sub-messages-team-info">{props.teamSelected.generalInfo.typeOfSportChosen}</p>
         <hr />
-
         <p className="sub-messages-team-info about" >{props.teamSelected.generalInfo.aboutTheTeamChosen}</p>
         <hr />
         <p className="sub-messages-team-info times-wrapper-team-info">
             <span className="times-info-team">Start {props.teamSelected.dateAndTime.startTime}</span>
             <span className="times-info-team">Ends {props.teamSelected.dateAndTime.endTime}</span></p>
-        <p className="sub-messages-team-info" style={{ textDecoration: "underline" }}>We meet on a {props.teamSelected.dateAndTime.pickType} bases</p>
+        <p className="sub-messages-team-info" style={{ textDecoration: "underline" }}>We meet on a {props.teamSelected.dateAndTime.pickType} basis</p>
         <ul className="array-of-time-team-info">
             {timesArray}
         </ul>

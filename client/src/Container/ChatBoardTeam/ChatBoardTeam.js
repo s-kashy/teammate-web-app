@@ -24,7 +24,8 @@ class ChatBoardTeam extends Component {
             },
             allUserInChat: [],
             isLoading: false,
-            messages: []
+            messages: [],
+            showInfo:false
         }
     }
     componentDidMount() {
@@ -85,7 +86,7 @@ class ChatBoardTeam extends Component {
 
     }
     onClickInfoLogoHandler=()=>{
-
+        this.setState({showInfo:!this.state.showInfo})
     }
     getAllMessages = () => {
         const { _id } = this.props.teamSelected
@@ -128,8 +129,10 @@ class ChatBoardTeam extends Component {
 
         }
         return (<div className="wrapper-chat-board-container" id="options-holder">{this.state.isLoading ? <Aux>
+        <div className="display-info-mobile">
             <TeamInfo teamSelected={this.props.teamSelected} />
-            <div className="wrapper-chat-bored">
+            </div>
+          {!this.state.showInfo ?  <div className="wrapper-chat-bored">
                <div className="mobile-name-of-team"><span className="info-logo-team-info" onClick={this.onClickInfoLogoHandler}>
                <i className="fas fa-info"></i></span><span>{this.props.teamSelected.generalInfo.nameOfTeam}</span></div>
                 <div className="chat-team-bored" ref={this.messageElement}>
@@ -142,7 +145,7 @@ class ChatBoardTeam extends Component {
                     <button onClick={this.onClickSendMsgHandler} className="send-msg-chat-board"></button>
                 </div>
 
-            </div> </Aux> : <Spinner />}</div>)
+            </div>:<TeamInfo click={this.onClickInfoLogoHandler} teamSelected={this.props.teamSelected} />} </Aux> : <Spinner />}</div>)
     }
 }
 const mapStateProps = state => {

@@ -139,7 +139,7 @@
   .item-search-team-wrapper {
     width: 100%;
     height: 100%;
-    margin: 50px auto;
+    /* margin: 50px auto; */
   }
   .team-full-item-search {
     width: 396px;
@@ -155,7 +155,7 @@
   }
   .item-info-wrapper {
     position: relative;
-    top: 38px;
+   
     max-height: 175px;
   }
   .fab{
@@ -164,5 +164,23 @@
   .item-info-wrapper h3 {
     margin-bottom: 19px;
   }
-  
+  .img-item-wrapper{
+    opacity: .7;
+    position: relative;
+    width: 100%;
+    /* max-width: 100%; */
+    /* min-width: 498px; */
+    overflow: hidden;
+    transition: all .2s ease-in-out;
+  }
+  .img-item-search{
+    max-height: 225px;
+  }
+  .amount-in-team{
+    width: 50%;
+  }
+  .next-event-in-team{
+    width: 50%;
+  float: none
+  }
 }

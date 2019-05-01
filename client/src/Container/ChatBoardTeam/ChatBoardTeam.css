@@ -27,7 +27,9 @@
     color: #3E364E;
     box-sizing: border-box;
 }
-
+.display-info-mobile{
+    display: block !important
+}
 .input-chat-board {
     /* margin-bottom: auto; */
     display: inline-block;
@@ -94,6 +96,9 @@
         width: 100%;
         max-height: 500px;
         overflow-y: auto;
+    }
+    .display-info-mobile{
+        display: none !important
     }
     .mobile-name-of-team {
         display: block;
