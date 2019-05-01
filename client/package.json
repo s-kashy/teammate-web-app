@@ -26,6 +26,7 @@
     "react-router-dom": "^4.3.1",
     "react-script-loader-hoc": "^1.2.1",
     "react-scripts": "^2.1.8",
+    "react-scroll": "^1.7.11",
     "react-time-select": "^3.0.0",
     "reactjs-places-autocomplete": "^7.2.1",
     "redux": "^4.0.1",

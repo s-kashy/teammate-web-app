@@ -1,3 +1,9 @@
+.wrapper-chat-board-container {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+}
+
 .wrapper-chat-bored {
     background: linear-gradient(0deg, #1E2C3D 00%, #3E364E 100%);
     margin: 10px auto;
@@ -47,6 +53,11 @@
     width: 500px;
     height: 500px;
     overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.mobile-name-of-team {
+    display: none;
 }
 
 .send-msg-chat-board {
@@ -72,4 +83,54 @@
     font-weight: bold;
     content: "\f1d8";
     cursor: pointer;
+}
+
+@media screen and (max-width:800px) {
+    .wrapper-chat-board-container, .wrapper-chat-bored {
+        width: 100%;
+        margin: auto;
+    }
+    .chat-team-bored {
+        width: 100%;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    .mobile-name-of-team {
+        display: block;
+        padding: 10px;
+        text-transform: uppercase;
+        font-size: 20px;
+        font-weight: 700;
+        color: #fff;
+        background: linear-gradient(0deg, #1E2C3D 00%, #3E364E 100%);
+        box-sizing: border-box;
+    }
+    .info-logo-team-info {
+        float: left;
+        left: 28px;
+        cursor: pointer;
+        font-size: 20px;
+        position: relative;
+        /* clear: both; */
+    }
+    .wrapper-input-chat-board {
+        position: relative;
+        display: inline-block;
+        top: 19px; 
+    }
+    .send-msg-chat-board{
+        display: inline-block;
+        border: none;
+        padding: 0;
+        width: 14%;
+        float: right;
+        margin: 0;
+        position: static;
+        left:0;
+        top:0
+    }
+    .wrapper-input-moblie{
+        display: inline-block;
+        width: 86%;
+    }
 }

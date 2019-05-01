@@ -1,12 +1,15 @@
 import React, { Component } from "react"
+import ReactDOM from 'react-dom';
 import "./ChatBoardTeam.css"
 import Spinner from "../../Component/Ui/Spinner/Spinner"
 import { connect } from "react-redux"
 import moment from "moment"
+import TeamInfo from "../../Component/TeamInfo/TeamInfo"
 import Aux from "../../Hoc/Hoc"
 import ChatMessage from "../../Component/ChatMessage/ChatMessage"
 import { JOIN, All_USERS_RESULT, MESSAGE, URL_SOCKET, SEND_MESSAGE, CONNECT_CLIENT, GET_ALL_USERS_IN_CHAT } from "./socketClientType"
 import * as actionType from "../../Store/actions/index"
+import { animateScroll } from "react-scroll"
 import Input from "../../Component/Input/Input"
 import io from "socket.io-client"
 const socketUrl = URL_SOCKET
@@ -32,7 +35,18 @@ class ChatBoardTeam extends Component {
         })
         this.getAllMessages()
 
+        console.log(this.messageElement)
+
+        this.scrollToBottom();
+
     }
+    scrollToBottom = () => {
+        animateScroll.scrollToBottom({
+            containerId: "options-holder"
+        });
+
+    }
+
     componentWillUnmount() {
         socket.disconnect()
         this.props.clearSelectedTeam()
@@ -54,7 +68,6 @@ class ChatBoardTeam extends Component {
                 return
             }
         })
-
         this.setState({ isLoading: true })
         socket.emit(GET_ALL_USERS_IN_CHAT)
         socket.on(MESSAGE, (msg) => {
@@ -64,25 +77,27 @@ class ChatBoardTeam extends Component {
 
             })
         })
-
         socket.on(All_USERS_RESULT, (users) => {
             this.setState({ allUserInChat: users }, () => {
-                console.log("all user in the chat", this.state.allUserInChat)
+
             })
         })
+
+    }
+    onClickInfoLogoHandler=()=>{
 
     }
     getAllMessages = () => {
         const { _id } = this.props.teamSelected
         this.props.getAllTeamMessages(_id).then(res => {
-            if (this.props.teamMessages.length>0) {
-             let messages=[...this.state.messages,...this.props.teamMessages]
-             this.setState({messages})
+            if (this.props.teamMessages.length > 0) {
+                let messages = [...this.state.messages, ...this.props.teamMessages]
+                this.setState({ messages })
             }
-        }).catch(err=>{
+        }).catch(err => {
             this.props.history.push("/")
         })
-       
+
     }
     onChangeHandler = (event) => {
         let copyMessage = { ...this.state.message }
@@ -112,23 +127,22 @@ class ChatBoardTeam extends Component {
             })
 
         }
-        return (<div>{this.state.isLoading ?<Aux>
-
-          <p className="team-name-chat-board">{this.props.teamSelected.generalInfo.nameOfTeam}</p>
-            <div className="wrapper-chat-bored" ref={this.messageElement}>
-      
-           
-                <div className="chat-team-bored">
+        return (<div className="wrapper-chat-board-container" id="options-holder">{this.state.isLoading ? <Aux>
+            <TeamInfo teamSelected={this.props.teamSelected} />
+            <div className="wrapper-chat-bored">
+               <div className="mobile-name-of-team"><span className="info-logo-team-info" onClick={this.onClickInfoLogoHandler}>
+               <i className="fas fa-info"></i></span><span>{this.props.teamSelected.generalInfo.nameOfTeam}</span></div>
+                <div className="chat-team-bored" ref={this.messageElement}>
                     {arrayMessage}
                 </div>
                 <div className="wrapper-input-chat-board">
-                    <Input placeholder="Type your message" classInput="input-chat-board" id="message" value={message.value} name="message"
+                    <Input placeholder="Type your message" wrapperInput="wrapper-input-moblie" classInput="input-chat-board" id="message" value={message.value} name="message"
                         change={(e) => this.onChangeHandler(e)}
                     />
                     <button onClick={this.onClickSendMsgHandler} className="send-msg-chat-board"></button>
                 </div>
 
-            </div> </Aux>: <Spinner /> }</div>)
+            </div> </Aux> : <Spinner />}</div>)
     }
 }
 const mapStateProps = state => {
@@ -144,7 +158,7 @@ const mapStateDispatch = dispatch => {
         getAllTeamMessages: (teamId) => dispatch(actionType.getAllTeamMessages(teamId)),
         openErrorMsg: () => dispatch(actionType.openErrorMsg()),
         clearAllTeams: () => dispatch(actionType.clearAllTeams()),
-        clearAllMessages:()=>dispatch(actionType.clearAllMessages())
+        clearAllMessages: () => dispatch(actionType.clearAllMessages())
     }
 }
 export default connect(mapStateProps, mapStateDispatch)(ChatBoardTeam)

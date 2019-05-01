@@ -101,4 +101,9 @@
     .text-block {
         display: none;
     }
+    .x-header{
+        position: relative;
+        top: -10px;
+        font-size: 25px;
+    }
 }

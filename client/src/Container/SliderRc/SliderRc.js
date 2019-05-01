@@ -14,7 +14,7 @@ class SliderRc extends Component {
            this.setState({
             value,
         }, () => {
-           console.log(this.state.value)
+          
         });
 
     };

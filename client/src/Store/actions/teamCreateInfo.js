@@ -41,7 +41,6 @@ export const sendEmailToken = (dataSent) => {
         return getRequestData(data).then(res => {
             return Promise.resolve(res)
         }).catch(err => {
-
             return Promise.reject(err)
         })
     }
@@ -127,6 +126,7 @@ export const getTeamsByCategoryType = (dataSent) => {
     }
 }
 export const viewTeamToJoin = (teamInfo) => {
+    console.log("action",teamInfo)
     return dispatch => {
         dispatch(saveGeneralInfo(teamInfo.generalInfo))
         dispatch(saveDataAndTime(teamInfo.dateAndTime))

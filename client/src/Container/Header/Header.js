@@ -37,7 +37,7 @@ class Header extends Component {
             <Link to="/"><h2 className="header-logo" onClick={this.onClickMenu}>TeamMate</h2></Link>
             {/* <input type="checkbox" className="chk" id="chk-header" /> */}
             <label htmlFor="chk-header" className="show-menu-btn" onClick={this.onClickMenu}>
-                <i className="fas fa-times"></i>
+            <span className="x-header"> <i className="fas fa-times"></i></span>  
             </label>
             <ul className="menu" style={{ right: menuState }}>
 

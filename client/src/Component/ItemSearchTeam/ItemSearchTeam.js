@@ -2,9 +2,7 @@ import React from "react"
 import "./ItemSearchTeam.css"
 import { findTheNextEvent } from "./compareDates"
 const ItemSearchTeam = (props) => {
-    console.log(props.dateType, props.dateEvent)
-    let nextEvent = findTheNextEvent(props.dateType, props.dateEvent)
-
+      let nextEvent = findTheNextEvent(props.dateType, props.dateEvent)
     let disabledMode = null
     if (props.fade) {
         disabledMode = {

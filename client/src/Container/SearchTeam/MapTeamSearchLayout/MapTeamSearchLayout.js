@@ -31,6 +31,11 @@ class MapTeamSearchLayout extends Component {
         this.props.setLocationUser(addressLoaded.results[0].geometry.location)
         this.props.findTeamsByParams()
     }
+    viewTeamHandler = (team) => {
+   
+        this.props.viewTeamToJoin(team)
+        this.props.displayTeam(team._id)
+    }
     changeAddress = () => { }
     render() {
         let styleMap = {
@@ -67,6 +72,7 @@ class MapTeamSearchLayout extends Component {
                     lat={this.props.userLocation.lat}
                     lng={this.props.userLocation.lng}
                     mapWindow="map-window-search"
+                    viewTeam={this.viewTeamHandler}
                     teamsBySearch={this.props.teamsBySearch} />
             </div>
             <div className="search-bar-team-search">
@@ -86,7 +92,8 @@ const mapStateHandler = state => {
 }
 const mapStateDispatch = dispatch => {
     return {
-        setLocationUser: (location) => dispatch(actionType.setLocationUser(location))
+        setLocationUser: (location) => dispatch(actionType.setLocationUser(location)),
+        viewTeamToJoin: (team) => dispatch(actionType.viewTeamToJoin(team))
     }
 }
 export default connect(mapStateHandler, mapStateDispatch)(MapTeamSearchLayout)

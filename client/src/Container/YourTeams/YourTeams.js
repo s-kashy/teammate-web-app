@@ -152,7 +152,6 @@ const mapStateHandler = state => {
         emailRegister: state.user.email,
         yourTeams: state.teamCreateInfo.yourTeams,
         teamsBySearch: state.teamCreateInfo.teamsBySearch
-
     };
 };
 const mapStateDispatch = dispatch => {

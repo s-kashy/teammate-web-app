@@ -11,7 +11,7 @@ class SearchBar extends React.Component {
     this.state = {
       value: ""
     }
-    this.autocompleteInput = React.createRef();
+    this.autoCompleteInput = React.createRef();
     this.autocomplete = null;
 
   }
@@ -22,7 +22,7 @@ class SearchBar extends React.Component {
     this.setState({ value: userInfo })
   }
   componentDidMount() {
-    this.autocomplete = new google.maps.places.Autocomplete(this.autocompleteInput.current,
+    this.autocomplete = new google.maps.places.Autocomplete(this.autoCompleteInput.current,
       { "types": ["geocode"] });
 
     this.autocomplete.addListener('place_changed', this.handlePlaceChanged);
@@ -47,7 +47,7 @@ class SearchBar extends React.Component {
 
     return (
       <div style={this.props.searchStyle} className="wrapper-auto">
-        <input ref={this.autocompleteInput} autoComplete="on"
+        <input ref={this.autoCompleteInput} autoComplete="on"
           onChange={(e) => this.onChangeHandler(e)}
           placeholder={this.props.address ? this.props.address:"Enter a address"}
           className="searchTerm"

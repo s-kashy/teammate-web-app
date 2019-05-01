@@ -7,8 +7,8 @@ export const findTheNextEvent = (type, dateArray) => {
     else if (type === "Weekly") {
         return findTheNextWeekEvent(dateArray)
 
-    }else if(type==="Monthly"){
-       return getClosesDate(dateArray)
+    } else if (type === "Monthly") {
+        return getClosesDate(dateArray)
     }
 }
 export const findTheNextWeekEvent = (dates) => {
@@ -22,7 +22,7 @@ export const findTheNextWeekEvent = (dates) => {
     var daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let nextDay = daysOfTheWeek[indexDay]
     let found = true;
-      while (found) {
+    while (found) {
         if (dates.includes(nextDay)) {
             return nextDay
         }
@@ -38,14 +38,24 @@ export const findTheNextWeekEvent = (dates) => {
         }
     }
 }
-export const getClosesDate=(dateArray)=>{
-  let sortedArray=dateArray.map(item=>{
-      return new Date(item)
-  })
-    sortedArray=sortedArray.sort((a,b)=>{
-      return new Date(a)- new Date(b)
-  })
-  return moment(sortedArray[0]).format("DD-MM-YYYY").toString()
-   
+export const getClosesDate = (dateArray) => {
+
+    let sortedArray = dateArray.sort((a, b) => {
+        return new Date(a) - new Date(b)
+    })
+    var dateOfToday = new Date()
+
+    let result = sortedArray.find((date) => {
+        return moment(date).isAfter(dateOfToday) || moment(date).isSame(dateOfToday)
+    })
+    if (result) {
+        return moment(result).format("DD-MM-YYYY").toString()
+    } else {
+        return "No Event Date"
+    }
+
+
+
+
 }
 

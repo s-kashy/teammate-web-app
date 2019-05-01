@@ -20,7 +20,7 @@ class LadingPage extends Component {
         this.props.openErrorMsg()
     }
     render() {
-        return (<div>
+        return (<div className="wrapper-landing-page">
             landing page
         </div>)
     }

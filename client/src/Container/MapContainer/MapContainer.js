@@ -6,17 +6,28 @@ import ViewWindowInfo from "./ViewInfoWindow/ViewInfoWindow"
 import './MapContainer.css'
 /* global google */
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
-
+var bounds = {}
 class MapContainer extends PureComponent {
 
     componentDidMount() {
-
+        if (this.props.teamsBySearch) {
+            bounds = new this.props.google.maps.LatLngBounds();
+            for (var i = 0; i < this.props.teamsBySearch.length; i++) {
+                bounds.extend(this.props.teamsBySearch[i].location.userLocation);
+            }
+          
+           
+        }
     }
 
+    componentWillUnmount() {
+        this.setState({ reRender: !this.state.reRender })
+    }
     constructor(props) {
         super(props)
         this.state = {
             activeMarker: null,
+            zoom: 11,
             selectedPlace: "",
             showingInfoWindow: false,
             reRender: true,
@@ -26,12 +37,14 @@ class MapContainer extends PureComponent {
                 markers: this.props.markers
             }
         }
-        this.windowInfo = React.createRef
+
 
     }
     clickWindowHandler = (event) => {
         event.preventDefault()
-        console.log("click")
+        console.log("click", this.state.selectedPlace.value)
+        this.props.viewTeam(this.state.selectedPlace.value)
+
     }
     onClickMarkerHandler = (props, marker) => {
         this.setState({
@@ -41,6 +54,7 @@ class MapContainer extends PureComponent {
         });
 
     }
+ 
     onInfoWindowOpen = (props, e) => {
         if (this.props.teamsBySearch) {
             const { title, value } = this.state.selectedPlace
@@ -81,9 +95,11 @@ class MapContainer extends PureComponent {
             <div className={this.props.mapWindow}>
                 {this.state.reRender && (<Map
                     ref={x => this.map = x}
+                     bounds={bounds}
                     google={this.props.google}
                     style={this.props.styleMap}
-                    zoom={11}
+                    zoom={this.state.zoom}
+                  
                     center={{
                         lat: this.props.lat,
                         lng: this.props.lng
