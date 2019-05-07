@@ -1,0 +1,44 @@
+.wrapper-conform {
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+}
+.msg-conform{
+    margin: 15px auto
+}
+.conform-btn {
+    background: #4070a0;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    margin-right: 5px;
+    padding: 14px 38px;
+    border: none;
+    margin-left: 5px;
+    text-decoration: none;
+  }
+  
+  .next-btn-team-create:disabled, button[disabled] {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+  }
+  
+  .cancel-conform-btn{
+    background: #34495e;
+    border-radius: 11px;
+    cursor: pointer;
+    color: #ffffff;
+    outline: none;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 14px 38px;
+    text-decoration: none;
+  }

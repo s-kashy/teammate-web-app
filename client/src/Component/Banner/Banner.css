@@ -1,0 +1,8 @@
+video {
+    object-fit: fill;
+  }
+  .banner-wrapper{
+      height: 30%;
+      width: 100%;
+      padding: 20px
+  }

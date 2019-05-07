@@ -5,7 +5,9 @@
   background-color: #fafafa;
   transform: translate(-50%,-50%)
 }
-
+.msg-spinner{
+  margin: 10px 0
+}
 
 .loader,
 .loader:before,

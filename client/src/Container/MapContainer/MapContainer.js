@@ -15,8 +15,8 @@ class MapContainer extends PureComponent {
             for (var i = 0; i < this.props.teamsBySearch.length; i++) {
                 bounds.extend(this.props.teamsBySearch[i].location.userLocation);
             }
-          
-           
+
+
         }
     }
 
@@ -54,7 +54,7 @@ class MapContainer extends PureComponent {
         });
 
     }
- 
+
     onInfoWindowOpen = (props, e) => {
         if (this.props.teamsBySearch) {
             const { title, value } = this.state.selectedPlace
@@ -95,11 +95,13 @@ class MapContainer extends PureComponent {
             <div className={this.props.mapWindow}>
                 {this.state.reRender && (<Map
                     ref={x => this.map = x}
-                     bounds={bounds}
+                    bounds={bounds}
                     google={this.props.google}
                     style={this.props.styleMap}
                     zoom={this.state.zoom}
-                  
+                    panControl={true}
+                    mapTypeControl={false}
+                    zoomControl={true}
                     center={{
                         lat: this.props.lat,
                         lng: this.props.lng
@@ -119,7 +121,8 @@ class MapContainer extends PureComponent {
 
                         </div>
                     </InfoWindow>
-                </Map>)}
+                </Map>)
+                }
             </div>
 
         )

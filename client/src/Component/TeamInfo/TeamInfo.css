@@ -2,10 +2,20 @@
     height: 650px;
     position: relative;
     background: linear-gradient(0deg, #1E2C3D 00%, #3E364E 100%);
-    width: 25%;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
     padding: 10px;
+    max-width: 290px;
 }
-
+.rating-wrapper-inputs {
+    margin: auto;
+    width: 60%;
+  
+  }
+  .rating-wrapper-inputs-disable{
+    margin: auto;
+    width: 60%; 
+    pointer-events: none 
+  }
 .team-name-chat-board {
     margin: 10px auto;
     padding: 23px;
@@ -50,7 +60,10 @@
     z-index: -999;
     max-height: 200px;
 }
-
+.rating-bar-team-info{
+    position: absolute !important;
+    left: 35% !important;
+}
 li {
     width: 50%;
     display: inline-block;
@@ -70,7 +83,8 @@ li::before {
 
 @media screen and (max-width:800px) {
     .wrapper-team-info {
-        width: 100%
+        width: 100%;
+        max-width: 100%
     }
     .go-back-icon-mobile-info-team {
         display: block;

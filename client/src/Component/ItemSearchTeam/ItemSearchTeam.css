@@ -52,6 +52,8 @@
 .item-info-wrapper {
   background: #FFF;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
   min-height: 200px;
   background: #34495e;
   color: white;

@@ -36,3 +36,9 @@ export const clearAllMessages=()=>{
         payload:[]
     }
 }
+
+export const processUserRequest=(request)=>{
+return dispatch=>{
+
+}
+}

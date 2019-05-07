@@ -9,7 +9,7 @@
     margin: 10px auto;
     max-width: 500px;
     height: 650px;
-    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
     /*border : 1px solid #000;*/
     /* overflow: hidden; */
     position: relative;
@@ -27,9 +27,12 @@
     color: #3E364E;
     box-sizing: border-box;
 }
-.display-info-mobile{
-    display: block !important
+
+.display-info-mobile {
+    display: block !important;
+    width: 25%;
 }
+
 .input-chat-board {
     /* margin-bottom: auto; */
     display: inline-block;
@@ -54,8 +57,8 @@
     padding: 20px;
     width: 500px;
     height: 500px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
+    overflow-y: scroll;
+    /* scroll-behavior: smooth; */
 }
 
 .mobile-name-of-team {
@@ -97,7 +100,7 @@
         max-height: 500px;
         overflow-y: auto;
     }
-    .display-info-mobile{
+    .display-info-mobile {
         display: none !important
     }
     .mobile-name-of-team {
@@ -121,9 +124,9 @@
     .wrapper-input-chat-board {
         position: relative;
         display: inline-block;
-        top: 19px; 
+        top: 19px;
     }
-    .send-msg-chat-board{
+    .send-msg-chat-board {
         display: inline-block;
         border: none;
         padding: 0;
@@ -131,10 +134,10 @@
         float: right;
         margin: 0;
         position: static;
-        left:0;
-        top:0
+        left: 0;
+        top: 0
     }
-    .wrapper-input-moblie{
+    .wrapper-input-moblie {
         display: inline-block;
         width: 86%;
     }

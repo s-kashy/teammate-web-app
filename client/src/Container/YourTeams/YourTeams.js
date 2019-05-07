@@ -38,6 +38,7 @@ class YourTeams extends Component {
                 id: this.props.emailRegister
             }
             this.props.getUsersTeams(data).then(res => {
+                
                 let array = this.chunkArray(res)
                 this.setState({ yourTeams: array, isLoading: true }, () => {
                 })
@@ -107,13 +108,15 @@ class YourTeams extends Component {
         var searchResults = []
         if (yourTeams.length > 0) {
             searchResults = yourTeams[this.state.indexActive].map((item, index) => {
-               
+               console.log("item",item.rateTeam.rate)
                 return (<ItemSearchTeam image={item.generalInfo.file}
                     view={this.props.teamsBySearch.length > 0 ? () => this.viewTeamHandler(item) : () => this.loadTeamMessageBoard(item)}
                     fade={item.membersId.length !== 0 && item.membersId.length >= item.generalInfo.numberOfTeam && bySearch ? true : false}
                     sportType={item.generalInfo.typeOfSportChosen}
                     nameOfTeam={item.generalInfo.nameOfTeam}
                     key={index}
+                    rate={item.rateTeam.rate}
+                    classRating="rating-item-search-team"
                     dateEvent={item.dateAndTime.selectedDays.length >0 ?item.dateAndTime.selectedDays:item.dateAndTime.dayOfTheWeekPicker}
                     signUpMembers={item.membersId.length }
                     maxMembers={item.generalInfo.numberOfTeam }

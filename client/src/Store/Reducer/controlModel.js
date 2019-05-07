@@ -5,6 +5,8 @@ const initialState = {
     errorMsg: false,
     processRequestMsg: false,
     memberMsg: false,
+    conformRequest:false,
+    userConformation:false
 
 }
 
@@ -18,6 +20,10 @@ const reducer = (state = initialState, action) => {
             return updateObject(state, { processRequestMsg: action.payload, backDrop: action.payload })
         case actionType.RESET_MODEL:
             return updateObject(state = initialState)
+            case actionType.USER_SELECTION:
+            return updateObject(state,{userConformation:action.payload,conformRequest:!state.conformRequest,backDrop:!state.backDrop})
+            case actionType.CONFORM_REQUEST:
+            return updateObject(state,{conformRequest:!state.conformRequest,backDrop:!state.backDrop})
         case actionType.IS_ALREADY_MEMBER:
             return updateObject(state, { memberMsg: true, backDrop: true })
         default:

@@ -9,7 +9,9 @@ export {
     openErrorMsg,
     processRequestMsg,
     resetModel,
-    isMemberMsg
+    isMemberMsg,
+    openConformRequest,
+    userClickOnConformation
 } from "./controlModel"
 
 export {
@@ -40,7 +42,8 @@ export {
     loadChatBoard,
     clearSelectedTeam,
     setLocationUser,
-    getTeamsByParams
+    getTeamsByParams,
+    rateATeam
  } from "./teamCreateInfo"
 export {
     getAllTeamMessages,

@@ -17,13 +17,21 @@
     height: 360px;
     margin: auto
 }
+.rating-item-search-team{
+    position: absolute;
+    left: 35%;
+    top: -8px;
+    pointer-events: none;
 
+  
+  }
 .slides {}
 
 .btnLeft, .btnRight {
     position: absolute;
     width: 60px;
     height: 287px;
+    color: #2d3844;
     top: 24px;
     font-size: 40px;
     line-height: 300px !important;
@@ -61,7 +69,6 @@
     margin: 10px auto;
     color: #34495e;
     font-size: 20px;
-    margin: 0 auto;
     font-weight: 800;
 }
 
@@ -116,7 +123,7 @@
         position: fixed;
     }
     .btnLeft:active, .btnRight:active {
-        transform: scale(1.25);
+        font-size: 25px;
         cursor: pointer;
     }
 }

@@ -23,3 +23,4 @@ export const GET_ALL_MESSAGES_OF_GROUP="/api/chat-message/get-messages"
 export const POST_MESSAGE_OF_USER="/api/chat-message/post-message"
 
 export const GET_TEAMS_BY_DISTANCE="/api/team/get-by-distance"
+export const RATE_TEAM="/api/team/user-rate"

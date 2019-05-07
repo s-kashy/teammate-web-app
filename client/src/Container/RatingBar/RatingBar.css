@@ -1,0 +1,21 @@
+.rating-stars-wrapper {
+  margin: 5px auto;
+  position: relative;
+  display: block
+}
+.dv-star-rating-input {
+  display: none;
+}
+
+.msg-rating-star {
+  color: #fff;
+  margin-top: 5px auto;
+  font-size: 15px;
+}
+@media screen and (max-width: 1200px) {
+  .rating-wrapper-inputs {
+    margin: auto;
+    width: 80%;
+    align-items: center;
+  }
+}

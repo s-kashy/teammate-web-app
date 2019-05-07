@@ -9,7 +9,8 @@ export const OPEN_ERROR_MSG="open error msg"
 export const RESET_MODEL="reset model" 
 export const IS_ALREADY_MEMBER="user is a member"
 export const PROCESS_REQUEST_MSG="process Request Msg"
-
+export const CONFORM_REQUEST="conform request"
+export const USER_SELECTION="user selection"
 export const EMAIL_USER="email user"
 export const PROFILE_USER="profile user"
 
