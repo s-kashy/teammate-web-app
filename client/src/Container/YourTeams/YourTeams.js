@@ -108,7 +108,7 @@ class YourTeams extends Component {
         var searchResults = []
         if (yourTeams.length > 0) {
             searchResults = yourTeams[this.state.indexActive].map((item, index) => {
-               console.log("item",item.rateTeam.rate)
+               
                 return (<ItemSearchTeam image={item.generalInfo.file}
                     view={this.props.teamsBySearch.length > 0 ? () => this.viewTeamHandler(item) : () => this.loadTeamMessageBoard(item)}
                     fade={item.membersId.length !== 0 && item.membersId.length >= item.generalInfo.numberOfTeam && bySearch ? true : false}

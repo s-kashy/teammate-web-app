@@ -35,7 +35,11 @@ class ChatBoardTeam extends Component {
       isLoading: false,
       messages: [],
       showInfo: false,
-      ratingEdit: true,
+      ratingEdit: this.props.teamSelected.rateTeam.voters.includes(
+        this.props.email
+      )
+        ? false
+        : true,
       rating: 0
     };
   }
@@ -53,10 +57,9 @@ class ChatBoardTeam extends Component {
     animateScroll.scrollToBottom({
       containerId: "options-holder"
     });
-   
-    };
+  };
   componentWillReceiveProps(nextProps) {
-       if (nextProps.userConformation === true) {
+    if (nextProps.userConformation === true) {
       this.sendRatingUser();
     }
   }
@@ -119,15 +122,12 @@ class ChatBoardTeam extends Component {
       id: this.props.teamSelected._id,
       rate: this.state.rating
     };
-    this.setState({ ratingEdit: false },()=>{
+    this.setState({ ratingEdit: false }, () => {
       this.props
-      .rateATeam(data)
-      .then(res => {
-       
-    
-      }).catch(err => {});
+        .rateATeam(data)
+        .then(res => {})
+        .catch(err => {});
     });
-  
   };
   onChangeHandler = event => {
     let copyMessage = { ...this.state.message };
@@ -160,7 +160,6 @@ class ChatBoardTeam extends Component {
     return dateTime;
   };
   render() {
-
     let { message } = this.state;
     let arrayMessage = [];
     if (this.state.messages.length > 0) {
@@ -183,8 +182,7 @@ class ChatBoardTeam extends Component {
               <TeamInfo
                 teamSelected={this.props.teamSelected}
                 clickRating={this.onClickRatingBar}
-               
-                edit={!this.props.teamSelected.rateTeam.voters.includes(this.props.email)}
+                edit={this.state.ratingEdit}
                 rate={this.props.teamSelected.rateTeam.rate}
               />
             </div>

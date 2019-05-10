@@ -17,7 +17,7 @@ class SearchTeam extends Component {
             sportInterest: {
                 Running: { value: false },
                 Bicycle: { value: false },
-                basketball: { value: false },
+                Basketball: { value: false },
                 Soccer: { value: false },
                 Tennis: { value: false },
                 Volleyball: { value: false },

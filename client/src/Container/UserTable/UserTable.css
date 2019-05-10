@@ -1,9 +1,45 @@
-.row{
-opacity: 0.7;
-text-decoration: line-through;
-
+.row {
+  opacity: 0.7;
+  text-decoration: line-through;
 }
-
-.user-table-wrapper{
-
+.rc-table{
+font-size: 15px;
+}
+.title-table {
+  left: 171px;
+  text-align: left;
+  position: relative;
+  color: #34495e;
+  font-size: 20px;
+  font-weight: 800;
+}
+.rc-table-thead {
+  font-size: 18px;
+}
+.user-table-wrapper {
+  margin-left: 30px;
+}
+.rc-table-content {
+  width: 50%;
+  padding: 20px;
+}
+.schedule-item {
+  padding: 10px;
+  position: relative;
+  left: 36px;
+}
+.schedule-item .cross {
+  text-decoration: line-through;
+}
+.schedule-item::before {
+  content: "\f192";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  padding: 0 3px;
+}
+.rc-table-row-expand-icon,
+.rc-table-row-collapsed {
+  width: 28px !important;
+  height: 28px !important;
+  margin-right: 5px;
 }

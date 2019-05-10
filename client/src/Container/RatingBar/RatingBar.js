@@ -10,7 +10,7 @@ class RatingBar extends Component {
     this.setState({ rating: this.props.rate });
   }
   shouldComponentUpdate(){
-    return this.state.rating !==this.props.rate
+    return this.state.rating ===this.props.rate
   }
   changeRating = newRating => {
     this.setState({ rating: newRating });
@@ -22,7 +22,7 @@ class RatingBar extends Component {
       <div className="rating-stars-wrapper">
         <p className="msg-rating-star">{this.props.title}</p>
         <StarRatings
-          value={this.state.rating}
+          value={this.props.rate}
           onChange={this.changeRating}
           count={5}
           edit={this.props.edit}

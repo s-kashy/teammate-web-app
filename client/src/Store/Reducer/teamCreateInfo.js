@@ -8,7 +8,8 @@ const initialState = {
     yourTeams: [],
     teamSelected: "",
     teamsBySearch: [],
-    userLocation: {}
+    userLocation: {},
+    userCalender:[]
 
 }
 
@@ -31,10 +32,14 @@ const reducer = (state = initialState, action) => {
             return updateObject(state ,{yourTeams:[],teamsBySearch:[]})
         case actionType.LOAD_CHAT_GROUP:
             return updateObject(state, { teamSelected: action.payload })
+            case actionType.CLEAR_SEARCH_TEAM:
+            return updateObject(state,{teamsBySearch:[]})
         case actionType.CLEAR_SELECTED_TEAM:
             return updateObject(state, { teamsBySearch: [], teamSelected: [] })
         case actionType.SET_USER_LOCATION:
             return updateObject(state, { userLocation: action.payload })
+            case actionType.LOAD_USER_CALENDER:
+            return updateObject (state,{userCalender:action.payload})
         default:
             return state;
 

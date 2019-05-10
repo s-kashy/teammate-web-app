@@ -51,4 +51,46 @@ team.methods.updateRate = function(total, numOfVoters) {
       return Promise.reject(err);
     });
 };
+team.statics.createUserCalender = function(userEmail) {
+  let Team = this;
+  return Team.find({ membersId: userEmail }).then(teams => {
+    if (teams == undefined || teams.length === 0) {
+      return Promise.resolve([]);
+    } else {
+      return new Promise((resolve, reject) => {
+        var scheduleArray = [];
+        for (let i = 0; i < teams.length; i++) {
+         
+          if (teams[i].dateAndTime.pickType==="Daily") {
+
+            scheduleArray.push({
+              nameOfTeam: teams[i].generalInfo.nameOfTeam,
+              location: teams[i].location.formattedAddress,
+              sport: teams[i].generalInfo.typeOfSportChosen,
+              times: ["Daily"],
+              typeSchedule:teams[i].dateAndTime.pickType
+            });
+          } else if (teams[i].dateAndTime.selectedDays.length > 0) {
+            scheduleArray.push({
+              nameOfTeam: teams[i].generalInfo.nameOfTeam,
+              location: teams[i].location.formattedAddress,
+              sport: teams[i].generalInfo.typeOfSportChosen,
+              times: teams[i].dateAndTime.selectedDays,
+              typeSchedule:teams[i].dateAndTime.pickType
+            });
+          } else {
+            scheduleArray.push({
+              nameOfTeam: teams[i].generalInfo.nameOfTeam,
+              location: teams[i].location.formattedAddress,
+              sport: teams[i].generalInfo.typeOfSportChosen,
+              times: teams[i].dateAndTime.dayOfTheWeekPicker,
+              typeSchedule:teams[i].dateAndTime.pickType
+            });
+          }
+        }
+        resolve(scheduleArray);
+      });
+    }
+  });
+};
 mongoose.model("Team", team);

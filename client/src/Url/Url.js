@@ -24,3 +24,4 @@ export const POST_MESSAGE_OF_USER="/api/chat-message/post-message"
 
 export const GET_TEAMS_BY_DISTANCE="/api/team/get-by-distance"
 export const RATE_TEAM="/api/team/user-rate"
+export const GET_USER_CALENDER="/api/team/create-user-calendar"

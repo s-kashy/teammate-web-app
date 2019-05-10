@@ -13,7 +13,7 @@ class Header extends Component {
     this.onClickMenu();
   };
   onClickYourTeamHandler = () => {
-   // this.props.clearAllTeams();
+    this.props.clearAllTeams();
     this.props.history.push("/your-teams");
     this.onClickMenu();
   };

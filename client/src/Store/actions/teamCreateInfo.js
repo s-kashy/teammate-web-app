@@ -9,7 +9,8 @@ import {
   NEW_TEAM,
   MANAGER_INFO_EXIST,
   FIND_TEAM_BY_CATEGORIES,
-  RATE_TEAM
+  RATE_TEAM,
+  GET_USER_CALENDER
 } from "../../Url/Url";
 
 export const saveGeneralInfo = general => {
@@ -199,14 +200,12 @@ export const getUsersTeams = dataEmail => {
       });
   };
 };
-export const updateTeams=(team)=>{
-  return (dispatch, getState) => {
-let teamCreateInfo=getState().teamCreateInfo
-console.log("team",teamCreateInfo)
-}
-}
+export const clearSearchTeamArray = () => {
+  return {
+    type: actionType.CLEAR_SEARCH_TEAM
+  };
+};
 export const rateATeam = ratingInfo => {
-
   var data = {
     url: RATE_TEAM,
     method: "post",
@@ -218,11 +217,11 @@ export const rateATeam = ratingInfo => {
   return dispatch => {
     return getRequestData(data)
       .then(res => {
-        dispatch(updateTeams(res.data))
-       return Promise.resolve(res.status);
+        // dispatch(updateTeams(res.data));
+        return Promise.resolve(res.status);
       })
       .catch(err => {
-       return Promise.reject(err);
+        return Promise.reject(err);
       });
   };
 };
@@ -266,6 +265,32 @@ export const getTeamsByParams = paramsUser => {
       })
       .catch(err => {
         Promise.reject(err);
+      });
+  };
+};
+export const loadCalender = calender => {
+  return {
+    type: actionType.LOAD_USER_CALENDER,
+    payload: calender
+  };
+};
+export const getUserCalender = email => {
+
+  var data = {
+    url: GET_USER_CALENDER,
+    method: "post",
+    headers: "",
+    data: email,
+    params: ""
+  };
+  return dispatch => {
+    return getRequestData(data)
+      .then(res => {
+        dispatch(loadCalender(res.data));
+        return Promise.resolve(res.data);
+      })
+      .catch(err => {
+        return Promise.reject(err);
       });
   };
 };

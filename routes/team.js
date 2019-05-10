@@ -129,4 +129,14 @@ module.exports = app => {
         res.send(err);
       });
   });
+
+  app.post("/api/team/create-user-calendar", (req, res) => {
+    Team.createUserCalender(req.body.email)
+      .then(teams => {
+        res.send(teams);
+      })
+      .catch(err => {
+        res.send(err);
+      });
+  });
 };
