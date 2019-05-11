@@ -21,9 +21,11 @@ class YourTeams extends Component {
     componentDidMount() {
         if (this.props.teamCreateInfo !== undefined || this.props.teamsBySearch.length !== 0) {
             let array = this.chunkArray(this.props.teamsBySearch)
+
             this.setState({
                 yourTeams: array,
-                isLoading: true, bySearch: true
+                isLoading: true, bySearch: true,
+               
             }, () => {
 
             })

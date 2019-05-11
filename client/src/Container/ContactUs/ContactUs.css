@@ -1,0 +1,68 @@
+
+.wrapper-contact-us{
+    width: 100%;
+    margin: auto;
+}
+.btn-send-meg-contact-us:hover{
+    background-color: #343c43;
+}
+.btn-send-meg-contact-us{
+    display: block;
+    padding: 13px;
+    width: 90%;
+    background-color: #34495e;
+    margin: auto;
+    color: #fff;
+    font-size: 15px;
+    border: none;
+}
+.btn-send-meg-contact-us::before {
+    content: "\f1d8";
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900;
+    margin-right: 5px;
+    color: #fff;
+   
+}
+.input-subject-contact-us {
+  padding: 13px;
+  outline: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid #b0cfe0;
+  cursor: pointer;
+  width: 90%;
+  color: black;
+  margin-bottom: 10px;
+}
+::placeholder{
+    color: #343c43 !important;
+    margin-left: 5px;
+}
+.input-subject-contact-us:focus {
+  box-shadow: 0 0 5px #b0cfe0;
+  border: 1px solid #343c43;
+  cursor: pointer;
+}
+.msg-contact-us{
+  color:#343c43;
+  font-size: 20px;
+  margin: auto;
+}
+.text-msg-contact-us {
+    width: 90%;
+    height: 195px;
+    line-height: 16pt;
+    max-height: 195px;
+    overflow: auto;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+.text-msg-contact-us:focus{
+  border: 1px solid #343c43;
+}
+.title-contact-us {
+  color: #34495e;
+  font-size: 20px;
+  font-weight: 800;
+}

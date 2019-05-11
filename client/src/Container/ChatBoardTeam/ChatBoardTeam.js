@@ -174,6 +174,7 @@ class ChatBoardTeam extends Component {
         );
       });
     }
+    console.log("edit",this.state.ratingEdit)
     return (
       <div className="wrapper-chat-board-container">
         {this.state.isLoading ? (

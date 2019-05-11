@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
         case actionType.SEARCH_TEAMS:
             return updateObject(state, { teamsBySearch: action.payload })
         case actionType.CLEAR_ALL_TEAMS:
-            return updateObject(state ,{yourTeams:[],teamsBySearch:[]})
+            return updateObject(state ,{yourTeams:[],teamsBySearch:[],generalInfo:"",dateAndTime:"",location:""})
         case actionType.LOAD_CHAT_GROUP:
             return updateObject(state, { teamSelected: action.payload })
             case actionType.CLEAR_SEARCH_TEAM:

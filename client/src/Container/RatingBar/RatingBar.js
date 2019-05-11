@@ -10,14 +10,14 @@ class RatingBar extends Component {
     this.setState({ rating: this.props.rate });
   }
   shouldComponentUpdate(){
-    return this.state.rating ===this.props.rate
+    return this.state.rating!==this.props.rate
   }
   changeRating = newRating => {
     this.setState({ rating: newRating });
     this.props.clickRating(newRating);
   };
   render() {
-    console.log("edit", this.props.edit);
+    
     return (
       <div className="rating-stars-wrapper">
         <p className="msg-rating-star">{this.props.title}</p>

@@ -38,7 +38,7 @@ class UserTable extends Component {
   expand = record => {
     var schedule = null;
     if (record.typeSchedule === "Daily") {
-      return <p className="schedule-item">Daily Meet ups</p>;
+      return <p key="daily" className="schedule-item">Daily Meet ups</p>;
     } else if (record.typeSchedule === "Weekly") {
       schedule = record.times.map(weekly => {
         return (
@@ -50,12 +50,12 @@ class UserTable extends Component {
       return schedule;
     } else {
       var today = new Date();
-      console.log("records", record);
+ 
       schedule = record.times.map(date => {
         if (moment(new Date(date)).isBefore(today)) {
           return (
-            <p
-              style={{textDecoration: "line-through" }}
+            <p  key={date._id} id={date._id}
+              style={{ textDecoration: "line-through" }}
               className="schedule-item"
             >
               {moment(date)
@@ -65,10 +65,7 @@ class UserTable extends Component {
           );
         } else {
           return (
-            <p
-             
-              className="schedule-item"
-            >
+            <p className="schedule-item" key={date._id} id={date._id}>
               {moment(date)
                 .format("DD-MM-YYYY")
                 .toString()}
@@ -107,8 +104,8 @@ class UserTable extends Component {
         width: 100
       }
     ];
-    let today = new Date();
-    console.log(today);
+   
+  
     return (
       <div className="user-table-wrapper">
         <p className="title-table">Your TeamMate schedule</p>

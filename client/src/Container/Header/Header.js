@@ -13,7 +13,8 @@ class Header extends Component {
     this.onClickMenu();
   };
   onClickYourTeamHandler = () => {
-    this.props.clearAllTeams();
+  
+    this.props.clearSearchTeamArray()
     this.props.history.push("/your-teams");
     this.onClickMenu();
   };
@@ -117,7 +118,8 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
   return {
     clearAllTeams: () => dispatch(actionType.clearAllTeams()),
-    logoutUser: () => dispatch(actionType.logoutUser())
+    logoutUser: () => dispatch(actionType.logoutUser()),
+    clearSearchTeamArray:()=>dispatch(actionType.clearSearchTeamArray())
   };
 };
 export default withRouter(
