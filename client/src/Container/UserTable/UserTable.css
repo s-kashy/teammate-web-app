@@ -45,3 +45,12 @@ position: absolute !important;
   height: 28px !important;
   margin-right: 5px;
 }
+@media screen and (max-width:800px){
+  .rc-table{
+    position: static !important;
+  }
+  .user-table-wrapper{
+    margin-left: 0;
+    margin: 10px auto
+  }
+}

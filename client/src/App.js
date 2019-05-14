@@ -59,7 +59,7 @@ class App extends Component {
           <Route path="/chat-team" component={ChatBoardTeam} />
           <Route exact path="/" component={LandingPage} />
           <Redirect to="/" />
-          {/* <Route component={Error} /> */}
+         
         </Switch>
       );
     }

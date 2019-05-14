@@ -35,15 +35,12 @@ class ChatBoardTeam extends Component {
       isLoading: false,
       messages: [],
       showInfo: false,
-      ratingEdit: this.props.teamSelected.rateTeam.voters.includes(
-        this.props.email
-      )
-        ? false
-        : true,
+      ratingEdit: this.props.teamSelected.rateTeam.voters.includes(this.props.email)? false: true,
       rating: 0
     };
   }
   componentDidMount() {
+    
     socket.on(CONNECT_CLIENT, () => {
       if (socket.connected) {
         this.initSocket();

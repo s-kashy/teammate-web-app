@@ -26,7 +26,7 @@ class ContactUs extends Component {
   render() {
     return (
       <div className="wrapper-contact-us">
-        <form>
+        <form className="form-contact-us">
           <h3 className="title-contact-us">Contact Us</h3>
           <Input
             classInput="input-subject-contact-us"

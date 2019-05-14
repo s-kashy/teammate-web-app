@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./UserTable.css";
-import Table, { ColumnGroup } from "rc-table";
+import Table from "rc-table";
 import "../../../node_modules/rc-table/assets/index.css";
 import moment from "moment";
 
@@ -40,9 +40,9 @@ class UserTable extends Component {
     if (record.typeSchedule === "Daily") {
       return <p key="daily" className="schedule-item">Daily Meet ups</p>;
     } else if (record.typeSchedule === "Weekly") {
-      schedule = record.times.map(weekly => {
+      schedule = record.times.map((weekly,index) => {
         return (
-          <div key={weekly._id} id={weekly._id}>
+          <div key={weekly._id} id={weekly.id}>
             <p className="schedule-item">{weekly.value}</p>
           </div>
         );
@@ -51,10 +51,10 @@ class UserTable extends Component {
     } else {
       var today = new Date();
  
-      schedule = record.times.map(date => {
+      schedule = record.times.map((date,index) => {
         if (moment(new Date(date)).isBefore(today)) {
           return (
-            <p  key={date._id} id={date._id}
+            <p  key={date._id} 
               style={{ textDecoration: "line-through" }}
               className="schedule-item"
             >
@@ -65,7 +65,7 @@ class UserTable extends Component {
           );
         } else {
           return (
-            <p className="schedule-item" key={date._id} id={date._id}>
+            <p className="schedule-item" key={date._id}  >
               {moment(date)
                 .format("DD-MM-YYYY")
                 .toString()}
@@ -78,9 +78,7 @@ class UserTable extends Component {
     }
   };
   rowClassNameHandler = (record, index, indent) => {
-    console.log("record", record);
-    console.log("index", index);
-    console.log("indent", indent);
+  
   };
   render() {
     var columns = [
@@ -105,7 +103,7 @@ class UserTable extends Component {
       }
     ];
    
-  
+
     return (
       <div className="user-table-wrapper">
         <p className="title-table">Your TeamMate schedule</p>

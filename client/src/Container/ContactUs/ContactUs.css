@@ -6,6 +6,10 @@
 .btn-send-meg-contact-us:hover{
     background-color: #343c43;
 }
+.form-contact-us{
+  width: 80%;
+  background: #fafafa
+}
 .btn-send-meg-contact-us{
     display: block;
     padding: 13px;
@@ -65,4 +69,9 @@
   color: #34495e;
   font-size: 20px;
   font-weight: 800;
+}
+@media screen and (max-width:800px){
+  .form-contact-us{
+    width: 100%;
+  }
 }

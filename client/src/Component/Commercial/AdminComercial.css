@@ -4,7 +4,7 @@
 }
 .wrapper-admin-Commercial {
   font-family: "Roboto", sans-serif;
- background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1557569847/basketball.jpg");
+  background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1557569847/basketball.jpg");
   height: 62%;
   position: absolute;
   top: 50%;
@@ -16,9 +16,9 @@
   transform: translate(-50%, -50%);
   width: 88%;
 }
-.wrapper-admin-Commercial span {
+.wrapper-admin-commercial span {
   text-transform: uppercase;
- 
+
   display: block;
 }
 .text1 {
@@ -27,20 +27,20 @@
   letter-spacing: 8px;
   color: #405b75;
   margin-bottom: 20px;
-  color:black;
+  color: black;
   position: relative;
   animation: text 3s 1;
 }
 .text2 {
   font-size: 18px;
-  color:#262626;
-  font-weight: 700
+  color: #262626;
+  font-weight: 700;
 }
 
 @keyframes text {
   0% {
-  color:#262626;
-  color: black;
+    color: #262626;
+    color: black;
     margin-bottom: -40px;
   }
   30% {
@@ -51,6 +51,29 @@
   85% {
     letter-spacing: 8px;
     margin-bottom: -40px;
-    color: #405b75
+    color: #405b75;
+  }
+}
+@media screen and (max-width: 800px) {
+  .wrapper-admin-commercial {
+    margin: 23px auto;
+    width: 100%;
+    height: auto;
+    padding: 4px;
+    font-family: "Roboto", sans-serif;
+    background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1557569847/basketball.jpg");
+    /* height: 62%;
+    position: absolute;
+    top: 50%;
+    left: 50%; */
+    background-position: 0% 62%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 10px;
+    /* transform: translate(-50%, -50%); */
+  }
+  .wrapper-mobile {
+    position: relative;
+    margin: 10px auto;
   }
 }

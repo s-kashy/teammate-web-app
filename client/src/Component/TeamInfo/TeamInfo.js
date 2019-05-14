@@ -17,7 +17,7 @@ class TeamInfo extends Component {
     }
     
     return (<div className="wrapper-team-info">
-    <span onClick={this.props.click} className="go-back-icon-mobile-info-team"><i className="fas fa-arrow-left"></i></span>
+    <span onClick={this.props.click} className="go-back-icon-mobile-info-team"><i className="fas fa-arrow-left">info</i></span>
         <p className="team-name-chat-board">{this.props.teamSelected.generalInfo.nameOfTeam}</p>
         <p className="sub-messages-team-info">{this.props.teamSelected.generalInfo.typeOfSportChosen}</p>
         <hr />

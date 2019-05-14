@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const uuid = require('uuidv4');
 
 const team = new Schema({
   generalInfo: {
@@ -62,13 +63,13 @@ team.statics.createUserCalender = function(userEmail) {
         for (let i = 0; i < teams.length; i++) {
          
           if (teams[i].dateAndTime.pickType==="Daily") {
-
             scheduleArray.push({
               nameOfTeam: teams[i].generalInfo.nameOfTeam,
               location: teams[i].location.formattedAddress,
               sport: teams[i].generalInfo.typeOfSportChosen,
               times: ["Daily"],
-              typeSchedule:teams[i].dateAndTime.pickType
+              typeSchedule:teams[i].dateAndTime.pickType,
+              id:uuid()
             });
           } else if (teams[i].dateAndTime.selectedDays.length > 0) {
             scheduleArray.push({
@@ -76,7 +77,8 @@ team.statics.createUserCalender = function(userEmail) {
               location: teams[i].location.formattedAddress,
               sport: teams[i].generalInfo.typeOfSportChosen,
               times: teams[i].dateAndTime.selectedDays,
-              typeSchedule:teams[i].dateAndTime.pickType
+              typeSchedule:teams[i].dateAndTime.pickType,
+              id:uuid()
             });
           } else {
             scheduleArray.push({
@@ -84,7 +86,8 @@ team.statics.createUserCalender = function(userEmail) {
               location: teams[i].location.formattedAddress,
               sport: teams[i].generalInfo.typeOfSportChosen,
               times: teams[i].dateAndTime.dayOfTheWeekPicker,
-              typeSchedule:teams[i].dateAndTime.pickType
+              typeSchedule:teams[i].dateAndTime.pickType,
+              id:uuid()
             });
           }
         }

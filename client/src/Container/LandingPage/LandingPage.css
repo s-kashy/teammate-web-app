@@ -1,5 +1,8 @@
 .wrapper-landing-page{
     position: relative;
+    display: flex;
+    flex-direction: column;
+  
 
 }
 .mid-Landing-page{
@@ -9,4 +12,26 @@
 .child-mid-landing-page{
     flex: 1 1;
     position: relative;
+}
+@media screen and (max-width:800px){
+    .wrapper-landing-page{
+        flex-direction: column;
+        /* z-index: -999; */
+        width: 100%;
+        display: flex;
+        height: auto;
+    }
+    
+    .mid-Landing-page{
+        width: 100%;
+        padding: 18px;
+        display: flex;
+        margin: -19px auto;
+        flex-direction: column;
+    }
+    .child-mid-landing-page{
+        width: 100%;
+        display: block;
+        position: static !important;
+    }
 }

@@ -11,14 +11,14 @@ export const findTheNextEvent = (type, dateArray) => {
         return getClosesDate(dateArray)
     }
 }
-export const findTheNextWeekEvent = (dates) => {
+export const findTheNextWeekEvent = (datesArr) => {
     let indexDay = 1;
     let day = new Date()
     indexDay = day.getDay() + indexDay
     if (indexDay > 6) {
         indexDay = 0
     }
-    var dates = dates.map(item => item.value)
+    var dates = datesArr.map(item => item.value)
     var daysOfTheWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     let nextDay = daysOfTheWeek[indexDay]
     let found = true;
@@ -31,7 +31,6 @@ export const findTheNextWeekEvent = (dates) => {
             if (indexDay > 6) {
                 indexDay = 0
                 nextDay = daysOfTheWeek[indexDay]
-
             } else {
                 nextDay = daysOfTheWeek[indexDay]
             }

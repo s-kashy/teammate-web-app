@@ -19,6 +19,7 @@ class Header extends Component {
     this.onClickMenu();
   };
   onClickLogout = () => {
+    this.setState({ open: !this.state.open });
     this.props
       .logoutUser()
       .then(res => {})
@@ -71,7 +72,7 @@ class Header extends Component {
             onClick={this.onClickMenu}
             className="link-class"
             to="/profile"
-            onClick={this.onClickMenu}
+          
           >
             Your Profile
           </NavLink>
@@ -94,7 +95,7 @@ class Header extends Component {
             onClick={this.onClickMenu}
             className="link-class"
             to="#"
-            onClick={this.onClickLogout}
+         
           >
             logout
           </NavLink>
