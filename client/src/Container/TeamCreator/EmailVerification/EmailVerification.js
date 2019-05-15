@@ -6,11 +6,12 @@ import { connect } from "react-redux";
 import { isEmail } from 'validator';
 
 import ContralTeamCreate from "../ContralTeamCreate/ContralTeamCreate"
+
 class EmailVerification extends Component {
     state = {
         email: {
             value: "",
-            error: false
+            error:false
         },
         webToken: {
             value: "",
@@ -20,7 +21,6 @@ class EmailVerification extends Component {
         isValid: false
     }
     onClickConfirmHandler = () => {
-
         let data = {
             email: this.props.emailRegister,
             token: JSON.parse(JSON.stringify(this.state.webToken.value)),
@@ -92,19 +92,13 @@ class EmailVerification extends Component {
                         <span className="icon-submit-email-verification">
                             </span></button>
                 </div>
-                {this.state.showInputToken && (<div style={{position:"relative",marginTop:'20px'}}><Input classLabel="label-confirm-email-verification" type="text" msgError="*Not valid Token" value={this.state.webToken.value} classInput="input-confirm-email-verification"
+                {this.state.showInputToken && (<div style={{position:"relative",marginTop:'37px'}}><Input classLabel="label-confirm-email-verification" type="text" msgError="*Not valid Token" value={this.state.webToken.value} classInput="input-confirm-email-verification"
                     error={webToken.error} errorClass='error-confirm-email-verification' change={(e) => this.onChangeTokenHandler(e)}
                     title="Enter The Token" name="webToke" /><button style={{ backgroundColor: "green" }} className="submit-confirm-btn-email-verification" onClick={this.onClickConfirmHandler}>
                         <span className="icon-submit-confirm-email-verification">
                             </span></button></div>)}
             </div>
-            <div className="msg-email-verification"><span> ever since the 1500s, when an unknown printer took a galley
-                  of type and scrambled it to make a type
-                   specimen book. It ha popularised in the
-                    1960s with the release of Letraset sheets
-                     containing Lorem Ipsum passages,
-                   and more recently with desktop
-          publis</span></div>
+   
             <div>
                 <ContralTeamCreate class="contral-team-email-verification" leftClick={this.props.leftClick} rightClick={this.props.rightClick} disabled={!this.state.isValid} />
             </div>

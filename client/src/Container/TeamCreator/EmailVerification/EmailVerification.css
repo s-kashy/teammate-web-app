@@ -108,8 +108,9 @@
 .error-confirm-email-verification {
     position: absolute;
     font-weight: 700 !important;
-    top: 176px;
-    left: 0px;
+   
+    font-size: 13px;
+    left: 186px;
     color: red;
 }
 
@@ -128,7 +129,7 @@
 
 .label-confirm-email-verification {
     position: relative;
-    left: -18px;
+    left: -283px;
 }
 
 .contral-team-email-verification {
@@ -152,13 +153,13 @@
     }
     .wrapper-input-email-verification {
         -webkit-flex: 1 1;
-        top: -133px;
+        top: 0;
         flex: 1 1;
         position: relative;
     }
     .contral-team-email-verification {
         position: absolute;
-        top: 548px;
+        top: 359px;
         width: 100%;
         left: 0px;
         margin: auto;
@@ -179,19 +180,33 @@
     .submit-btn-email-verification, .submit-confirm-btn-email-verification {
         height: 48px;
         width: 48px;
-        left: 113px;
-        top: -48px;
+        left: 177px;
+        top: 18px;
         cursor: pointer;
-        position: relative;
+        position: absolute;
         background-color: #0000FF;
         border: 1px solid black;
     }
     .label-input-email-verification {
         position: relative;
         left: -84px;
+        top: 0
     }
     .label-confirm-email-verification {
         position: relative;
         left: -73px;
+    }
+    .error-msg-email-verification{
+            font-weight: 700;
+            text-align: left;
+            font-size: 13px;
+            color: red;
+            position: static
+    }
+    .error-confirm-email-verification{
+        position: static;
+        text-align: left;
+        font-size: 13px;
+        color: red;
     }
 }

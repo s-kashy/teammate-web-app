@@ -11,6 +11,7 @@ import Header from "./Container/Header/Header";
 import SearchTeam from "./Container/SearchTeam/SearchTeam";
 import TeamCreator from "./Container/TeamCreator/TeamCreator";
 import Profile from "./Container/Profile/Profile";
+import ContactUs from './Container/ContactUs/ContactUs'
 import Spinner from "./Component/Ui/Spinner/Spinner";
 import About from "./Container/About/About";
 import ChatBoardTeam from "./Container/ChatBoardTeam/ChatBoardTeam";
@@ -56,6 +57,7 @@ class App extends Component {
           <Route path="/search-team" component={SearchTeam} />
           <Route path="/your-teams" component={YourTeams} />
           <Route path="/about" component={About} />
+          <Route path="/contact-us" component={ContactUs} />
           <Route path="/chat-team" component={ChatBoardTeam} />
           <Route exact path="/" component={LandingPage} />
           <Redirect to="/" />

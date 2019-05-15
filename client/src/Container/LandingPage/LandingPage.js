@@ -5,7 +5,7 @@ import Table from "../UserTable/UserTable";
 import * as actionType from "../../Store/actions/index";
 import Banner from "../../Component/Banner/Banner";
 import AdminComercial from "../../Component/Commercial/AdminComercial";
-import ContactUs from "../ContactUs/ContactUs";
+
 class LadingPage extends Component {
   state = {
     userCalender: []
@@ -45,12 +45,12 @@ class LadingPage extends Component {
           <div className="child-mid-landing-page">
             <Table data={this.props.userCalender} />
           </div>
+          <div className="vl"></div>
           <div className="child-mid-landing-page">
+          <p className="advertisement-title-landing-page">*advertisement</p>
             <AdminComercial />
           </div>
-          <div className="child-mid-landing-page">
-            <ContactUs />
-          </div>
+        
         </div>
       </div>
     );

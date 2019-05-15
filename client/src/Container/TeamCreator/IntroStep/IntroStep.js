@@ -5,18 +5,21 @@ const IntroStep = (props) => {
 
     return (<div className="intro-wrapper">
     <div className="intro-create-team" >
-        <h3>Welcome Message</h3>
+        <h3>Create and Manage Your Team</h3>
         <div className="msg-intro-create">
-            <p >text ever since the 1500s, when an unknown
-            printer took a galley of type and scrambled it to make a
-            type specimen book. It has survived not only five centuries,
-             but also the leap into electronic typesetting, remaining essentially
-             unchanged. It was popularised in the 1960s with the release of Letraset
-             sheets containing Lorem Ipsum passages, and more recently with desktop
-            publishing software like Aldus PageMaker including versions of Lorem Ipsu</p>
+            <p>You can start and manage your team in a few easy steps: </p>
+            <p className="pointer-intro">√ Identify the sport, team name and logo, number of players</p>
+            <p className="pointer-intro">√ Post the schedule</p>
+            <p className="pointer-intro">√ Post the Location</p>
+            <p className="pointer-intro">√ Confirm your email (one time)</p>
+ 
+            <p>When done, you’ll receive email alerts  every time your friends
+             and others who are searching for a team sign up . As your team forms 
+             and plays, it will be easy for Teammates to communicate on the app’s
+              group chat. </p>
         </div>
         <div className="btn-wrapper-intro">
-            <button onClick={props.rightClick} className="next-btn-intro">Start<span className="icon-start-intro"><i className="fas fa-arrow-right"></i></span></button>
+            <button onClick={props.rightClick} className="next-btn-intro">Create Your Team Now<span className="icon-start-intro"><i className="fas fa-arrow-right"></i></span></button>
         </div>
     </div>
     </div>)

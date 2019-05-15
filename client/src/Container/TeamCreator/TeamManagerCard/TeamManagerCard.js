@@ -11,11 +11,9 @@ class TeamManagerCard extends Component {
     state = {
         image: "",
         isLoading: false
-
     }
 
     componentDidMount() {
-
         if (this.props.generalInfo.file) {
             if (typeof (this.props.generalInfo.file) === 'string') {
                 this.setState({ image: this.props.generalInfo.file, isLoading: true })
@@ -41,7 +39,7 @@ class TeamManagerCard extends Component {
             this.props.processRequestMsg(true)
            
             this.props.submitManagerCard(formDate, this.props.email).then(res => {
-                if (res.status == 200) {
+                if (res.status === 200) {
                     setTimeout(() => {
                         this.props.history.push("/")
                         this.props.processRequestMsg(false)
@@ -108,7 +106,7 @@ class TeamManagerCard extends Component {
                     </div>
                     <div className="btn-contral-manager-card">
                         <button className="btn-previous-card-manager" onClick={this.props.leftClick}>{this.props.cancel !== undefined ? this.props.cancel : Previous.toString()}</button>
-                        <button className="btn-submit-manager-card" onClick={typeof (this.props.joinTeamHandler) === 'function' ? this.props.joinTeamHandler : this.onClickHandler}>{this.props.join != undefined ? this.props.join : Submit.toString()}</button>
+                        <button className="btn-submit-manager-card" onClick={typeof (this.props.joinTeamHandler) === 'function' ? this.props.joinTeamHandler : this.onClickHandler}>{this.props.join !== undefined ? this.props.join : Submit.toString()}</button>
                     </div>
                 </div>
 

@@ -13,8 +13,7 @@ class Header extends Component {
     this.onClickMenu();
   };
   onClickYourTeamHandler = () => {
-  
-    this.props.clearSearchTeamArray()
+    this.props.clearSearchTeamArray();
     this.props.history.push("/your-teams");
     this.onClickMenu();
   };
@@ -29,7 +28,7 @@ class Header extends Component {
     this.setState({ open: !this.state.open });
   };
   createTeamHandler = () => {
-    this.props.clearAllTeams();
+    this.props.clearStepsCreateTeam();
     this.props.history.push("/create-team");
     this.onClickMenu();
   };
@@ -42,14 +41,14 @@ class Header extends Component {
             TeamMate
           </h2>
         </Link>
-        {/* <input type="checkbox" className="chk" id="chk-header" /> */}
+
         <label
           htmlFor="chk-header"
           className="show-menu-btn"
           onClick={this.onClickMenu}
         >
           <span className="x-header">
-            {" "}
+          
             <i className="fas fa-times" />
           </span>
         </label>
@@ -72,7 +71,6 @@ class Header extends Component {
             onClick={this.onClickMenu}
             className="link-class"
             to="/profile"
-          
           >
             Your Profile
           </NavLink>
@@ -86,17 +84,19 @@ class Header extends Component {
           <NavLink
             onClick={this.onClickMenu}
             className="link-class"
+            to="/contact-us"
+          >
+            Contact us
+          </NavLink>
+          <NavLink
+            onClick={this.onClickMenu}
+            className="link-class"
             exact
             to="/about"
           >
             About
           </NavLink>
-          <NavLink
-            onClick={this.onClickMenu}
-            className="link-class"
-            to="#"
-         
-          >
+          <NavLink onClick={this.onClickMenu} className="link-class" to="#">
             logout
           </NavLink>
           <label
@@ -120,7 +120,8 @@ const mapStateDispatch = dispatch => {
   return {
     clearAllTeams: () => dispatch(actionType.clearAllTeams()),
     logoutUser: () => dispatch(actionType.logoutUser()),
-    clearSearchTeamArray:()=>dispatch(actionType.clearSearchTeamArray())
+    clearSearchTeamArray: () => dispatch(actionType.clearSearchTeamArray()),
+    clearStepsCreateTeam:()=>dispatch(actionType.clearStepsCreateTeam())
   };
 };
 export default withRouter(

@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
         case actionType.SEARCH_TEAMS:
             return updateObject(state, { teamsBySearch: action.payload })
         case actionType.CLEAR_ALL_TEAMS:
-            return updateObject(state ,{yourTeams:[],teamsBySearch:[],generalInfo:"",dateAndTime:"",location:""})
+            return updateObject(state ,{yourTeams:[],teamsBySearch:[]})
         case actionType.LOAD_CHAT_GROUP:
             return updateObject(state, { teamSelected: action.payload })
             case actionType.CLEAR_SEARCH_TEAM:
@@ -40,6 +40,8 @@ const reducer = (state = initialState, action) => {
             return updateObject(state, { userLocation: action.payload })
             case actionType.LOAD_USER_CALENDER:
             return updateObject (state,{userCalender:action.payload})
+            case actionType.CLEAR_STEPS_CREATE_TEAM:
+            return updateObject(state,{dateAndTime:"",location:"",generalInfo:""})
         default:
             return state;
 

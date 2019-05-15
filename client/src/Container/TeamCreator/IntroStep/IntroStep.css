@@ -22,7 +22,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    color: #34495e;
+    color: #2f3133;
     text-align: center;
     transform: translate(-50%, -50%);
 }
@@ -31,8 +31,13 @@
     margin: 10px auto;
     font-family: 'Roboto', sans-serif;
     line-height: 22pt;
+    display: flex;
+    flex-direction: column;
+    text-align: left
 }
-
+.pointer-intro{
+    margin-left: 10px;
+}
 .next-btn-intro {
     float: right;
     background: #34495e;

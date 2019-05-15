@@ -2,10 +2,10 @@
   padding: 0;
   margin: 0;
 }
-.wrapper-admin-Commercial {
+.wrapper-text {
   font-family: "Roboto", sans-serif;
-  background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1557569847/basketball.jpg");
-  height: 62%;
+ 
+  height: 50%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -16,18 +16,17 @@
   transform: translate(-50%, -50%);
   width: 88%;
 }
-.wrapper-admin-commercial span {
+.wrapper-text span {
   text-transform: uppercase;
-
   display: block;
 }
 .text1 {
   font-size: 30px;
   font-weight: 700;
   letter-spacing: 8px;
-  color: #405b75;
+  color: #292d30;
   margin-bottom: 20px;
-  color: black;
+ 
   position: relative;
   animation: text 3s 1;
 }
@@ -36,7 +35,12 @@
   color: #262626;
   font-weight: 700;
 }
+.img-commercial{
+  width: 85%;
+  height: 363px;
+  border-radius: 0
 
+}
 @keyframes text {
   0% {
     color: #262626;

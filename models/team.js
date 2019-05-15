@@ -69,7 +69,7 @@ team.statics.createUserCalender = function(userEmail) {
               sport: teams[i].generalInfo.typeOfSportChosen,
               times: ["Daily"],
               typeSchedule:teams[i].dateAndTime.pickType,
-              id:uuid()
+              key:uuid()
             });
           } else if (teams[i].dateAndTime.selectedDays.length > 0) {
             scheduleArray.push({
@@ -78,7 +78,7 @@ team.statics.createUserCalender = function(userEmail) {
               sport: teams[i].generalInfo.typeOfSportChosen,
               times: teams[i].dateAndTime.selectedDays,
               typeSchedule:teams[i].dateAndTime.pickType,
-              id:uuid()
+              key:uuid()
             });
           } else {
             scheduleArray.push({
@@ -87,7 +87,7 @@ team.statics.createUserCalender = function(userEmail) {
               sport: teams[i].generalInfo.typeOfSportChosen,
               times: teams[i].dateAndTime.dayOfTheWeekPicker,
               typeSchedule:teams[i].dateAndTime.pickType,
-              id:uuid()
+              key:uuid()
             });
           }
         }

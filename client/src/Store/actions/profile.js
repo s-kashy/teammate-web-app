@@ -117,7 +117,7 @@ export const updateUserProfileOnServer = (id, profileEdit) => {
   };
 };
 export const initializeUser = email => {
-  console.log("init", email);
+
   return dispatch => {
     dispatch(updateUserEmail(email));
     dispatch(getUserProfile(email));

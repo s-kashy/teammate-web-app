@@ -13,17 +13,41 @@ class ContactUs extends Component {
         value: "",
         error: false
       },
-      showMsg:true
+      showMsg: false
     }
   };
-  sendEmailHandler = () => {};
+
+  sendEmailHandler = (event) => {
+
+    event.preventDefault()
+    let copyMessage={...this.state.message}
+    if (copyMessage.subject.value===""){
+      copyMessage.subject.error=true
+    }
+    if (copyMessage.textMessage.value===""){
+      copyMessage.textMessage.error=true
+    }
+    this.setState({message:copyMessage},()=>{
+      let message={...this.state.message}
+      if (message.subject.value!=="" && message.textMessage.value!==""){
+      
+        message.subject.value=""
+        message.textMessage.value=""
+        this.setState({message:message})
+      }
+    })
+
+  };
   onChangeHandler = event => {
     let message = { ...this.state.message };
-    console.log(message);
     message[event.target.name].value = event.target.value;
-    this.setState({ message: message });
+    message[event.target.name].error=false
+    this.setState({ message: message },()=>{
+    
+    });
   };
   render() {
+    const { message } = this.state;
     return (
       <div className="wrapper-contact-us">
         <form className="form-contact-us">
@@ -32,17 +56,26 @@ class ContactUs extends Component {
             classInput="input-subject-contact-us"
             placeholder="Subject"
             name="subject"
-            value={this.state.message.value}
+            type="text"
+            errorClass="error-class"
+            error={message.subject.error}
+            value={this.state.message.subject.value}
             change={e => this.onChangeHandler(e)}
           />
           <textarea
             placeholder="Your Message"
             name="textMessage"
             wrap="physical"
-            ref={x => this.textarea = x} 
+            onChange={(e) => this.onChangeHandler(e)}
+            value={message.textMessage.value}
+            ref={x => (this.textarea = x)}
             className="text-msg-contact-us"
-        
           />
+          {message.textMessage.error && (
+            <p className="text-msg-error-contact-us">
+              *You forgot to add a message
+            </p>
+          )}
           <button
             className="btn-send-meg-contact-us"
             onClick={this.sendEmailHandler}
@@ -50,7 +83,7 @@ class ContactUs extends Component {
             Send Mail
           </button>
         </form>
-    <p className="msg-contact-us">Thank you we will get back to you</p>
+       {this.state.showMsg && (<p className="msg-contact-us">Thank you we will get back to you</p>)}
       </div>
     );
   }

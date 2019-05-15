@@ -32,8 +32,8 @@ class MapContainer extends PureComponent {
             showingInfoWindow: false,
             reRender: true,
             userInfo: {
-                lat: this.props.lat ? this.props.lat : 32.109333,
-                lng: this.props.lng ? this.props.lng : 34.855499,
+                lat: this.props.lat!=="" ? this.props.lat : 32.109333,
+                lng: this.props.lng!=="" ? this.props.lng : 34.855499,
                 markers: this.props.markers
             }
         }

@@ -2,6 +2,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow: auto
   
 
 }
@@ -13,15 +14,26 @@
     flex: 1 1;
     position: relative;
 }
+.advertisement-title-landing-page{
+    position: relative;
+    left: -231px;
+    color:#343c43
+}
+.vl {
+    border-left: 3px solid #343c43;
+    height: 380px;
+    margin: 20px auto
+  }
 @media screen and (max-width:800px){
     .wrapper-landing-page{
         flex-direction: column;
-        /* z-index: -999; */
         width: 100%;
         display: flex;
         height: auto;
     }
-    
+    .vl {
+       display: none;
+      }
     .mid-Landing-page{
         width: 100%;
         padding: 18px;

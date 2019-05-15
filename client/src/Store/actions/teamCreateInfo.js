@@ -275,7 +275,6 @@ export const loadCalender = calender => {
   };
 };
 export const getUserCalender = email => {
-
   var data = {
     url: GET_USER_CALENDER,
     method: "post",
@@ -294,3 +293,9 @@ export const getUserCalender = email => {
       });
   };
 };
+
+export const clearStepsCreateTeam=()=>{
+  return {
+    type:actionType.CLEAR_STEPS_CREATE_TEAM
+  }
+}
