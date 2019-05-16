@@ -68,7 +68,7 @@ class TeamManagerCard extends Component {
         }
 
         if (selectedDays !== undefined && selectedDays.length > 0) {
-            console.log("monthly", selectedDays)
+       
             arrayOfTheDates = selectedDays.map((item, index) => {
                 return (<li key={index} className="item-date-manager-card">{moment(item).format('DD/MM/YYYY')}</li>)
             })
