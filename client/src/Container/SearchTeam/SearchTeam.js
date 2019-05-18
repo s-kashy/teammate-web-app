@@ -146,7 +146,7 @@ class SearchTeam extends Component {
                         <div className="map-search-bar-wrapper">
                             <MapTeamSearchLayout displayTeam={this.TeamCardHandler} findTeamsByParams={this.findTeamsByParams} />
                         </div>
-                    </div>}
+                    </div>
             </div> : <TeamCard
                     leftClick={this.TeamCardHandler}
                     joinTeamHandler={this.joinTeamHandler}
