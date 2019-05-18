@@ -92,7 +92,7 @@ class DateAndTime extends Component {
         let timePickerCopy = JSON.parse(JSON.stringify(this.state.timePicker));
         for (let i = 0; i < dayOfTheWeekPicker.length; i++) {
           for (let j = 0; j < tempStateDayCopyWeek.length; j++) {
-            if (dayOfTheWeekPicker[i].value == tempStateDayCopyWeek[j].value) {
+            if (dayOfTheWeekPicker[i].value === tempStateDayCopyWeek[j].value) {
               tempStateDayCopyWeek[j].check = true;
             }
           }

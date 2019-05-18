@@ -96,7 +96,7 @@ class Header extends Component {
           >
             About
           </NavLink>
-          <NavLink onClick={this.onClickMenu} className="link-class" to="#">
+          <NavLink onClick={this.onClickLogout} className="link-class" to="#">
             logout
           </NavLink>
           <label

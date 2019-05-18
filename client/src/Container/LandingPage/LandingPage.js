@@ -4,8 +4,9 @@ import { connect } from "react-redux";
 import Table from "../UserTable/UserTable";
 import * as actionType from "../../Store/actions/index";
 import Banner from "../../Component/Banner/Banner";
-import AdminComercial from "../../Component/Commercial/AdminComercial";
-import SaleCommercial  from "../../Component/Commercial/SaleCommercial/SaleCommercial"
+
+import SaleCommercial from "../../Component/Commercial/SaleCommercial/SaleCommercial";
+import AdminCommercial from "../../Component/Commercial/AdminComercial";
 class LadingPage extends Component {
   state = {
     userCalender: []
@@ -45,12 +46,18 @@ class LadingPage extends Component {
           <div className="child-mid-landing-page">
             <Table data={this.props.userCalender} />
           </div>
-          <div className="vl"></div>
-          <div className="child-mid-landing-page">
-          <p className="advertisement-title-landing-page">*advertisement</p>
-            <SaleCommercial />
+          <div className="vl" />
+          <div>  <p className="advertisement-title-landing-page">*advertisement</p></div>
+          <div
+            className="wrapper-add-landing-page"
+      
+          >   
+                <SaleCommercial />
+                  <AdminCommercial />
+               
+              
+            
           </div>
-        
         </div>
       </div>
     );

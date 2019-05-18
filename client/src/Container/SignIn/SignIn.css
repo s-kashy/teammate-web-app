@@ -1,149 +1,170 @@
 .main-auth {
-    margin: 0;
-    padding: 0;
-    margin: 0 auto;
-    font-family: 'Roboto', sans-serif;
-    background-color: #191919;
-    width: 100%;
-    height: 100%;
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  background-color: #191919;
+  width: 100%;
+  height: 100%;
 }
 
 .logo-sign-in {
-    background-color: none;
-    color: #34495e;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 1000;
-    font-size: 50px;
-    position: absolute;
-    top: 43px;
-    left: 70px;
+  background-color: none;
+  color: #34495e;
+  font-family: "Roboto", sans-serif;
+  font-weight: 1000;
+  font-size: 50px;
+  position: absolute;
+  top: 43px;
+  left: 70px;
 }
 
 .registrar-title {
-    font-weight: 500;
-    text-transform: uppercase;
-    color: white;
-    margin: 0 auto;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: white;
+  margin: 0 auto;
 }
 
-.box {
+.box-sing-in {
+  background-color: #34495e;
+  width: 300px;
+  padding: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.box-sing-in input[type="text"],
+.box-sing-in input[type="password"] {
+  border: 0;
+  background-color: transparent;
+  margin: 20px auto;
+  display: block;
+  border: 2px solid #3498db;
+  text-align: center;
+  padding: 14px 10px;
+  border-radius: 24px;
+  width: 200px;
+  position: relative;
+  top: 22px;
+  box-sizing: border-box;
+  outline: none;
+  color: white;
+  transition: 0.25s;
+}
+
+.box-sing-in input[type="text"]:focus,
+.box-sing-in input[type="password"]:focus {
+  width: 222px;
+  border-color: white;
+}
+
+.box-sing-in input[type="submit"] {
+  border: 0;
+  background-color: none;
+  margin: 38px auto;
+  display: block;
+  border: 2px solid #3498db;
+  position: relative;
+  text-align: center;
+  padding: 14px 30px;
+  border-radius: 24px;
+  width: 100px;
+  top: 38px;
+  outline: none;
+  color: #191919;
+  transition: 0.25s;
+  cursor: pointer;
+}
+
+.box-sing-in input[type="submit"]:hover {
+  background-color: #34495e;
+  color: white;
+}
+
+.msg-email-sing-in,
+.msg-password-sign-in,
+.email-exist-msg {
+  color: #ef5d09;
+}
+
+.msg-email-sing-in {
+  left: 62px;
+  top: 150px;
+  padding: -1px;
+  position: absolute;
+  font-size: 13px;
+}
+
+.msg-password-sign-in {
+  left: 62px;
+  top: 217px;
+  padding: -1px;
+  position: absolute;
+  font-size: 13px;
+}
+
+.registrar-invalid-sign-in {
+  color: #ef5d09;
+  position: absolute;
+  top: 298px;
+  font-size: 13px;
+  left: 66px;
+  text-transform: uppercase;
+}
+
+.email-exist-msg-sign-in {
+  position: absolute;
+  left: 80px;
+  top: 317px;
+  padding: -1px;
+  color: #ef5d09;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 800px) {
+  .box-sing-in input[type="text"]:focus,
+  .box-sing-in input[type="password"]:focus {
+    width: 210px;
+    border-color: white;
+  }
+  .logo-sign-in{
+      position: static;
+      margin: 10px auto
+  }
+  .main-registrar {
+    margin: 0 auto;
+  }
+  .box-sing-in {
     background-color: #34495e;
     width: 300px;
-    padding: 40px;
+    box-sizing: border-box;
     position: absolute;
     top: 50%;
+    margin: 0 auto;
     left: 50%;
     text-align: center;
-    transform: translate(-50%, -50%)
-}
-
-.box input[type="text"], .box input[type="password"] {
-    border: 0;
-    background-color: transparent;
-    margin: 20px auto;
-    display: block;
-    border: 2px solid #3498db;
-    text-align: center;
-    padding: 14px 10px;
-    border-radius: 24px;
-    width: 200px;
-    position: relative;
-    top: 22px;
-    box-sizing: border-box;
-    outline: none;
-    color: white;
-    transition: 0.25s
-}
-
-.box input[type="text"]:focus, .box input[type="password"]:focus {
-    width: 222px;
-    border-color: white
-}
-
-.box input[type="submit"] {
-    border: 0;
-    background-color: none;
-    margin: 38px auto;
-    display: block;
-    border: 2px solid #3498db;
-    position: relative;
-    text-align: center;
-    padding: 14px 30px;
-    border-radius: 24px;
-    width: 100px;
-    top: 32px;
-    outline: none;
-    color: #191919;
-    transition: 0.25s;
-    cursor: pointer;
-}
-
-.box input[type="submit"]:hover {
-    background-color: #34495e;
-    color: white
-}
-
-.msg-email, .msg-password, .email-exist-msg {
-    color: #ef5d09;
-}
-
-.msg-email {
-    left: 128px;
-    top: 128px;
-    padding: -1px;
-    position: absolute;
-}
-
-.msg-password {
-    position: absolute;
-    left: 116px;
-    top: 200px;
-    padding: -1px;
-}
-
-.registrar-invalid {
-    color: #ef5d09;
-    position: absolute;
-    top: 277px;
-    left: 80px;
-    text-transform: uppercase
-}
-
-.email-exist-msg {
+    transform: translate(-80%, -40%);
+  }
+  .msg-email-sing-in,
+  .msg-password-sign-in {
+    position: static;
+  }
+  .registrar-invalid-sign-in {
+    top: 292px;
+    left: 60px;
+  }
+  .email-exist-msg-sign-in {
     position: absolute;
     left: 80px;
-    top: 3000px;
+    top: 318px;
     padding: -1px;
-    text-transform: uppercase
-}
-
-@media screen and (max-width:800px) {
-    .box input[type="text"]:focus, .box input[type="password"]:focus {
-        width: 210px;
-        border-color: white
-    }
-    .main-registrar {
-        margin: 0 auto;
-    }
-    .box {
-        background-color: #34495e;
-        width: 300px;
-        box-sizing: border-box;
-        position: absolute;
-        top: 50%;
-        margin: 0 auto;
-        left: 50%;
-        text-align: center;
-        transform: translate(-80%, -40%)
-    }
-    .msg-email, .msg-password {
-        position: static;
-    }
-    .registrar-invalid {
-        top: 338px;
-        left: 32px;
-    }
-    /* .email-exist-msg{
-
-    } */
+    color: #ef5d09;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
 }

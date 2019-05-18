@@ -105,8 +105,8 @@
   font-size: 1.1em;
 }
 .msg-email {
-  left: 0 !important;
-  top: 142px !important ;
+  left: 59px !important;
+  top: 151px !important;
   padding: -1px;
   font-size: 13px;
   position: absolute !important;
@@ -114,9 +114,9 @@
 
 .msg-password {
   position: absolute;
-  left: 0 !important;
+  left: 60px !important;
   font-size: 13px;
-  top: 222px !important;
+  top: 232px !important;
   padding: -1px;
 }
 
@@ -143,9 +143,9 @@
 .auth-invalid {
   color: #ef5d09;
   position: absolute;
-  top: 310px;
-  left: 0px;
-  text-transform: uppercase
+  top: 248px;
+  left: 33px;
+  text-transform: uppercase;
 }
 
 .auth-new-user {
@@ -179,27 +179,30 @@
     transform: translate(-80%, -50%)
   }
   .auth-new-user {
-    left: 207px;
+    /* left: 207px;
     top: 24px;
-    box-sizing: border-box;
+    box-sizing: border-box; */
   }
   .auth-sing-up {
-    color: #efe409;
+    color: #fff;
     position: absolute;
     text-transform: lowercase;
     text-decoration: none;
-    left: 55px;
+    left: 27px;
   }
   .auth-sing-in-icon {
     left: 274px;
     top: 20px;
     cursor: pointer;
   }
-  .msg-email, .msg-password {
-    position: static;
-  }
+  
   .auth-invalid {
     top: 350px;
     left: 32px;
+  }
+  .logo-login{
+    position: static;
+    margin: 10px auto;
+    text-align: center;
   }
 }

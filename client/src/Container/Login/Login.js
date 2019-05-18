@@ -6,20 +6,11 @@ import * as actionType from "../../Store/actions/index"
 import './Login.css';
 
 class Login extends Component {
-    componentDidMount() {
-
-    }
-    resetError = () => {
-        let userInput = this.state.user
-        userInput.email.error = false
-        userInput.password.error = false
-        this.setState({ user: userInput, generalError: false })
-
-    }
+   
     state = {
         user: {
             email: {
-                value: undefined,
+                value: "",
                 error: false
             },
             password: {
@@ -31,7 +22,7 @@ class Login extends Component {
     }
     submitUserFormHandler = (event) => {
         event.preventDefault()
-        let userInfo = JSON.parse(JSON.stringify(this.state.user))
+        let userInfo = {...this.state.user}
         if (!checkEmail(userInfo.email.value)) {
             userInfo.email.error = true
         }
@@ -44,12 +35,14 @@ class Login extends Component {
                 this.props.loginWithCredential({ email: userInfo.email.value, password: userInfo.password.value }).then(res => {
                     if (res) {
                         this.props.updateUserEmail(res)
+                        this.props.getUserCalender({email:userInfo.email.value})
                         this.props.history.push("/")
+                        
                     }
                 }).catch(err => {
-                    console.log("login", err)
+         
                     this.setState({ generalError: true })
-                    setTimeout(this.resetError, 5000)
+                 
 
                 })
             }
@@ -58,9 +51,10 @@ class Login extends Component {
 
     }
     onChangeHandler = (event) => {
-        let userInput = JSON.parse(JSON.stringify(this.state.user))
+        let userInput = {...this.state.user}
         userInput[event.target.name].value = event.target.value
-        this.setState({ user: userInput }, () => {
+        userInput[event.target.name].error=false
+        this.setState({ user: userInput, generalError:false}, () => {
 
         })
 
@@ -72,7 +66,7 @@ class Login extends Component {
             <div className="main-auth" >
                 <h2 className="logo-login">TeamMate</h2>
                 <form className="box-login" onSubmit={this.submitUserFormHandler} ref={el => this.formAuth = el} style={{ left: "75%" }} >
-                    <h3 className="auth-title">Login <Link style={{ color: "#FFF" }} to="/api/auth/sign-in"><span className="auth-new-user">*New user</span></Link></h3>
+                    <h3 className="auth-title">Login <Link style={{ color: "#FFF" }} to="/sign-in"><span className="auth-new-user">*New user</span></Link></h3>
                     <input type="text" name="email" placeholder="email" onChange={(event) => this.onChangeHandler(event)} autoComplete="new-email" value={email.value} />
                     {email.error && <p className="msg-email">*email not valid </p>}
                     <input type="password" value={password.value} name="password" onChange={(event) => this.onChangeHandler(event)} autoComplete="new-password" placeholder="password" />
@@ -95,7 +89,8 @@ const mapStateHandler = state => {
 const mapStateDispatch = dispatch => {
     return {
         updateUserEmail: (email) => dispatch(actionType.updateUserEmail(email)),
-        loginWithCredential: (user) => dispatch(actionType.loginWithCredential(user))
+        loginWithCredential: (user) => dispatch(actionType.loginWithCredential(user)),
+        getUserCalender: email => dispatch(actionType.getUserCalender(email))
     };
 };
 export default connect(mapStateHandler, mapStateDispatch)(Login);

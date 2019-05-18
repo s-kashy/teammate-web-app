@@ -35,11 +35,17 @@ require("./routes/team")(app)
 require("./routes/chatGroup")(app)
 require("./socketManager/socketManager")(io)
 
-app.get('*', function (request, response){
-    // response.sendFile(path.resolve(__dirname, './client/public/', 'index.html'))
-  response.redirect("/")
-})
+// app.get('*', function (request, response){
 
+//   response.redirect("/")
+// })
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"))
+  
+    app.get("*", (req, res) => {
+      res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+  }
 const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, () => {

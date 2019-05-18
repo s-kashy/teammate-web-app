@@ -285,6 +285,7 @@ export const getUserCalender = email => {
   return dispatch => {
     return getRequestData(data)
       .then(res => {
+     
         dispatch(loadCalender(res.data));
         return Promise.resolve(res.data);
       })

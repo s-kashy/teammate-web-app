@@ -11,7 +11,7 @@ import Header from "./Container/Header/Header";
 import SearchTeam from "./Container/SearchTeam/SearchTeam";
 import TeamCreator from "./Container/TeamCreator/TeamCreator";
 import Profile from "./Container/Profile/Profile";
-import ContactUs from './Container/ContactUs/ContactUs'
+import ContactUs from "./Container/ContactUs/ContactUs";
 import Spinner from "./Component/Ui/Spinner/Spinner";
 import About from "./Container/About/About";
 import ChatBoardTeam from "./Container/ChatBoardTeam/ChatBoardTeam";
@@ -25,27 +25,29 @@ class App extends Component {
     this.props
       .authCheckState()
       .then(res => {
-        this.props
-          .initializeUser(res)
-          .then(res => {
-            return this.props.getUserCalender({ email: res });
-          })
+     
+        this.props.initializeUser(res);
+        this.props.getUserCalender({ email: res })
+          // .then(res => {
+          //   console.log("app email chalender",res)
+          //   return this.props.getUserCalender({ email: res });
+          // })
           .then(() => {
             this.props.history.push("/");
           });
       })
       .catch(err => {
-        this.props.history.push("/api/auth/login");
-        //this.props.history.push("/")
+        this.props.history.push("/login");
+        // this.props.history.push("/")
       });
   }
 
   render() {
     let redirectAuth = (
       <Switch>
-        <Route exact path="/api/auth/login" component={Login} />
-        <Route path="/api/auth/sign-in" component={SignIn} />
-        <Redirect to="/api/auth/login" />
+        <Route exact path="/login" component={Login} />
+        <Route path="/sign-in" component={SignIn} />
+        <Redirect to="/login" />
         <Route component={Error} />
       </Switch>
     );
@@ -61,7 +63,7 @@ class App extends Component {
           <Route path="/chat-team" component={ChatBoardTeam} />
           <Route exact path="/" component={LandingPage} />
           <Redirect to="/" />
-         
+          <Route component={Error} />
         </Switch>
       );
     }

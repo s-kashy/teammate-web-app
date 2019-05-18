@@ -101,7 +101,7 @@ class GeneralInfo extends Component {
       aboutTheTeam.touch = true;
     }
     this.setState({ aboutTheTeam: aboutTheTeam }, () => {
-      console.log("about ", this.state.aboutTheTeam);
+     
       this.checkValidForm();
     });
   };
@@ -120,7 +120,7 @@ class GeneralInfo extends Component {
     return false;
   };
   onChangeInputHandler = event => {
-    let userInfo = JSON.parse(JSON.stringify(this.state.userBasic));
+    let userInfo = {...this.state.userBasic}
     userInfo[event.target.name].value = event.target.value;
     var key = event.target.name;
     this.setState({ userBasic: userInfo }, () => {

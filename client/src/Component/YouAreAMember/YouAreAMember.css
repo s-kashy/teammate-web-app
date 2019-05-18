@@ -2,6 +2,7 @@
     margin: auto;
     text-align: center;
     box-sizing: border-box;
+    text-transform: uppercase
 }
 
 .btn-error {
@@ -10,7 +11,7 @@
     outline: none;
     cursor: pointer;
     font: inherit;
-    padding: 10px;
+    padding: 10px 126px;
     text-align: center;
     margin: 10px;
     font-weight: bold;

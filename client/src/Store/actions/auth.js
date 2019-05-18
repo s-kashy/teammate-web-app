@@ -31,7 +31,7 @@ export const loginWithCredential = userInfo => {
   return dispatch => {
     return getRequestData(dataSent)
       .then(res => {
-        //console.log("res from server", res)
+     
         storeInLocalStorage(res.headers.auth);
         dispatch(setAuth(true));
         return Promise.resolve(res.data.email);
@@ -68,7 +68,7 @@ export const authCheckState = () => {
           });
       } else {
         dispatch(setAuth(false));
-        reject("bad");
+        reject("not auth");
       }
     });
   };
