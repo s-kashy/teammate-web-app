@@ -40,11 +40,11 @@ class TeamManagerCard extends Component {
            
             this.props.submitManagerCard(formDate, this.props.email).then(res => {
                 if (res.status === 200) {
-                    setTimeout(() => {
+                  
                         this.props.history.push("/")
                         this.props.processRequestMsg(false)
                         this.props.clearAllTeams()
-                    }, 1000);
+                 
 
                 }
             }).catch(err => {
