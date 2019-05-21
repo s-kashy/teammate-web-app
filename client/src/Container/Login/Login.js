@@ -32,7 +32,7 @@ class Login extends Component {
         }
         this.setState({ user: userInfo }, () => {
             if (!this.state.user.email.error && !this.state.user.password.error) {
-                this.props.loginWithCredential({ email: userInfo.email.value, password: userInfo.password.value }).then(res => {
+                this.props.loginWithCredential({ email: userInfo.email.value.toLowerCase(), password: userInfo.password.value }).then(res => {
                     if (res) {
                         this.props.updateUserEmail(res)
                         this.props.getUserCalender({email:userInfo.email.value})
