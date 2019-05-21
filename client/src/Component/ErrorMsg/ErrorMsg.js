@@ -8,7 +8,7 @@ const ErrorMsg = props => {
             style={{ display: visibilityState }}
             className="ErrorMsg"
         >
-            <p>Some thing went wrong we are sorry </p>
+            <p>Something went wrong we are sorry </p>
             <button onClick={props.click} className="btn-error">OK</button>
         </div>
     );

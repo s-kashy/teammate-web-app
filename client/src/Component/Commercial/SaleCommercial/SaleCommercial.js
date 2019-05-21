@@ -24,7 +24,7 @@ class SaleCommercial extends Component {
               <h3 className="title-sale">Sports equipment</h3>
               <p className="point-sale">Shoes men and women 30% off</p>
               <p className="point-sale">Tennis racket 10% off all sizes</p>
-              <p className="point-sale">and much more </p>
+              <p className="point-sale"> Summer cloths great deals </p>
               <p className="point-sale">come and see for yourself</p>
               <h1 style={{color:'#fff'}}>TeamMate</h1>
             </div>

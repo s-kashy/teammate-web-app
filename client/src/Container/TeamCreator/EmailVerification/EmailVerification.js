@@ -24,7 +24,7 @@ class EmailVerification extends Component {
         let data = {
             email: this.props.emailRegister,
             token: JSON.parse(JSON.stringify(this.state.webToken.value)),
-            emailManger: JSON.parse(JSON.stringify(this.state.email.value))
+            emailManger: JSON.parse(JSON.stringify(this.state.email.value.toLowerCase()))
         }
         this.props.checkValidToken(data).then(res => {
             if (res.status === 200) {

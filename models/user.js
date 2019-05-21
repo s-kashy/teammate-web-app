@@ -19,10 +19,10 @@ const user = new Schema({
         type: String,
         required: true,
         trim: true,
-        webToken: String,
+        // webToken: String,
         minlength: 1,
         unique: true,
-        teamMangerEmail: String,
+        // teamMangerEmail: String,
         validate: {
             validator: (value) => {
                 return isEmail(value)
