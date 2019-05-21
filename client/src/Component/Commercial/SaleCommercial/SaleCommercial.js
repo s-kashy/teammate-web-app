@@ -26,7 +26,7 @@ class SaleCommercial extends Component {
               <p className="point-sale">Tennis racket 10% off all sizes</p>
               <p className="point-sale"> Summer cloths great deals </p>
               <p className="point-sale">come and see for yourself</p>
-              <h1 style={{color:'#fff'}}>TeamMate</h1>
+              <h1 className="title-sale-com">TeamMate</h1>
             </div>
           </div>
         </div>

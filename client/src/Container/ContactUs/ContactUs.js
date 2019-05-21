@@ -14,11 +14,14 @@ class ContactUs extends Component {
         error: false
       },
       showMsg: false
-    }
+    },
+    loaded:false
   };
-
+onLoad=()=>{
+  console.log("onload")
+  this.setState({loaded:true})
+}
   sendEmailHandler = (event) => {
-
     event.preventDefault()
     let copyMessage={...this.state.message}
     if (copyMessage.subject.value===""){
@@ -49,7 +52,8 @@ class ContactUs extends Component {
   render() {
     const { message } = this.state;
     return (
-      <div className="wrapper-contact-us">
+      <div className="wrapper-contact-us" >
+    
         <form className="form-contact-us">
           <h3 className="title-contact-us">Contact Us</h3>
           <Input

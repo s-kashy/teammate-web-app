@@ -1,13 +1,19 @@
 .wrapper-contact-us {
-  width: 80%;
-  margin: 10px auto;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-position: 0% 0%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("https://res.cloudinary.com/diyrxbb9o/image/upload/v1558436918/adventure-bikers-cycling-163407.jpg");
 }
 .btn-send-meg-contact-us:hover {
   background-color: #343c43;
 }
 .form-contact-us {
-  width: 80%;
-
+  margin: 53px auto;
+  padding: 10px 0 40px;
+  width: 50%;
 }
 .btn-send-meg-contact-us {
   display: block;
@@ -74,6 +80,7 @@
   height: 195px;
   color: #fff;
   line-height: 16pt;
+  padding: 10px;
   max-height: 195px;
   background-color: #343c43;
   overflow: auto;
@@ -93,8 +100,9 @@
 @media screen and (max-width: 800px) {
   .form-contact-us {
     width: 100%;
+    background: transparent;
   }
-  .wrapper-contact-us{
-    width: 100%
+  .wrapper-contact-us {
+    width: 100%;
   }
 }

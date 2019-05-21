@@ -22,8 +22,8 @@ class MapTeamSearchLayout extends Component {
     }
 
     updateWindowDimensions() {
-        this.setState({ screenWidth: window.innerWidth }, () => {
-
+        this.setState({isLoading:false,screenWidth: window.innerWidth }, () => {
+this.setState({isLoading:true})
         });
     }
 
@@ -44,6 +44,12 @@ class MapTeamSearchLayout extends Component {
             height: "50%"
 
         }
+        let styeSearch = {
+            position: "relative",
+            margin: " 10px auto",
+            left: "97px",
+            top: "20px",
+        }
         if (this.state.screenWidth !== undefined && this.state.screenWidth < 800) {
             styleMap = {
                 position: 'absolute',
@@ -57,15 +63,17 @@ class MapTeamSearchLayout extends Component {
                 display: 'inherit',
 
             }
+            styeSearch={
+                position: "relative",
+                margin: " 10px auto",
+                left: "85px",
+                top: "121px", 
+                width:"60%"
+            } 
 
         }
 
-        let styeSearch = {
-            position: "relative",
-            margin: " 10px auto",
-            left: "97px",
-            top: "20px",
-        }
+     
         return (<div>{this.state.isLoading ? <div>
             <div className='map-team-search'>
                 <MapContainer styleMap={styleMap}

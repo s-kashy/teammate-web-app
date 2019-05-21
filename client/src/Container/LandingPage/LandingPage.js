@@ -18,9 +18,7 @@ class LadingPage extends Component {
         this.errorFunction
       );
     } else {
-      alert(
-        "It seems like Geolocation, which is required for this page, is not enabled in your browser. Please use a browser which supports it."
-      );
+      return
     }
   }
   shouldComponentUpdate() {
@@ -50,13 +48,10 @@ class LadingPage extends Component {
           <div>  <p className="advertisement-title-landing-page">*advertisement</p></div>
           <div
             className="wrapper-add-landing-page"
-      
           >   
                 <SaleCommercial />
                   <AdminCommercial />
-               
-              
-            
+         
           </div>
         </div>
       </div>

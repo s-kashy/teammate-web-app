@@ -24,9 +24,11 @@ class SliderRc extends Component {
     render() {
         return (
             <div>
+            {/* <label className="distance-rc-range">Distance</label> */}
                 <SliderWithTooltip
                     min={1}
                     max={100}
+                    tipProps={{visible:true}}
                     value={this.state.value}
                     defaultValue={10}
                     tipFormatter={this.percentFormatter}
